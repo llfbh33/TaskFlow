@@ -38,3 +38,6 @@
 
 - should I include a calender API
 - should I include an API search function?
+
+
+- come up with a structure for the tables anda framework

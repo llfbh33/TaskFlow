@@ -52,4 +52,6 @@
 
 #### app.js
     - create a file called app.js in backend folder, express will be initialized here.
-    
+
+
+- using bcryptjs to hash passwords - npm install bcryptjs

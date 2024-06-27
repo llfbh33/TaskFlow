@@ -1,7 +1,8 @@
 const express = require('express') // import express
 const router = express.Router(); // initialize express router
 
-
+const apiRouter = require('./api');  // import api routes
+router.use('/api', apiRouter);
 
 // test route
 // router.get('/hello/world', function(req, res) {

@@ -48,4 +48,8 @@
 
 - sequelize db: commands need to be prefixed with dotenv to load database configuration environment variables from the .env file.
 
+### Express setup
 
+#### app.js
+    - create a file called app.js in backend folder, express will be initialized here.
+    

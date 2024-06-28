@@ -1,25 +1,11 @@
 const router = require('express').Router();
+const { restoreUser } = require('../../utils/auth.js');  // import restore user function
 
+// Connect restoreUser middleware to the API router
+  // If current user session is valid, set req.user to the user in the database
+  // If current user session is not valid, set req.user to null
+router.use(restoreUser);
 
-// test route
-router.post('/test', function(req, res) {
-    res.json({ requestBody: req.body });
-  });
-
-/*
-Input current csrf token into value of cookie location
-
-fetch('/api/test', {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "XSRF-TOKEN": `<value of XSRF-TOKEN cookie>`
-  },
-  body: JSON.stringify({ hello: 'world' })
-}).then(res => res.json()).then(data => console.log(data));
-
-d3wIOS44-IX1c8BaMdlq9_DxY2hyJU-dazJg
-*/
 
 
 module.exports = router;

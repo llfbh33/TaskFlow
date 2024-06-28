@@ -53,7 +53,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       values: ['project-manager', 'collaborator', 'user'],
     },
-    is_employed: {
+    isEmployed: {
       type: DataTypes.BOOLEAN,
       allowNull: false,
       defaultValue: false

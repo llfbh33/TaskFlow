@@ -18,7 +18,7 @@ const seedUsers = [
     username: "starter-aubrie",
     email: 'AubrieWoodbine@gmail.com',
     status: 'project-manager',
-    is_employed: false,
+    isEmployed: false,
     hashedPassword: bcrypt.hashSync('password')
   },
   {
@@ -26,7 +26,7 @@ const seedUsers = [
     username: "demo-user",
     email: 'demo@gmail.com',
     status: 'collaborator',
-    is_employed: false,
+    isEmployed: false,
     hashedPassword: bcrypt.hashSync('password1')
   },
   {
@@ -34,7 +34,7 @@ const seedUsers = [
     username: "demo-user2",
     email: 'demo2@gmail.com',
     status: 'user',
-    is_employed: false,
+    isEmployed: false,
     hashedPassword: bcrypt.hashSync('password2')
   },
 ]

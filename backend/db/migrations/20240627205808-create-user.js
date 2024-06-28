@@ -35,7 +35,7 @@ module.exports = {
         values: ['project-manager', 'collaborator', 'user'],
         allowNull: false,
       },
-      is_employed: {
+      isEmployed: {
         type: Sequelize.BOOLEAN,
         defaultValue: false,
         allowNull: false,

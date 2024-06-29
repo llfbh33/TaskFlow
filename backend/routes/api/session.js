@@ -7,6 +7,27 @@ const { User } = require('../../db/models');
 
 const router = express.Router();
 
+// Restore session user
+router.get(
+  '/',
+  (req, res) => {
+    const { user } = req;
+    if (user) {
+      const safeUser = {
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        username: user.username,
+        status: user.status,
+        isEmployed: user.isEmployed
+      };
+      return res.json({
+        user: safeUser
+      });
+    } else return res.json({ user: null });
+  }
+);
+
 // Log in
 router.post('/', async (req, res, next) => {
       const { credential, password } = req.body;
@@ -30,8 +51,11 @@ router.post('/', async (req, res, next) => {
 
       const safeUser = {
         id: user.id,
+        namw: user.name,
         email: user.email,
         username: user.username,
+        isEmployed: user.isEmployed,
+        status: user.status,
       };
 
       await setTokenCookie(res, safeUser);

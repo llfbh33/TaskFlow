@@ -11,6 +11,25 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+
+      User.hasMany(models.Resource, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true
+      });
+
+      User.hasMany(models.Question, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true
+      });
+
+      // User.hasMany(models.Task, {
+      //   foreignKey: "userId",
+      //   onDelete: "CASCADE",
+      //   hooks: true
+      // });
+
     }
   }
   User.init({

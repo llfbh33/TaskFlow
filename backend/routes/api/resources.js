@@ -7,6 +7,7 @@ const { Resource, User } = require('../../db/models');
 const router = require('express').Router();
 
 
+
 // =======>>>  Get all Resources  <<<=========
 router.get('/', async (_req, res, _next) => {
 
@@ -24,29 +25,38 @@ router.get('/', async (_req, res, _next) => {
 
 // ========>>> Get all Resources with a specific keyword  <<<========
 router.get('/key/:keyWord', async (req, res, next) => {
-    const { keyword } = req.params;
-    console.log(keyword)
-    const listOfResources = await Resource.findAll({
-        where: {
-            keyWord: {
-                [Op.like]: `%${keyword}%`
+    const { keyWord } = req.params;
+    const keywordArray = keyWord.split(',');
+
+    try {
+    // create an array of objects to hold each keyword to sort by
+        const conditions = keywordArray.map(keyword => ({
+            keyWords: {
+                [Op.like]: `%${keyword.trim()}%`
             }
-        },
-        attributes: ["id", "userId", "name", "url", "keyWords"],
-        include: [{
-            model: User,
-            attributes: ["name", "username"]
-        }]
-    });
+        }));
 
-    if (!listOfResources) {
-        const err = new Error("There are not yet any resources associated with the given keyword");
-        err.status = 404;
-        return next(err);
-    };
+        const listOfResources = await Resource.findAll({
+            where: {
+                [Op.or]: conditions
+            },
+            attributes: ["id", "userId", "name", "url", "keyWords"],
+            include: [{
+                model: User,
+                attributes: ["name", "username"]
+            }]
+        });
 
-    res.json({ Resources: listOfResources })
+        if (listOfResources.length === 0) {
+            const err = new Error("There are not yet any resources associated with the given keyword");
+            err.status = 404;
+            return next(err);
+        }
 
+        res.json({ Resources: listOfResources });
+    } catch (error) {
+        next(error);
+    }
 });
 
 

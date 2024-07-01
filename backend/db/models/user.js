@@ -14,7 +14,6 @@ module.exports = (sequelize, DataTypes) => {
 
       User.hasMany(models.Resource, {
         foreignKey: "userId",
-        onDelete: "CASCADE",
         hooks: true
       });
 
@@ -24,11 +23,11 @@ module.exports = (sequelize, DataTypes) => {
         hooks: true
       });
 
-      // User.hasMany(models.Task, {
-      //   foreignKey: "userId",
-      //   onDelete: "CASCADE",
-      //   hooks: true
-      // });
+      User.hasMany(models.Task, {
+        foreignKey: "userId",
+        onDelete: "CASCADE",
+        hooks: true
+      });
 
     }
   }

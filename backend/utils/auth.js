@@ -73,5 +73,15 @@ const requireAuth = function (req, _res, next) {
     return next(err);
 }
 
+const authenticateProjectManager = function(req, _res, next) {
+    const { user } = req;
 
-module.exports = { setTokenCookie, restoreUser, requireAuth };
+    if (user.status === 'project-manager') return next();
+
+    const err = new Error('Unauthorized');
+    err.statue = 403;
+    return next(err);
+}
+
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, authenticateProjectManager };

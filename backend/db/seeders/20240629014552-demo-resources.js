@@ -2,7 +2,7 @@
 
 /** @type {import('sequelize-cli').Migration} */
 
-const { Resource, User } = require('../models');
+const { Resource } = require('../models');
 const { Op } = require('sequelize');
 
 let options = {};
@@ -63,15 +63,7 @@ const seedResources = [
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     * await queryInterface.bulkInsert('People', [{
-     *   name: 'John Doe',
-     *   isBetaMember: false
-     * }], {});
-    */
+
     options.tableName = 'Resources';
     options.validate = true;
 
@@ -79,12 +71,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
 
     options.tableName = 'Resources';
     return queryInterface.bulkDelete(options, {

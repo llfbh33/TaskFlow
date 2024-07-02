@@ -90,7 +90,7 @@ router.delete('/:resourceId', authenticateProjectManager, async (req, res, next)
 
     const resource = await Resource.findOne({
         where: {
-            resourceId: resourceId
+            id: resourceId
         },
     });
 

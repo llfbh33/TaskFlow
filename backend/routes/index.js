@@ -2,7 +2,7 @@ const express = require('express') // import express
 const router = express.Router(); // initialize express router
 
 const apiRouter = require('./api');  // import api routes
-router.use('/api', apiRouter);
+
 
 // test route
 // router.get('/hello/world', function(req, res) {
@@ -18,5 +18,7 @@ router.get("/api/csrf/restore", (req, res) => {
       'XSRF-Token': csrfToken
     });
   });
+
+router.use('/api', apiRouter);
 
 module.exports = router;

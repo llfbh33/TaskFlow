@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { jwtConfig } = require('../config');
-const { User } = require('../db/models');
+const { User, Task } = require('../db/models');
+
 
 const { secret, expiresIn } = jwtConfig;
 
@@ -83,5 +84,23 @@ const authenticateProjectManager = function(req, _res, next) {
     return next(err);
 }
 
+const userOwnsElement = async (req, _res, next) => {
+  const { user, params } = req;
 
-module.exports = { setTokenCookie, restoreUser, requireAuth, authenticateProjectManager };
+  const thisTask = await Task.findByPk(params.taskId);
+
+  if (!thisTask) {
+    const err = new Error('The task you are looking for does not exist');
+    err.statue = 404;
+    return next(err);
+  }
+
+  if (thisTask.userId === user.id) return next();
+
+  const err = new Error('Unauthorized');
+  err.statue = 403;
+  return next(err);
+}
+
+
+module.exports = { setTokenCookie, restoreUser, requireAuth, authenticateProjectManager, userOwnsElement };

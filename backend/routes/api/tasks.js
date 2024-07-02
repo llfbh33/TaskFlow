@@ -41,6 +41,23 @@ router.get('/:taskId', userOwnsElement, async (req, res, next) => {
 });
 
 
+// ==========>>> Create a New Task <<<======
+// add validations
+router.post('/new', async (req, res, next) => {
+    const { userId, task, isComplete, date } = req.body;
+
+    const newTask = await Task.create({
+        userId,
+        task,
+        isComplete,
+        date
+    });
+
+    res.json(newTask);
+
+});
+
+
 // ========>>>  Update a task by Id  <<<========
 // Will also need to add validations to this to be sure that the task exists before checking if the user id matches
 router.put('/:taskId', userOwnsElement, async (req, res, next) => {
@@ -84,7 +101,7 @@ router.delete('/:taskId', userOwnsElement, async (req, res, next) => {
 module.exports = router;
 
 
-// Need to add a create a task route
+
 // Need to change userOwnsElement to user owns task
     // this validation will also check that the task exists so we don't need to in the route
 // update each necessary route to include userOwnsTask

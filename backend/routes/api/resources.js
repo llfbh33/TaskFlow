@@ -48,7 +48,7 @@ router.get('/key/:keyWord', async (req, res, next) => {
             const err = new Error("There are not yet any resources associated with the given keyword/words");
             err.status = 404;
             return next(err);
-        }
+        };
 
         res.json({ Resources: listOfResources });
     } catch (error) {

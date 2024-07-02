@@ -17,7 +17,7 @@ router.get('/', async (req, res, _next) => {
         },
     });
 
-    res.json({ Tasks: listOfTasks })
+    res.json({ Tasks: listOfTasks });
 });
 
 
@@ -85,17 +85,12 @@ router.put('/:taskId', userOwnsElement, async (req, res, next) => {
 router.delete('/:taskId', userOwnsElement, async (req, res, next) => {
     const { taskId } = req.params;
 
-    const foundTask = await Task.findOne({
-        where: {
-            id: taskId
-        },
-    });
+    const foundTask = await Task.findByPk(parseInt(taskId));
 
     await foundTask.destroy();
 
     res.json({ "message": "Task successfully deleted"})
-
-})
+});
 
 
 module.exports = router;

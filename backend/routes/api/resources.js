@@ -1,7 +1,6 @@
-const { Op, sequelize } = require('sequelize');
+const { Op } = require('sequelize');
 
 const { authenticateProjectManager } = require('../../utils/auth');
-
 const { Resource, User } = require('../../db/models');
 
 const router = require('express').Router();
@@ -30,15 +29,13 @@ router.get('/key/:keyWord', async (req, res, next) => {
 
     try {
     // create an array of objects to hold each keyword to sort by
-        const conditions = keywordArray.map(keyword => ({
-            keyWords: {
-                [Op.like]: `%${keyword.trim()}%`
-            }
-        }));
+        const conditions = keywordArray.map(keyword => ({ [Op.like]: `%${keyword.trim()}%` }));
 
         const listOfResources = await Resource.findAll({
             where: {
-                [Op.or]: conditions
+                keyWords: {
+                    [Op.and]: conditions
+                }
             },
             attributes: ["id", "userId", "name", "url", "keyWords"],
             include: [{
@@ -48,7 +45,7 @@ router.get('/key/:keyWord', async (req, res, next) => {
         });
 
         if (listOfResources.length === 0) {
-            const err = new Error("There are not yet any resources associated with the given keyword");
+            const err = new Error("There are not yet any resources associated with the given keyword/words");
             err.status = 404;
             return next(err);
         }

@@ -18,7 +18,7 @@ router.use('/questions', questionRouter);
 
 
 
-router.post('/text', (req, res) => {
+router.post('/test', (req, res) => {
     res.json({ requestBody: req.body })
 });
 

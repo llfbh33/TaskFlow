@@ -41,7 +41,7 @@ router.post('/', validateSignup, async (req, res) => {
         name: user.name,
         email: user.email,
         username: user.username,
-        status: 'user',
+        status: user.status,
         isEmployed: user.isEmployed,
       };
 

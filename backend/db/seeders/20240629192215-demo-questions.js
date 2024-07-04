@@ -33,8 +33,6 @@ module.exports = {
 
   async down (queryInterface, Sequelize) {
     options.tableName = 'Questions';
-    return queryInterface.bulkDelete(options, {
-      id: {[Op.in]: [1, 2]}
-    }, {});
+    return queryInterface.bulkDelete(options, seedQuestions, {});
   }
 };

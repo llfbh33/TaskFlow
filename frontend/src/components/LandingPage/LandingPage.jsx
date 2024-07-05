@@ -1,7 +1,8 @@
 import { useState } from "react"
 import { useSelector } from "react-redux";
 import './LandingPage.css';
-import { FaBimobject } from "react-icons/fa";
+// import { FaBimobject } from "react-icons/fa";
+import fetchOpenGraphData from "../../utils/OpenGraphData";
 
 
 const SearchResults = ({results}) => {
@@ -12,6 +13,8 @@ const SearchResults = ({results}) => {
                 {results.map(resource => (
                     <div key={resource.id} className="resource-search-results">
                         <div>{resource.name}</div>
+                        <img src={resource.data?.image} className="link-image"/>
+                        {console.log(resource.data)}
                         <div>{resource.url}</div>
                     </div>
                 ))}
@@ -23,16 +26,27 @@ const SearchResults = ({results}) => {
 const LandingPage = () => {
     const [search, setSearch] = useState('')
     const [results, setResults] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const allResources = useSelector(state => state.resources);
     const list = Object.values(allResources)
 
-    const handleSearch = () => {
+    const handleSearch = async () => {
         setLoading(true);
         let getResults = list.filter(resource => resource.name.toLowerCase().includes(search.toLowerCase()))
+        for (let ele of getResults) {
+            let data = await fetchOpenGraphData(ele.url);
+            ele['data'] = data;
+        }
         setSearch('')
         setResults(getResults);
+        await setLoading(false)
     };
+
+    const clearSearch = () => {
+        setLoading(false);
+        setSearch('');
+        setResults([]);
+    }
 
     return (
         <div>
@@ -43,9 +57,12 @@ const LandingPage = () => {
                 value={search}
                 onChange={(e) => setSearch(e.target.value)} >
             </input>
-            <button onClick={handleSearch} >Submit</button>
-            {!loading && <div>Looking</div>}
-            {loading && <SearchResults results={results} /> }
+            <div>
+                <button onClick={handleSearch} >Submit</button>
+                <button onClick={clearSearch}>Clear Search</button>
+            </div>
+            {loading && <div>start searching</div>}
+            {!loading && <SearchResults results={results} /> }
         </div>
     )
 }

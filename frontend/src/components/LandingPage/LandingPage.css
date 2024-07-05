@@ -7,3 +7,8 @@
 .resource-search-results {
     margin: 16px;
 }
+
+.link-image {
+    max-width: 100px;
+    border-radius: 3px;
+}

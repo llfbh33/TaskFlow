@@ -41,3 +41,9 @@
 
 
 - come up with a structure for the tables anda framework
+
+
+### for parsing urls and getting basic information from it to display thumbnails and descriptions
+- Using the library 'axios' to fetch the HTML of URL's
+- Using 'cherrio' to parse the HTML and extract Open Graph Data
+    - npm install axios cherrio

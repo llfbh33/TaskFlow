@@ -12,10 +12,8 @@ const SearchResults = ({results}) => {
             <ul>
                 {results.map(resource => (
                     <div key={resource.id} className="resource-search-results">
-                        <div>{resource.name}</div>
                         <img src={resource.data?.image} className="link-image"/>
-                        {console.log(resource.data)}
-                        <div>{resource.url}</div>
+                        <a href={`${resource.url}`} target='_blank'>{resource?.data ? resource.data.title : resource.name}</a>
                     </div>
                 ))}
             </ul>

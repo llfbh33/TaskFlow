@@ -3,3 +3,7 @@
     min-height: 400px;
     min-width: 800px;
 }
+
+.resource-search-results {
+    margin: 16px;
+}

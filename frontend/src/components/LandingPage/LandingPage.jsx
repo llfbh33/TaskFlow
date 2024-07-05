@@ -4,17 +4,16 @@ import './LandingPage.css';
 import { FaBimobject } from "react-icons/fa";
 
 
-const SearchResults = (results) => {
-    if (!Object.values(results).length) return <h1>No Results</h1>
+const SearchResults = ({results}) => {
+    if (!results.length) return <h1>No Results</h1>
     return (
         <div className='resource-search-list-container'>
             <ul>
-                {Object.values(results).map(resource => (
-                    // {console.log(resource, 'here')}
-                    <div key={resource.id}>
-                        <div  >hello</div>
+                {results.map(resource => (
+                    <div key={resource.id} className="resource-search-results">
+                        <div>{resource.name}</div>
+                        <div>{resource.url}</div>
                     </div>
-
                 ))}
             </ul>
         </div>
@@ -30,11 +29,9 @@ const LandingPage = () => {
 
     const handleSearch = () => {
         setLoading(true);
-        let getResults = list.filter(resource => resource.name.includes(search))
+        let getResults = list.filter(resource => resource.name.toLowerCase().includes(search.toLowerCase()))
         setSearch('')
         setResults(getResults);
-
-        console.log(results)
     };
 
     return (
@@ -47,9 +44,8 @@ const LandingPage = () => {
                 onChange={(e) => setSearch(e.target.value)} >
             </input>
             <button onClick={handleSearch} >Submit</button>
-
+            {!loading && <div>Looking</div>}
             {loading && <SearchResults results={results} /> }
-            <div>{Object.values(allResources)[0].name}</div>
         </div>
     )
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
 import { createJournal } from "../../../store/journals";
 import { useModal } from "../../../context/Modal";
@@ -6,21 +6,34 @@ import { useModal } from "../../../context/Modal";
 
 
 const CreateReflectionModal = () => {
-    const [projects, setProjects] = useState([]);
-    const [projectInput, setProjectInput] = useState('')
+    const [inputFields, setInputFields] = useState([{id: 1, value: ''}]);
+    const [projects, setProjects] = useState('');
     const [today, setToday] = useState('');
     const [challenges, setChallenges] = useState('');
     const [overcome, setOvercome] = useState('');
     const [accomplish, setAccomplish] = useState('');
     const [goals, setGoals] = useState('');
+    const [hasSubmitted, setHasSubmitted] = useState(false);
     const dispatch = useDispatch();
     const { closeModal } = useModal();
+
+
+    const handleAddField = () => {
+        const newInput = ([...inputFields, { id: inputFields.length + 1, value: ''}]);
+        setInputFields(newInput);
+    }
+
+    const handleInputChange = (id, value) => {
+        const updateInput = inputFields.map(field => field.id === id ? {...field, value } : field);
+        setInputFields(updateInput);
+    }
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newReflection = {
-            projects: projects.join(' '),
+            // projects: projects.map(project => project.value).join(' '),
             today,
             challenges,
             overcome,
@@ -35,7 +48,7 @@ const CreateReflectionModal = () => {
             return
         }
 
-        setProjects([]);
+        setProjects([{ id: 1, value: '' }]);
         setToday('');
         setChallenges('');
         setOvercome('');
@@ -48,17 +61,19 @@ const CreateReflectionModal = () => {
         <div>
             <h1>New Reflection</h1>
             <p>Fill out as much of the information below as you can.  The more information you provide the easier it will be to remember what you have done and what problems arrose along the way.</p>
-            <form onSubmit={handleSubmit}>
+            <div >
                 <div>
                     <label>List out the projects you contributed to today.</label>
-                    <div>
-                        {projects && projects.map((ele, idx)=> (
-                            <div key={idx}>{ele}</div>
-                        ))}
-                        {/* <input
-                            >
-                        </input> */}
-                    </div>
+                    {inputFields.map((field) => (
+                        <div key={field.id}>
+                            <input
+                                type="text"
+                                value={field.value}
+                                onChange={(e) => handleInputChange(field.id, e.target.value)}
+                            />
+                        </div>
+                    ))}
+                    <button onClick={handleAddField}>Add Input Field</button>
                 </div>
                 <div>
                     <label>What did you work on today?</label>
@@ -66,7 +81,8 @@ const CreateReflectionModal = () => {
                         type='text'
                         value={today}
                         onChange={(e) => setToday(e.target.value)}
-                        />
+                    />
+                    <p></p>
                 </div>
                 <div>
                     <label>Was there any work you are proud of or enjoyed?</label>
@@ -74,7 +90,8 @@ const CreateReflectionModal = () => {
                         type='text'
                         value={accomplish}
                         onChange={(e) => setAccomplish(e.target.value)}
-                        />
+                    />
+                    <p></p>
                 </div>
                 <div>
                     <label>Did you face any challenges?</label>
@@ -82,7 +99,8 @@ const CreateReflectionModal = () => {
                         type='text'
                         value={challenges}
                         onChange={(e) => setChallenges(e.target.value)}
-                        />
+                    />
+                    <p></p>
                 </div>
                 <div>
                     <label>What did or will you do to work through these challenges?</label>
@@ -90,7 +108,8 @@ const CreateReflectionModal = () => {
                         type='text'
                         value={overcome}
                         onChange={(e) => setOvercome(e.target.value)}
-                        />
+                    />
+                    <p></p>
                 </div>
                 <div>
                     <label>What goals do you have for tomorrow and moving forward?</label>
@@ -98,12 +117,13 @@ const CreateReflectionModal = () => {
                         type='text'
                         value={goals}
                         onChange={(e) => setGoals(e.target.value)}
-                        />
+                    />
+                    <p></p>
                 </div>
                 <div>
-                    <button type='submit' >Submit</button>
+                    <button type='submit' onClick={handleSubmit}>Submit</button>
                 </div>
-            </form>
+            </div>
         </div>
     )
 }

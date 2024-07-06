@@ -4,21 +4,19 @@ import Navigation from "../Navigation";
 import { Outlet } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 import "./Layout.css";
-import * as resourceActions from "../../store/resources";
+// import * as resourceActions from "../../store/resources";
+import loadState from "../../utils/loadData";
 
 
 const Layout = () => {
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
 
-
-    // checks to see if a user is currently signed in and sets them to the state
     useEffect(() => {
-      dispatch(sessionActions.restoreUser()).then(() => {
-        dispatch(resourceActions.getResources()).then(() => {
-            setIsLoaded(true)
-          })
-      })
+      dispatch(sessionActions.restoreUser())
+      .then(() => loadState(dispatch))
+      .then(() => setIsLoaded(true))
+      .catch((error) => console.log(error))
     }, [dispatch]);
 
     return (

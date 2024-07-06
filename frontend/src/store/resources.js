@@ -1,6 +1,6 @@
 import { csrfFetch } from './csrf.js';
 
-const LOAD = 'reousrce/LOAD';
+const LOAD = 'resousrce/LOAD';
 const CREATE = 'resource/CREATE';
 const DELETE = 'resource/DELETE';
 

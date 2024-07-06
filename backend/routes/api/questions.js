@@ -11,13 +11,13 @@ const router = require('express').Router();
 router.get('/', async (req, res, _next) => {
     const userId = req.user.dataValues.id;
 
-    const listOdQuestions = await Question.findAll({
+    const listOfQuestions = await Question.findAll({
         where: {
             userId: userId
         },
     });
 
-    res.json({ Questions: listOdQuestions });
+    res.json({ Questions: listOfQuestions });
 });
 
 // ========>>> Get All Questions Associated with Specified Keywords <<<=========

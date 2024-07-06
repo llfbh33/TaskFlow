@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import UsersSearch from "./UsersSearch/UsersSearch";
 import { useState } from "react";
 import UsersTasks from "./UsersTasks/UsersTasks";
-
+import './Profile.css'
 
 const Profile = () => {
     const user = useSelector(state => state.session.user);
@@ -11,9 +11,10 @@ const Profile = () => {
     return (
         <div>
             <h1>{`${user.name}'s Profile`}</h1>
-            <div>
-                <div onClick={() => setTab('search')}>Search</div>
-                <div onClick={() => setTab('tasks')}>Tasks</div>
+            <div id="profile-nav-tabs-container">
+                <div onClick={() => setTab('search')} className={tab === 'search' ? "profile-tab-selected" : "profile-tab"}>Search</div>
+                <div onClick={() => setTab('tasks')} className={tab === 'tasks' ? "profile-tab-selected" : "profile-tab"}>Tasks</div>
+                <div onClick={() => setTab('questions')} className={tab === 'questions' ? "profile-tab-selected" : "profile-tab"}>Questions</div>
             </div>
 
             { tab === 'search' ? <UsersSearch />

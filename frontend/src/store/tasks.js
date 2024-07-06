@@ -42,7 +42,7 @@ const tasksReducer = (state = {}, action) => {
         case LOAD: {
             const allTasks = {};
             action.list.forEach(task => {
-               alltasks[task.id] = task;
+               allTasks[task.id] = task;
             });
             return {...state, ...allTasks};
         }

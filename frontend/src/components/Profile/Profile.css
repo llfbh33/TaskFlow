@@ -1,0 +1,17 @@
+#profile-nav-tabs-container {
+    display: flex;
+}
+
+.profile-tab,
+.profile-tab-selected {
+    padding: 5px;
+    width: 80px;
+    text-align: center;
+    border: 1px solid grey;
+    cursor: pointer;
+}
+
+.profile-tab-selected {
+    background-color: brown;
+    color: white
+}

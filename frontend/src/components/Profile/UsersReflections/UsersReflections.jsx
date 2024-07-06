@@ -4,6 +4,8 @@ import OpenModalMenuItem from "../../../context/OpenModalMenuItem/OpenModalMenuI
 import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
 import { useDispatch } from "react-redux";
 import { deleteJournal, getJournals } from "../../../store/journals";
+import { format } from 'date-fns';
+
 
 const SelectedReflection = ({reflection}) => {
 
@@ -52,10 +54,18 @@ const UsersReflections = () => {
 
     useEffect(() => {
         const array = Object.values(reflectList)
+        array.sort((a, b) => new Date(b.date) - new Date(a.date));
         setFilteredReflectList(array)
         setLoaded(true)
 
     }, [reflectList])
+
+    const formatDate = (data) => {
+        const newDate = new Date(data);
+        return format(newDate, 'EEEE MMMM d yyyy');
+    }
+
+
 
     const handleReflectionClick = (reflection) => {
         if (selectedReflection === reflection) {
@@ -95,7 +105,7 @@ const UsersReflections = () => {
             <div >
                 {filteredReflectList && filteredReflectList.map((reflection, idx) => (
                     <div key={idx} onClick={() => handleReflectionClick(reflection)}>
-                        <span className="reflections-questions-card">{reflection.date}</span>
+                        <span className="reflections-questions-card">{formatDate(reflection.date)}</span>
                         {selectedReflection === reflection ? <SelectedReflection reflection={reflection} /> : ''}
                         <div>
                             <button onClick={() => handleDeleteReflection(reflection.id)}>Delete Reflection</button>

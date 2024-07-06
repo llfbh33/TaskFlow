@@ -2,6 +2,8 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import OpenModalMenuItem from "../../../context/OpenModalMenuItem/OpenModalMenuItem";
 import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
+import { useDispatch } from "react-redux";
+import { deleteJournal, getJournals } from "../../../store/journals";
 
 const SelectedReflection = ({reflection}) => {
 
@@ -45,6 +47,12 @@ const UsersReflections = () => {
     const reflectList = useSelector(state => state.journals);
     const [filteredReflectList, setFilteredReflectList] = useState(Object.values(reflectList));
     const [selectedReflection, setSelectedReflection] = useState('')
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(getJournals());
+
+    }, [dispatch])
 
     const handleReflectionClick = (reflection) => {
         if (selectedReflection === reflection) {
@@ -57,6 +65,11 @@ const UsersReflections = () => {
     const handleSetReflectionFilter = (condition) => {
         if (condition === 'all') setFilteredReflectList(Object.values(reflectList));
         if (condition === 'seven') setFilteredReflectList('')
+    }
+
+    const handleDeleteReflection = async (id) => {
+        await dispatch(deleteJournal(id));
+        return;
     }
 
     return (
@@ -79,6 +92,9 @@ const UsersReflections = () => {
                     <div key={idx} onClick={() => handleReflectionClick(reflection)}>
                         <span className="reflections-questions-card">{reflection.date}</span>
                         {selectedReflection === reflection ? <SelectedReflection reflection={reflection} /> : ''}
+                        <div>
+                            <button onClick={() => handleDeleteReflection(reflection.id)}>Delete Reflection</button>
+                        </div>
                     </div>
                 ))}
             </div>

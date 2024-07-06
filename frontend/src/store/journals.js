@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf.js';
 const LOAD = 'journal/LOAD';
 const CREATE = 'journal/CREATE';
 const UPDATE = 'journal/UPDATE';
-const DELETE = 'journal/DELETE';
+const DESTROY = 'journal/DESTROY';
 
 const load = (list) => ({
     type: LOAD,
@@ -21,7 +21,7 @@ const update = (data) => ({
 })
 
 const destroy = (journalId) => ({
-    type: DELETE,
+    type: DESTROY,
     journalId
 });
 
@@ -32,7 +32,10 @@ export const getJournals = () => async dispatch => {
     if (response.ok) {
         const list = await response.json();
         dispatch(load(list.Journals));
-        return list
+        return list;
+    } else {
+        const errors = await response.json();
+        return errors;
     }
 }
 
@@ -53,12 +56,28 @@ export const createJournal = (entry) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        return dispatch(createJournal(data));
+        dispatch(create(data));
+        return data;
     } else {
         const errors = await response.json();
         return errors;
     }
+};
 
+
+export const deleteJournal = (journalId) => async dispatch => {
+    const response = await csrfFetch(`/api/journals/${journalId}`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(destroy(journalId));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
 };
 
 
@@ -75,6 +94,11 @@ const journalsReducer = (state = {}, action) => {
             const newState = {...state};
             newState[action.data.id] = action.data;
             return newState
+        }
+        case DESTROY: {
+            const newState = {...state};
+            delete newState[action.journalId];
+            return newState;
         }
         default:
             return state;

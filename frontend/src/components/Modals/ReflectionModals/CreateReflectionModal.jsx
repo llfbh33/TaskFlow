@@ -4,6 +4,7 @@ import { createJournal } from "../../../store/journals";
 import { useModal } from "../../../context/Modal";
 
 
+
 const CreateReflectionModal = () => {
     const [projects, setProjects] = useState([]);
     const [projectInput, setProjectInput] = useState('')

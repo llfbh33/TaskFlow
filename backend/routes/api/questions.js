@@ -55,7 +55,9 @@ router.post('/new', async (req, res, next) => {
         question,
         answer: answer || null,
         keyWords,
-    })
+    });
+
+    res.json(newQuestion);
 });
 
 

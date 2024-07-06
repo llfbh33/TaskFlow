@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from 'react-redux';
-import { createJournal } from "../../../store/journals";
+import { createJournal, getJournals } from "../../../store/journals";
 import { useModal } from "../../../context/Modal";
 
 
 
-const CreateReflectionModal = () => {
+const CreateReflectionModal = ({setLoaded}) => {
     const [inputFields, setInputFields] = useState([{id: 1, value: ''}]);
     const [projects, setProjects] = useState('');
     const [today, setToday] = useState('');
@@ -17,6 +17,9 @@ const CreateReflectionModal = () => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
+    useEffect(() => {
+        setLoaded(false);
+    }, [])
 
     const handleAddField = () => {
         const newInput = ([...inputFields, { id: inputFields.length + 1, value: ''}]);
@@ -43,12 +46,12 @@ const CreateReflectionModal = () => {
             goals
         };
 
-       const serverResponse = await dispatch(createJournal(newReflection));
+       await dispatch(createJournal(newReflection));
 
-        if (serverResponse.today) {
-            console.log(serverResponse)
-            return
-        }
+        // if (serverResponse.today) {
+        //     console.log(serverResponse)
+        //     return
+        // }
 
         setProjects([{ id: 1, value: '' }]);
         setToday('');
@@ -56,7 +59,8 @@ const CreateReflectionModal = () => {
         setOvercome('');
         setAccomplish('');
         setGoals('');
-        closeModal();
+
+        await closeModal();
     }
 
     return (

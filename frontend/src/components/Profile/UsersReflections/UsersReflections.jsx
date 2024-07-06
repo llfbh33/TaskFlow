@@ -45,14 +45,17 @@ const SelectedReflection = ({reflection}) => {
 
 const UsersReflections = () => {
     const reflectList = useSelector(state => state.journals);
-    const [filteredReflectList, setFilteredReflectList] = useState(Object.values(reflectList));
+    const [loaded, setLoaded] = useState(false);
+    const [filteredReflectList, setFilteredReflectList] = useState('');
     const [selectedReflection, setSelectedReflection] = useState('')
     const dispatch = useDispatch();
 
     useEffect(() => {
-        dispatch(getJournals());
+        const array = Object.values(reflectList)
+        setFilteredReflectList(array)
+        setLoaded(true)
 
-    }, [dispatch])
+    }, [reflectList])
 
     const handleReflectionClick = (reflection) => {
         if (selectedReflection === reflection) {
@@ -72,13 +75,15 @@ const UsersReflections = () => {
         return;
     }
 
+    if (!loaded) return;
+
     return (
         <div className="profile-selected-section">
             <h1>Reflections</h1>
             <div className="modal-text-item">
                 <OpenModalMenuItem
                 itemText='Add a reflection for the day?'
-                modalComponent={<CreateReflectionModal />}
+                modalComponent={<CreateReflectionModal setLoaded={setLoaded}/>}
                 />
             </div>
             <div>

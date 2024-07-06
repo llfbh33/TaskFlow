@@ -29,15 +29,17 @@ const CreateReflectionModal = () => {
     }
 
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    const handleSubmit = async () => {
+        // e.preventDefault();
+
+        const projectsString = inputFields.map(project => project.value)
 
         const newReflection = {
-            // projects: projects.map(project => project.value).join(' '),
+            projects: projectsString.join(','),
             today,
+            accomplish,
             challenges,
             overcome,
-            accomplish,
             goals
         };
 

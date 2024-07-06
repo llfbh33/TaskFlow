@@ -25,7 +25,7 @@ const SelectedReflection = ({reflection}) => {
             </div>
             <div className="reflections-questions-card">
                 <span>Was there any work you are proud of or enjoyed?</span>
-                <span>{reflection.acomplish}</span>
+                <span>{reflection.accomplish}</span>
             </div>
             <div className="reflections-questions-card">
                 <span>Did you face any challenges?</span>

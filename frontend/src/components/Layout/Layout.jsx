@@ -6,6 +6,7 @@ import * as sessionActions from '../../store/session';
 import "./Layout.css";
 // import * as resourceActions from "../../store/resources";
 import loadState from "../../utils/loadData";
+import { ModalProvider, Modal } from "../../context/Modal";
 
 
 const Layout = () => {
@@ -21,10 +22,13 @@ const Layout = () => {
 
     return (
       <div id='main-layout-container'>
-        <div>
-            <Navigation isLoaded={isLoaded} />
-            {isLoaded && <Outlet />}
-        </div>
+        <ModalProvider>
+          <div>
+              <Navigation isLoaded={isLoaded} />
+              {isLoaded && <Outlet />}
+          </div>
+          <Modal />
+        </ModalProvider>
       </div>
     );
 }

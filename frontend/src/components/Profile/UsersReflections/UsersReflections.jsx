@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
+import OpenModalMenuItem from "../../../context/OpenModalMenuItem/OpenModalMenuItem";
+import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
 
 const SelectedReflection = ({reflection}) => {
 
@@ -60,6 +62,12 @@ const UsersReflections = () => {
     return (
         <div className="profile-selected-section">
             <h1>Reflections</h1>
+            <div className="modal-text-item">
+                <OpenModalMenuItem
+                itemText='Add a reflection for the day?'
+                modalComponent={<CreateReflectionModal />}
+                />
+            </div>
             <div>
                 <button onClick={() => handleSetReflectionFilter('all')}>All Reflections</button>
                 <button onClick={() => handleSetReflectionFilter('seven')}>last 7 days</button>

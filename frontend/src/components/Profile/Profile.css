@@ -42,3 +42,16 @@
     margin: 20px;
     line-height: 1.5;
 }
+
+
+/* Model click items in profile */
+.modal-text-item > li {
+    list-style-type: none;
+    margin: 20px;
+    transition: ease-in 0.5s;
+    cursor: pointer;
+}
+
+.modal-text-item > li:hover {
+    background-color: aquamarine;
+}

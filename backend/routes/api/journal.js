@@ -22,12 +22,13 @@ router.get('/', async (req, res, _next) => {
 
 // ========>>> Create New Journal Entry <<< =========
 router.post('/new', async (req, res, next) => {
-    const userId = req.uer.dataValues.id;
+    const userId = req.user.dataValues.id;
     const { projects, today, challenges, overcome, accomplish, goals } = req.body;
+    const date = new Date();
 
     const newJournal = await Journal.create({
         userId,
-        date: new Date().now,
+        date,
         projects,
         today,
         challenges,

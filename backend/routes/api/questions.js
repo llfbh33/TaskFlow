@@ -2,7 +2,7 @@ const { Op } = require('sequelize');
 
 const { authenticateProjectManager } = require('../../utils/auth');
 const { Question } = require('../../db/models');
-const question = require('../../db/models/question');
+
 
 const router = require('express').Router();
 
@@ -83,7 +83,7 @@ router.put('/:questionId', async (req, res, next) => {
 router.delete('/:questionId', async (req, res, next) => {
     const { questionId } = req.params;
 
-    const foundQuestion = await question.findByPk(parseInt(questionId));
+    const foundQuestion = await Question.findByPk(parseInt(questionId));
 
     if (!foundQuestion) {
         const err = new Error("The question you are looking for does not exist");

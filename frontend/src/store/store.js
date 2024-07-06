@@ -4,12 +4,14 @@ import sessionReducer from './session';
 import resourcesReducer from './resources';
 import tasksReducer from './tasks';
 import questionsReducer from './questions';
+import journalssReducer from './journals';
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   resources: resourcesReducer,
   tasks: tasksReducer,
-  questions: questionsReducer
+  questions: questionsReducer,
+  journals: journalssReducer
 });
 
 let enhancer;

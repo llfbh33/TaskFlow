@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import UsersSearch from "./UsersSearch/UsersSearch";
 import { useState } from "react";
 import UsersTasks from "./UsersTasks/UsersTasks";
+import UsersQuestions from "./UsersQuestions/UsersQuestions";
 import './Profile.css'
 
 const Profile = () => {
@@ -19,7 +20,8 @@ const Profile = () => {
 
             { tab === 'search' ? <UsersSearch />
             : tab === 'tasks' ? <UsersTasks />
-            : ''}
+            : tab === 'questions' ? <UsersQuestions />
+            : '' }
         </div>
     )
 }

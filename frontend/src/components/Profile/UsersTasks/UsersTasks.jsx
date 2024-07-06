@@ -4,7 +4,7 @@ const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks)
 
     return (
-        <div>
+        <div className="profile-selected-section">
             <h1>All Unassigned tasks!</h1>
             <div>
                 {console.log(allTasks)}

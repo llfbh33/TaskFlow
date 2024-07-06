@@ -1,3 +1,4 @@
+/* Profile Main container */
 #profile-nav-tabs-container {
     display: flex;
 }
@@ -12,6 +13,24 @@
 }
 
 .profile-tab-selected {
-    background-color: brown;
-    color: white
+    background-color: rgb(218, 216, 216);
+    border-bottom: none;
+}
+
+.profile-selected-section {
+    background-color: rgb(218, 216, 216);
+}
+
+.profile-selected-section h1 {
+    margin: 0px;
+    padding: 20px
+}
+
+/* Questions section */
+
+.questions-card {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+    margin: 30px;
 }

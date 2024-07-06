@@ -12,7 +12,7 @@ const UsersSearch = () => {
     }, [resources])
 
     return (
-        <div>
+        <div className="profile-selected-section">
             <h1>My Resources</h1>
             <div>
                 {myResources.map(ele => (

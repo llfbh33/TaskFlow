@@ -11,7 +11,7 @@ const Profile = () => {
     const [tab, setTab] = useState('search');
 
     return (
-        <div>
+        <div id="profile-full-card">
             <h1>{`${user.name}'s Profile`}</h1>
             <div id="profile-nav-tabs-container">
                 <div onClick={() => setTab('search')} className={tab === 'search' ? "profile-tab-selected" : "profile-tab"}>Search</div>

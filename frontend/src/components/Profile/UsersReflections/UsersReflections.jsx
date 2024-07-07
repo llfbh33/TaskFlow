@@ -12,8 +12,8 @@ const SelectedReflection = ({reflection}) => {
     if (!reflection) return
 
     return (
-        <div >
-            <div className="reflections-questions-card">
+        <div className="open-reflection-container">
+            <div className="reflections-questions-card reflection-projects">
                 <span>Projects</span>
                 {reflection.projects.split(',').map((project, idx) => (
                     <div key={idx}>
@@ -76,8 +76,19 @@ const UsersReflections = () => {
     }
 
     const handleSetReflectionFilter = (condition) => {
-        if (condition === 'all') setFilteredReflectList(Object.values(reflectList));
-        if (condition === 'seven') setFilteredReflectList('')
+        const now = new Date();
+        let filteredList = [];
+
+        if (condition === 'all') {
+            filteredList = Object.values(reflectList);
+        } else {
+            const dateDistance = new Date(now);
+            dateDistance.setDate(now.getDate() - condition);
+            filteredList = Object.values(reflectList).filter(reflection => new Date(reflection.date) >= dateDistance);
+        }
+
+        filteredList.sort((a, b) => new Date(b.date) - new Date(a.date));
+        setFilteredReflectList(filteredList);
     }
 
     const handleDeleteReflection = async (id) => {
@@ -89,26 +100,29 @@ const UsersReflections = () => {
 
     return (
         <div className="profile-selected-section">
-            <h1>Reflections</h1>
-            <div className="modal-text-item">
-                <OpenModalMenuItem
-                itemText='Add a reflection for the day?'
-                modalComponent={<CreateReflectionModal setLoaded={setLoaded}/>}
-                />
+            <div className="reflection-title-and-creation">
+                <h1>Reflections</h1>
+                <div className="modal-text-item">
+                    <OpenModalMenuItem
+                        itemText='Add a reflection for the day?'
+                        modalComponent={<CreateReflectionModal setLoaded={setLoaded}/>}
+                    />
+                </div>
             </div>
-            <div>
+            <div className="center-reflection-filter-buttons">Filter Reflections by date:</div>
+            <div className="center-reflection-filter-buttons">
                 <button onClick={() => handleSetReflectionFilter('all')}>All Reflections</button>
-                <button onClick={() => handleSetReflectionFilter('seven')}>last 7 days</button>
-                <button onClick={() => handleSetReflectionFilter('month')}>last Month</button>
-                <button onClick={() => handleSetReflectionFilter('two-months')}>last 2 months</button>
+                <button onClick={() => handleSetReflectionFilter(7)}>last 7 days</button>
+                <button onClick={() => handleSetReflectionFilter(14)}>last 14 days</button>
+                <button onClick={() => handleSetReflectionFilter(30)}>last 30 days</button>
             </div>
             <div >
                 {filteredReflectList && filteredReflectList.map((reflection, idx) => (
-                    <div key={idx} onClick={() => handleReflectionClick(reflection)}>
-                        <span className="reflections-questions-card">{formatDate(reflection.date)}</span>
+                    <div key={idx} className={selectedReflection === reflection ? 'open-reflection-card' : "closed-reflection-card"}>
+                        <span className="reflections-questions-card" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</span>
                         {selectedReflection === reflection ? <SelectedReflection reflection={reflection} /> : ''}
                         <div>
-                            <button onClick={() => handleDeleteReflection(reflection.id)}>Delete Reflection</button>
+                            <button onClick={() => handleDeleteReflection(reflection.id)} className="delete-reflection">Delete Reflection</button>
                         </div>
                     </div>
                 ))}

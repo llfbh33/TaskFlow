@@ -29,14 +29,26 @@ const AnswerQuestionsModal = ({question}) => {
         }
     }
 
-    const handleSelect = (target) => {
-        const array = [...keywords]
-        array.push(target);
-        setKeywords(array)
+    const handleSelectKey = (target, idx) => {
+        const updateResources = [...resources];
+        const array = [...updateResources[idx].keywords];
+        if (!array.includes(target)) {
+            array.push(target);
+            updateResources[idx].keywords = array;
+            setResources(updateResources);
+        }
+    }
+
+    const handleRemoveKeyword = (idx, index) => {
+        const removeKeyword = [...resources];
+        const array = [...removeKeyword[idx].keywords];
+        array.splice(index, 1);
+        removeKeyword[idx].keywords = array;
+        setResources(removeKeyword);
     }
 
     const handleAnswer = () => {
-        
+
     }
 
     return (
@@ -68,7 +80,7 @@ const AnswerQuestionsModal = ({question}) => {
                             </div>
                             <div>
                                 <label>Keywords</label>
-                                <select onChange={(e) => handleSelect(e.target.value)}>
+                                <select onChange={(e) => handleSelectKey(e.target.value, idx)}>
                                     <option>Documentation</option>
                                     <option>React</option>
                                     <option>Python</option>
@@ -80,9 +92,10 @@ const AnswerQuestionsModal = ({question}) => {
                             </div>
                             <div>
                                 <h3>Keywords</h3>
-                                {keywords.map((ele, idx) => (
-                                    <div key={idx}>
+                                {resource.keywords.map((ele, index) => (
+                                    <div key={index}>
                                         <span>{ele}</span>
+                                        <button onClick={() => handleRemoveKeyword(idx, index)}>Remove keyword</button>
                                     </div>
                                 ))}
                             </div>

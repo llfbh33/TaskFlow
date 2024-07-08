@@ -1,9 +1,16 @@
 import { useSelector } from "react-redux"
 import { useModal } from "../../../context/Modal";
 import AnswerQuestionsModal from "../../Modals/QuestionsModals/AnswerQuestionModal";
+import { useState } from "react";
+
+
+
+
+
 
 const UsersQuestions = () => {
     const allQuestions = useSelector(state => state.questions);
+    const [viewAnswer, setViewAnswer] = useState('')
     const { setModalContent } = useModal();
 
     const handleAnswerQuestion = (question) => {
@@ -17,9 +24,16 @@ const UsersQuestions = () => {
             <div>
                 {Object.values(allQuestions).map(ele => (
                     <div key={ele.id} className="questions-card">
-                        <span>{ele.createdAt}</span>
                         <span>{ele.question}</span>
-                        { ele.answer ? <span>{ele.answer}</span> : <button onClick={() => handleAnswerQuestion(ele)}>Answer this question</button> }
+                        { ele.answer
+                        ? <button onClick={() => viewAnswer === ele ? setViewAnswer('') : setViewAnswer(ele)}>View Answer</button>
+                        : <button onClick={() => handleAnswerQuestion(ele)}>Answer this question</button> }
+                        {viewAnswer === ele
+                        ? <div>
+                            <span>{ele.answer}</span>
+                            <span>{ele.createdAt}</span>
+                        </div>
+                        : ''}
                     </div>
                 ))}
             </div>

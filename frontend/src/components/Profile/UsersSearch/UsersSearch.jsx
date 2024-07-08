@@ -17,7 +17,7 @@ const UsersSearch = () => {
             <div>
                 {myResources.map(ele => (
                     <div key={ele.id}>
-                        <a href={ele.url} target='_blank'>{ele.name}</a>
+                        <a href={`${ele.url}`} target='_blank'>{ele.name}</a>
                     </div>
                 ))}
             </div>

@@ -15,6 +15,11 @@ const create = (data) => ({
     data
 });
 
+const update = (data) => ({
+    type: UPDATE,
+    data
+})
+
 const destroy = (questionId) => ({
     type: DELETE,
     questionId
@@ -31,6 +36,26 @@ export const getQuestions = () => async dispatch => {
     }
 }
 
+export const updateQuestion = (question) => async dispatch => {
+    const response = await csrfFetch(`/api/questions/${question.id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            answer: question.answer,
+            keyWords: question.keyWords,
+        }),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(update(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
+
 
 const questionsReducer = (state = {}, action) => {
     switch (action.type) {
@@ -40,6 +65,11 @@ const questionsReducer = (state = {}, action) => {
                allQuestions[question.id] = question;
             });
             return {...state, ...allQuestions};
+        }
+        case UPDATE: {
+            const newState = {...state};
+            newState[action.data.id] = action.data;
+            return newState;
         }
         default:
             return state;

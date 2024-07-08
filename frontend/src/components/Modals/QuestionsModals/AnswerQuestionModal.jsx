@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../../context/Modal";
+import { updateQuestion } from "../../../store/questions";
 
 
 const AnswerQuestionsModal = ({question}) => {
@@ -35,7 +36,7 @@ const AnswerQuestionsModal = ({question}) => {
             setKeywords(updateKeywords);
         }
 
-    }, [question])
+    }, [])
 
 
     const handleQuestionAddKeyword = () => {
@@ -102,7 +103,7 @@ const AnswerQuestionsModal = ({question}) => {
         setResources(removeKeyword);
     }
 
-    const handleAnswer = (e) => {
+    const handleAnswer = async (e) => {
         e.preventDefault();
 
         if (Object.values(errors).length) {
@@ -110,11 +111,23 @@ const AnswerQuestionsModal = ({question}) => {
             return;
         };
 
-        const addAnswer = {
-            answer,
-
+        let newKeywords = [];
+        if (keywords.length) {
+            for (let word of keywords) {
+                if (word.value.length) {
+                    newKeywords.push(word.value)
+                }
+            }
         }
 
+        const addAnswer = {
+            id: question.id,
+            answer,
+            keyWords: newKeywords.join(',')
+        };
+
+        await dispatch(updateQuestion(addAnswer));
+        await closeModal();
 
     }
 
@@ -127,7 +140,7 @@ const AnswerQuestionsModal = ({question}) => {
                     <textarea
                         type='text'
                         value={answer}
-                        onChange={() => setAnswer(e.target.value)}
+                        onChange={(e) => setAnswer(e.target.value)}
                         />
                 </div>
                 {showErrors && errors.answer ? <p>{errors.answer}</p> : <p></p>}
@@ -144,7 +157,7 @@ const AnswerQuestionsModal = ({question}) => {
                     </div>
                 ))}
                 <div>
-                    <button onclick={handleQuestionAddKeyword}>Add a keyword to your question</button>
+                    <button onClick={handleQuestionAddKeyword}>Add a keyword to your question</button>
                 </div>
             </div>
             <div>

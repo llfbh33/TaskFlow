@@ -7,6 +7,20 @@ const AnswerQuestionsModal = ({question}) => {
     const [keywords, setKeywords] = useState([]);
     const [hidden, setHidden] = useState(true);
 
+
+
+    const handleResourceURLChange = (idx, value) => {
+        const updateResource = [...resources];
+        updateResource[idx].url = value;
+        setResources(updateResource);
+    }
+
+    const handleResourceNameChange = (idx, value) => {
+        const updateResource = [...resources];
+        updateResource[idx].name = value;
+        setResources(updateResource);
+    }
+
     const handleAddResource = () => {
         if (resources.length <= 0) {
             setHidden(false);
@@ -71,12 +85,17 @@ const AnswerQuestionsModal = ({question}) => {
                             <div>
                                 <label>Resource URL</label>
                                 <input
-                                    type='URL'
+                                    type='text'
+                                    value={resource.url}
+                                    onChange={(e) => handleResourceURLChange(idx, e.target.value)}
                                     ></input>
                             </div>
                             <div>
                                 <label>Please provide a descriptive name:</label>
-                                <input></input>
+                                <input
+                                    type='text'
+                                    value={resource.name}
+                                    onChange={(e) => handleResourceNameChange(idx, e.target.value)}></input>
                             </div>
                             <div>
                                 <label>Keywords</label>
@@ -108,7 +127,7 @@ const AnswerQuestionsModal = ({question}) => {
                 <span >Did you use any specific resources to help you answer this question?</span>
                 <div>
                     <button onClick={handleAddResource}>Add a Resource</button>
-                    <button onClick={() => setHidden(true)}>no</button>
+                    <button onClick={() => !hidden ? setHidden(true) : setHidden(false)}>{!hidden ? 'Hide Resources' : 'Show Resources'}</button>
                 </div>
             </div>
             <div>

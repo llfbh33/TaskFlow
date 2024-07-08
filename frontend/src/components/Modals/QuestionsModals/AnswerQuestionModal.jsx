@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from 'react-redux';
 import { useModal } from "../../../context/Modal";
 import { updateQuestion } from "../../../store/questions";
+import { addResource } from "../../../store/resources";
 
 
 const AnswerQuestionsModal = ({question}) => {
+    const user = useSelector(state => state.session.user);
     const [answer, setAnswer] = useState('');
     const [resources, setResources] = useState('');
     const [keywords, setKeywords] = useState([])
@@ -111,10 +113,11 @@ const AnswerQuestionsModal = ({question}) => {
             return;
         };
 
+        // does not work for keywords
         let newKeywords = [];
         if (keywords.length) {
             for (let word of keywords) {
-                if (word.value.length) {
+                if (word.value) {
                     newKeywords.push(word.value)
                 }
             }
@@ -127,6 +130,20 @@ const AnswerQuestionsModal = ({question}) => {
         };
 
         await dispatch(updateQuestion(addAnswer));
+
+        // works for atleast one resource
+        if (resources.length) {
+            for (let resource of resources) {
+                let newResource = {
+                    userId: user.id,
+                    name: resource.name,
+                    url: resource.url,
+                    keyWords: resource.keywords.join(',')
+                }
+                await dispatch(addResource(newResource));
+            }
+        }
+
         await closeModal();
 
     }

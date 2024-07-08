@@ -82,6 +82,19 @@ router.get('/:resourceId', async (req, res, next) => {
 });
 
 
+// ======>>> Add a Resource <<< =======
+router.post('/:new', async (req, res, next) => {
+    const {userId, name, url, keyWords} = req.body;
+
+    const newResource = await Resource.create({
+        userId,
+        name,
+        url,
+        keyWords
+    });
+
+    res.json(newResource);
+});
 
 
 // ==========>>> Delete a Resource <<<<++++++++

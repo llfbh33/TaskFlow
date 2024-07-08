@@ -28,7 +28,29 @@ export const getResources = () => async dispatch => {
         dispatch(load(list.Resources));
         return list
     }
-}
+};
+
+export const addResource = (resource) => async dispatch => {
+    const response = await csrfFetch(`/api/resources/new`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            userId: resource.userId,
+            name: resource.name,
+            url: resource.url,
+            keyWords: resource.keyWords,
+        }),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(create(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
 
 
 const resourcesReducer = (state = {}, action) => {
@@ -39,6 +61,11 @@ const resourcesReducer = (state = {}, action) => {
                allResources[resource.id] = resource;
             });
             return {...state, ...allResources};
+        }
+        case CREATE: {
+            const newState = {...state};
+            newState[action.data.id] = action.data;
+            return newState;
         }
         default:
             return state;

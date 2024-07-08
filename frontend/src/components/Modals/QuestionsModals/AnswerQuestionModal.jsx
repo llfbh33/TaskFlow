@@ -1,13 +1,54 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { useModal } from "../../../context/Modal";
 
 
 const AnswerQuestionsModal = ({question}) => {
     const [answer, setAnswer] = useState('');
     const [resources, setResources] = useState('');
-    const [keywords, setKeywords] = useState([]);
+    const [keywords, setKeywords] = useState([])
     const [hidden, setHidden] = useState(true);
+    const [showErrors, setShowErrors] = useState(false);
+    const [errors, setErrors] = useState({});
+    const { closeModal } = useModal();
+    const dispatch = useDispatch();
 
 
+    useEffect(() => {
+        const validations = {};
+        if (answer.length <= 0) validations.answer = 'Please provide an answer to your question';
+
+        setErrors(validations);
+
+    }, [answer]);
+
+    useEffect(() => {
+        if (!question.keyWords) {
+            setKeywords([{id: 0, value: ''}])
+        } else {
+            const array = question.keyWords.split(',');
+            const updateKeywords = {};
+            array.forEach((word, idx) => {
+                updateKeywords['id'] = idx;
+                updateKeywords['value'] = word;
+            });
+            setKeywords(updateKeywords);
+        }
+
+    }, [question])
+
+
+    const handleQuestionAddKeyword = () => {
+        const addWord = [...keywords, {id: keywords[keywords.length - 1].id + 1, value: ''}];
+        setKeywords(addWord);
+        console.log(keywords)
+    }
+
+    const handleQuestionKeywordChange = (idx, target) => {
+        const changeKeyword = [...keywords];
+        changeKeyword[idx] = target;
+        setKeywords(changeKeyword);
+    }
 
     const handleResourceURLChange = (idx, value) => {
         const updateResource = [...resources];
@@ -61,7 +102,19 @@ const AnswerQuestionsModal = ({question}) => {
         setResources(removeKeyword);
     }
 
-    const handleAnswer = () => {
+    const handleAnswer = (e) => {
+        e.preventDefault();
+
+        if (Object.values(errors).length) {
+            setShowErrors(true);
+            return;
+        };
+
+        const addAnswer = {
+            answer,
+
+        }
+
 
     }
 
@@ -76,6 +129,22 @@ const AnswerQuestionsModal = ({question}) => {
                         value={answer}
                         onChange={() => setAnswer(e.target.value)}
                         />
+                </div>
+                {showErrors && errors.answer ? <p>{errors.answer}</p> : <p></p>}
+            </div>
+            <div>
+                <h3>Question Keywords</h3>
+                <p>Add some keywords to your question so you can easily look it up later</p>
+                {keywords.map((word, idx) => (
+                    <div key={idx}>
+                        <input
+                            type='text'
+                            value={word.value}
+                            onChange={(e)=> handleQuestionKeywordChange(idx, e.target.value)}></input>
+                    </div>
+                ))}
+                <div>
+                    <button onclick={handleQuestionAddKeyword}>Add a keyword to your question</button>
                 </div>
             </div>
             <div>
@@ -107,6 +176,7 @@ const AnswerQuestionsModal = ({question}) => {
                                     <option>Thunks</option>
                                     <option>Redux</option>
                                     <option>Google</option>
+                                    <option>Other</option>
                                 </select>
                             </div>
                             <div>
@@ -133,7 +203,7 @@ const AnswerQuestionsModal = ({question}) => {
             <div>
                 <button
                     type='submit'
-                    onClick={handleAnswer}>
+                    onClick={(e) => handleAnswer(e)}>
                     Submit
                 </button>
             </div>

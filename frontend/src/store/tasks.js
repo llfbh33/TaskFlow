@@ -36,6 +36,43 @@ export const getTasks = () => async dispatch => {
     }
 }
 
+export const completeTask = (taskId) => async dispatch => {
+    const response = await csrfFetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            isComplete: true
+        })
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(update(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
+
+export const inCompleteTask = (taskId) => async dispatch => {
+    const response = await csrfFetch(`/api/tasks/${taskId}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            isComplete: false
+        })
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(update(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
 
 const tasksReducer = (state = {}, action) => {
     switch (action.type) {
@@ -45,6 +82,11 @@ const tasksReducer = (state = {}, action) => {
                allTasks[task.id] = task;
             });
             return {...state, ...allTasks};
+        }
+        case UPDATE: {
+            const newState = {...state};
+            newState[action.data.id] = action.data;
+            return newState
         }
         default:
             return state;

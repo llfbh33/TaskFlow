@@ -1,23 +1,59 @@
-import { useSelector } from "react-redux"
+import { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux"
+import Loading from "../../Loading/Loading";
+import { completeTask, inCompleteTask } from "../../../store/tasks";
 
 const UsersTasks = () => {
-    const allTasks = useSelector(state => state.tasks)
+    const allTasks = useSelector(state => state.tasks);
+    const [completedTasks, setCompletedTasks] = useState('');
+    const [incompleteTasks, setIncompleteTasks] = useState('');
+    const [loading, setLoading] = useState(true);
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        setLoading(true);
+        let complete = Object.values(allTasks).filter(task => task.isComplete);
+        let notComplete = Object.values(allTasks).filter(task => !task.isComplete);
+
+        setCompletedTasks(complete);
+        setIncompleteTasks(notComplete);
+        setLoading(false);
+    }, [allTasks])
+
+
+
+    const handleCompleteTask = async (task) => {
+        setLoading(true)
+        await dispatch(completeTask(task.id));
+        await setLoading(false);
+    }
+
+    const handleAccidentalComplete = async (task) => {
+        setLoading(true);
+        await dispatch(inCompleteTask(task.id))
+    }
 
     return (
         <div className="profile-selected-section">
             <h1>All Unassigned tasks!</h1>
             <div>
                 {console.log(allTasks)}
-                {Object.values(allTasks).map(task => (
+                {!loading ? Object.values(incompleteTasks).map(task => (
                     <div key={task.id}>
-                        <input type='checkbox'></input>
+                        <input onClick={() => handleCompleteTask(task)} type='checkbox'></input>
                         <span>{task.task}</span>
                     </div>
-                ))}
+                )) : <Loading />}
             </div>
             {/* submitting completed tasks will remove all checked tasks from the uncompleted list to the completed one */}
-            <button>Submit Completed Tasks</button>
+
             <div>Completed tasks go down here</div>
+            {!loading ? Object.values(completedTasks).map(task => (
+                    <div key={task.id}>
+                        <input onClick={() => handleAccidentalComplete(task)}type='checkbox' checked ></input>
+                        <span>{task.task}</span>
+                    </div>
+                )) : <Loading />}
         </div>
     )
 }

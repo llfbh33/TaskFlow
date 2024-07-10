@@ -23,14 +23,15 @@ const UsersTasks = () => {
 
 
     const handleCompleteTask = async (task) => {
-        setLoading(true)
+        // setLoading(true)
         await dispatch(completeTask(task.id));
-        await setLoading(false);
+        // await setLoading(false);
     }
 
     const handleAccidentalComplete = async (task) => {
-        setLoading(true);
-        await dispatch(inCompleteTask(task.id))
+        // setLoading(true);
+        await dispatch(inCompleteTask(task.id));
+        // await setLoading(false)
     }
 
     return (
@@ -49,8 +50,8 @@ const UsersTasks = () => {
 
             <div>Completed tasks go down here</div>
             {!loading ? Object.values(completedTasks).map(task => (
-                    <div key={task.id}>
-                        <input onClick={() => handleAccidentalComplete(task)}type='checkbox' checked ></input>
+                    <div key={task.id + 1000}>
+                        <input onClick={() => handleAccidentalComplete(task)}type='checkbox' checked></input>
                         <span>{task.task}</span>
                     </div>
                 )) : <Loading />}

@@ -60,7 +60,7 @@ export const inCompleteTask = (taskId) => async dispatch => {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            isComplete: false
+            isComplete: 'false'
         })
     })
 

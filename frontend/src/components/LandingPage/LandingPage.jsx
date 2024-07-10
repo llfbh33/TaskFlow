@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import './LandingPage.css';
 // import { FaBimobject } from "react-icons/fa";
 import fetchOpenGraphData from "../../utils/OpenGraphData";
+import Loading from "../Loading/Loading";
 
 
 const SearchResults = ({results}) => {
@@ -59,7 +60,7 @@ const LandingPage = () => {
                 <button onClick={handleSearch} >Submit</button>
                 <button onClick={clearSearch}>Clear Search</button>
             </div>
-            {loading && <div>start searching</div>}
+            {loading && <Loading />}
             {!loading && <SearchResults results={results} /> }
         </div>
     )

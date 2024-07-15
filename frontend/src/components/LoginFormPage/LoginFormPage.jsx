@@ -3,6 +3,7 @@ import * as sessionActions from '../../store/session';
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import './LoginFormPage.css'
+import loadState from '../../utils/loadData';
 
 function LoginFormPage() {
   const dispatch = useDispatch();
@@ -16,7 +17,10 @@ function LoginFormPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
-    return dispatch(sessionActions.login({ credential, password })).catch(
+    return dispatch(sessionActions.login({ credential, password }))
+    .then(() => {
+      loadState(dispatch);
+    }).catch(
       async (res) => {
         const data = await res.json();
         if (data?.errors) setErrors(data.errors);

@@ -1,34 +1,32 @@
-import { useDispatch } from "react-redux";
+// external imports
 import { useState, useEffect } from "react";
-import Navigation from "../Navigation";
+import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
+// internal imports
+import Navigation from "../Navigation";
 import * as sessionActions from '../../store/session';
-import "./Layout.css";
-// import * as resourceActions from "../../store/resources";
 import loadState from "../../utils/loadData";
-import { ModalProvider, Modal } from "../../context/Modal";
+// styling
+import "./Layout.css";
+import Loading from "../Loading/Loading";
 
 
 const Layout = () => {
-    const dispatch = useDispatch();
-    const [isLoaded, setIsLoaded] = useState(false);
+    const dispatch = useDispatch();                   // for activating thunk actions
+    const [isLoaded, setIsLoaded] = useState(false);  // slice of state to load page
 
     useEffect(() => {
-      dispatch(sessionActions.restoreUser())
-      .then(() => loadState(dispatch))
-      .then(() => setIsLoaded(true))
-      .catch((error) => console.log(error))
-    }, [dispatch]);
+      dispatch(sessionActions.restoreUser())  // check for current user
+      .then(() => loadState(dispatch))        // loads data
+      .then(() => setIsLoaded(true))          // sets loaded to true
+      .catch((error) => console.log(error))   // catches any errors
+    }, [dispatch]);                           // runs on dispatch
+
 
     return (
       <div id='main-layout-container'>
-        <ModalProvider>
-          <div>
-              <Navigation isLoaded={isLoaded} />
-              {isLoaded && <Outlet />}
-          </div>
-          <Modal />
-        </ModalProvider>
+          <Navigation isLoaded={isLoaded} />    {/* Nav bar takes loading value j */}
+          {isLoaded ? <Outlet /> : <Loading />}
       </div>
     );
 }

@@ -33,7 +33,13 @@ function Navigation({ isLoaded }) {
   return (
     <ul>
       <li>
-        <NavLink to="/">Home</NavLink>
+        <NavLink to="/">Search</NavLink>
+      </li>
+      <li>
+        <NavLink to="/home">{`My Information`}</NavLink>
+      </li>
+      <li>
+        <NavLink to="/home">{`My Profile`}</NavLink>
       </li>
       {isLoaded && sessionLinks}
     </ul>

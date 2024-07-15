@@ -32,7 +32,7 @@ const CreateReflectionModal = ({setLoaded}) => {
     }
 
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
         const projectsString = inputFields.map(project => project.value)

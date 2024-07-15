@@ -4,6 +4,7 @@ import SignupFormPage from './components/SignupFormPage';
 import Layout from './components/Layout';
 import LandingPage from './components/LandingPage';
 import Profile from './components/Profile';
+import { Modal, ModalProvider } from './context/Modal';
 
 const router = createBrowserRouter([
   {
@@ -29,8 +30,17 @@ const router = createBrowserRouter([
   }
 ]);
 
+
+
+// the App commponent provides the router Provider to the site as well as
+  // the modal provider
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <ModalProvider>
+        <RouterProvider router={router} />
+        <Modal />
+    </ModalProvider>
+  );
 }
 
 export default App;

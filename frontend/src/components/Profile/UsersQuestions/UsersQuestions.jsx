@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux"
 import { useModal } from "../../../context/Modal";
 import AnswerQuestionsModal from "../../Modals/QuestionsModals/AnswerQuestionModal";
+import AskQuestionModal from "../../Modals/QuestionsModals/AskQuestionModal";
 import { useState } from "react";
 
 
@@ -16,11 +17,19 @@ const UsersQuestions = () => {
     const handleAnswerQuestion = (question) => {
         const modalComponent = <AnswerQuestionsModal question={question} />
         setModalContent(modalComponent);
+    };
+
+    const askAQuestion = () => {
+        const modalComponent = <AskQuestionModal />
+        setModalContent(modalComponent)
     }
 
     return (
         <div className='profile-selected-section'>
             <h1>Questions</h1>
+            <div>
+                <button onClick={askAQuestion}>Ask a Qusetion</button>
+            </div>
             <div>
                 {Object.values(allQuestions).map(ele => (
                     <div key={ele.id} className="questions-card">

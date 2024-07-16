@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
 import * as sessionActions from '../../store/session';
 import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -49,11 +50,16 @@ function ProfileButton({ user }) {
         <FaUserCircle />
       </button>
       <ul className={ulClassName} hidden={!showMenu} ref={ulRef}>
-        <li>{user.username}</li>
-        <li>{user.firstName} {user.lastName}</li>
-        <li>{user.email}</li>
-        <li onClick={() => HandlePageChange('/')}>Search</li>
-        <li onClick={() => HandlePageChange('/home')}>Profile</li> {/* links to personal Profile */}
+        <li>{`Hello ${user.username}`}</li>
+        <li>
+            <NavLink to="/">Search</NavLink>
+        </li>
+        <li>
+            <NavLink to="/home">{`My Information`}</NavLink>
+        </li>
+        <li>
+            <NavLink onClick={() => alert('Feature coming soon - profile page to update user info')}>{`My Profile`}</NavLink>
+        </li>
         <li>
           <button onClick={logout}>Log Out</button>
         </li>

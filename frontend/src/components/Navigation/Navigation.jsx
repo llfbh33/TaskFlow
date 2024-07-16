@@ -1,49 +1,37 @@
+// External imports
+import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+// internal imports
 import ProfileButton from './ProfileButton';
-import * as sessionActions from '../../store/session';
+// Styling
 import './Navigation.css';
 
+
 function Navigation({ isLoaded }) {
-  const sessionUser = useSelector(state => state.session.user);
-  const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
 
-  const logout = (e) => {
-    e.preventDefault();
-    dispatch(sessionActions.logout());
-  };
+    // if there is a user show profile button, else, login and signup
+    const sessionLinks = user ? (
+        <li>
+            <ProfileButton user={user} />
+        </li>
+    ) : (
+        <>
+            <li>
+                <NavLink to="/login">Log In</NavLink>
+            </li>
+            <li>
+                <NavLink to="/signup">Sign Up</NavLink>
+            </li>
+        </>
+    );
 
-  const sessionLinks = sessionUser ? (
-    <>
-      <li>
-        <ProfileButton user={sessionUser} />
-      </li>
-    </>
-  ) : (
-    <>
-      <li>
-        <NavLink to="/login">Log In</NavLink>
-      </li>
-      <li>
-        <NavLink to="/signup">Sign Up</NavLink>
-      </li>
-    </>
-  );
-
-  return (
-    <ul>
-      <li>
-        <NavLink to="/">Search</NavLink>
-      </li>
-      <li>
-        <NavLink to="/home">{`My Information`}</NavLink>
-      </li>
-      <li>
-        <NavLink to="/home">{`My Profile`}</NavLink>
-      </li>
-      {isLoaded && sessionLinks}
-    </ul>
-  );
+    // return sessionLinks if the layout has loaded
+    return (
+        <ul>
+            {isLoaded && sessionLinks}
+        </ul>
+    );
 }
 
 export default Navigation;

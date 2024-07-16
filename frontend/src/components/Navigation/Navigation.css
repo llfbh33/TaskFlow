@@ -1,0 +1,27 @@
+
+
+
+
+/* Profile Button Elements*/
+.profile-dropdown {
+    list-style: none;
+}
+
+.profileButton-nav-link,
+.profileButton-nav-name {
+    line-height: 1.8;
+    font-weight: 700;
+}
+
+.profileButton-nav-name {
+    font-size: 22px;
+}
+
+.profileButton-nav-link {
+    font-size: 18px;
+}
+
+.profileButton-nav-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}

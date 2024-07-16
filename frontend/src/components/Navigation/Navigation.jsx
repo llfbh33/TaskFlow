@@ -1,7 +1,7 @@
-// External imports
+// External Imports
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-// internal imports
+// internal Imports
 import ProfileButton from './ProfileButton';
 // Styling
 import './Navigation.css';

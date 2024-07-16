@@ -28,7 +28,7 @@ const UsersQuestions = () => {
         <div className='profile-selected-section'>
             <h1>Questions</h1>
             <div>
-                <button onClick={askAQuestion}>Ask a Qusetion</button>
+                <button onClick={askAQuestion} className="add-pointer-cursor">Ask a Qusetion</button>
             </div>
             <div>
                 {Object.values(allQuestions).map(ele => (

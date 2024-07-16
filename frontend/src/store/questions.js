@@ -2,7 +2,7 @@ import { csrfFetch } from './csrf.js';
 
 const LOAD = 'question/LOAD';
 const CREATE = 'question/CREATE';
-const UPDATE = 'question/UPDATE';
+// const UPDATE = 'question/UPDATE';
 const DELETE = 'question/DELETE';
 
 const load = (list) => ({
@@ -15,10 +15,10 @@ const create = (data) => ({
     data
 });
 
-const update = (data) => ({
-    type: UPDATE,
-    data
-})
+// const update = (data) => ({
+//     type: UPDATE,
+//     data
+// })
 
 const destroy = (questionId) => ({
     type: DELETE,
@@ -34,7 +34,27 @@ export const getQuestions = () => async dispatch => {
         dispatch(load(list.Questions));
         return list
     }
-}
+};
+
+export const createQuestion = (question) => async dispatch => {
+    const response = await csrfFetch(`api/questions/new`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            userId: question.userId,
+            question: question.question
+        }),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(create(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
 
 export const updateQuestion = (question) => async dispatch => {
     const response = await csrfFetch(`/api/questions/${question.id}`, {
@@ -48,7 +68,7 @@ export const updateQuestion = (question) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(update(data));
+        dispatch(create(data));
         return data;
     } else {
         const errors = await response.json();
@@ -66,7 +86,7 @@ const questionsReducer = (state = {}, action) => {
             });
             return {...state, ...allQuestions};
         }
-        case UPDATE: {
+        case CREATE: {
             const newState = {...state};
             newState[action.data.id] = action.data;
             return newState;

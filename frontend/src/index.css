@@ -5,3 +5,9 @@ body {
     padding: 0 !important;
     background-color: rgb(189, 189, 248);
 }
+
+
+/* Use classname's on all elements which require these functions */
+.add-pointer-cursor {
+    cursor: pointer;
+}

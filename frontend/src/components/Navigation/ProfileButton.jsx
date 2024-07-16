@@ -62,25 +62,25 @@ function ProfileButton({ user }) {
 
     return (
         <div>
-            <button onClick={toggleMenu}><FaUserCircle /></button>
+            <button onClick={toggleMenu} className='add-pointer-cursor'><FaUserCircle /></button>
             <ul className={ulClassName} hidden={!showMenu} ref={ulRef}>
                 <li className='profileButton-nav-name'>{`Hello ${user.username}`}</li>
                 <li>
                     <div
                         onClick={() => HandlePageChange('/')}
-                        className='profileButton-nav-link'
+                        className='profileButton-nav-link add-pointer-cursor'
                         >Search</div>
                 </li>
                 <li>
                     <div
                         onClick={() => HandlePageChange('/home')}
-                        className='profileButton-nav-link'
+                        className='profileButton-nav-link add-pointer-cursor'
                         >{`My Information`}</div>
                 </li>
                 <li>
                     <div
                         onClick={() => alert('Feature coming soon - profile page to update user info')}
-                        className='profileButton-nav-link'>{`My Profile`}</div>
+                        className='profileButton-nav-link add-pointer-cursor'>{`My Profile`}</div>
                 </li>
                 <li>
                     <button onClick={logout}>Log Out</button>

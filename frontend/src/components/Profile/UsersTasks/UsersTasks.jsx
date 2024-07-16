@@ -5,19 +5,26 @@ import { completeTask, inCompleteTask } from "../../../store/tasks";
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
+    const [unassignedTasks, setUnassignedTasks] = useState('');
     const [completedTasks, setCompletedTasks] = useState('');
     const [incompleteTasks, setIncompleteTasks] = useState('');
     const [loading, setLoading] = useState(true);
     const dispatch = useDispatch();
 
     useEffect(() => {
-        setLoading(true);
-        let complete = Object.values(allTasks).filter(task => task.isComplete);
-        let notComplete = Object.values(allTasks).filter(task => !task.isComplete);
+        let complete = Object.values(unassignedTasks).filter(task => task.isComplete);
+        let notComplete = Object.values(unassignedTasks).filter(task => !task.isComplete);
 
         setCompletedTasks(complete);
         setIncompleteTasks(notComplete);
         setLoading(false);
+    }, [unassignedTasks]);
+
+    useEffect(() => {
+        setLoading(true);
+        let unassigned = Object.values(allTasks).filter(task => !task.date)
+
+        setUnassignedTasks(unassigned);
     }, [allTasks])
 
 

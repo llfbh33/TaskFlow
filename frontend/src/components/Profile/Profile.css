@@ -10,7 +10,7 @@
 .profile-tab,
 .profile-tab-selected {
     padding: 5px;
-    width: 80px;
+    width: 130px;
     height: 20px;
     text-align: center;
     border: 1px solid rgb(44, 42, 42);
@@ -33,6 +33,7 @@
     border-top: none;
     display: flex;
     flex-direction: column;
+    min-height: 800px
 }
 
 .profile-selected-section h1 {

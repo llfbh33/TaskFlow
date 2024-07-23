@@ -13,13 +13,13 @@ const Profile = () => {
 
     return (
         <div id="profile-full-card">
-            <h1>{`${user.name}'s Profile`}</h1>
+            <h1>{`${user?.name}'s Profile`}</h1>
             <div id="profile-nav-tabs-container">
                 <div onClick={() => setTab('search')} className={tab === 'search' ? "profile-tab-selected" : "profile-tab"}>Search</div>
-                <div onClick={() => setTab('calender')} className={tab === 'calender' ? "profile-tab-selected" : "profile-tab"}>Calender</div>
-                <div onClick={() => setTab('tasks')} className={tab === 'tasks' ? "profile-tab-selected" : "profile-tab"}>Unassigned Tasks</div>
-                <div onClick={() => setTab('questions')} className={tab === 'questions' ? "profile-tab-selected" : "profile-tab"}>Questions</div>
-                <div onClick={() => setTab('reflections')} className={tab === 'reflections' ? "profile-tab-selected" : "profile-tab"}>Reflections</div>
+                { user && <div onClick={() => setTab('calender')} className={tab === 'calender' ? "profile-tab-selected" : "profile-tab"}>Calender</div> }
+                { user && <div onClick={() => setTab('tasks')} className={tab === 'tasks' ? "profile-tab-selected" : "profile-tab"}>Unassigned Tasks</div> }
+                { user && <div onClick={() => setTab('questions')} className={tab === 'questions' ? "profile-tab-selected" : "profile-tab"}>Questions</div> }
+                { user && <div onClick={() => setTab('reflections')} className={tab === 'reflections' ? "profile-tab-selected" : "profile-tab"}>Reflections</div> }
             </div>
 
             { tab === 'search' ? <UsersSearch />

@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
 import LoginFormPage from './components/LoginFormPage';
 import SignupFormPage from './components/SignupFormPage';
 import Layout from './components/Layout';
@@ -8,11 +8,16 @@ import { Modal, ModalProvider } from './context/Modal';
 
 const router = createBrowserRouter([
   {
-    element: <Layout />,
+    element: (
+        <>
+            <Layout />
+            <Outlet />
+        </>
+      ),
     children: [
       {
         path: '/',
-        element: <LandingPage />
+        element: <Profile />
       },
       {
         path: '/login',
@@ -24,7 +29,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/home',
-        element: <Profile />
+        element: <LandingPage />
       }
     ]
   }

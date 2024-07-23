@@ -1,3 +1,6 @@
+
+// debate if you are ready to remove this file
+
 import { useState } from "react"
 import { useSelector } from "react-redux";
 import './LandingPage.css';

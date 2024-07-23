@@ -14,6 +14,11 @@ function LoginFormPage() {
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
+  const demoLogin = (e) => {
+    dispatch(sessionActions.login({ credential: 'starter-aubrie', password: "password" }))
+    .then(() => loadState(dispatch))
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -53,6 +58,7 @@ function LoginFormPage() {
         {errors.credential && <p>{errors.credential}</p>}
         <button type="submit">Log In</button>
       </form>
+      <div onClick={(e) => demoLogin(e)}>Demo Login</div>
     </>
   );
 }

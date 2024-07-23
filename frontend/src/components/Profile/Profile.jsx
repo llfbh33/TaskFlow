@@ -13,7 +13,7 @@ const Profile = () => {
 
     return (
         <div id="profile-full-card">
-            <h1>{`${user?.name}'s Profile`}</h1>
+            {user ? <h1>{`${user.name}'s Profile`}</h1> : <h1>Search Resources</h1>}
             <div id="profile-nav-tabs-container">
                 <div onClick={() => setTab('search')} className={tab === 'search' ? "profile-tab-selected" : "profile-tab"}>Search</div>
                 { user && <div onClick={() => setTab('calender')} className={tab === 'calender' ? "profile-tab-selected" : "profile-tab"}>Calender</div> }

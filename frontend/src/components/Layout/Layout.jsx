@@ -36,8 +36,7 @@ const Layout = () => {
     return (
       <div id='main-layout-container'>
           <Navigation isLoaded={isLoaded} />
-          {/* <Profile /> */}
-          {/* {isLoaded ? <Outlet /> : <Loading />} */}
+          {isLoaded && <Outlet />}
       </div>
     );
 }

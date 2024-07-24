@@ -47,3 +47,7 @@
 - Using the library 'axios' to fetch the HTML of URL's
 - Using 'cherrio' to parse the HTML and extract Open Graph Data
     - npm install axios cherrio
+
+
+- when logging in, the users name does not produce
+- when logging out, if you are not on the search tab, it does not transfer to the search tab

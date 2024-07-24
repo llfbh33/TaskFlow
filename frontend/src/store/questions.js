@@ -4,6 +4,7 @@ const LOAD = 'question/LOAD';
 const CREATE = 'question/CREATE';
 // const UPDATE = 'question/UPDATE';
 const DELETE = 'question/DELETE';
+const CLEAR_QUESTIONS = 'question/CLEAR_QUESTIONS';
 
 const load = (list) => ({
     type: LOAD,
@@ -23,6 +24,10 @@ const create = (data) => ({
 const destroy = (questionId) => ({
     type: DELETE,
     questionId
+});
+
+export const clearQuestions = () => ({
+    type: CLEAR_QUESTIONS,
 });
 
 
@@ -76,8 +81,9 @@ export const updateQuestion = (question) => async dispatch => {
     }
 };
 
+const initialState = {}
 
-const questionsReducer = (state = {}, action) => {
+const questionsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
             const allQuestions = {};
@@ -90,6 +96,9 @@ const questionsReducer = (state = {}, action) => {
             const newState = {...state};
             newState[action.data.id] = action.data;
             return newState;
+        }
+        case CLEAR_QUESTIONS: {
+            return initialState
         }
         default:
             return state;

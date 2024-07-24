@@ -11,3 +11,7 @@ body {
 .add-pointer-cursor {
     cursor: pointer;
 }
+
+.highlight-underline:hover {
+    text-decoration: underline;
+}

@@ -22,9 +22,13 @@ function Navigation({ isLoaded }) {
 
     // if there is a user show profile button, else, login and signup
     const sessionLinks = user ? (
-        <li>
-            <button onClick={logout}>Log Out</button>
-        </li>
+        <div>
+            <button
+                className='add-pointer-cursor'
+                onClick={logout}>
+                Log Out
+            </button>
+        </div>
     ) : (
         <div className='flexing-flex'>
             <div>

@@ -24,14 +24,7 @@ const Layout = () => {
       })
       .then(() => setIsLoaded(true))
       .catch((error) => console.log(error))   // catches any errors
-    })
-
-    useEffect(() => {
-      if (user) {
-        loadState(dispatch).then(() => setIsLoaded(true))               // load users state
-      }
-    }, [dispatch, user]);                               // runs when user is present
-
+    }, [])
 
     return (
       <div id='main-layout-container'>

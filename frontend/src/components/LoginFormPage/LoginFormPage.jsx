@@ -14,11 +14,14 @@ function LoginFormPage() {
 
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
+
+// initial resources are loaded on page load, signin loads state for the current user
   const demoLogin = (e) => {
     dispatch(sessionActions.login({ credential: 'starter-aubrie', password: "password" }))
     .then(() => loadState(dispatch))
   }
 
+// signin loads state for the current user
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors({});
@@ -58,7 +61,11 @@ function LoginFormPage() {
         {errors.credential && <p>{errors.credential}</p>}
         <button type="submit">Log In</button>
       </form>
-      <div onClick={(e) => demoLogin(e)}>Demo Login</div>
+      <div
+          className='add-pointer-cursor highlight-underline'
+          onClick={(e) => demoLogin(e)}>
+          Demo Login
+      </div>
     </>
   );
 }

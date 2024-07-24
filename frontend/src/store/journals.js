@@ -4,6 +4,7 @@ const LOAD = 'journal/LOAD';
 const CREATE = 'journal/CREATE';
 const UPDATE = 'journal/UPDATE';
 const DESTROY = 'journal/DESTROY';
+const CLEAR = 'journal/CLEAR';
 
 const load = (list) => ({
     type: LOAD,
@@ -24,6 +25,10 @@ const destroy = (journalId) => ({
     type: DESTROY,
     journalId
 });
+
+export const clearJournals = () => ({
+    type: CLEAR
+})
 
 
 export const getJournals = () => async dispatch => {
@@ -80,8 +85,9 @@ export const deleteJournal = (journalId) => async dispatch => {
     }
 };
 
+const initialState = {}
 
-const journalsReducer = (state = {}, action) => {
+const journalsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
             const newState = {};
@@ -99,6 +105,9 @@ const journalsReducer = (state = {}, action) => {
             const newState = {...state};
             delete newState[action.journalId];
             return newState;
+        }
+        case CLEAR: {
+            return initialState;
         }
         default:
             return state;

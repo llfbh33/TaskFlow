@@ -4,6 +4,7 @@ const LOAD = 'task/LOAD';
 const CREATE = 'task/CREATE';
 const UPDATE = 'task/UPDATE';
 const DELETE = 'task/DELETE';
+const CLEAR_TASKS = 'task/CLEAR_TASKS'
 
 const load = (list) => ({
     type: LOAD,
@@ -23,6 +24,10 @@ const update = (data) => ({
 const destroy = (taskId) => ({
     type: DELETE,
     taskId
+});
+
+export const clearTasks = () => ({
+    type: CLEAR_TASKS,
 });
 
 
@@ -74,7 +79,9 @@ export const inCompleteTask = (taskId) => async dispatch => {
     }
 };
 
-const tasksReducer = (state = {}, action) => {
+const initialState = {}
+
+const tasksReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD: {
             const allTasks = {};
@@ -87,6 +94,9 @@ const tasksReducer = (state = {}, action) => {
             const newState = {...state};
             newState[action.data.id] = action.data;
             return newState
+        }
+        case CLEAR_TASKS: {
+            return initialState;
         }
         default:
             return state;

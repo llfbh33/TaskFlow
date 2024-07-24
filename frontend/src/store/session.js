@@ -1,4 +1,7 @@
 import { csrfFetch } from './csrf';
+import { clearJournals } from './journals';
+import { clearQuestions } from './questions';
+import { clearTasks } from './tasks';
 
 const SET_USER = "session/setUser";
 const REMOVE_USER = "session/removeUser";
@@ -60,6 +63,9 @@ export const logout = () => async (dispatch) => {
         method: 'DELETE'
     });
     dispatch(removeUser());
+    await dispatch(clearQuestions());
+    await dispatch(clearTasks());
+    await dispatch(clearJournals());
     return response;
 };
 

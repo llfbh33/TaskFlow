@@ -76,14 +76,14 @@ const UsersCalender = () => {
             <div className="cal-dates-flex">
                 <div
                     onClick={() => handleDateChange('prev')}
-                    className="add-pointer-cursor highlight-underline"
+                    className="add-pointer-cursor highlight-underline date-transition"
                     >
                         {formatDate(currDate, 'prev')}
                 </div>
                 <div className="displayed-title">{formatDate(currDate)}</div>
                 <div
                     onClick={() => handleDateChange('post')}
-                    className="add-pointer-cursor highlight-underline"
+                    className="add-pointer-cursor highlight-underline date-transition"
                     >
                         {formatDate(currDate, 'post')}
                 </div>

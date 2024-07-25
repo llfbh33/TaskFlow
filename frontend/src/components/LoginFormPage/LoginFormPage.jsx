@@ -12,6 +12,7 @@ function LoginFormPage() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  // necessary to transfer to main page
   if (sessionUser) return <Navigate to="/" replace={true} />;
 
 

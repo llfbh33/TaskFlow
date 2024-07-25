@@ -137,3 +137,11 @@
 .modal-text-item > li:hover {
     background-color: aquamarine;
 }
+
+
+/* Calender styling */
+.cal-dates-flex {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px;
+}

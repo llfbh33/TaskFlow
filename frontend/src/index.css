@@ -15,3 +15,8 @@ body {
 .highlight-underline:hover {
     text-decoration: underline;
 }
+
+.displayed-title {
+    font-size: 22px;
+    font-weight: 600;
+}

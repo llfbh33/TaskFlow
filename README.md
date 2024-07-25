@@ -51,3 +51,7 @@
 
 - when logging in, the users name does not produce - it does if you refresh
 
+-[x] I want to show the current date
+-[ ] I want to show a date one behind and one infront that are clickable
+-[ ] I want the tasks for those three days to pop up when the date is highlighted
+

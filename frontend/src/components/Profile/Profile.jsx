@@ -11,9 +11,10 @@ import Loading from "../Loading/Loading";
 const Profile = () => {
     const user = useSelector(state => state.session.user);
     const [tab, setTab] = useState('search');
+
     useEffect(() => {
         setTab('search')
-    }, [])
+    }, [user]);             // changes back to search on user change so that the tab that was open before logout does not stay open after logout
 
 
     return (

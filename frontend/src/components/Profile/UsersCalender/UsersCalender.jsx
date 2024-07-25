@@ -72,6 +72,7 @@ const UsersCalender = () => {
         <div className="profile-selected-section">
             <h1>Place calender days here</h1>
             <button onClick={addATask} className="add-pointer-cursor">Add a task</button>
+            <button onClick={() => setCurrDate(new Date())}>Return to Todays date</button>
             <div className="cal-dates-flex">
                 <div
                     onClick={() => handleDateChange('prev')}

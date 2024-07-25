@@ -55,5 +55,5 @@
 -[x] I want to show a date one behind and one infront that are clickable
 -[x] I want the tasks for those three days to pop up when the date is highlighted
 -[ ] I want to have a context for the date so that if you go to another tab then come back you are on the same date you were looking at previously.  This date can clear and be reset to the current date upon logout
--[ ] I want to provide the ability to skip right to the current date again incase the user wants to.
+-[x] I want to provide the ability to skip right to the current date again incase the user wants to.
 -[x] I want to add checkboxes to the tasks - when then are completed they can be checked and will be striked out - it will automatically  updated them in the backend

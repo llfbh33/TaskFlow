@@ -93,13 +93,15 @@ const UsersCalender = () => {
                 <h3>Tasks</h3>
                 <div>
                     {currTasks && Object.values(currTasks).map(task => (
-                        <div key={task.id} className="resource-search-results">
+                        <div key={task.id} className="resource-search-results ">
                             <button
                                 onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
                                 >
                                 {task.isComplete ? 'X' : '-'}
                             </button>
-                            <span className={task.isComplete ? 'completed-task' : 'uncompleted task'} >{task.task}</span>
+                            <span className={task.isComplete ? 'completed-task' :
+                                            !task.isComplete && compressDate(new Date()) === compressDate(task.date) ? 'uncompleted-task' :
+                                            !task.isComplete && compressDate(new Date()) > compressDate(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                         </div>
                     ))}
                 </div>

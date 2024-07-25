@@ -57,3 +57,5 @@
 -[ ] I want to have a context for the date so that if you go to another tab then come back you are on the same date you were looking at previously.  This date can clear and be reset to the current date upon logout
 -[x] I want to provide the ability to skip right to the current date again incase the user wants to.
 -[x] I want to add checkboxes to the tasks - when then are completed they can be checked and will be striked out - it will automatically  updated them in the backend
+-[x] I want to set tasks so if they need to be completed today they glow yellow, if they are past due, they glow red
+-[ ] I want the calender tab to be red if there are past due tasks, and yellow if there are only currently due tasks, grey if all caught up

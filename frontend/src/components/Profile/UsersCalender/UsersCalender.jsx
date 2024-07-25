@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
 import { format, addDays, subDays } from 'date-fns';
 import { inCompleteTask } from "../../../store/tasks";
+import { useModal } from "../../../context/Modal";
+import CreateTask from "../../Modals/TasksModals/CreateTask";
 
 
 const UsersCalender = () => {
@@ -12,6 +14,12 @@ const UsersCalender = () => {
     const [datedTasks, setDatedTasks] = useState('');
     const [currDate, setCurrDate] = useState(new Date());
     const [currTasks, setCurrTasks] = useState('');
+    const { setModalContent } = useModal();
+
+    const addATask = () => {
+        const modalComponent = <CreateTask />
+        setModalContent(modalComponent)
+    }
 
 // compresses dates so the date returned does not include the time
     const compressDate = (date) => {
@@ -56,11 +64,14 @@ const UsersCalender = () => {
         await dispatch(inCompleteTask(task.id, str));
     }
 
-    if (!loaded) return <Loading />
+    if (!loaded) {
+        return <Loading />
+    }
 
     return (
         <div className="profile-selected-section">
             <h1>Place calender days here</h1>
+            <button onClick={addATask} className="add-pointer-cursor">Add a task</button>
             <div className="cal-dates-flex">
                 <div
                     onClick={() => handleDateChange('prev')}

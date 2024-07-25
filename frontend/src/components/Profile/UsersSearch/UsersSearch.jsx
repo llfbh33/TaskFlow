@@ -9,7 +9,7 @@ const UsersSearch = () => {
     const [myResources, setMyResources] = useState([]);
     const [results, setResults] = useState([]);
     const [search, setSearch] = useState('')
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState('initial');
 
     useEffect(() => {
         if (user) {
@@ -19,7 +19,7 @@ const UsersSearch = () => {
     }, [resources, user]);
 
     const handleSearch = async () => {
-        setLoading(true);
+        setLoading('loading');
         let getResults = Object.values(resources).filter(resource => resource.name.toLowerCase().includes(search.toLowerCase()))
 
         setSearch('')
@@ -28,10 +28,11 @@ const UsersSearch = () => {
     };
 
     const clearSearch = () => {
-        setLoading(false);
+        setLoading('initial');
         setSearch('');
         setResults([]);
     }
+
 
     return (
         <div className="profile-selected-section">
@@ -45,14 +46,27 @@ const UsersSearch = () => {
                 <button onClick={handleSearch} >Submit</button>
                 <button onClick={clearSearch}>Clear Search</button>
             </div>
-            {loading && <Loading />}
-            {!loading &&
+            {loading === 'initial' ?
+                <div>
+                    <ul>
+                        {Object.values(resources).map(resource => (
+                            <div key={resource.id} className="resource-search-results">
+                                <img src={resource.data?.image} className="link-image"/>
+                                <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
+                            </div>
+                        ))}
+                    </ul>
+                </div> :
+            loading === 'loading' ?
+                <div>
+
+                </div> :
                 <div>
                     <ul>
                         {results.map(resource => (
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
-                                <a href={`${resource.url}`} target='_blank'>{resource?.data ? resource.data.title : resource.name}</a>
+                                <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
                             </div>
                         ))}
                     </ul>

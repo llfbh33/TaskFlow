@@ -19,8 +19,9 @@ const Layout = () => {
 
     useEffect(() => {
       dispatch(sessionActions.restoreUser())  // check for current user
-      .then(() => {
-        loadInitialData(dispatch)             // load initial resources state
+      .then((result) => {
+        if (!result) loadInitialData(dispatch)            // load initial resources state
+        if (result) loadState(dispatch);                  // load all data for current user
       })
       .then(() => setIsLoaded(true))
       .catch((error) => console.log(error))   // catches any errors
@@ -29,7 +30,7 @@ const Layout = () => {
     return (
       <div id='main-layout-container'>
           <Navigation isLoaded={isLoaded} />
-          {isLoaded && <Outlet />}
+          {isLoaded && <Outlet user={user}/>}
       </div>
     );
 }

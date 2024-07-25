@@ -10,23 +10,16 @@ import Loading from "../Loading/Loading";
 
 const Profile = () => {
     const user = useSelector(state => state.session.user);
-    const [currUser, setCurrUser] = useState(false);
     const [tab, setTab] = useState('search');
-
     useEffect(() => {
         setTab('search')
     }, [])
 
-    useEffect(() => {
-        if (user) {
-            setCurrUser(true);
-        }
-    }, [user]);
 
     return (
         <div id="profile-full-card">
             {user ? <h1>{`${user.name}'s Profile`}</h1> : <h1>Search Resources</h1>}
-            {currUser ? <h1>{`${user.name}'s Profile`}</h1> : <h1>Search Resources</h1>}
+            {user ? <h1>{`${user.name}'s Profile`}</h1> : <h1>Search Resources</h1>}
             <div id="profile-nav-tabs-container">
                 <div onClick={() => setTab('search')} className={tab === 'search' ? "profile-tab-selected" : "profile-tab"}>Search</div>
                 { user && <div onClick={() => setTab('calender')} className={tab === 'calender' ? "profile-tab-selected" : "profile-tab"}>Calender</div> }

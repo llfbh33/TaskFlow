@@ -41,28 +41,30 @@ export const getTasks = () => async dispatch => {
     }
 }
 
-// export const completeTask = (taskId) => async dispatch => {
-//     const response = await csrfFetch(`/api/tasks/complete/${taskId}`, {
-//         method: 'PUT',
-//         headers: { "Content-Type": "application/json" },
-//         body: JSON.stringify({
-//             isComplete: true
-//         })
-//     })
+export const createTask = (task) => async dispatch => {
+    const response = await csrfFetch(`/api/tasks/new`, {
+        method: 'POST',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            userId: task.userId,
+            task: task.task,
+            isComplete: 'false',
+            date: task.date
+        })
+    })
 
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(update(data));
-//         console.log(data)
-//         return data;
-//     } else {
-//         const errors = await response.json();
-//         return errors;
-//     }
-// };
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(update(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
 
-export const inCompleteTask = (taskId, complete) => async dispatch => {
-    const response = await csrfFetch(`/api/tasks/${taskId}`, {
+export const CompleteTask = (task, complete) => async dispatch => {
+    const response = await csrfFetch(`/api/tasks/${task.id}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -72,7 +74,6 @@ export const inCompleteTask = (taskId, complete) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        console.log(data)
         dispatch(update(data));
         return data;
     } else {

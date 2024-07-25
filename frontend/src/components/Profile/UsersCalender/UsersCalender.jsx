@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
 import { format, addDays, subDays } from 'date-fns';
-import { inCompleteTask } from "../../../store/tasks";
+import { CompleteTask } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
 import CreateTask from "../../Modals/TasksModals/CreateTask";
 
@@ -24,7 +24,7 @@ const UsersCalender = () => {
 // compresses dates so the date returned does not include the time
     const compressDate = (date) => {
         const receDate = new Date(date);
-        return `${receDate.getFullYear()}-${receDate.getMonth()}-${receDate.getDate()}`
+        return `${receDate.getFullYear()}-${receDate.getMonth() + 1}-${receDate.getDate()}`
     }
 
 // filters through the tasks a user has and only stores the ones which are set to a specific date to be completed
@@ -61,7 +61,7 @@ const UsersCalender = () => {
     }
 
     const completeTask = async (task, str) => {
-        await dispatch(inCompleteTask(task.id, str));
+        await dispatch(CompleteTask(task, str));
     }
 
     if (!loaded) {

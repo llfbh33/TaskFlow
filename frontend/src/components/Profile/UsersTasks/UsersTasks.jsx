@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
-import { inCompleteTask } from "../../../store/tasks";
+import { CompleteTask } from "../../../store/tasks";
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
@@ -31,13 +31,13 @@ const UsersTasks = () => {
 
     const handleCompleteTask = async (task) => {
         // setLoading(true)
-        // await dispatch(completeTask(task.id));
+        await dispatch(CompleteTask(task.id));
         // await setLoading(false);
     }
 
     const handleAccidentalComplete = async (task) => {
         // setLoading(true);
-        await dispatch(inCompleteTask(task.id));
+        // await dispatch(inCompleteTask(task.id));
         // await setLoading(false)
     }
 
@@ -45,7 +45,6 @@ const UsersTasks = () => {
         <div className="profile-selected-section">
             <h1>All Unassigned tasks!</h1>
             <div>
-                {console.log(allTasks)}
                 {!loading ? Object.values(incompleteTasks).map(task => (
                     <div key={task.id}>
                         <input onClick={() => handleCompleteTask(task)} type='checkbox'></input>

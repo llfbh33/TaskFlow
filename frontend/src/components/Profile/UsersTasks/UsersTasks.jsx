@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
-import { completeTask, inCompleteTask } from "../../../store/tasks";
+import { inCompleteTask } from "../../../store/tasks";
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
@@ -31,7 +31,7 @@ const UsersTasks = () => {
 
     const handleCompleteTask = async (task) => {
         // setLoading(true)
-        await dispatch(completeTask(task.id));
+        // await dispatch(completeTask(task.id));
         // await setLoading(false);
     }
 

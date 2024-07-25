@@ -60,12 +60,30 @@ router.post('/new', async (req, res, next) => {
 
 // ========>>>  Update a task by Id  <<<========
 // Will also need to add validations to this to be sure that the task exists before checking if the user id matches
-router.put('/:taskId', userOwnsElement, async (req, res, next) => {
+router.put('/complete/:taskId', userOwnsElement, async (req, res, next) => {
     const { taskId } = req.params;
 
     const foundTask = await Task.findByPk(taskId);
 
+    foundTask.set({
+        isComplete: true,
+        updatedAt: new Date().now
+    });
+
+    await foundTask.validate();
+    await foundTask.save();
+
+    res.json(foundTask);
+});
+
+// ========>>>  Update a task by Id  <<<========
+// Will also need to add validations to this to be sure that the task exists before checking if the user id matches
+router.put('/:taskId', userOwnsElement, async (req, res, next) => {
+    const { taskId } = req.params;
+
+    const foundTask = await Task.findByPk(taskId);
     const { task, isComplete, date } = req.body;
+    console.log(isComplete)
 
     foundTask.set({
         task: task || foundTask.task,
@@ -79,6 +97,7 @@ router.put('/:taskId', userOwnsElement, async (req, res, next) => {
 
     res.json(foundTask);
 });
+
 
 
 // ==========>>> Delete a Task <<<<++++++++

@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
 import { format, addDays, subDays } from 'date-fns';
+import { inCompleteTask } from "../../../store/tasks";
 
 
 const UsersCalender = () => {
     const usersTasks = useSelector(state => state.tasks);
+    const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
     const [datedTasks, setDatedTasks] = useState('');
     const [currDate, setCurrDate] = useState(new Date());
@@ -50,6 +52,9 @@ const UsersCalender = () => {
         setCurrDate(today)
     }
 
+    const completeTask = async (task, str) => {
+        await dispatch(inCompleteTask(task.id, str));
+    }
 
     if (!loaded) return <Loading />
 
@@ -72,17 +77,17 @@ const UsersCalender = () => {
                 </div>
             </div>
 
-            <button className="add-pointer-cursor">Change Date</button>
-            <div>
-                <div></div>
-            </div>
             <div>
                 <h3>Tasks</h3>
                 <div>
                     {currTasks && Object.values(currTasks).map(task => (
-                        <div key={task.id}>
-                            <span>{task.task}</span>
-                            <span>{formatDate(task.date)}</span>
+                        <div key={task.id} className="resource-search-results">
+                            <button
+                                onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                >
+                                {task.isComplete ? 'X' : '-'}
+                            </button>
+                            <span className={task.isComplete ? 'completed-task' : 'uncompleted task'} >{task.task}</span>
                         </div>
                     ))}
                 </div>

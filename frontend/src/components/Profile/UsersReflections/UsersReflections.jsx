@@ -74,7 +74,7 @@ const UsersReflections = () => {
                     />
                 </div>
             </div>
-            <div className="center-reflection-filter-buttons">Filter Reflections by date:</div>
+            <h4 className="center-reflection-filter-buttons">Filter Reflections by date:</h4>
             <div className="center-reflection-filter-buttons">
                 <button onClick={() => handleSetReflectionFilter('all')}>All Reflections</button>
                 <button onClick={() => handleSetReflectionFilter(7)}>last 7 days</button>
@@ -84,7 +84,7 @@ const UsersReflections = () => {
             <div className="container-reflection-cards">
                 {filteredReflectList && filteredReflectList.map((reflection, idx) => (
                     <div key={idx} className={selectedReflection === reflection ? 'open-reflection-card' : "closed-reflection-card"}>
-                        <span className="reflections-date-title" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</span>
+                        <h3 className="reflections-date-title" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</h3>
                         {selectedReflection === reflection ? <SelectedReflection reflection={reflection} /> : ''}
                         <div>
                             <button onClick={() => handleDeleteReflection(reflection.id)} className="delete-reflection">Delete Reflection</button>

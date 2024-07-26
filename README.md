@@ -59,3 +59,9 @@
 -[x] I want to add checkboxes to the tasks - when then are completed they can be checked and will be striked out - it will automatically  updated them in the backend
 -[x] I want to set tasks so if they need to be completed today they glow yellow, if they are past due, they glow red
 -[ ] I want the calender tab to be red if there are past due tasks, and yellow if there are only currently due tasks, grey if all caught up
+-[ ] I want to add a delete modal to the reflections so I do not accidently delete a record
+-[ ] I want to set up answered questions as drop downs rather than buttons to see the answer
+-[ ] I want to walk through and make a list of what needs to be done with what I have
+-[ ] I need to walk through a list of what I need to be able to make a wireframs, a readme, a features list, and users storeies
+-[ ] I need to created some or all ofthe previously listed 4 so that I can post this project publicly and use it
+-[ ] Fix design

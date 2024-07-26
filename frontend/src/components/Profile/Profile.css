@@ -37,7 +37,8 @@
     border-top: none;
     display: flex;
     flex-direction: column;
-    min-height: 800px
+    align-items: center;
+    min-height: 800px;
 }
 
 .profile-selected-section h1 {
@@ -46,19 +47,57 @@
 }
 
 /* Questions section */
-
+.question-display {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 80%;
+}
 
 .questions-card {
     display: flex;
     flex-direction: column;
     line-height: 1.5;
-    margin: 30px;
+    margin: 14px 0px;
+    width: 100%
 }
 
+.view-question-answer {
+    width: 20%;
+    line-height: 2.5;
+    padding-left: 40px;
+    transition: ease-in 0.3s;
+}
+
+.view-question-answer:hover {
+    background-color: rgb(224, 224, 224);
+}
+
+.question-alignment {
+    display: flex;
+    gap: 10px;
+    border-bottom: 1px solid rgb(203, 203, 203);
+}
+
+.answer-display {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.answer-display span {
+    margin: 10px 0px;
+    padding: 8px 40px;
+    background-color: rgb(224, 224, 224);
+}
 
 /* Reflections section */
 
 .reflection-title-and-creation {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;

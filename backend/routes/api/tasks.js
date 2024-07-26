@@ -76,6 +76,8 @@ router.put('/complete/:taskId', userOwnsElement, async (req, res, next) => {
     res.json(foundTask);
 });
 
+
+
 // ========>>>  Update a task by Id  <<<========
 // Will also need to add validations to this to be sure that the task exists before checking if the user id matches
 router.put('/:taskId', userOwnsElement, async (req, res, next) => {
@@ -98,17 +100,17 @@ router.put('/:taskId', userOwnsElement, async (req, res, next) => {
 });
 
 
-
 // ==========>>> Delete a Task <<<<++++++++
-router.delete('/:taskId', userOwnsElement, async (req, res, next) => {
+router.delete('/:taskId/delete', async (req, res, next) => {
     const { taskId } = req.params;
-
+    console.log('========>', taskId)
     const foundTask = await Task.findByPk(parseInt(taskId));
 
     await foundTask.destroy();
 
     res.json({ "message": "Task successfully deleted"})
 });
+
 
 
 module.exports = router;

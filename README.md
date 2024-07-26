@@ -65,3 +65,6 @@
 -[ ] I need to walk through a list of what I need to be able to make a wireframs, a readme, a features list, and users storeies
 -[ ] I need to created some or all ofthe previously listed 4 so that I can post this project publicly and use it
 -[ ] Fix design
+-[ ] as a person logged out you should not be able to add a resource
+-[ ] stats page - covers the calendar days psat, no tasks left is 0, 1 task left is yellow, 2 or more incomplete tasks are red
+-consider adding a submit button so that the complete tasks dissapear, leaving only the to do tasks on the list - maybe not important,  but an idea

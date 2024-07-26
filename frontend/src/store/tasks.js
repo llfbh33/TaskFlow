@@ -21,7 +21,7 @@ const update = (data) => ({
     data
 })
 
-const destroy = (taskId) => ({
+const deleteTask = (taskId) => ({
     type: DELETE,
     taskId
 });
@@ -82,6 +82,18 @@ export const CompleteTask = (task, complete) => async dispatch => {
     }
 };
 
+export const deleteTasks = (taskId) => async dispatch => {
+    const response = await csrfFetch(`/api/tasks/${taskId}/delete`, {
+        method: 'DELETE'
+    });
+    if (response.ok) {
+        return dispatch(deleteTask(taskId))
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
 const initialState = {}
 
 const tasksReducer = (state = initialState, action) => {
@@ -100,6 +112,11 @@ const tasksReducer = (state = initialState, action) => {
         }
         case CLEAR_TASKS: {
             return initialState;
+        }
+        case DELETE: {
+            const newState = {...state};
+            delete newState[action.taskId];
+            return newState;
         }
         default:
             return state;

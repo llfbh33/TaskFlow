@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
 import { format, addDays, subDays } from 'date-fns';
-import { CompleteTask } from "../../../store/tasks";
+import { CompleteTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
 import CreateTask from "../../Modals/TasksModals/CreateTask";
 
@@ -68,6 +68,10 @@ const UsersCalender = () => {
         setCurrDate(today)
     }
 
+    const handleDeleteTask = async (idx) => {
+        await dispatch(deleteTasks(idx));
+    }
+
     const completeTask = async (task, str) => {
         await dispatch(CompleteTask(task, str));
     }
@@ -123,7 +127,9 @@ const UsersCalender = () => {
                             <span className={task.isComplete ? 'completed-task' :
                                             !task.isComplete && compressDate(new Date()) === compressDate(task.date) ? 'uncompleted-task' :
                                             !task.isComplete && compressDate(new Date()) > compressDate(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                            <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>
+
                     ))}
                 </div>
             </div>

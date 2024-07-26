@@ -206,6 +206,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 80%
 }
 
 .calender-title-buttons-flex {
@@ -222,6 +223,14 @@
     align-items: center;
     height: 40px;
     border-bottom: 1px solid rgb(192, 192, 192);
+    width: 90%
+}
+
+.cal-tasks-flex {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin-top: 20px;
 }
 
 .date-transition {
@@ -239,6 +248,11 @@
     border: 1px solid rgb(204, 204, 204);
 }
 
+.task-calender-results {
+    display: flex;
+    justify-content: space-between;
+}
+
 .completed-task {
     text-decoration: line-through;
 }
@@ -249,4 +263,63 @@
 
 .old-uncompleted-task {
     background-color: rgb(255, 125, 125);
+}
+
+.delete-button-calender {
+    border: none;
+    background-color: rgba(240, 255, 255, 0);
+    transition: ease-in 0.3s;
+    width: 80px
+}
+
+.delete-button-calender:hover {
+    background-color: rgb(224, 224, 224);
+    cursor: pointer;
+}
+
+.calender-search-results {
+    width: 100%;
+    margin: 8px 20px;
+    display: flex;
+    gap: 20px
+}
+
+
+/* Search Styling */
+
+.resource-search-results {
+    width: 100%;
+    margin: 0;
+    line-height: 2;
+}
+
+.search-search-bar {
+    margin: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.search-search-bar input {
+    width: 65%;
+    height: 100%
+}
+
+.search-submit-clear-btns {
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.search-submit-clear-btns button {
+    width: 100px;
+    height: 24px;
+    border: none;
+    background-color: rgba(240, 255, 255, 0);
+    cursor: pointer;
+    transition: ease-in-out 0.3s;
+}
+
+.search-submit-clear-btns button:hover {
+    background-color: rgb(224, 224, 224);
 }

@@ -25,3 +25,13 @@ h3,
 h4 {
     margin: 10px 0px;
 }
+
+
+.flex-basic {
+    display: flex;
+    justify-content: space-between;
+}
+
+.sixty-width {
+    width: 60%
+}

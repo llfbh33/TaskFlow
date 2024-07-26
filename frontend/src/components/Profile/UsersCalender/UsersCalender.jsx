@@ -114,20 +114,22 @@ const UsersCalender = () => {
                 </div>
             </div>
 
-            <div>
+            <div className="cal-tasks-flex">
                 <h3>Tasks</h3>
                 <div>
                     {currTasks && Object.values(currTasks).map(task => (
-                        <div key={task.id} className="resource-search-results ">
-                            <button
-                                onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
-                                >
-                                {task.isComplete ? 'X' : '-'}
-                            </button>
-                            <span className={task.isComplete ? 'completed-task' :
-                                            !task.isComplete && compressDate(new Date()) === compressDate(task.date) ? 'uncompleted-task' :
-                                            !task.isComplete && compressDate(new Date()) > compressDate(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
-                            <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+                        <div key={task.id} className="task-calender-results">
+                            <div className="calender-search-results">
+                                <button
+                                    onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                    >
+                                    {task.isComplete ? 'X' : '-'}
+                                </button>
+                                <span className={task.isComplete ? 'completed-task' :
+                                                !task.isComplete && compressDate(new Date()) === compressDate(task.date) ? 'uncompleted-task' :
+                                                !task.isComplete && compressDate(new Date()) > compressDate(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                            </div>
+                            <button className='delete-button-calender' onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>
 
                     ))}

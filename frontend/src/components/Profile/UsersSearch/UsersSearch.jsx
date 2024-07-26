@@ -48,39 +48,41 @@ const UsersSearch = () => {
                 <h1>Search</h1>
                 <button className='add-pointer-cursor' onClick={handleAddResource}>Add Resource</button>
             </div>
-            <input
-                type='text'
-                value={search}
-                onChange={(e) => setSearch(e.target.value)} >
-            </input>
-            <div>
-                <button onClick={handleSearch} >Submit</button>
-                <button onClick={clearSearch}>Clear Search</button>
+            <div className="flex-basic sixty-width search-search-bar">
+                <input
+                    type='text'
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)} >
+                </input>
+                <div className="search-submit-clear-btns">
+                    <button onClick={handleSearch} >Submit</button>
+                    <button onClick={clearSearch}>Clear Search</button>
+                </div>
             </div>
             {loading === 'initial' ?
-                <div>
-                    <ul>
+                <div className="sixty-width">
+                    <div>
                         {Object.values(resources).map(resource => (
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
                                 <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
                             </div>
                         ))}
-                    </ul>
+                    </div>
                 </div> :
             loading === 'loading' ?
                 <div>
 
                 </div> :
-                <div>
-                    <ul>
+                <div className="sixty-width">
+                    <div>
                         {results.map(resource => (
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
                                 <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
                             </div>
                         ))}
-                    </ul>
+                    </div>
                 </div>}
         </div>
     )

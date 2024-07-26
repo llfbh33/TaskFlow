@@ -7,13 +7,12 @@ import { useModal } from "../../../context/Modal";
 
 const CreateReflectionModal = ({setLoaded}) => {
     const [inputFields, setInputFields] = useState([{id: 1, value: ''}]);
-    const [projects, setProjects] = useState('');
     const [today, setToday] = useState('');
     const [challenges, setChallenges] = useState('');
     const [overcome, setOvercome] = useState('');
     const [accomplish, setAccomplish] = useState('');
     const [goals, setGoals] = useState('');
-    const [hasSubmitted, setHasSubmitted] = useState(false);
+    // const [hasSubmitted, setHasSubmitted] = useState(false);
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
@@ -53,7 +52,7 @@ const CreateReflectionModal = ({setLoaded}) => {
         //     return
         // }
 
-        setProjects([{ id: 1, value: '' }]);
+        setInputFields([{ id: 1, value: '' }]);
         setToday('');
         setChallenges('');
         setOvercome('');
@@ -127,7 +126,7 @@ const CreateReflectionModal = ({setLoaded}) => {
                     <p></p>
                 </div>
                 <div>
-                    <button type='submit' onClick={handleSubmit}>Submit</button>
+                    <button type='submit' onClick={(e) => handleSubmit(e)}>Submit</button>
                 </div>
             </div>
         </div>

@@ -70,9 +70,22 @@ const UsersCalender = () => {
 
     return (
         <div className="profile-selected-section">
-            <h1>Place calender days here</h1>
-            <button onClick={addATask} className="add-pointer-cursor">Add a task</button>
-            <button onClick={() => setCurrDate(new Date())}>Return to Todays date</button>
+            <div className="calender-title-flex">
+                <div>
+                    <h1>Calender</h1>
+                </div>
+                <div className="calender-title-buttons-flex">
+                    <button onClick={addATask} className="add-pointer-cursor">Add a task</button>
+                    <button onClick={() => setCurrDate(new Date())}>Return to Todays date</button>
+                    <label>Choose A date: <input
+                        type='date'
+                        value={currDate}
+                        onChange={(e) => setCurrDate(new Date(addDays(e.target.value, 1)))}> 
+                        </input>
+                    </label>
+                </div>
+
+            </div>
             <div className="cal-dates-flex">
                 <div
                     onClick={() => handleDateChange('prev')}

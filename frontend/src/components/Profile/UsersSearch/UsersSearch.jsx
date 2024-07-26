@@ -1,7 +1,9 @@
 import { useEffect, useState } from "react"
 import { useSelector } from "react-redux"
+import { useModal } from "../../../context/Modal";
 import LandingPage from "../../LandingPage";
 import Loading from "../../Loading/Loading";
+import AddResource from "../../Modals/ResourceModals/AddResource";
 
 const UsersSearch = () => {
     const user = useSelector(state => state.session.user);
@@ -10,6 +12,7 @@ const UsersSearch = () => {
     const [results, setResults] = useState([]);
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState('initial');
+    const { setModalContent } = useModal();
 
     useEffect(() => {
         if (user) {
@@ -33,10 +36,18 @@ const UsersSearch = () => {
         setResults([]);
     }
 
+    const handleAddResource = () => {
+        const modalComponent = <AddResource />
+        setModalContent(modalComponent)
+    }
+
 
     return (
         <div className="profile-selected-section">
-            <h1>Search</h1>
+            <div className="calender-title-flex">
+                <h1>Search</h1>
+                <button className='add-pointer-cursor' onClick={handleAddResource}>Add Resource</button>
+            </div>
             <input
                 type='text'
                 value={search}

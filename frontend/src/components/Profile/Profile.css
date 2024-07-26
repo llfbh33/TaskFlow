@@ -149,6 +149,19 @@
 
 
 /* Calender styling */
+.calender-title-flex {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.calender-title-buttons-flex {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    margin-right: 5%;
+}
+
 .cal-dates-flex {
     display: flex;
     justify-content: space-around;

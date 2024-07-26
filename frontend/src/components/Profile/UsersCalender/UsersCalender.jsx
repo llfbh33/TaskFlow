@@ -21,6 +21,14 @@ const UsersCalender = () => {
         setModalContent(modalComponent)
     }
 
+// Format the date as 'YYYY-MM-DD', changes the value of the calender up top and no errors in console
+    const formatDateForInput = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
 // compresses dates so the date returned does not include the time
     const compressDate = (date) => {
         const receDate = new Date(date);
@@ -79,8 +87,8 @@ const UsersCalender = () => {
                     <button onClick={() => setCurrDate(new Date())}>Return to Todays date</button>
                     <label>Choose A date: <input
                         type='date'
-                        value={currDate}
-                        onChange={(e) => setCurrDate(new Date(addDays(e.target.value, 1)))}> 
+                        value={formatDateForInput(currDate)}
+                        onChange={(e) => setCurrDate(new Date(addDays(e.target.value, 1)))}>
                         </input>
                     </label>
                 </div>

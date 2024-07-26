@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { createJournal, getJournals } from "../../../store/journals";
+import { createJournal } from "../../../store/journals";
 import { useModal } from "../../../context/Modal";
 
 
 
-const CreateReflectionModal = ({setLoaded}) => {
+const CreateReflectionModal = () => {
     const [inputFields, setInputFields] = useState([{id: 1, value: ''}]);
     const [today, setToday] = useState('');
     const [challenges, setChallenges] = useState('');
@@ -16,9 +16,6 @@ const CreateReflectionModal = ({setLoaded}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
-    useEffect(() => {
-        setLoaded(false);
-    }, [])
 
     const handleAddField = () => {
         const newInput = ([...inputFields, { id: inputFields.length + 1, value: ''}]);

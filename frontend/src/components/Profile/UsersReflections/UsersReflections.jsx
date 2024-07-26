@@ -70,7 +70,7 @@ const UsersReflections = () => {
                 <div className="modal-text-item">
                     <OpenModalMenuItem
                         itemText='Add a reflection for the day?'
-                        modalComponent={<CreateReflectionModal setLoaded={setLoaded}/>}
+                        modalComponent={<CreateReflectionModal />}
                     />
                 </div>
             </div>

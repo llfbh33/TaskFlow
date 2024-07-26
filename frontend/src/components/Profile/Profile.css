@@ -71,16 +71,26 @@
     margin-bottom: 20px;
 }
 
+.container-reflection-cards {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .reflections-date-title {
-    width: 60%;
+    width: 75%;
+    height: 40px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
 }
 
 .closed-reflection-card {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    margin: 18px 0px;
+    margin: 10px 0px;
+    width: 80%;
 }
 
 .open-reflection-card {

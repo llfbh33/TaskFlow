@@ -5,6 +5,7 @@ import AskQuestionModal from "../../Modals/QuestionsModals/AskQuestionModal";
 import { useEffect, useState } from "react";
 
 import { compressDate, formatDate } from "../../../utils/DateFormating";
+import DeleteQuestion from "../../Modals/QuestionsModals/DeleteQuestion";
 
 
 
@@ -26,6 +27,11 @@ const UsersQuestions = () => {
         const modalComponent = <AskQuestionModal />
         setModalContent(modalComponent)
     };
+
+    const deleteQuestion = (question) => {
+        const modalComponent =<DeleteQuestion question={question} />
+        setModalContent(modalComponent);
+    }
 
     useEffect(() => {
         let questions = Object.values(allQuestions).reverse();
@@ -49,7 +55,7 @@ const UsersQuestions = () => {
                                 <h4>{ele.id} - </h4>
                                 <h4>{ele.question}</h4>
                             </div>
-                            <div className="delete-question-btn">Delete question</div>
+                            <div className="delete-question-btn" onClickCapture={() => deleteQuestion(ele)}>Delete question</div>
                         </div>
                             { ele.answer
                             ? <div className='add-pointer-cursor view-question-answer' onClick={() => viewAnswer === ele ? setViewAnswer('') : setViewAnswer(ele)}>{`View Answer Posted: ${formatDate(ele.updatedAt)}`}</div>

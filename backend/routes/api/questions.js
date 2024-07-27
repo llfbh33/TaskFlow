@@ -64,11 +64,11 @@ router.post('/new', async (req, res, next) => {
 // =========>>> Update a Question by Id <<<========
 router.put('/:questionId', async (req, res, next) => {
     const { questionId } = req.params;
-
-    const foundQuestion = await Question.findByPk(questionId);
+    console.log('===========>>', 'hello')
+    const foundQuestion = await Question.findByPk(parseInt(questionId));
 
     const { question, answer, keyWords } = req.body;
-
+    console.log('===============>>>>', answer)
     foundQuestion.set({
         question: question || foundQuestion.question,
         answer: answer || foundQuestion.answer,
@@ -82,7 +82,7 @@ router.put('/:questionId', async (req, res, next) => {
 });
 
 // =======>>> Delete a Quetion <<<=======
-router.delete('/:questionId', async (req, res, next) => {
+router.delete('/:questionId/delete', async (req, res, next) => {
     const { questionId } = req.params;
 
     const foundQuestion = await Question.findByPk(parseInt(questionId));

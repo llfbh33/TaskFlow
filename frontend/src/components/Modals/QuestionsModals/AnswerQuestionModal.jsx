@@ -160,6 +160,7 @@ const AnswerQuestionsModal = ({question}) => {
                         onChange={(e) => setAnswer(e.target.value)}
                         />
                 </div>
+                <div>{`${answer.length}/600`}</div>
                 {showErrors && errors.answer ? <p>{errors.answer}</p> : <p></p>}
             </div>
             <div>

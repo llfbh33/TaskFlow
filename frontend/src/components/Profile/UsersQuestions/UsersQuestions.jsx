@@ -36,7 +36,6 @@ const UsersQuestions = () => {
     useEffect(() => {
         let questions = Object.values(allQuestions).reverse();
         setTimeSortedQuestions(questions)
-        console.log(questions)
     }, [allQuestions])
 
     return (
@@ -52,7 +51,7 @@ const UsersQuestions = () => {
                     <div key={ele.id} className="questions-card">
                         <div className="question-alignment-w-delete">
                             <div className="question-alignment">
-                                <h4>{ele.id} - </h4>
+                                <h4>{idx + 1} - </h4>
                                 <h4>{ele.question}</h4>
                             </div>
                             <div className="delete-question-btn" onClickCapture={() => deleteQuestion(ele)}>Delete question</div>

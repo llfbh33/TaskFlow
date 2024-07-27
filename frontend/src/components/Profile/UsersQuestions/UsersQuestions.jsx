@@ -2,7 +2,9 @@ import { useSelector } from "react-redux"
 import { useModal } from "../../../context/Modal";
 import AnswerQuestionsModal from "../../Modals/QuestionsModals/AnswerQuestionModal";
 import AskQuestionModal from "../../Modals/QuestionsModals/AskQuestionModal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+import { compressDate, formatDate } from "../../../utils/DateFormating";
 
 
 
@@ -11,7 +13,8 @@ import { useState } from "react";
 
 const UsersQuestions = () => {
     const allQuestions = useSelector(state => state.questions);
-    const [viewAnswer, setViewAnswer] = useState('')
+    const [timeSortedQuestions, setTimeSortedQuestions] = useState('');
+    const [viewAnswer, setViewAnswer] = useState('');
     const { setModalContent } = useModal();
 
     const handleAnswerQuestion = (question) => {
@@ -22,7 +25,13 @@ const UsersQuestions = () => {
     const askAQuestion = () => {
         const modalComponent = <AskQuestionModal />
         setModalContent(modalComponent)
-    }
+    };
+
+    useEffect(() => {
+        let questions = Object.values(allQuestions).reverse();
+        setTimeSortedQuestions(questions)
+        console.log(questions)
+    }, [allQuestions])
 
     return (
         <div className='profile-selected-section'>
@@ -33,21 +42,24 @@ const UsersQuestions = () => {
                 </div>
             </div>
             <div className="question-display">
-                {Object.values(allQuestions).map((ele, idx) => (
+                {Object.values(timeSortedQuestions).map((ele, idx) => (
                     <div key={ele.id} className="questions-card">
-                        <div className="question-alignment">
-                            <h4>{ele.id} - </h4>
-                            <h4>{ele.question}</h4>
+                        <div className="question-alignment-w-delete">
+                            <div className="question-alignment">
+                                <h4>{ele.id} - </h4>
+                                <h4>{ele.question}</h4>
+                            </div>
+                            <div className="delete-question-btn">Delete question</div>
                         </div>
-                        { ele.answer
-                        ? <div className='add-pointer-cursor view-question-answer' onClick={() => viewAnswer === ele ? setViewAnswer('') : setViewAnswer(ele)}>{`View Answer From`}</div>
-                        : <div className='add-pointer-cursor view-question-answer' onClick={() => handleAnswerQuestion(ele)}>Answer this question</div> }
-                        {viewAnswer === ele
-                        ? <div className="answer-display">
-                            <span>{ele.answer}</span>
-                            {/* <span>{ele.createdAt}</span> */}
-                        </div>
-                        : ''}
+                            { ele.answer
+                            ? <div className='add-pointer-cursor view-question-answer' onClick={() => viewAnswer === ele ? setViewAnswer('') : setViewAnswer(ele)}>{`View Answer Posted: ${formatDate(ele.updatedAt)}`}</div>
+                            : <div className='add-pointer-cursor view-question-answer' onClick={() => handleAnswerQuestion(ele)}>Answer this question</div> }
+                            {viewAnswer === ele
+                            ? <div className="answer-display">
+                                <span>{ele.answer}</span>
+                                {/* <span>{ele.createdAt}</span> */}
+                            </div>
+                            : ''}
                     </div>
                 ))}
             </div>

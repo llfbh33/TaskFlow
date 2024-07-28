@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
 import { CompleteTask } from "../../../store/tasks";
+import { useModal } from "../../../context/Modal";
+import CreateTask from "../../Modals/TasksModals/CreateTask";
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
@@ -9,6 +11,7 @@ const UsersTasks = () => {
     const [completedTasks, setCompletedTasks] = useState('');
     const [incompleteTasks, setIncompleteTasks] = useState('');
     const [loading, setLoading] = useState(true);
+    const { setModalContent } = useModal();
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -41,9 +44,21 @@ const UsersTasks = () => {
         // await setLoading(false)
     }
 
+    const addATask = () => {
+        const modalComponent = <CreateTask />
+        setModalContent(modalComponent);
+    }
+
     return (
         <div className="profile-selected-section">
-            <h1>All Unassigned tasks!</h1>
+            <div className="reflection-title-and-creation">
+                <h1>All Unassigned tasks!</h1>
+                <button className="add-pointer-cursor" onClick={addATask}>Add a task</button>
+            </div>
+
+            <h4>Unassigned tasks are anything that has to be completed but there is not yet or will never be a set date the task needs to be completed by.</h4>
+            <h5>Any tasks added to this list will glow yellow three days before they have been listed here a month and red if they have been here for over a month and not completed.</h5>
+            <h5>You can always add them to a specific date later if you figure out a proper deadline for them, in that case they will be removed from this list and added to the proper date on the calender.</h5>
             <div>
                 {!loading ? Object.values(incompleteTasks).map(task => (
                     <div key={task.id}>

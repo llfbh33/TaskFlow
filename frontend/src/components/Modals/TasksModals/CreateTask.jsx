@@ -27,20 +27,31 @@ const CreateTask = () => {
         setDate(today)
     }, [])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
-        let newDate = new Date(currDate);
-        newDate = addDays(newDate, 1)
+        if (currDate) {
+            // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
+            let newDate = new Date(currDate);
+            newDate = addDays(newDate, 1)
 
-        const newTask = {
-            userId: user.id,
-            task: task,
-            date: newDate
-        }
+            const newTask = {
+                userId: user.id,
+                task: task,
+                date: newDate
+            }
 
-        dispatch(createTask(newTask))
+           await dispatch(createTask(newTask));
+
+        } else {
+
+            const newTask = {
+                userId: user.id,
+                task: task,
+            }
+
+            await dispatch(createTask(newTask));
+        };
 
         closeModal();
     }
@@ -48,7 +59,7 @@ const CreateTask = () => {
     return (
         <div>
             <h1>Create new task here</h1>
-            <form onSubmit={(e) => handleSubmit(e)}>
+            <div>
                 <div>
                     <span>When do you want to complete this task by?</span>
                     <input
@@ -58,6 +69,7 @@ const CreateTask = () => {
                         >
                     </input>
                 </div>
+                <button onClick={() => setDate('')}>Do not include date with task</button>
                 <div>
                     <span>Task</span>
                     <input
@@ -66,8 +78,8 @@ const CreateTask = () => {
                         onChange={(e) => setTask(e.target.value)}
                     ></input>
                 </div>
-                <button type='submit'>submit</button>
-            </form>
+                <button type='submit' onClick={(e) => handleSubmit(e)}>submit</button>
+            </div>
         </div>
     )
 }

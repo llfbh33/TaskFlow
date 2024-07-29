@@ -45,13 +45,13 @@ function Navigation({ isLoaded }) {
 
     // return sessionLinks if the layout has loaded
     return (
-        <div id='wave'>
+        <div id='navigation-bar'>
             <div>
                 {isLoaded && sessionLinks}
             </div>
-            <svg viewBox="0 0 400 150">
-                <path d="M 0,40 C 100,100 200,0 400,50 L 400,00 L 0,0" fill='rgb(57, 27, 112)'></path>
-            </svg>
+            {/* <svg viewBox="0 0 500 200">
+                <path d="M 0,80 C 150,200 350,0 500,100 L 500,00 L 0,0" fill='rgb(57, 27, 112)'></path>
+            </svg> */}
         </div>
     );
 }

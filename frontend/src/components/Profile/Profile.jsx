@@ -8,6 +8,7 @@ import UsersReflections from "./UsersReflections/UsersReflections";
 import UsersCalender from "./UsersCalender/UsersCalender";
 import './Profile.css'
 import Loading from "../Loading/Loading";
+import SiteExplination from "./SiteExplination/SiteExplination";
 
 const Profile = () => {
     const user = useSelector(state => state.session.user);
@@ -64,6 +65,7 @@ const Profile = () => {
                 { user && <div onClick={() => setTab('tasks')} className={tab === 'tasks' ? "profile-tab-selected" : "profile-tab"}>Unassigned Tasks</div> }
                 { user && <div onClick={() => setTab('questions')} className={tab === 'questions' ? "profile-tab-selected" : "profile-tab"}>Questions</div> }
                 { user && <div onClick={() => setTab('reflections')} className={tab === 'reflections' ? "profile-tab-selected" : "profile-tab"}>Reflections</div> }
+                <div onClick={() => setTab('explination')} className={tab === 'explination' ? "profile-tab-selected" : "profile-tab"}>Information</div>
             </div>
 
             { tab === 'search' ? <UsersSearch />
@@ -71,6 +73,7 @@ const Profile = () => {
             : tab === 'tasks' ? <UsersTasks />
             : tab === 'questions' ? <UsersQuestions />
             : tab === 'reflections' ? <UsersReflections />
+            : tab === 'explination' ? <SiteExplination />
             : '' }
 
         </div>

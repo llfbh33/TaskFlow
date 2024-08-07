@@ -343,3 +343,13 @@
 .search-submit-clear-btns button:hover {
     background-color: rgb(224, 224, 224);
 }
+
+
+/* unassigned tasks */
+
+.task-spacing {
+    display: flex;
+    width: 60vw;
+    justify-content: space-between;
+    margin: 16px;
+}

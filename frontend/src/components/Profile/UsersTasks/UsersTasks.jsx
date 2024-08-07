@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import Loading from "../../Loading/Loading";
-import { CompleteTask } from "../../../store/tasks";
+import { CompleteTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
 import CreateTask from "../../Modals/TasksModals/CreateTask";
 import DOMPurify from 'dompurify';
+import { compressDate, formatDate } from "../../../utils/DateFormating";
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
@@ -33,16 +34,20 @@ const UsersTasks = () => {
 
 
 
-    const handleCompleteTask = async (task) => {
+    const handleCompleteTask = async (task, str) => {
         // setLoading(true)
-        await dispatch(CompleteTask(task.id));
+        await dispatch(CompleteTask(task, str));
         // await setLoading(false);
     }
 
-    const handleAccidentalComplete = async (task) => {
+    // const handleAccidentalComplete = async (task) => {
         // setLoading(true);
         // await dispatch(inCompleteTask(task.id));
         // await setLoading(false)
+    // }
+
+    const handleDeleteTask = async (idx) => {
+        await dispatch(deleteTasks(idx));
     }
 
     const addATask = () => {
@@ -62,9 +67,12 @@ const UsersTasks = () => {
             <h5>You can always add them to a specific date later if you figure out a proper deadline for them, in that case they will be removed from this list and added to the proper date on the calender.</h5>
             <div>
                 {!loading ? Object.values(incompleteTasks).map(task => (
-                    <div key={task.id}>
-                        <input onClick={() => handleCompleteTask(task)} type='checkbox'></input>
-                        <span>{task.task}</span>
+                    <div key={task.id} className="task-spacing">
+                        <div>
+                            <input onClick={() => task.isComplete ? handleCompleteTask(task, 'false') : handleCompleteTask(task, 'true')} type='checkbox'></input>
+                            <span>{task.task}</span>
+                        </div>
+                        <button className='delete-button-calender' onClick={() => handleDeleteTask(task.id)}>Delete</button>
                     </div>
                 )) : <Loading />}
             </div>
@@ -72,18 +80,21 @@ const UsersTasks = () => {
 
             <div>Completed tasks go down here</div>
             {!loading ? Object.values(completedTasks).map(task => (
-                    <div key={task.id + 1000}>
-                        <input onClick={() => handleAccidentalComplete(task)}type='checkbox' checked></input>
-                        <span>{task.task}</span>
+                    <div key={task.id + 1000} className="task-spacing">
+                        <div>
+                            <input onClick={() => task.isComplete ? handleCompleteTask(task, 'false') : handleCompleteTask(task, 'true')}type='checkbox' checked></input>
+                            <span><strike>{task.task}</strike></span>
+                        </div>
+                        <div>{formatDate(task.updatedAt)}</div>
                     </div>
                 )) : <Loading />}
 
-            <div>
-                <TestTextEditor />
-            </div>
         </div>
     )
 }
+
+
+
 
 
 

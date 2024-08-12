@@ -6,6 +6,7 @@ import { useModal } from "../../../context/Modal";
 import CreateTask from "../../Modals/TasksModals/CreateTask";
 import DOMPurify from 'dompurify';
 import { compressDate, formatDate } from "../../../utils/DateFormating";
+import { format, addDays, subDays } from 'date-fns';
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
@@ -55,6 +56,14 @@ const UsersTasks = () => {
         setModalContent(modalComponent);
     }
 
+    const checkYellowTime = (date) => {
+        let taskDate = new Date(date);
+        let today = new Date();
+        today = subDays(today, 25);
+        if (today >= taskDate) return true;
+        return false;
+    }
+
     return (
         <div className="profile-selected-section">
             <div className="reflection-title-and-creation">
@@ -70,7 +79,7 @@ const UsersTasks = () => {
                     <div key={task.id} className="task-spacing">
                         <div>
                             <input onClick={() => task.isComplete ? handleCompleteTask(task, 'false') : handleCompleteTask(task, 'true')} type='checkbox'></input>
-                            <span>{task.task}</span>
+                            <span className={checkYellowTime(task.createdAt) ? 'uncompleted-task' : '' }>{task.task}{task.createdAt}</span>
                         </div>
                         <button className='delete-button-calender' onClick={() => handleDeleteTask(task.id)}>Delete</button>
                     </div>

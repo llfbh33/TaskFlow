@@ -51,8 +51,8 @@ function Navigation({ isLoaded }) {
                 width="100%" height="60"
                 xmlns="http://www.w3.org/2000/svg">
                 <rect width="100%" height="100%" fill="red" />
-                <text x="20%" y="40" font-size="40" text-anchor="middle" fill="white">SVG On the Nav Bar</text>
-                <foreignobject class="node" x="40%" y="20" width="100%" height="100">
+                <text x="20%" y="40" fontSize="40" textAnchor="middle" fill="white">SVG On the Nav Bar</text>
+                <foreignobject className="node" x="40%" y="20" width="100%" height="100">
                     <div >I'm a div inside a SVG.</div>
                 </foreignobject>
             </svg>

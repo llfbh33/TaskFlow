@@ -35,6 +35,11 @@ const UsersCalender = () => {
         return `${receDate.getFullYear()}-${receDate.getMonth() + 1}-${receDate.getDate()}`
     }
 
+    const dateAsTime = (date) => {
+        const receDate = new Date(date);
+        return parseInt(`${receDate.getFullYear()}${receDate.getMonth() + 1}${receDate.getDate()}`)
+    }
+
 // filters through the tasks a user has and only stores the ones which are set to a specific date to be completed
     useEffect(() => {
         let dates = Object.values(usersTasks).filter(task => task.date)
@@ -126,8 +131,8 @@ const UsersCalender = () => {
                                     {task.isComplete ? 'X' : '-'}
                                 </button>
                                 <span className={task.isComplete ? 'completed-task' :
-                                                !task.isComplete && compressDate(new Date()) === compressDate(task.date) ? 'uncompleted-task' :
-                                                !task.isComplete && compressDate(new Date()) > compressDate(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                                                !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
+                                                !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                             </div>
                             <button className='delete-button-calender' onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>

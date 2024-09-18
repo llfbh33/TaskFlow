@@ -6,10 +6,12 @@ import * as sessionActions from '../../store/session';
 import ProfileButton from './ProfileButton';
 // Styling
 import './Navigation.css';
+import { useState } from 'react';
 
 
 function Navigation({ isLoaded }) {
     const user = useSelector(state => state.session.user);
+    const [dropDown, setDropDown] = useState(true)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ function Navigation({ isLoaded }) {
     // return sessionLinks if the layout has loaded
     return (
         <div id='navigation-bar'>  {/* navigation-bar */}
-            <svg version="1.1"
+            {/* <svg version="1.1"
                 width="100%" height="60"
                 xmlns="http://www.w3.org/2000/svg">
                 <rect width="100%" height="100%" fill="red" />
@@ -55,7 +57,7 @@ function Navigation({ isLoaded }) {
                 <foreignobject className="node" x="40%" y="20" width="100%" height="100">
                     <div >I'm a div inside a SVG.</div>
                 </foreignobject>
-            </svg>
+            </svg> */}
             <div>
                 {isLoaded && sessionLinks}
 
@@ -63,12 +65,25 @@ function Navigation({ isLoaded }) {
                 <path d="M 0,50 C 100,0 350,0 500,50 L 500,00 L 0,0" fill='rgb(57, 27, 112)'></path>
             </svg> */}
             </div>
-
-            {/* <div className='height'>
-                <svg height="700" width="700" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="260" cx="350" cy="175" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
+            <button onClick={() => dropDown !== 'login' ? setDropDown('login') : setDropDown(true)}>Login</button>
+            <div className='login-dropdown' hidden={dropDown !== 'login'}>
+                <svg height="700" width="900" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="240" cx="750" cy="175" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
+                    <foreignObject x="600" y="100" width="300" height="400">
+                        <div xmlns="http://www.w3.org/1999/xhtml" className="login-form">
+                            <input type="text" placeholder="Username" />
+                            <input type="password" placeholder="Password" />
+                            <button type="submit">Login</button>
+                        </div>
+                    </foreignObject>
                 </svg>
-            </div> */}
+            </div>
+            <button onClick={() => dropDown !== 'signup' ? setDropDown('signup') : setDropDown(true)}>signup</button>
+            <div className='login-dropdown' hidden={dropDown !== 'signup'}>
+                <svg height="700" width="900" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="400" cx="750" cy="175" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
+                </svg>
+            </div>
         </div>
     );
 }

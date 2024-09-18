@@ -44,9 +44,40 @@
 }
 
 
-.height {
-    position: relative;
-    top: 382px;
+.login-dropdown {
+    position: absolute;
+    top: 60px;
+    right: 0px;
+}
+
+.login-form {
+    margin-top: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.login-form input {
+    display: block;
+    margin: 10px 0;
+    padding: 10px;
+    width: 90%;
+}
+
+.login-form button {
+    margin: 10px 0;
+    padding: 10px 20px;
+    width: 70%;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+
+}
+
+.login-form button:hover {
+    background-color: darkgreen;
 }
 
 

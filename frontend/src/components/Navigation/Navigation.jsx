@@ -6,7 +6,8 @@ import * as sessionActions from '../../store/session';
 // Styling
 import './Navigation.css';
 import { useState } from 'react';
-import LoginFormPage from '../LoginFormPage/LoginForm';
+import LoginForm from '../LoginForm/LoginForm';
+import SignupForm from '../SignupForm';
 
 
 function Navigation({ isLoaded }) {
@@ -33,7 +34,6 @@ function Navigation({ isLoaded }) {
             </button>
         </div>
     ) : (
-
         <div className='login-signup-btn-container'>
             <button className='login-signup-btns' onClick={() => setDropDown('login') }>Login</button>
             <button className='login-signup-btns' onClick={() => setDropDown('signup') }>signup</button>
@@ -49,24 +49,16 @@ function Navigation({ isLoaded }) {
             <div className='login-dropdown' hidden={dropDown !== 'login'}>
                 <svg id={'login-dropdown-svg'} height="450" width="500" xmlns="http://www.w3.org/2000/svg">
                     <circle r="440" cx="450" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
-                    <foreignObject x="190" y="10" width="300" height="400">
-                        <LoginFormPage dropDown={dropDown} setDropDown={setDropDown}/>
+                    <foreignObject x="160" y="10" width="370" height="400">
+                        <LoginForm dropDown={dropDown} setDropDown={setDropDown} />
                     </foreignObject>
                 </svg>
             </div>
             <div className='login-dropdown' hidden={dropDown !== 'signup'}>
-                <svg id={'signup-dropdown-svg'} height="540" width="550" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="540" cx="550" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
-                    <foreignObject x="240" y="10" width="300" height="420">
-                        <div xmlns="http://www.w3.org/1999/xhtml" className="login-form">
-                            <h2>Sign Up</h2>
-                            <input type="text" placeholder="Email" />
-                            <input type="text" placeholder="Username" />
-                            <input type="text" placeholder="First Name" />
-                            <input type="text" placeholder="Last Name" />
-                            <input type="password" placeholder="Password" />
-                            <button type="submit">Sign Up</button>
-                        </div>
+                <svg id={'signup-dropdown-svg'} height="692" width="600" xmlns="http://www.w3.org/2000/svg">
+                    <circle r="560" cx="562" cy="130" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
+                    <foreignObject x="255" y="10" width="370" height="620">
+                        <SignupForm dropDown={dropDown} setDropDown={setDropDown} />
                     </foreignObject>
                 </svg>
             </div>

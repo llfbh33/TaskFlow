@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
-import './LoginForm.css'
+import '../Navigation/Navigation.css'
 import loadState from '../../utils/loadData';
 
 function LoginForm({dropDown, setDropDown}) {
@@ -12,9 +12,9 @@ function LoginForm({dropDown, setDropDown}) {
 
     // closes dropdown on click outside svg and clears data
     useEffect(() => {
-      if (dropDown !== true) {
+      if (dropDown === 'login') {
           const handleClickOutside = (event) => {
-              if (!event.target.closest('#login-dropdown-svg') && !event.target.closest('#signup-dropdown-svg')) {
+              if (!event.target.closest('#login-dropdown-svg')) {
                   setDropDown(true);
                   setCredential('');
                   setPassword('');

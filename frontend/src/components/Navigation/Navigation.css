@@ -31,6 +31,10 @@
     background-color: darkgreen;
 }
 
+.signup-btn {
+    margin-top: 20px;
+}
+
 /* Profile Button Elements*/
 .profile-dropdown {                      /* Profile dropdown container */
     list-style: none;
@@ -87,7 +91,10 @@
     color: white;
     border: none;
     cursor: pointer;
+}
 
+.login-form > .signup-btn {
+    height: 30px;
 }
 
 .login-form button:hover {

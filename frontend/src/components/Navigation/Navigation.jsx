@@ -68,12 +68,14 @@ function Navigation({ isLoaded }) {
             <button onClick={() => dropDown !== 'login' ? setDropDown('login') : setDropDown(true)}>Login</button>
             <div className='login-dropdown' hidden={dropDown !== 'login'}>
                 <svg height="700" width="900" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="240" cx="750" cy="175" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
-                    <foreignObject x="600" y="100" width="300" height="400">
+                    <circle r="440" cx="850" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
+                    <foreignObject x="590" y="10" width="300" height="400">
                         <div xmlns="http://www.w3.org/1999/xhtml" className="login-form">
+                            <h2>Log In</h2>
                             <input type="text" placeholder="Username" />
                             <input type="password" placeholder="Password" />
                             <button type="submit">Login</button>
+                            <button type="submit">Demo Login</button>
                         </div>
                     </foreignObject>
                 </svg>
@@ -81,7 +83,19 @@ function Navigation({ isLoaded }) {
             <button onClick={() => dropDown !== 'signup' ? setDropDown('signup') : setDropDown(true)}>signup</button>
             <div className='login-dropdown' hidden={dropDown !== 'signup'}>
                 <svg height="700" width="900" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="400" cx="750" cy="175" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
+                    <circle r="540" cx="850" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" stroke-width="2" />
+                    <foreignObject x="590" y="10" width="300" height="420">
+                        <div xmlns="http://www.w3.org/1999/xhtml" className="login-form">
+                            <h2>Sign Up</h2>
+                            <input type="text" placeholder="Email" />
+                            <input type="text" placeholder="Username" />
+                            <input type="text" placeholder="First Name" />
+                            <input type="text" placeholder="Last Name" />
+                            <input type="password" placeholder="Password" />
+                            <button type="submit">Login</button>
+
+                        </div>
+                    </foreignObject>
                 </svg>
             </div>
         </div>

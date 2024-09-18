@@ -35,3 +35,18 @@ h4 {
 .sixty-width {
     width: 60%
 }
+
+
+.errors,
+.no-errors {
+    margin: 0px;
+    font-size: 14px;
+}
+
+.errors {
+    color: red
+}
+
+.no-errors {
+    color: rgb(171, 232, 171);
+}

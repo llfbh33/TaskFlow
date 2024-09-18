@@ -6,14 +6,29 @@
     top: 0px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-end;
     border-bottom: 2px ridge rgb(11, 77, 11);
 }
 
-.flexing-flex {
+.login-signup-btn-container {
     display: flex;
-    width: 400px;
-    justify-content: space-between;
+    margin-right: 80px;
+    gap: 40px;
+    width: 300px;
+    justify-content: space-around;
+}
+
+.login-signup-btns {
+    padding: 10px;
+    width: 48%; /* Make the buttons take equal space */
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.login-signup-btns:hover {
+    background-color: darkgreen;
 }
 
 /* Profile Button Elements*/

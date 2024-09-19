@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import '../Navigation/Navigation.css'
 import loadState from '../../utils/loadData';
 
-function LoginForm({dropDown, setDropDown}) {
+function LoginForm({dropDown, setDropDown, setHiddenMenu}) {
     const dispatch = useDispatch();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
@@ -38,6 +38,7 @@ function LoginForm({dropDown, setDropDown}) {
         .then(() => {
             loadState(dispatch);
             setDropDown(true);
+            setHiddenMenu(true);
         })
     }
 
@@ -49,6 +50,7 @@ function LoginForm({dropDown, setDropDown}) {
           .then(() => {
               loadState(dispatch);
               setDropDown(true);
+              setHiddenMenu(true);
               setCredential('');
               setPassword('');
           }).catch(

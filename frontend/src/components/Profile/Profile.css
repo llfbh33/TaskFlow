@@ -1,10 +1,11 @@
 /* Profile Main container */
 #profile-full-card {
-    padding: 0px 40px;
+    padding: 60px 40px;
 }
 
 #profile-nav-tabs-container {
     display: flex;
+    margin-top: 40px;
 }
 
 .profile-tab,
@@ -32,6 +33,7 @@
 }
 
 .profile-selected-section {
+    margin-top: 60px;
     background-color: rgb(231, 231, 231);
     border: 1px solid rgb(44, 42, 42);
     border-top: none;

@@ -5,6 +5,12 @@ import Layout from './components/Layout';
 import LandingPage from './components/LandingPage';
 import Profile from './components/Profile';
 import { Modal, ModalProvider } from './context/Modal';
+import UsersCalender from './components/Profile/UsersCalender/UsersCalender';
+import UsersSearch from './components/Profile/UsersSearch/UsersSearch';
+import UsersTasks from './components/Profile/UsersTasks/UsersTasks';
+import UsersQuestions from './components/Profile/UsersQuestions/UsersQuestions';
+import UsersReflections from './components/Profile/UsersReflections/UsersReflections';
+import SiteExplination from './components/Profile/SiteExplination/SiteExplination';
 
 const router = createBrowserRouter([
   {
@@ -26,6 +32,30 @@ const router = createBrowserRouter([
       {
         path: "/signup",
         element: <SignupForm />
+      },
+      {
+        path: "/search",
+        element: <UsersSearch />
+      },
+      {
+        path: "/calender",
+        element: <UsersCalender />
+      },
+      {
+        path: "/tasks",
+        element: <UsersTasks />
+      },
+      {
+        path: "/questions",
+        element: <UsersQuestions />
+      },
+      {
+        path: "/reflections",
+        element: <UsersReflections />
+      },
+      {
+        path: "/information",
+        element: <SiteExplination />
       },
       // {
       //   path: '/home',

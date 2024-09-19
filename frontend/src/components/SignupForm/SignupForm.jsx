@@ -1,11 +1,11 @@
 
 
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import '../Navigation/Navigation.css';
 
-function SignupFormPage({dropDown, setDropDown}) {
+function SignupFormPage({dropDown, setDropDown, setHiddenMenu}) {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");
@@ -52,6 +52,7 @@ function SignupFormPage({dropDown, setDropDown}) {
                 })
             ).then(() => {
                 setDropDown(true);
+                setHiddenMenu(true);
                 setEmail('');
                 setUsername('');
                 setName('');

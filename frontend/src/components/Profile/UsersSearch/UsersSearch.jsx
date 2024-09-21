@@ -23,7 +23,8 @@ const UsersSearch = () => {
 
     const handleSearch = async () => {
         setLoading('loading');
-        let getResults = Object.values(resources).filter(resource => resource.name.toLowerCase().includes(search.toLowerCase()))
+
+        let getResults = search ? Object.values(resources).filter(resource => resource.name.toLowerCase().includes(search.toLowerCase())) : []
 
         setSearch('')
         setResults(getResults);
@@ -36,6 +37,15 @@ const UsersSearch = () => {
         setResults([]);
     }
 
+    const allResources = async () => {
+        setLoading('loading');
+        let getResults = Object.values(resources)
+
+        setSearch('')
+        setResults(getResults);
+        setLoading(false);
+    };
+
     const handleAddResource = () => {
         const modalComponent = <AddResource />
         setModalContent(modalComponent)
@@ -44,11 +54,11 @@ const UsersSearch = () => {
 
     return (
         <div className="profile-selected-section">
-            <div className="calender-title-flex">
-                <h1>Search</h1>
-                <button className='add-pointer-cursor' onClick={handleAddResource}>Add Resource</button>
-            </div>
-            <div className="flex-basic sixty-width search-search-bar">
+            <div className="search-search-bar">
+                <div className="page-title">
+                    <h1>Search</h1>
+                    <button className='add-pointer-cursor' onClick={handleAddResource}>Add Resource</button>
+                </div>
                 <input
                     type='text'
                     value={search}
@@ -57,17 +67,18 @@ const UsersSearch = () => {
                 <div className="search-submit-clear-btns">
                     <button onClick={handleSearch} >Submit</button>
                     <button onClick={clearSearch}>Clear Search</button>
+                    <button onClick={allResources}>All Resources</button>
                 </div>
             </div>
             {loading === 'initial' ?
                 <div className="sixty-width">
                     <div>
-                        {Object.values(resources).map(resource => (
+                        {/* {Object.values(resources).map(resource => (
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
                                 <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
                             </div>
-                        ))}
+                        ))} */}
                     </div>
                 </div> :
             loading === 'loading' ?
@@ -75,13 +86,14 @@ const UsersSearch = () => {
 
                 </div> :
                 <div className="sixty-width">
-                    <div>
-                        {results.map(resource => (
+                    <div className="resource-links">
+                        {results.length ? results.map(resource => (
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
-                                <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
+                                <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name }</a>
                             </div>
-                        ))}
+                        ))
+                    : <div>No resource found associated with the provided information</div>}
                     </div>
                 </div>}
         </div>

@@ -18,6 +18,8 @@ function Navigation({ isLoaded }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
+    // currently can not close the hamburger by clicking on it
+
     // closes dropdown on click outside svg and clears data
     useEffect(() => {
         if (!hiddenMenu) {

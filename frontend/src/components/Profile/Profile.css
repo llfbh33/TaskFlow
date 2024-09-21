@@ -326,23 +326,49 @@
 .resource-search-results {
     width: 100%;
     margin: 0;
-    line-height: 2;
+    line-height: 2.5;
+}
+
+.resource-search-results a {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
 }
 
 .search-search-bar {
-    margin: 20px;
-    height: 20px;
+    margin-top: 80px;
+    margin-bottom: 80px;
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    gap: 40px;
+    width: 50%;
+}
+
+.page-title {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+/* .resource-links {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    text-align: center;
+} */
+
+.resource-links div {
+    width: 100%;
 }
 
 .search-search-bar input {
-    width: 65%;
+    /* width: 65%; */
     height: 100%
 }
 
 .search-submit-clear-btns {
-    width: 30%;
+    /* width: 30%; */
     display: flex;
     justify-content: space-around;
 }

@@ -14,6 +14,7 @@ const UsersSearch = () => {
     const [loading, setLoading] = useState('initial');
     const { setModalContent } = useModal();
 
+    // useEffects
     useEffect(() => {
         if (user) {
             let mine = Object.values(resources).filter(ele => ele.userId === user.id)
@@ -21,15 +22,18 @@ const UsersSearch = () => {
         }
     }, [resources, user]);
 
+    // helper functions
+    const filterResources = (searchTerm) => {
+        return Object.values(resources).filter(resource =>
+           resource.name.toLowerCase().includes(searchTerm.toLowerCase()));
+     };
+
+    // action functions
     const handleSearch = async () => {
         setLoading('loading');
-
-        let getResults = search ? Object.values(resources).filter(resource => resource.name.toLowerCase().includes(search.toLowerCase())) : []
-
-        setSearch('')
-        setResults(getResults);
+        setResults(filterResources(search))
         setLoading(false);
-    };
+     };
 
     const clearSearch = () => {
         setLoading('initial');
@@ -40,7 +44,6 @@ const UsersSearch = () => {
     const allResources = async () => {
         setLoading('loading');
         let getResults = Object.values(resources)
-
         setSearch('')
         setResults(getResults);
         setLoading(false);
@@ -57,17 +60,20 @@ const UsersSearch = () => {
             <div className="search-search-bar">
                 <div className="page-title">
                     <h1>Search</h1>
-                    <button className='add-pointer-cursor' onClick={handleAddResource}>Add Resource</button>
                 </div>
-                <input
-                    type='text'
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)} >
-                </input>
+                <div className="search-bar">
+                    <input
+                        type='text'
+                        value={search}
+                        onChange={(e) => setSearch(e.target.value)} >
+                    </input>
+                    <button onClick={handleSearch} disabled={!search} >Submit</button>
+                </div>
+
                 <div className="search-submit-clear-btns">
-                    <button onClick={handleSearch} >Submit</button>
-                    <button onClick={clearSearch}>Clear Search</button>
-                    <button onClick={allResources}>All Resources</button>
+                    <button className="btns-for-search" onClick={clearSearch}>Clear Search</button>
+                    <button className="btns-for-search" onClick={allResources}>All Resources</button>
+                    <button className="btns-for-search" onClick={handleAddResource}>Add Resource</button>
                 </div>
             </div>
             {loading === 'initial' ?

@@ -124,6 +124,16 @@
     cursor: pointer;
 }
 
+.search-bar-buttons {
+    margin: 10px 0;
+    padding: 10px 20px;
+    width: 70%;
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
 
 
 /* Below is all playing around with SVG */

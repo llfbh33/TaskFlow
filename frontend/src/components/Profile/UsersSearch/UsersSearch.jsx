@@ -89,7 +89,7 @@ const UsersSearch = () => {
                 </div> :
             loading === 'loading' ?
                 <div>
-
+                    <Loading />
                 </div> :
                 <div className="sixty-width">
                     <div className="resource-links">

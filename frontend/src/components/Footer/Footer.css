@@ -1,0 +1,49 @@
+#footer-container {
+    position: fixed;
+    bottom: 0;
+    width: 100vw;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Footer content stays at the bottom */
+.footer-content {
+    width: 100vw;
+    background-color: rgb(171, 232, 171);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    border-top: 2px ridge rgb(11, 77, 11);
+    z-index: 1; /* Keep it higher than the SVG when closed */
+    cursor: pointer;
+}
+
+.about-us:hover {
+    color: white;
+}
+
+/* SVG container */
+.svg-container {
+    position: absolute;
+    bottom: 30px; /* Place it just above the footer */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    height: 0;
+    z-index: 2; /* Ensure the SVG appears on top */
+    transition: height 0.5s ease-in-out; /* Smooth animation for expansion */
+}
+
+/* When SVG is visible */
+.svg-container.show {
+    height: 280px; /* Match the height of the SVG */
+}
+
+/* When SVG is hidden */
+.svg-container.hide {
+    height: 0; /* Collapse the SVG smoothly */
+}

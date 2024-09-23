@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 // internal imports
 import Navigation from "../Navigation";
+import Footer from "../Footer"
 import * as sessionActions from '../../store/session';
 import loadState, { loadInitialData } from "../../utils/loadData";
 // styling
@@ -29,8 +30,12 @@ const Layout = () => {
 
     return (
       <div id='main-layout-container'>
+
           <Navigation isLoaded={isLoaded} />
+          <Footer />
           {isLoaded && <Outlet user={user}/>}
+          {/* <Footer /> */}
+
       </div>
     );
 }

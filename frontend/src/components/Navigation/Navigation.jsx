@@ -82,7 +82,7 @@ function Navigation({ isLoaded }) {
                 <div>
                     {isLoaded && sessionLinks}
                 </div>
-                <div className='login-dropdown' hidden={dropDown !== 'login'}>
+                <div className={`svg-container-nav1 ${dropDown !== 'login' ? 'hide' : 'show'}`}>
                     <svg id={'login-dropdown-svg'} height="450" width="500" xmlns="http://www.w3.org/2000/svg">
                         <circle r="440" cx="450" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="160" y="10" width="370" height="400">
@@ -90,16 +90,16 @@ function Navigation({ isLoaded }) {
                         </foreignObject>
                     </svg>
                 </div>
-                <div className='login-dropdown' hidden={dropDown !== 'signup'}>
-                    <svg id={'signup-dropdown-svg'} height="692" width="600" xmlns="http://www.w3.org/2000/svg">
+                <div className={`svg-container-nav2 ${dropDown !== 'signup' ? 'hide' : 'show'}`}>
+                    <svg id={'signup-dropdown-svg'} height="632" width="600" xmlns="http://www.w3.org/2000/svg">
                         <circle r="560" cx="562" cy="70" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="255" y="10" width="370" height="620">
                             <SignupForm dropDown={dropDown} setDropDown={setDropDown} setHiddenMenu={setHiddenMenu}/>
                         </foreignObject>
                     </svg>
                 </div>
-                <div className='login-dropdown' hidden={!user || hiddenMenu} style={{ position: 'absolute', left: 0 }}>
-                    <svg id={'menu-dropdown-svg'} height="452" width="352" xmlns="http://www.w3.org/2000/svg">
+                <div className={`svg-container-nav3 ${hiddenMenu ? 'hide' : 'show'}`} style={{ position: 'absolute', left: 0 }}>
+                    <svg id={'menu-dropdown-svg'}  height="452" width="352" xmlns="http://www.w3.org/2000/svg">
                         <circle r="450" cx="-100" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="40" y="30" width="170" height="620">
                             <div className='hamburger-dropdown'>

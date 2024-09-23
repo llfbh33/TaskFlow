@@ -3,18 +3,27 @@
     height: 60px;
     position: fixed;
     width: 100%;
-    top: 0px;
+    top: 0;
+    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-bottom: 2px ridge rgb(11, 77, 11);
 }
 
+
 .hamburger-menu {
     display: flex;
     align-items: center;
     gap: 30px;
-    margin-left: 20px;
+    height: 100%;
+    width: 100%;
+    padding-left: 20px;
+    background-color: rgb(171, 232, 171);
+}
+
+.hamburger-menu h1 {
+    margin: 0;
 }
 
 .hamburger-menu svg {
@@ -27,16 +36,94 @@
     flex-direction: column;
 }
 
+/* SVG container 1 */
+.svg-container-nav1 {
+    position: absolute;
+    top: 80;
+    right: 0;
+    width: 500px;
+    height: 500px;
+    z-index: -1;
+    transform: translateY(-100%); /* Initially hide the SVG above */
+    transition: transform 0.5s ease-in-out; /* Smooth slide-down effect */
+}
+
+/* When SVG is visible (slides down) */
+.svg-container-nav1.show {
+    transform: translateY(0); /* Slide it down into view */
+    /* transform: translateX(-20%); */
+}
+
+/* When SVG is hidden (slides back up) */
+.svg-container-nav1.hide {
+    transform: translateY(-130%); /* Move it up to hide it again */
+    /* transform: translateX(130%); */
+}
+
+/* SVG container 2 */
+.svg-container-nav2 {
+    position: absolute;
+    top: 80;
+    right: 0;
+    width: 600px;
+    height: 500px;
+    z-index: -1;
+    transform: translateY(-100%); /* Initially hide the SVG above */
+    transition: transform 0.5s ease-in-out; /* Smooth slide-down effect */
+}
+
+/* When SVG is visible (slides down) */
+.svg-container-nav2.show {
+    transform: translateY(0); /* Slide it down into view */
+    /* transform: translateX(-20%); */
+}
+
+/* When SVG is hidden (slides back up) */
+.svg-container-nav2.hide {
+    transform: translateY(-130%); /* Move it up to hide it again */
+    /* transform: translateX(130%); */
+}
+
+
+/* SVG container 3 */
+.svg-container-nav3 {
+    position: absolute;
+    top: 80;
+    left: 0;
+    width: 100%;
+    height: 450px;
+    z-index: -1;
+    transform: translateY(-100%); /* Initially hide the SVG above */
+    transition: transform 0.5s ease-in-out; /* Smooth slide-down effect */
+}
+
+/* When SVG is visible (slides down) */
+.svg-container-nav3.show {
+    transform: translateY(0); /* Slide it down into view */
+}
+
+/* When SVG is hidden (slides back up) */
+.svg-container-nav3.hide {
+    transform: translateY(-100%); /* Move it up to hide it again */
+}
+
 .hamburger-dropdown button {
     margin: 10px;
 }
 
 .login-signup-btn-container {
     display: flex;
-    margin-right: 80px;
+    padding-right: 80px;
     gap: 40px;
+    height: 60px;
     width: 300px;
     justify-content: space-around;
+    align-items: center;
+    background-color: rgb(171, 232, 171);
+}
+
+.login-signup-btns {
+    height: 35px
 }
 
 .login-signup-btns,
@@ -93,11 +180,11 @@
     text-decoration: underline;
 }
 
-
 .login-dropdown {
     position: absolute;
     top: 60px;
     right: 0px;
+    z-index: -1;
 }
 
 .login-form {

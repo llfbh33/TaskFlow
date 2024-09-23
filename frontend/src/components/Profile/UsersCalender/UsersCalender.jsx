@@ -5,6 +5,8 @@ import { format, addDays, subDays } from 'date-fns';
 import { CompleteTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
 import CreateTask from "../../Modals/TasksModals/CreateTask";
+import { FaCircleNotch } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 
 const UsersCalender = () => {
@@ -92,14 +94,14 @@ const UsersCalender = () => {
                     <h1>Calender</h1>
                 </div>
                 <div className="calender-title-buttons-flex">
-                    <button onClick={addATask} className="add-pointer-cursor">Add a task</button>
-                    <button onClick={() => setCurrDate(new Date())}>Return to Todays date</button>
-                    <label>Choose A date: <input
+                    <button className="standard-button" onClick={addATask} >Add a task</button>
+                    <label >Choose A date: <input
                         type='date'
                         value={formatDateForInput(currDate)}
                         onChange={(e) => setCurrDate(new Date(addDays(e.target.value, 1)))}>
                         </input>
                     </label>
+                    <button className="standard-button" onClick={() => setCurrDate(new Date())}>Return to Todays date</button>
                 </div>
 
             </div>
@@ -125,16 +127,16 @@ const UsersCalender = () => {
                     {currTasks && Object.values(currTasks).map(task => (
                         <div key={task.id} className="task-calender-results">
                             <div className="calender-search-results">
-                                <button
+                                <div className="calender-check"
                                     onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
                                     >
-                                    {task.isComplete ? 'X' : '-'}
-                                </button>
+                                    {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
+                                </div>
                                 <span className={task.isComplete ? 'completed-task' :
                                                 !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
                                                 !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                             </div>
-                            <button className='delete-button-calender' onClick={() => handleDeleteTask(task.id)}>Delete</button>
+                            <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button>
                         </div>
 
                     ))}

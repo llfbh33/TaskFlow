@@ -71,9 +71,9 @@ const UsersSearch = () => {
                 </div>
 
                 <div className="search-submit-clear-btns">
-                    <button className="btns-for-search" onClick={clearSearch}>Clear Search</button>
-                    <button className="btns-for-search" onClick={allResources}>All Resources</button>
-                    <button className="btns-for-search" onClick={handleAddResource}>Add Resource</button>
+                    <button className="standard-button" onClick={clearSearch}>Clear Search</button>
+                    <button className="standard-button" onClick={allResources}>All Resources</button>
+                    <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
                 </div>
             </div>
             {loading === 'initial' ?

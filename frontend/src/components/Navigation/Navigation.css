@@ -1,3 +1,4 @@
+/* Main Nav Bar Container*/
 #navigation-bar {
     background-color: rgb(171, 232, 171);
     height: 60px;
@@ -12,6 +13,8 @@
 }
 
 
+
+/* Hamburger and Name Container */
 .hamburger-menu {
     display: flex;
     align-items: center;
@@ -31,11 +34,35 @@
     cursor: pointer;
 }
 
-.hamburger-dropdown {
+
+
+/* Login and Signup Container */
+.login-signup-btn-container {
     display: flex;
-    flex-direction: column;
+    padding-right: 80px;
+    gap: 40px;
+    height: 60px;
+    width: 300px;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(171, 232, 171);
 }
 
+.login-signup-btns {
+    height: 35px;
+}
+
+.login-signup-btns,
+.hamburger-btns {
+    background-color: green;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+
+
+/* SVG Drop Down Animations
 /* SVG container 1 */
 .svg-container-nav1 {
     position: absolute;
@@ -84,7 +111,6 @@
     /* transform: translateX(130%); */
 }
 
-
 /* SVG container 3 */
 .svg-container-nav3 {
     position: absolute;
@@ -107,37 +133,17 @@
     transform: translateY(-100%); /* Move it up to hide it again */
 }
 
-.hamburger-dropdown button {
-    margin: 10px;
-}
 
-.login-signup-btn-container {
-    display: flex;
-    padding-right: 80px;
-    gap: 40px;
-    height: 60px;
-    width: 300px;
-    justify-content: space-around;
-    align-items: center;
-    background-color: rgb(171, 232, 171);
-}
 
-.login-signup-btns {
-    height: 35px
-}
-
-.login-signup-btns,
-.hamburger-btns {
-    background-color: green;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
+/* Hamburger Drop Down Buttons */
 .hamburger-btns {
     padding: 6px;
     width: 80%;
+    margin: 10px;
 }
+
+
+
 
 .login-signup-btns {
     padding: 10px;

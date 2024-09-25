@@ -1,9 +1,5 @@
-import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom';
-import LoginForm from './components/LoginForm';
-import SignupForm from './components/SignupForm';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
-import LandingPage from './components/LandingPage';
-import Profile from './components/Profile';
 import { Modal, ModalProvider } from './context/Modal';
 import UsersCalender from './components/Profile/UsersCalender/UsersCalender';
 import UsersSearch from './components/Profile/UsersSearch/UsersSearch';
@@ -11,6 +7,7 @@ import UsersTasks from './components/Profile/UsersTasks/UsersTasks';
 import UsersQuestions from './components/Profile/UsersQuestions/UsersQuestions';
 import UsersReflections from './components/Profile/UsersReflections/UsersReflections';
 import SiteExplination from './components/Profile/SiteExplination/SiteExplination';
+import Profile from './components/Profile';
 
 const router = createBrowserRouter([
   {
@@ -23,18 +20,6 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <Profile />
-      },
-      {
-        path: '/login',
-        element: <LoginForm />
-      },
-      {
-        path: "/signup",
-        element: <SignupForm />
-      },
-      {
-        path: "/search",
         element: <UsersSearch />
       },
       {

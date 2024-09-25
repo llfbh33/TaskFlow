@@ -43,7 +43,7 @@ function Navigation({ isLoaded }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout())
-        navigate('/search');
+        navigate('/');
     };
 
     // if there is a user show profile button, else, login and signup

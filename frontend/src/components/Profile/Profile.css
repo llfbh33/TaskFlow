@@ -431,3 +431,16 @@
 .padding-left {
     padding-left: 60px;
 }
+
+
+/* Styling for search chart container */
+
+.search-chart-container {
+    /* border: 1px solid green; */
+    width: 100%;
+    /* min-height: 500px; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 80px;
+}

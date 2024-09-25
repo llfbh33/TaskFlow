@@ -4,6 +4,7 @@ import { useModal } from "../../../context/Modal";
 import LandingPage from "../../LandingPage";
 import Loading from "../../Loading/Loading";
 import AddResource from "../../Modals/ResourceModals/AddResource";
+import SearchChart from "../../SearchChart";
 
 const UsersSearch = () => {
     const user = useSelector(state => state.session.user);
@@ -78,13 +79,8 @@ const UsersSearch = () => {
             </div>
             {loading === 'initial' ?
                 <div className="sixty-width">
-                    <div>
-                        {/* {Object.values(resources).map(resource => (
-                            <div key={resource.id} className="resource-search-results">
-                                <img src={resource.data?.image} className="link-image"/>
-                                <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
-                            </div>
-                        ))} */}
+                    <div className="search-chart-container">
+                        <SearchChart />
                     </div>
                 </div> :
             loading === 'loading' ?

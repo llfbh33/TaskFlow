@@ -34,6 +34,7 @@
 
 .profile-selected-section {
     margin-top: 60px;
+    padding-bottom: 80px;
     background-color: rgb(231, 231, 231);
     /* border: 1px solid rgb(44, 42, 42); */
     border-top: none;
@@ -288,33 +289,36 @@
     justify-content: space-between;
 }
 
-.completed-task {
-    text-decoration: line-through;
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-.uncompleted-task {
-    background-color: rgb(250, 250, 122);
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
-.old-uncompleted-task {
-    background-color: rgb(255, 125, 125);
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
-
+/* Listed Task Styling */
 .calender-search-results {
     width: 100%;
     margin: 8px 10px;
     display: flex;
     gap: 10px;
 }
+
+.future-uncompleted-task,
+.completed-task,
+.uncompleted-task,
+.old-uncompleted-task {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+}
+
+.completed-task {
+    text-decoration: line-through;
+}
+
+.uncompleted-task {
+    background-color: rgb(250, 250, 122);
+}
+
+.old-uncompleted-task {
+    background-color: rgb(255, 125, 125);
+}
+
+
 
 
 /* Search Styling */

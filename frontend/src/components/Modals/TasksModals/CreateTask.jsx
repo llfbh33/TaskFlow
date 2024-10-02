@@ -5,9 +5,9 @@ import { createTask } from "../../../store/tasks";
 import { format, addDays, subDays } from 'date-fns';
 
 
-const CreateTask = () => {
+const CreateTask = ({date}) => {
     const user = useSelector(state => state.session.user);
-    const [currDate, setDate] = useState(new Date());
+    const [currDate, setDate] = useState();
     const [task, setTask] = useState('');
     const { closeModal } = useModal();
     const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const CreateTask = () => {
     };
 
     useEffect(() => {
-        let today = new Date();
+        let today = date ? new Date(date) : new Date();
         today = formatDateForInput(today)
         setDate(today)
     }, [])

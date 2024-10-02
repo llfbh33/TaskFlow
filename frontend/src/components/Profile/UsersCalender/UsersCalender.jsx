@@ -19,7 +19,7 @@ const UsersCalender = () => {
     const { setModalContent } = useModal();
 
     const addATask = () => {
-        const modalComponent = <CreateTask />
+        const modalComponent = <CreateTask date={currDate} />
         setModalContent(modalComponent)
     }
 
@@ -133,6 +133,7 @@ const UsersCalender = () => {
                                     {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
                                 </div>
                                 <span className={task.isComplete ? 'completed-task' :
+                                                !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
                                                 !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
                                                 !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                             </div>

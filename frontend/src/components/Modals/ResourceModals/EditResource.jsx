@@ -2,27 +2,29 @@ import { useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { addResource } from "../../../store/resources";
+import { updateResource } from "../../../store/resources";
 
-const AddResource = () => {
+const EditResource = ({resource}) => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const [name, setName] = useState('');
-    const [url, setUrl] = useState('');
+    const [name, setName] = useState(resource.name);
+    const [url, setUrl] = useState(resource.url);
     const { closeModal } = useModal();
-    const [keyOptions, setKeyOptions] = useState([]);
-
+    const [keyOptions, setKeyOptions] = useState(resource.keyWords.split(','));
+    console.log(resource)
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         const newResource = {
+            id: resource.id,
             userId: user.id,
             name: name,
             url: url,
             keyWords: keyOptions.join(',')
         };
 
-        await dispatch(addResource(newResource));
+        await dispatch(updateResource(newResource));
 
         closeModal();
     }
@@ -33,9 +35,15 @@ const AddResource = () => {
         setKeyOptions(options);
     }
 
+    const deleteKey = (idx) => {
+        let keywords = [...keyOptions];
+        keywords.splice(idx, 1)
+        setKeyOptions(keywords)
+    }
+
     return (
         <div>
-            <h1>Add a Resource</h1>
+            <h1>Edit a Resource</h1>
             <div>
                 <div>
                     <label>Resource Description</label>
@@ -57,7 +65,7 @@ const AddResource = () => {
                     <label>Keywords for Resource:</label>
                     <ul>
                         {keyOptions.map((option, idx) => (
-                            <li key={idx}>{option}<button>X</button></li>
+                            <li key={idx}>{option}<button onClick={() => deleteKey(idx)}>X</button></li>
                         ))}
                     </ul>
                     <select
@@ -81,4 +89,4 @@ const AddResource = () => {
     )
 }
 
-export default AddResource;
+export default EditResource;

@@ -1,35 +1,75 @@
 import * as d3 from 'd3';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-const data = [
-    {axis: "Coding Languages", value: 0.3},
-    {axis: "System Design", value: 0.8},
-    {axis: "Frameworks", value: 0.9},
-    {axis: "Algorithms", value: 0.9},
-    {axis: "Varsion Control", value: 0.5},
-    {axis: "Soft Skills", value: 0.7},
-    {axis: "Debugging", value: 0.6},
-    {axis: "Career Strategy", value: 0.8},
-];
 
 const SearchChart = () => {
     const svgRef = useRef();
     const resources = useSelector(state => state.resources);
     const width = 1600;
     const height = 1600;
+    // const [data, setData] = useState([]);
 
-    Object.values(resources).forEach(entry => {
-        let words = entry.keyWords.split(',')
 
-        for (let word of words) {
-            console.log(data.axis === word)
-        }
+    // useEffect(() => {
 
-    })
+
+    // }, [resources])
+
 
 
     useEffect(() => {
+        let data = [
+            {axis: "Coding Languages", value: 0},
+            {axis: "System Design", value: 0},
+            {axis: "Frameworks", value: 0},
+            {axis: "Algorithms", value: 0},
+            {axis: "Version Control", value: 0},
+            {axis: "Soft Skills", value: 0},
+            {axis: "Debugging", value: 0},
+            {axis: "Career Strategy", value: 0},
+        ]
+        let total = Object.values(resources).length;
+        for (let i = 0; i < Object.values(resources).length; i++) {
+            let words = Object.values(resources)[i].keyWords.split(',');
+            for (let word of words) {
+
+                switch (word) {
+                    case 'Coding Languages':
+                        data[0].value++;
+                        break;
+                    case "System Design":
+                        data[1].value++;
+                        break;
+                    case "Frameworks":
+                        data[2].value++;
+                        break;
+                    case "Algorithms":
+                        data[3].value++;
+                        break;
+                    case "Version Control":
+                        data[4].value++;
+                        break;
+                    case "Soft Skills":
+                        data[5].value++;
+                        break;
+                    case "Debugging":
+                        data[6].value++;
+                        break;
+                    case "Career Strategy":
+                        data[7].value++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        for (let i = 0; i < data.length; i++) {
+            data[i].value = data[i].value / total
+        }
+
+
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
 
@@ -62,6 +102,7 @@ const SearchChart = () => {
             .attr("stroke", "#aaa")
             .attr("stroke-width", 2);
 
+
         // Radar shape
         svg.append("g").attr("transform", `translate(${width / 2}, ${height / 2})`)
             .append("path")
@@ -72,7 +113,7 @@ const SearchChart = () => {
             .attr("stroke-width", 4);
 
 
-    }, [resources, data])
+    }, [resources])
 
     return (
         <>

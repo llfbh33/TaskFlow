@@ -97,6 +97,25 @@ router.post('/:new', async (req, res, next) => {
 });
 
 
+// ======>>> Edit a Resource <<< =======
+router.put('/:resourceId', async (req, res, next) => {
+    const { resourceId } = req.params;
+    const foundResource = await Resource.findByPk(resourceId);
+    const {name, url, keyWords} = req.body;
+
+    foundResource.set({
+        name: name || foundResource.name,
+        url: url || foundResource.url,
+        keyWords: keyWords || foundResource.keyWords,
+    });
+
+    await foundResource.validate();
+    await foundResource.save();
+
+    res.json(foundResource);
+});
+
+
 // ==========>>> Delete a Resource <<<<++++++++
 router.delete('/:resourceId', authenticateProjectManager, async (req, res, next) => {
     const { resourceId } = req.params;

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { useModal } from "../../../context/Modal";
 import LandingPage from "../../LandingPage";
 import Loading from "../../Loading/Loading";
 import AddResource from "../../Modals/ResourceModals/AddResource";
+import EditResource from "../../Modals/ResourceModals/EditResource";
 import SearchChart from "../../SearchChart";
 
 const UsersSearch = () => {
@@ -14,6 +15,7 @@ const UsersSearch = () => {
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState('initial');
     const { setModalContent } = useModal();
+    const dispatch = useDispatch();
 
     // useEffects
     useEffect(() => {
@@ -55,6 +57,11 @@ const UsersSearch = () => {
         setModalContent(modalComponent)
     }
 
+    const handleEdit = (idx) => {
+        const modalComponent = <EditResource resource={resources[idx]} />
+        setModalContent(modalComponent)
+    }
+
 
     return (
         <div className="profile-selected-section">
@@ -93,6 +100,7 @@ const UsersSearch = () => {
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
                                 <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name }</a>
+                                <button onClick={() => handleEdit(resource.id)}>Edit</button>
                             </div>
                         ))
                     : <div>No resource found associated with the provided information</div>}

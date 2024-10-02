@@ -3,6 +3,7 @@ import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../../store/tasks";
 import { format, addDays, subDays } from 'date-fns';
+import '../Modals.css';
 
 
 const CreateTask = ({date}) => {
@@ -57,11 +58,11 @@ const CreateTask = ({date}) => {
     }
 
     return (
-        <div>
+        <div className="new-task-container">
             <h1>Create new task here</h1>
-            <div>
-                <div>
-                    <span>When do you want to complete this task by?</span>
+            <div className="task-details-container">
+                <div className="task-label-input">
+                    <span>Complete task by?</span>
                     <input
                         type='date'
                         value={currDate}
@@ -69,16 +70,17 @@ const CreateTask = ({date}) => {
                         >
                     </input>
                 </div>
-                <button onClick={() => setDate('')}>Do not include date with task</button>
-                <div>
-                    <span>Task</span>
-                    <input
+                <button className='standard-button' onClick={() => setDate('')}>Do not include date with task</button>
+                <div className="task-label-input2">
+                    <span>Task:</span>
+                    <textarea
                         type='text'
                         value={task}
+                        style={{ resize: 'none' }}
                         onChange={(e) => setTask(e.target.value)}
-                    ></input>
+                    ></textarea>
                 </div>
-                <button type='submit' onClick={(e) => handleSubmit(e)}>submit</button>
+                <button className='standard-button' type='submit' onClick={(e) => handleSubmit(e)}>Submit</button>
             </div>
         </div>
     )

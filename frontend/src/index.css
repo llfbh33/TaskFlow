@@ -1,22 +1,29 @@
+/* Color Variables */
+:root {
+    --primary-color: rgb(171, 232, 171);
+    --secondary-color: green;
+    --hover-color: darkgreen;
+    --border-color: rgb(11, 77, 11);
+}
+
 /* TODO: Add sitewide styles */
 
 body {
     margin: 0 !important;
     padding: 0 !important;
-    background-color: rgb(189, 189, 248);
 }
 
 .standard-button {
     margin: 10px 0;
     padding: 10px 20px;
-    background-color: green;
+    background-color: var(--secondary-color);
     color: white;
     border: none;
     cursor: pointer;
 }
 
 .standard-button:hover {
-    background-color: darkgreen;
+    background-color: var(--hover-color);
 }
 
 /* Use classname's on all elements which require these functions */
@@ -60,5 +67,5 @@ h4 {
 }
 
 .no-errors {
-    color: rgb(171, 232, 171);
+    color: var(--primary-color)
 }

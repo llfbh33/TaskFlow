@@ -7,14 +7,12 @@ import UsersTasks from './components/Profile/UsersTasks/UsersTasks';
 import UsersQuestions from './components/Profile/UsersQuestions/UsersQuestions';
 import UsersReflections from './components/Profile/UsersReflections/UsersReflections';
 import SiteExplination from './components/Profile/SiteExplination/SiteExplination';
-import Profile from './components/Profile';
 
 const router = createBrowserRouter([
   {
     element: (
         <>
             <Layout />
-            {/* <Outlet /> */}
         </>
       ),
     children: [
@@ -42,10 +40,6 @@ const router = createBrowserRouter([
         path: "/information",
         element: <SiteExplination />
       },
-      // {
-      //   path: '/home',
-      //   element: <LandingPage />
-      // }
     ]
   }
 ]);

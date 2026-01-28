@@ -9,6 +9,7 @@ const SearchChart = () => {
     const width = 1600;
     const height = 1600;
 
+
     const searchFunction = (label) => {
         // Replace this with your actual search logic, dispatch action, etc.
         console.log("Search for:", label);

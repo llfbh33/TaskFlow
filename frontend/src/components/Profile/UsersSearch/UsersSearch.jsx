@@ -17,6 +17,7 @@ const UsersSearch = () => {
     const { setModalContent } = useModal();
     const dispatch = useDispatch();
 
+
     // useEffects
     useEffect(() => {
         if (user) {
@@ -92,7 +93,7 @@ const UsersSearch = () => {
                 </div> :
             loading === 'loading' ?
                 <div>
-                    <Loading />
+                    <Loading resources={resources} />
                 </div> :
                 <div className="sixty-width">
                     <div className="resource-links">

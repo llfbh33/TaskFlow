@@ -12,6 +12,7 @@ const AddResource = () => {
     const [keyOptions, setKeyOptions] = useState([]);
 
 
+    // Action Functions
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -25,13 +26,19 @@ const AddResource = () => {
         await dispatch(addResource(newResource));
 
         closeModal();
-    }
+    };
 
     const handleOption = (value) => {
         let options = [...keyOptions]
         options.includes(value) ? '' : options.push(value);
         setKeyOptions(options);
-    }
+    };
+
+    const deleteKey = (idx) => {
+        let keywords = [...keyOptions];
+        keywords.splice(idx, 1)
+        setKeyOptions(keywords)
+    };
 
     return (
         <div>
@@ -57,7 +64,7 @@ const AddResource = () => {
                     <label>Keywords for Resource:</label>
                     <ul>
                         {keyOptions.map((option, idx) => (
-                            <li key={idx}>{option}<button>X</button></li>
+                            <li key={idx}>{option}<button onClick={() => deleteKey(idx)}>X</button></li>
                         ))}
                     </ul>
                     <select

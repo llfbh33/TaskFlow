@@ -16,8 +16,7 @@ const UsersSearch = () => {
     const [loading, setLoading] = useState('initial');
     const { setModalContent } = useModal();
     const dispatch = useDispatch();
-    console.log(results)
-    console.log(user)
+
 
     // useEffects
     useEffect(() => {
@@ -35,7 +34,7 @@ const UsersSearch = () => {
         );
      };
 
-    // action functions
+    // Action Functions
     const handleSearch = async (label) => {
         setLoading('loading');
         setResults(filterResources(label ? label : search))
@@ -55,6 +54,10 @@ const UsersSearch = () => {
         setResults(getResults);
         setLoading(false);
     };
+
+    const userResources = () => {
+        setResults(myResources)
+    }
 
     const handleAddResource = () => {
         const modalComponent = <AddResource />
@@ -86,6 +89,7 @@ const UsersSearch = () => {
                     <button className="standard-button" onClick={clearSearch}>Clear Search</button>
                     <button className="standard-button" onClick={allResources}>All Resources</button>
                     <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
+                    <button className="standard-button" onClick={userResources}>My Resources</button>
                 </div>
             </div>
             {loading === 'initial' ?

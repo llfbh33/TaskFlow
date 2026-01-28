@@ -11,8 +11,9 @@ const EditResource = ({resource}) => {
     const [url, setUrl] = useState(resource.url);
     const { closeModal } = useModal();
     const [keyOptions, setKeyOptions] = useState(resource.keyWords.split(','));
-    console.log(resource)
 
+
+    // Action Functions
     const handleSubmit = async (e) => {
         e.preventDefault();
 
@@ -27,19 +28,19 @@ const EditResource = ({resource}) => {
         await dispatch(updateResource(newResource));
 
         closeModal();
-    }
+    };
 
     const handleOption = (value) => {
         let options = [...keyOptions]
         options.includes(value) ? '' : options.push(value);
         setKeyOptions(options);
-    }
+    };
 
     const deleteKey = (idx) => {
         let keywords = [...keyOptions];
         keywords.splice(idx, 1)
         setKeyOptions(keywords)
-    }
+    };
 
     return (
         <div>

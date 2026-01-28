@@ -16,7 +16,8 @@ const UsersSearch = () => {
     const [loading, setLoading] = useState('initial');
     const { setModalContent } = useModal();
     const dispatch = useDispatch();
-
+    console.log(results)
+    console.log(user)
 
     // useEffects
     useEffect(() => {
@@ -29,13 +30,15 @@ const UsersSearch = () => {
     // helper functions
     const filterResources = (searchTerm) => {
         return Object.values(resources).filter(resource =>
-           resource.name.toLowerCase().includes(searchTerm.toLowerCase()));
+           resource.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+           resource.keyWords.toLowerCase().includes(searchTerm.toLowerCase())
+        );
      };
 
     // action functions
-    const handleSearch = async () => {
+    const handleSearch = async (label) => {
         setLoading('loading');
-        setResults(filterResources(search))
+        setResults(filterResources(label ? label : search))
         setLoading(false);
      };
 
@@ -88,7 +91,7 @@ const UsersSearch = () => {
             {loading === 'initial' ?
                 <div className="sixty-width">
                     <div className="search-chart-container">
-                        <SearchChart />
+                        <SearchChart handleSearch={handleSearch}/>
                     </div>
                 </div> :
             loading === 'loading' ?
@@ -101,7 +104,9 @@ const UsersSearch = () => {
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
                                 <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name }</a>
-                                <button onClick={() => handleEdit(resource.id)}>Edit</button>
+                                {resource.userId === user.id &&
+                                    <button onClick={() => handleEdit(resource.id)}>Edit</button>
+                                }
                             </div>
                         ))
                     : <div>No resource found associated with the provided information</div>}

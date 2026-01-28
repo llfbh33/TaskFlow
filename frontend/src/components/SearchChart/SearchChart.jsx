@@ -3,18 +3,12 @@ import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 
-const SearchChart = () => {
+const SearchChart = ({handleSearch}) => {
     const svgRef = useRef();
     const resources = useSelector(state => state.resources);
     const width = 1600;
     const height = 1600;
 
-
-    const searchFunction = (label) => {
-        // Replace this with your actual search logic, dispatch action, etc.
-        console.log("Search for:", label);
-        // Trigger your search here
-    };
 
     useEffect(() => {
         let data = [
@@ -125,7 +119,7 @@ const SearchChart = () => {
                   .attr("font-size", "24px");  // Reset font size when hover ends
             })
             .on("click", (event, d) => {
-                searchFunction(d.axis);  // Call the search function with the label value
+                handleSearch(d.axis);  // Call the search function with the label value
             });
 
 

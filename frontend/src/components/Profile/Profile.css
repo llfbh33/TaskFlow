@@ -34,14 +34,15 @@
 
 .profile-selected-section {
     margin-top: 60px;
-    padding-bottom: 80px;
-    background-color: rgb(231, 231, 231);
+    padding-bottom: 60px;
+    min-height: 80%;
+    /* background-color: rgb(231, 231, 231); */
     /* border: 1px solid rgb(44, 42, 42); */
     border-top: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-    min-height: 100vh;
+    /* min-height: 100vh; */
 }
 
 .profile-selected-section h1 {
@@ -276,12 +277,13 @@
     align-items: center;
     width: 30%;
     border: 1px solid rgb(192, 192, 192);
-    background-color: rgb(231, 231, 231);
+    /* background-color: rgb(231, 231, 231); */
     border-bottom: 1px solid rgba(128, 128, 128, 0);
 }
 
 .date-transition:hover {
     border: 1px solid rgb(204, 204, 204);
+    background-color: rgb(231, 231, 231);
 }
 
 .task-calender-results {

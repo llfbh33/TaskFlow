@@ -57,3 +57,6 @@
 - using bcryptjs to hash passwords - npm install bcryptjs
 
 - docs on model scoping - https://sequelize.org/docs/v6/other-topics/scopes/
+
+
+npm run start

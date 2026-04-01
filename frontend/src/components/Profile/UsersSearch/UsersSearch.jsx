@@ -6,6 +6,8 @@ import Loading from "../../Loading/Loading";
 import AddResource from "../../Modals/ResourceModals/AddResource";
 import EditResource from "../../Modals/ResourceModals/EditResource";
 import SearchChart from "../../SearchChart";
+import BarChart from "../../SearchChart/BarChart";
+import PanelContainer from "../ReusableComponents/PanelConteiner";
 
 const UsersSearch = () => {
     const user = useSelector(state => state.session.user);
@@ -93,11 +95,15 @@ const UsersSearch = () => {
                 </div>
             </div>
             {loading === 'initial' ?
-                <div className="sixty-width">
-                    <div className="search-chart-container">
-                        <SearchChart handleSearch={handleSearch}/>
-                    </div>
-                </div> :
+
+                        <PanelContainer title="Resource Overview" subtitle="A quick viewof resources by category" >
+                                            {/* // <div className="sixty-width"> */}
+                    {/* <div className="search-chart-container"> */}
+                            
+                            <BarChart handleSearch={handleSearch}/>
+                        </PanelContainer>
+
+                :
             loading === 'loading' ?
                 <div>
                     <Loading resources={resources} />
@@ -108,7 +114,7 @@ const UsersSearch = () => {
                             <div key={resource.id} className="resource-search-results">
                                 <img src={resource.data?.image} className="link-image"/>
                                 <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name }</a>
-                                {resource.userId === user.id &&
+                                {resource?.userId === user?.id &&
                                     <button onClick={() => handleEdit(resource.id)}>Edit</button>
                                 }
                             </div>

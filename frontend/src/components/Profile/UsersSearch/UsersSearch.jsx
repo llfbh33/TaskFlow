@@ -76,48 +76,34 @@ const UsersSearch = () => {
 
 
     return (
-        <div className="profile-selected-section">
-
-
-            <div className="search-search-bar">
-                <PanelContainer title="Search Resources by Category" widthPx={600}  >
-                    <BarChart handleSearch={handleSearch} />
-                </PanelContainer>
-                <PanelContainer title={"Search for Resources"} widthPx={800}>
-                    {/* <div className="page-title">
-                            <h1>Search</h1>
-                        </div> */}
-                    <div style={{
-                        display: "flex",
-                        flexDirection: "column",
-                    }}>
-                        <div className="search-bar">
-                            <input
-                                type='text'
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)} >
-                            </input>
-                            <button onClick={handleSearch} disabled={!search} >Submit</button>
-                        </div>
-
-                        <div className="search-submit-clear-btns">
-                            <button className="standard-button" onClick={clearSearch}>Clear Search</button>
-                            <button className="standard-button" onClick={allResources}>All Resources</button>
-                            <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
-                            <button className="standard-button" onClick={userResources}>My Resources</button>
-                        </div>
+        <div className="main-container">
+            <div className="child-container">
+                <div className="padding-container">
+                    <div className="search-bar">
+                        <input
+                            type='text'
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)} >
+                        </input>
+                        <button onClick={handleSearch} disabled={!search} >Submit</button>
                     </div>
-                </PanelContainer>
-            </div>
 
-            <div className="resource-search-results">
-                <PanelContainer widthPer={100}>
+                    <div className="search-submit-clear-btns">
+                        <button className="standard-button" onClick={clearSearch}>Clear Search</button>
+                        <button className="standard-button" onClick={allResources}>All Resources</button>
+                        <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
+                        <button className="standard-button" onClick={userResources}>My Resources</button>
+                    </div>
+                </div>
+            
+
+            {/* <div className="child-container flex-stretch"> */}
+                <div className="padding-container flex-stretch">
                     {loading === 'loading' &&
                         <div>
                             <Loading resources={resources} />
                         </div>
                     }
-
 
                     {!loading &&
 
@@ -155,8 +141,9 @@ const UsersSearch = () => {
                             ))}
                         </div>
                     )}
-                </PanelContainer>
+                </div>
             </div>
+            
         </div>
     )
 }

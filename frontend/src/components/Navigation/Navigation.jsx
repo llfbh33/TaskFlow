@@ -49,7 +49,7 @@ function Navigation({ isLoaded }) {
     // if there is a user show profile button, else, login and signup
     const sessionLinks = user ? (
         <div className='login-signup-btn-container'>
-            <button className='login-signup-btns' onClick={() => alert('Feature Coming Soon')}>Profile</button>
+            {/* <button className='login-signup-btns' onClick={() => alert('Feature Coming Soon')}>Profile</button> */}
             <button
                 className='login-signup-btns'
                 onClick={logout}>
@@ -78,10 +78,12 @@ function Navigation({ isLoaded }) {
                 </div>
                 <h1 className='nav-header'>{user ? `Hello ${user.name}` : 'Search'}</h1>
             </div>
-            <div>
-                <div>
+                            <div style={{
+                    zIndex: '100',
+                }}>
                     {isLoaded && sessionLinks}
                 </div>
+            <div>
                 <div className={`svg-container-nav1 ${dropDown !== 'login' ? 'hide' : 'show'}`}>
                     <svg id={'login-dropdown-svg'} height="450" width="500" xmlns="http://www.w3.org/2000/svg">
                         <circle r="440" cx="450" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />

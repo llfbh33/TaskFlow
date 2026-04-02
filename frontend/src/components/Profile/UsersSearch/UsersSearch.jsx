@@ -5,7 +5,6 @@ import LandingPage from "../../LandingPage";
 import Loading from "../../Loading/Loading";
 import AddResource from "../../Modals/ResourceModals/AddResource";
 import EditResource from "../../Modals/ResourceModals/EditResource";
-import SearchChart from "../../SearchChart";
 import BarChart from "../../SearchChart/BarChart";
 import PanelContainer from "../ReusableComponents/PanelConteiner";
 
@@ -18,7 +17,9 @@ const UsersSearch = () => {
     const [loading, setLoading] = useState('initial');
     const { setModalContent } = useModal();
     const dispatch = useDispatch();
-
+    const resourceList = Object.values(resources);
+    const recent = resourceList.slice(-10).reverse();
+console.log(recent)
 
     // useEffects
     useEffect(() => {
@@ -28,20 +29,21 @@ const UsersSearch = () => {
         }
     }, [resources, user]);
 
+
     // helper functions
     const filterResources = (searchTerm) => {
         return Object.values(resources).filter(resource =>
-           resource.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-           resource.keyWords.toLowerCase().includes(searchTerm.toLowerCase())
+            resource.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            resource.keyWords.toLowerCase().includes(searchTerm.toLowerCase())
         );
-     };
+    };
 
     // Action Functions
     const handleSearch = async (label) => {
         setLoading('loading');
         setResults(filterResources(label ? label : search))
         setLoading(false);
-     };
+    };
 
     const clearSearch = () => {
         setLoading('initial');
@@ -74,54 +76,84 @@ const UsersSearch = () => {
 
     return (
         <div className="profile-selected-section">
+
+
             <div className="search-search-bar">
-                <div className="page-title">
-                    <h1>Search</h1>
-                </div>
-                <div className="search-bar">
-                    <input
-                        type='text'
-                        value={search}
-                        onChange={(e) => setSearch(e.target.value)} >
-                    </input>
-                    <button onClick={handleSearch} disabled={!search} >Submit</button>
-                </div>
+                <PanelContainer title="Search for Resources Easily by Category" widthPx={600}  >
+                    <BarChart handleSearch={handleSearch} />
+                </PanelContainer>
+                <PanelContainer title={"Search for Resources"} widthPx={800}>
+                    {/* <div className="page-title">
+                            <h1>Search</h1>
+                        </div> */}
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "column",
+                    }}>
+                        <div className="search-bar">
+                            <input
+                                type='text'
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)} >
+                            </input>
+                            <button onClick={handleSearch} disabled={!search} >Submit</button>
+                        </div>
 
-                <div className="search-submit-clear-btns">
-                    <button className="standard-button" onClick={clearSearch}>Clear Search</button>
-                    <button className="standard-button" onClick={allResources}>All Resources</button>
-                    <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
-                    <button className="standard-button" onClick={userResources}>My Resources</button>
-                </div>
-            </div>
-            {loading === 'initial' ?
-
-                        <PanelContainer title="Resource Overview" subtitle="A quick viewof resources by category" >
-                                            {/* // <div className="sixty-width"> */}
-                    {/* <div className="search-chart-container"> */}
-                            
-                            <BarChart handleSearch={handleSearch}/>
-                        </PanelContainer>
-
-                :
-            loading === 'loading' ?
-                <div>
-                    <Loading resources={resources} />
-                </div> :
-                <div className="sixty-width">
-                    <div className="resource-links">
-                        {results.length ? results.map(resource => (
-                            <div key={resource.id} className="resource-search-results">
-                                <img src={resource.data?.image} className="link-image"/>
-                                <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name }</a>
-                                {resource?.userId === user?.id &&
-                                    <button onClick={() => handleEdit(resource.id)}>Edit</button>
-                                }
-                            </div>
-                        ))
-                    : <div>No resource found associated with the provided information</div>}
+                        <div className="search-submit-clear-btns">
+                            <button className="standard-button" onClick={clearSearch}>Clear Search</button>
+                            <button className="standard-button" onClick={allResources}>All Resources</button>
+                            <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
+                            <button className="standard-button" onClick={userResources}>My Resources</button>
+                        </div>
                     </div>
-                </div>}
+                </PanelContainer>
+            </div>
+
+            <PanelContainer widthPer={100}>
+                {loading === 'loading' &&
+                    <div>
+                        <Loading resources={resources} />
+                    </div>
+                }
+
+
+                {!loading &&
+
+                    <div className="sixty-width">
+                        <div className="resource-links">
+                            {results.length ? results.map(resource => (
+                                <div key={resource.id} className="resource-search-results">
+                                    <img src={resource.data?.image} className="link-image" />
+                                    <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
+                                    {resource?.userId === user?.id &&
+                                        <button onClick={() => handleEdit(resource.id)}>Edit</button>
+                                    }
+                                </div>
+                            ))
+                                : <div>No resource found associated with the provided information</div>}
+                        </div>
+                    </div>
+
+                }
+
+                {loading === 'initial' && (
+                    <div>
+                        <h3>Most Recently Added</h3>
+
+                        {recent.map((item, i) => (
+                            <div key={i}>
+                                                                <div key={item.id} className="item-search-results">
+                                    <img src={item.data?.image} className="link-image" />
+                                    <a href={`${item.url}`} target='_blank' rel='noreferrer'>{item?.data ? item.data.title : item.name}</a>
+                                    {item?.userId === user?.id &&
+                                        <button onClick={() => handleEdit(item.id)}>Edit</button>
+                                    }
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </PanelContainer>
         </div>
     )
 }

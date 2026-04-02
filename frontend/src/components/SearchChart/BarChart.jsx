@@ -36,9 +36,9 @@ const BarChart = ({ handleSearch }) => {
             }
         }
 
-        const width = 900;
-        const height = 500;
-        const margin = { top: 30, right: 30, bottom: 120, left: 60 };
+        const width = 1000;
+        const height = 700;
+        const margin = { top: 30, right: 30, bottom: 240, left: 80 };
 
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
@@ -60,16 +60,30 @@ const BarChart = ({ handleSearch }) => {
             .nice()
             .range([height - margin.bottom, margin.top]);
 
-        svg.append("g")
+        // X axis
+        const xAxis = svg.append("g")
             .attr("transform", `translate(0, ${height - margin.bottom})`)
             .call(d3.axisBottom(x))
-            .selectAll("text")
-            .attr("transform", "rotate(-35)")
-            .style("text-anchor", "end");
 
-        svg.append("g")
+        xAxis
+            .selectAll("text")
+            .attr("transform", "rotate(-55)")
+            .style("text-anchor", "end")
+            .style("font-size", "2rem");
+
+        // Y axis
+        const yAxis = svg.append("g")
             .attr("transform", `translate(${margin.left}, 0)`)
             .call(d3.axisLeft(y));
+
+        yAxis
+            .selectAll(".tick")
+            .filter((d, i) => i % 2 !== 0)
+            .remove();
+
+        yAxis
+            .selectAll("text")
+            .style("font-size", "2rem");
 
         svg.selectAll("rect")
             .data(data)

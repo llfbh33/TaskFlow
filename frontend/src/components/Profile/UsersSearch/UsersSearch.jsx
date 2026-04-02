@@ -7,6 +7,11 @@ import AddResource from "../../Modals/ResourceModals/AddResource";
 import EditResource from "../../Modals/ResourceModals/EditResource";
 import BarChart from "../../SearchChart/BarChart";
 import PanelContainer from "../ReusableComponents/PanelConteiner";
+import { MdOutlineRefresh } from "react-icons/md";
+import { BsReverseListColumnsReverse } from "react-icons/bs";
+import { PiUserList } from "react-icons/pi";
+import { IoMdAdd } from "react-icons/io";
+
 
 const UsersSearch = () => {
     const user = useSelector(state => state.session.user);
@@ -79,6 +84,8 @@ const UsersSearch = () => {
         <div className="main-container">
             <div className="child-container">
                 <div className="padding-container">
+
+
                     <div className="search-bar">
                         <input
                             type='text'
@@ -88,16 +95,18 @@ const UsersSearch = () => {
                         <button onClick={handleSearch} disabled={!search} >Submit</button>
                     </div>
 
-                    <div className="search-submit-clear-btns">
-                        <button className="standard-button" onClick={clearSearch}>Clear Search</button>
-                        <button className="standard-button" onClick={allResources}>All Resources</button>
-                        <button className="standard-button" onClick={handleAddResource}>Add Resource</button>
-                        <button className="standard-button" onClick={userResources}>My Resources</button>
+                    <div className="search-btn-container">
+                        <div className="btn-alignment">
+                            <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
+                            <button className="icon-button" onClick={allResources}><BsReverseListColumnsReverse /></button>
+                            <button className="icon-button" onClick={userResources}><PiUserList /></button>
+                            <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
+                        </div>
                     </div>
                 </div>
-            
 
-            {/* <div className="child-container flex-stretch"> */}
+
+                {/* <div className="child-container flex-stretch"> */}
                 <div className="padding-container flex-stretch">
                     {loading === 'loading' &&
                         <div>
@@ -143,7 +152,7 @@ const UsersSearch = () => {
                     )}
                 </div>
             </div>
-            
+
         </div>
     )
 }

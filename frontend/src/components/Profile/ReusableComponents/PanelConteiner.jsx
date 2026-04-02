@@ -11,7 +11,7 @@ export default function PanelContainer({ title, subtitle, widthPx, widthPer, chi
         <section
             style={{
                 width: `min(${computedWidth}, 92%)`,
-                padding: "28px",
+                padding: "20px",
                 borderRadius: "20px",
                 background: "white",
                 border: "1px solid rgba(0,0,0,0.08)",
@@ -48,7 +48,7 @@ export default function PanelContainer({ title, subtitle, widthPx, widthPer, chi
             <div
                 style={{
                     width: "100%",
-                    minHeight: "340px",
+                    minHeight: "400px",
                     borderRadius: "16px",
                     background: "rgba(0, 128, 0, 0.04)",
                     border: "1px solid rgba(0, 128, 0, 0.12)",
@@ -57,6 +57,7 @@ export default function PanelContainer({ title, subtitle, widthPx, widthPer, chi
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
+                    overflow: "hidden"
                 }}
             >
                 {children}

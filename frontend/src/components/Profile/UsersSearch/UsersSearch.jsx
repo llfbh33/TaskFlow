@@ -19,7 +19,7 @@ const UsersSearch = () => {
     const dispatch = useDispatch();
     const resourceList = Object.values(resources);
     const recent = resourceList.slice(-10).reverse();
-console.log(recent)
+    console.log(recent)
 
     // useEffects
     useEffect(() => {
@@ -40,6 +40,7 @@ console.log(recent)
 
     // Action Functions
     const handleSearch = async (label) => {
+        console.log(label)
         setLoading('loading');
         setResults(filterResources(label ? label : search))
         setLoading(false);
@@ -79,7 +80,7 @@ console.log(recent)
 
 
             <div className="search-search-bar">
-                <PanelContainer title="Search for Resources Easily by Category" widthPx={600}  >
+                <PanelContainer title="Search Resources by Category" widthPx={600}  >
                     <BarChart handleSearch={handleSearch} />
                 </PanelContainer>
                 <PanelContainer title={"Search for Resources"} widthPx={800}>
@@ -109,51 +110,53 @@ console.log(recent)
                 </PanelContainer>
             </div>
 
-            <PanelContainer widthPer={100}>
-                {loading === 'loading' &&
-                    <div>
-                        <Loading resources={resources} />
-                    </div>
-                }
-
-
-                {!loading &&
-
-                    <div className="sixty-width">
-                        <div className="resource-links">
-                            {results.length ? results.map(resource => (
-                                <div key={resource.id} className="resource-search-results">
-                                    <img src={resource.data?.image} className="link-image" />
-                                    <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
-                                    {resource?.userId === user?.id &&
-                                        <button onClick={() => handleEdit(resource.id)}>Edit</button>
-                                    }
-                                </div>
-                            ))
-                                : <div>No resource found associated with the provided information</div>}
+            <div className="resource-search-results">
+                <PanelContainer widthPer={100}>
+                    {loading === 'loading' &&
+                        <div>
+                            <Loading resources={resources} />
                         </div>
-                    </div>
+                    }
 
-                }
 
-                {loading === 'initial' && (
-                    <div>
-                        <h3>Most Recently Added</h3>
+                    {!loading &&
 
-                        {recent.map((item, i) => (
-                            <div key={i}>
-                                                                <div key={item.id} className="item-search-results">
-                                    <img src={item.data?.image} className="link-image" />
-                                    <a href={`${item.url}`} target='_blank' rel='noreferrer'>{item?.data ? item.data.title : item.name}</a>
-                                    {item?.userId === user?.id &&
-                                        <button onClick={() => handleEdit(item.id)}>Edit</button>
-                                    }
-                                </div>
+                        <div className="sixty-width">
+                            <div className="resource-links">
+                                {results.length ? results.map(resource => (
+                                    <div key={resource.id} className="resource-search-results">
+                                        <img src={resource.data?.image} className="link-image" />
+                                        <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
+                                        {resource?.userId === user?.id &&
+                                            <button onClick={() => handleEdit(resource.id)}>Edit</button>
+                                        }
+                                    </div>
+                                ))
+                                    : <div>No resource found associated with the provided information</div>}
                             </div>
-                        ))}
-                    </div>
-                )}
-            </PanelContainer>
+                        </div>
+
+                    }
+
+                    {loading === 'initial' && (
+                        <div>
+                            <h3>Most Recently Added</h3>
+
+                            {recent.map((item, i) => (
+                                <div key={i}>
+                                    <div key={item.id} className="item-search-results">
+                                        <img src={item.data?.image} className="link-image" />
+                                        <a href={`${item.url}`} target='_blank' rel='noreferrer'>{item?.data ? item.data.title : item.name}</a>
+                                        {item?.userId === user?.id &&
+                                            <button onClick={() => handleEdit(item.id)}>Edit</button>
+                                        }
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </PanelContainer>
+            </div>
         </div>
     )
 }

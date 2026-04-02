@@ -8,12 +8,12 @@ const BarChart = ({ handleSearch }) => {
 
     useEffect(() => {
         const data = [
-            { bar: "Coding Languages", value: 0 },
+            { bar: "Soft Skills", value: 0 },
             { bar: "System Design", value: 0 },
             { bar: "Frameworks", value: 0 },
             { bar: "Algorithms", value: 0 },
             { bar: "Version Control", value: 0 },
-            { bar: "Soft Skills", value: 0 },
+            { bar: "Coding Languages", value: 0 },
             { bar: "Debugging", value: 0 },
             { bar: "Career Strategy", value: 0 },
         ];
@@ -37,8 +37,8 @@ const BarChart = ({ handleSearch }) => {
         }
 
         const width = 1000;
-        const height = 700;
-        const margin = { top: 30, right: 30, bottom: 240, left: 80 };
+        const height = 800;
+        const margin = { top: 30, right: 30, bottom: 260, left: 80 };
 
         const svg = d3.select(svgRef.current);
         svg.selectAll("*").remove();
@@ -69,7 +69,26 @@ const BarChart = ({ handleSearch }) => {
             .selectAll("text")
             .attr("transform", "rotate(-55)")
             .style("text-anchor", "end")
-            .style("font-size", "2rem");
+            .attr("font-size", "3em")
+            .attr("cursor", "pointer")
+            .attr("transition", "all 0.3s ease;")
+            .on("mouseover", function () {
+                d3.select(this)
+                    .transition()
+                    .duration(200)
+                    .attr("fill", "blue")
+                    .attr("font-size", "3.5em");
+            })
+            .on("mouseout", function () {
+                d3.select(this)
+                    .transition()
+                    .duration(300)
+                    .attr("fill", "black")
+                    .attr("font-size", "3em");
+            })
+            .on("click", (event, d) => {
+                handleSearch(d);
+            });
 
         // Y axis
         const yAxis = svg.append("g")
@@ -84,6 +103,7 @@ const BarChart = ({ handleSearch }) => {
         yAxis
             .selectAll("text")
             .style("font-size", "2rem");
+
 
         svg.selectAll("rect")
             .data(data)

@@ -11,6 +11,8 @@ import { MdOutlineRefresh } from "react-icons/md";
 import { BsReverseListColumnsReverse } from "react-icons/bs";
 import { PiUserList } from "react-icons/pi";
 import { IoMdAdd } from "react-icons/io";
+import { MdDelete } from "react-icons/md";
+import { MdEdit } from "react-icons/md";
 
 
 const UsersSearch = () => {
@@ -24,7 +26,7 @@ const UsersSearch = () => {
     const dispatch = useDispatch();
     const resourceList = Object.values(resources);
     const recent = resourceList.slice(-10).reverse();
-    console.log(recent)
+    const [resultType, setResultType] = useState('Most Recently Added');
 
     // useEffects
     useEffect(() => {
@@ -49,10 +51,12 @@ const UsersSearch = () => {
         setLoading('loading');
         setResults(filterResources(label ? label : search))
         setLoading(false);
+        setResultType('Search Results')
     };
 
     const clearSearch = () => {
         setLoading('initial');
+        setResultType('Most Recently Added')
         setSearch('');
         setResults([]);
     }
@@ -63,10 +67,12 @@ const UsersSearch = () => {
         setSearch('')
         setResults(getResults);
         setLoading(false);
+        setResultType('All Resources');
     };
 
     const userResources = () => {
         setResults(myResources)
+        setResultType('My Resources');
     }
 
     const handleAddResource = () => {
@@ -105,52 +111,61 @@ const UsersSearch = () => {
                         </div>
                     </div>
                 </div>
+                <div style={{
+                    borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
+                }}></div>
 
 
                 {/* <div className="child-container flex-stretch"> */}
                 <div className="padding-container flex-stretch">
-                    {loading === 'loading' &&
-                        <div>
-                            <Loading resources={resources} />
-                        </div>
-                    }
-
-                    {!loading &&
-
-                        <div className="sixty-width">
-                            <div className="resource-links">
-                                {results.length ? results.map(resource => (
-                                    <div key={resource.id} className="resource-search-results">
-                                        <img src={resource.data?.image} className="link-image" />
-                                        <a href={`${resource.url}`} target='_blank' rel='noreferrer'>{resource?.data ? resource.data.title : resource.name}</a>
-                                        {resource?.userId === user?.id &&
-                                            <button onClick={() => handleEdit(resource.id)}>Edit</button>
-                                        }
-                                    </div>
-                                ))
-                                    : <div>No resource found associated with the provided information</div>}
+                    <section className="results-section">
+                        {loading === "loading" ? (
+                            <div className="results-loading">
+                                <Loading resources={resources} />
                             </div>
-                        </div>
-
-                    }
-
-                    {loading === 'initial' && (
-                        <div>
-                            <h3>Most Recently Added</h3>
-
-                            {recent.map((item, i) => (
-                                <div key={i}>
-                                    <div key={item.id} className="item-search-results">
-                                        <img src={item.data?.image} className="link-image" />
-                                        <a href={`${item.url}`} target='_blank' rel='noreferrer'>{item?.data ? item.data.title : item.name}</a>
-                                        {item?.userId === user?.id &&
-                                            <button onClick={() => handleEdit(item.id)}>Edit</button>
+                        ) : (
+                            <>
+                                <div className="results-header">
+                                        {loading !== "loading" &&
+                                            <h3>{resultType}</h3>
                                         }
-                                    </div>
                                 </div>
-                            ))}
-                        </div>
-                    )}
+
+                                <div className="results-list">
+                                    {(loading === "initial" ? recent : results).length ? (
+                                        (loading === "initial" ? recent : results).map((resource) => (
+                                            <div key={resource.id} className="result-item">
+                                                {/* <img
+                                                    src={resource.data?.image}
+                                                    className="link-image"
+                                                    alt=""
+                                                /> */}
+
+                                                <a
+                                                    href={resource.url}
+                                                    target="_blank"
+                                                    rel="noreferrer"
+                                                    className="result-link"
+                                                >
+                                                    {resource?.data ? resource.data.title : resource.name}
+                                                </a>
+
+                                                {resource?.userId === user?.id && (
+                                                    <button className="icon-button" onClick={() => handleEdit(resource.id)}>
+                                                        <MdEdit />
+                                                    </button>
+                                                )}
+                                            </div>
+                                        ))
+                                    ) : (
+                                        <div className="results-empty">
+                                            No resource found associated with the provided information
+                                        </div>
+                                    )}
+                                </div>
+                            </>
+                        )}
+                    </section>
                 </div>
             </div>
 

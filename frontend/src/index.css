@@ -49,7 +49,6 @@ body {
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
-    /* border-bottom: 1px solid rgba(210, 209, 209, 0.187); */
 }
 
 
@@ -140,6 +139,29 @@ body {
     display: flex;
     gap: 10px;
     margin: 0px 20px;
+}
+
+
+
+/* Search Results Styling */
+.results-section {
+    line-height: 2rem;
+}
+
+.result-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.result-link {
+    text-decoration: none;
+    color: #081a0b;
+}
+
+.result-link:hover {
+    color: #cbe989;
+    text-shadow: 0 0 6px rgba(122, 175, 139, 0.6);
 }
 
 

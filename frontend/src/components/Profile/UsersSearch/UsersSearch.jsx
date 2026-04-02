@@ -84,29 +84,26 @@ const UsersSearch = () => {
         <div className="main-container">
             <div className="child-container">
                 <div className="padding-container">
-        <h2 style={{
-            margin: "0px",
-            marginTop: "20px",
-        }}>Search Resources</h2>
-                <div className="search-container-one" >
-                    <div className="search-bar-one">
-                        <input
-                            type='text'
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)} >
-                        </input>
-                        
-                    </div>
-                    <button className="search-bar-one-button" onClick={handleSearch} disabled={!search} >Submit</button>
-                    <div className="search-btn-container">
-                        <div className="btn-alignment">
-                            <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
-                            <button className="icon-button" onClick={allResources}><BsReverseListColumnsReverse /></button>
-                            <button className="icon-button" onClick={userResources}><PiUserList /></button>
-                            <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
+                    <h2 className="search-title">Search Resources</h2>
+                    <div className="search-section" >
+                        <div className="search-input">
+                            <input
+                                type='text'
+                                value={search}
+                                onChange={(e) => setSearch(e.target.value)} >
+                            </input>
+
+                        </div>
+                        <button className="search-submit" onClick={handleSearch} disabled={!search} >Submit</button>
+                        <div className="search-actions">
+                            <div className="actions-alignment">
+                                <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
+                                <button className="icon-button" onClick={allResources}><BsReverseListColumnsReverse /></button>
+                                <button className="icon-button" onClick={userResources}><PiUserList /></button>
+                                <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
 
 

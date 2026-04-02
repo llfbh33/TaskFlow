@@ -84,17 +84,20 @@ const UsersSearch = () => {
         <div className="main-container">
             <div className="child-container">
                 <div className="padding-container">
-
-
-                    <div className="search-bar">
+        <h2 style={{
+            margin: "0px",
+            marginTop: "20px",
+        }}>Search Resources</h2>
+                <div className="search-container-one" >
+                    <div className="search-bar-one">
                         <input
                             type='text'
                             value={search}
                             onChange={(e) => setSearch(e.target.value)} >
                         </input>
-                        <button onClick={handleSearch} disabled={!search} >Submit</button>
+                        
                     </div>
-
+                    <button className="search-bar-one-button" onClick={handleSearch} disabled={!search} >Submit</button>
                     <div className="search-btn-container">
                         <div className="btn-alignment">
                             <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
@@ -103,6 +106,7 @@ const UsersSearch = () => {
                             <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
                         </div>
                     </div>
+                </div>
                 </div>
 
 

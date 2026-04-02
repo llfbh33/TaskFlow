@@ -56,17 +56,28 @@ body {
 
 
 /* Search Bar Styling */
-.search-bar {
+.search-container-one {
+    height: 80px;
+    margin: 0px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+}
+
+.search-bar-one {
     height: 40px;
-    margin: 20px;
+    width: 40%;
+    /* margin: 20px; */
     display: flex;
     align-items: center;
     border-radius: 12px;
     box-shadow: 0 8px 12px rgba(0,0,0,0.25);
     overflow: hidden;
+    /* border: 1px solid purple; */
 }
 
-.search-bar input {
+.search-bar-one input {
     flex: 1;
     height: 100%;
     font-size: 1.2rem;
@@ -76,31 +87,32 @@ body {
     padding-right: 10px;
 }
 
-.search-bar input:focus {
+.search-bar-one input:focus {
     outline: none;
 }
 
-.search-bar button {
-    height: 100%;
+.search-bar-one-button {
+    height: 40px;
     width: 120px;
     background-color: rgba(90, 219, 131, 0.787);
     cursor: pointer;
     color: rgb(36, 35, 35);
     border: none;
+    border-radius: 12px;;
     border-left: 2px solid rgba(0,0,0,0.2);
     transition: all 0.2s ease;
 }
 
 
-.search-bar button:hover:not(:disabled) {
+.search-bar-one-button:hover:not(:disabled) {
     background-color: rgba(122, 175, 139, 0.9);
 }
 
-.search-bar button:active:not(:disabled) {
+.search-bar-one-button:active:not(:disabled) {
     transform: scale(0.98);
 }
 
-.search-bar button:disabled {
+.search-bar-one-button:disabled {
     cursor: auto;
     background-color: rgba(90, 219, 131, 0.252);
 }
@@ -117,14 +129,15 @@ body {
 .search-btn-container {
     display: flex;
     gap: 10px;
-    justify-content: flex-end; 
+    /* justify-content: flex-end;  */
+    margin-left: auto;
 }
 
 .btn-alignment {
     display: flex;
     gap: 10px;
     margin: 0px 20px;
-    border-bottom: 1px solid rgba(210, 209, 209, 0.187);
+    /* border-bottom: 1px solid rgba(210, 209, 209, 0.187); */
 }
 
 

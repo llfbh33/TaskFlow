@@ -13,6 +13,7 @@ import { PiUserList } from "react-icons/pi";
 import { IoMdAdd } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
+import { LiaEllipsisVSolid } from "react-icons/lia";
 
 
 const UsersSearch = () => {
@@ -27,6 +28,7 @@ const UsersSearch = () => {
     const resourceList = Object.values(resources);
     const recent = resourceList.slice(-10).reverse();
     const [resultType, setResultType] = useState('Most Recently Added');
+    const [actionItem, setActionItem] = useState(null);
 
     // useEffects
     useEffect(() => {
@@ -85,6 +87,10 @@ const UsersSearch = () => {
         setModalContent(modalComponent)
     }
 
+    const handleDelete = (idx) => {
+        console.log('Not Yes Available');
+    }
+
 
     return (
         <div className="main-container">
@@ -126,9 +132,9 @@ const UsersSearch = () => {
                         ) : (
                             <>
                                 <div className="results-header">
-                                        {loading !== "loading" &&
-                                            <h3>{resultType}</h3>
-                                        }
+                                    {loading !== "loading" &&
+                                        <h3>{resultType}</h3>
+                                    }
                                 </div>
 
                                 <div className="results-list">
@@ -151,9 +157,18 @@ const UsersSearch = () => {
                                                 </a>
 
                                                 {resource?.userId === user?.id && (
-                                                    <button className="icon-button" onClick={() => handleEdit(resource.id)}>
-                                                        <MdEdit />
-                                                    </button>
+                                                    <div className="action-wrapper">
+                                                        <button className="icon-button" onClick={() => setActionItem(resource.id)}>
+                                                            <LiaEllipsisVSolid />
+                                                        </button>
+
+                                                        {actionItem === resource.id && (
+                                                            <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
+                                                                <button onClick={() => handleEdit(resource.id)}>Edit</button>
+                                                                <button onClick={() => handleDelete(resource.id)}>Delete</button>
+                                                            </div>
+                                                        )}
+                                                    </div>
                                                 )}
                                             </div>
                                         ))
@@ -168,7 +183,6 @@ const UsersSearch = () => {
                     </section>
                 </div>
             </div>
-
         </div>
     )
 }

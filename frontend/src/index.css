@@ -152,6 +152,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border-bottom: 1px solid rgba(255,255,255,0.03);
 }
 
 .result-link {
@@ -162,6 +163,45 @@ body {
 .result-link:hover {
     color: #cbe989;
     text-shadow: 0 0 6px rgba(122, 175, 139, 0.6);
+}
+
+.result-item button {
+    transition: all 0.2s ease;
+}
+
+.result-item button {
+    opacity: 0;
+}
+
+.result-item:hover button {
+    opacity: 1;
+}
+
+.action-wrapper {
+    position: relative;
+}
+
+.action-menu {
+    position: absolute;
+    top: 120%;
+    right: 0;
+
+    background: rgba(26, 29, 36, 0.95);
+    backdrop-filter: blur(6px);
+
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+
+    padding: 6px;
+    min-width: 100px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    z-index: 10;
 }
 
 

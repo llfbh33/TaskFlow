@@ -9,6 +9,7 @@ import UsersReflections from './components/Profile/UsersReflections/UsersReflect
 import SiteExplination from './components/Profile/SiteExplination/SiteExplination';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage/LoginPage';
+import SignUpPage from './components/SignUpPage/SignUpPage';
 
 const router = createBrowserRouter([
   {
@@ -49,6 +50,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element:  <LoginPage />
+      },
+      {
+        path: "/signup",
+        element: <SignUpPage />
       }
     ]
   }

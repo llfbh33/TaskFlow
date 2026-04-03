@@ -1,6 +1,25 @@
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import loadState from "../../utils/loadData";
+import * as sessionActions from '../../store/session';
+
 export default function LoginPage() {
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+
+    const demoLogin = () => {
+        dispatch(sessionActions.login({ credential: 'starter-aubrie', password: "password" }))
+            .then(() => {
+                loadState(dispatch);
+                setDropDown(true);
+                setHiddenMenu(true);
+                navigate('/calendar')
+            })
+    }
+
+
     return (
-<div
+        <div
             style={{
                 minHeight: "100vh",
                 width: "100%",
@@ -223,6 +242,7 @@ export default function LoginPage() {
                                     fontWeight: 600,
                                     cursor: "pointer",
                                 }}
+                                onClick={() => demoLogin()}
                             >
                                 Explore Demo
                             </button>
@@ -242,6 +262,7 @@ export default function LoginPage() {
                                     cursor: "pointer",
                                     fontWeight: 600,
                                 }}
+                                onClick={() => navigate('/signup')}
                             >
                                 Sign up
                             </span>

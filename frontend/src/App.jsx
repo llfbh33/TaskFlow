@@ -7,6 +7,7 @@ import UsersTasks from './components/Profile/UsersTasks/UsersTasks';
 import UsersQuestions from './components/Profile/UsersQuestions/UsersQuestions';
 import UsersReflections from './components/Profile/UsersReflections/UsersReflections';
 import SiteExplination from './components/Profile/SiteExplination/SiteExplination';
+import LandingPage from './components/LandingPage';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
+        element: <LandingPage />
+      },
+      {
+        path: '/search',
         element: <UsersSearch />
       },
       {

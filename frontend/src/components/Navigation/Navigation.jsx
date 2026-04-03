@@ -36,8 +36,8 @@ function Navigation({ isLoaded }) {
             return () => {
                 document.removeEventListener('mousedown', handleClickOutside);
             };
-            }
-        }, [hiddenMenu, setHiddenMenu]);
+        }
+    }, [hiddenMenu, setHiddenMenu]);
 
     // Function to handle logout of user
     const logout = (e) => {
@@ -58,8 +58,8 @@ function Navigation({ isLoaded }) {
         </div>
     ) : (
         <div className='login-signup-btn-container'>
-            <button className='login-signup-btns' onClick={() => setDropDown('login') }>Log In</button>
-            <button className='login-signup-btns' onClick={() => setDropDown('signup') }>Sign Up</button>
+            <button className='login-signup-btns' onClick={() => setDropDown('login')}>Log In</button>
+            <button className='login-signup-btns' onClick={() => setDropDown('signup')}>Sign Up</button>
         </div>
     );
 
@@ -78,17 +78,17 @@ function Navigation({ isLoaded }) {
                 </div>
                 <h1 className='nav-header'>{user ? `Hello ${user.name}` : 'Search'}</h1>
             </div>
-                            <div style={{
-                    zIndex: '100',
-                }}>
-                    {isLoaded && sessionLinks}
-                </div>
+            <div style={{
+                zIndex: '100',
+            }}>
+                {isLoaded && sessionLinks}
+            </div>
             <div>
                 <div className={`svg-container-nav1 ${dropDown !== 'login' ? 'hide' : 'show'}`}>
                     <svg id={'login-dropdown-svg'} height="450" width="500" xmlns="http://www.w3.org/2000/svg">
                         <circle r="440" cx="450" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="160" y="10" width="370" height="400">
-                            <LoginForm dropDown={dropDown} setDropDown={setDropDown} setHiddenMenu={setHiddenMenu}/>
+                            <LoginForm dropDown={dropDown} setDropDown={setDropDown} setHiddenMenu={setHiddenMenu} />
                         </foreignObject>
                     </svg>
                 </div>
@@ -96,16 +96,16 @@ function Navigation({ isLoaded }) {
                     <svg id={'signup-dropdown-svg'} height="632" width="600" xmlns="http://www.w3.org/2000/svg">
                         <circle r="560" cx="562" cy="70" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="255" y="10" width="370" height="620">
-                            <SignupForm dropDown={dropDown} setDropDown={setDropDown} setHiddenMenu={setHiddenMenu}/>
+                            <SignupForm dropDown={dropDown} setDropDown={setDropDown} setHiddenMenu={setHiddenMenu} />
                         </foreignObject>
                     </svg>
                 </div>
                 <div className={`svg-container-nav3 ${hiddenMenu ? 'hide' : 'show'}`} style={{ position: 'absolute', left: 0 }}>
-                    <svg id={'menu-dropdown-svg'}  height="452" width="352" xmlns="http://www.w3.org/2000/svg">
+                    <svg id={'menu-dropdown-svg'} height="452" width="352" xmlns="http://www.w3.org/2000/svg">
                         <circle r="450" cx="-100" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="40" y="30" width="170" height="620">
                             <div className='hamburger-dropdown'>
-                                <button onClick={() => handleNavigate('')} className='hamburger-btns'>Search</button>
+                                <button onClick={() => handleNavigate('search')} className='hamburger-btns'>Search</button>
                                 <button onClick={() => handleNavigate('calender')} className='hamburger-btns'>Calender</button>
                                 <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button>
                                 <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button>

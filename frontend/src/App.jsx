@@ -8,6 +8,7 @@ import UsersQuestions from './components/Profile/UsersQuestions/UsersQuestions';
 import UsersReflections from './components/Profile/UsersReflections/UsersReflections';
 import SiteExplination from './components/Profile/SiteExplination/SiteExplination';
 import LandingPage from './components/LandingPage';
+import LoginPage from './components/LoginPage/LoginPage';
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: "/information",
         element: <SiteExplination />
       },
+      {
+        path: "/login",
+        element:  <LoginPage />
+      }
     ]
   }
 ]);

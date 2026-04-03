@@ -1,16 +1,92 @@
-.resource-search-list-container {
-    background-color: orange;
-    min-height: 400px;
-    min-width: 800px;
-}
-
-.resource-search-results {
-    margin: 16px;
+.landing-main {
+    min-height: 100vh;
+    width: 100%;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 24px;
+    background: radial-gradient(circle at top, rgba(120,120,255,0.12), transparent 35%), linear-gradient(180deg, #0f1117 0%, #151925 100%);
+    color: white;
 }
 
-.link-image {
-    max-width: 100px;
-    border-radius: 3px;
+.landing-container {
+    width: 100%;
+    max-width: 1200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+}
+
+.landing-container h1 {
+    margin: 0;
+    font-size: clamp(2.5rem, 6vw, 4.8rem);
+    line-height: 1.1;
+    max-width: 850px;
+    font-weight: 700;
+}
+
+.mini-title {
+    margin: 0;
+    font-size: 0.9rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.7);
+}
+
+.landing-subtitle {
+    margin: 0;
+    max-width: 760px;
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.78);
+}
+
+.landing-btn-container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+.landing-btn-one,
+.landing-btn-two,
+.landing-btn-three {
+    padding: 14px 28px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.landing-btn-one {
+    background: linear-gradient(90deg, #7c8cff 0%, #5eead4 100%);
+    color: #0f1117;
+    box-shadow: 0 10px 30px rgba(92, 137, 255, 0.25);
+}
+
+.landing-btn-two {
+    background: rgba(255,255,255,0.05);
+    color: white;
+    backdrop-filter: blur(8px);
+}
+
+.preview-container {
+    margin-top: 36px;
+    width: 100%;
+    max-width: 950px;
+    min-height: 260px;
+    border-radius: 28px;
+    border: 1px solid rgba(255,255,255,0.12);
+    background: rgba(255,255,255,0.04);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.28);
+    backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,0.5);
+    font-size: 1rem;
 }

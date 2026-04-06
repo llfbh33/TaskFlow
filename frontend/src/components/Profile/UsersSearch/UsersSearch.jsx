@@ -95,7 +95,7 @@ const UsersSearch = () => {
     return (
         <div className="main-container">
             <div className="child-container">
-                <div className="padding-container">
+                <div className="padding-container-header">
                     <h2 className="search-title">Search Resources</h2>
                     <div className="search-section" >
                         <div className="search-input">

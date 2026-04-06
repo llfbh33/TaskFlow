@@ -15,6 +15,7 @@ import { HiBackward } from "react-icons/hi2";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { LiaEllipsisVSolid } from "react-icons/lia";
+import { FaListUl } from "react-icons/fa";
 
 
 
@@ -28,6 +29,7 @@ const UsersCalendar = () => {
     const { setModalContent } = useModal();
     const dateInputRef = useRef(null);
     const [actionItem, setActionItem] = useState(null);
+    const [unassigned, setUnassigned] = useState(false);
 
     const addATask = () => {
         const modalComponent = <CreateTask date={currDate} />
@@ -106,7 +108,7 @@ const UsersCalendar = () => {
     return (
         <div className="main-container">
             <div className="child-container">
-                <div className="padding-container">
+                <div className="padding-container-header">
                     <div className="search-section">
                         <h2 style={{
                             margin: "0px",
@@ -130,6 +132,7 @@ const UsersCalendar = () => {
                                 </button>
                                 <button className="icon-button" onClick={() => setCurrDate(new Date())}><IoIosReturnLeft /></button>
                                 <button className="icon-button" onClick={addATask}><IoMdAdd /></button>
+                                <button className="icon-button" onClick={() => setUnassigned(!unassigned)}><FaListUl /></button>
                             </div>
                         </div>
                     </div>
@@ -137,79 +140,124 @@ const UsersCalendar = () => {
                 <div style={{
                     borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
                 }}></div>
-                <div className="padding-container">
-                    <div className="cal-dates-flex">
-                        {/* <div
+                <div className="unassigned-task-opening">
+                    <div className="assigned-tasks">
+                        <div className="padding-container">
+                            <div className="cal-dates-flex">
+                                {/* <div
                             onClick={() => handleDateChange('prev')}
                             className="add-pointer-cursor highlight-underline date-transition"
                         >
                             {formatDate(currDate, 'prev')}
                         </div> */}
-                        <button
-                            className="icon-button"
-                            onClick={() => handleDateChange('prev')}
-                        >
-                            <HiBackward style={{ fontSize: '2rem' }} />
-                        </button>
-                        <div className="displayed-title">{formatDate(currDate)}</div>
-                        {/* <div
+                                <button
+                                    className="icon-button"
+                                    onClick={() => handleDateChange('prev')}
+                                >
+                                    <HiBackward style={{ fontSize: '2rem' }} />
+                                </button>
+                                <div className="displayed-title">{formatDate(currDate)}</div>
+                                {/* <div
                             onClick={() => handleDateChange('post')}
                             className="add-pointer-cursor highlight-underline date-transition"
                         >
                             {formatDate(currDate, 'post')}
                         </div> */}
-                        <button
-                            className="icon-button"
-                            onClick={() => handleDateChange('post')}
-                        >
-                            <IoPlayForward style={{ fontSize: '2rem' }} />
-                        </button>
-                    </div>
-                </div>
-                <div style={{
-                    borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
-                }}></div>
-
-                <div className="padding-container">
-                    <section className="results-section">
-                        {/* <div className=""> */}
-                        <div className="results-header" style={{marginLeft: "16px"}}>
-                            <h3>Tasks</h3>
+                                <button
+                                    className="icon-button"
+                                    onClick={() => handleDateChange('post')}
+                                >
+                                    <IoPlayForward style={{ fontSize: '2rem' }} />
+                                </button>
+                            </div>
                         </div>
+                        <div style={{
+                            borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
+                        }}></div>
 
-                        <div className="results-list">
-                            {currTasks && Object.values(currTasks).map(task => (
-                                <div key={task.id} className="result-item">
-                                    <div className="calender-search-results">
-                                        <div className="calender-check"
-                                            onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
-                                        >
-                                            {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
-                                        </div>
-                                        <span className={task.isComplete ? 'completed-task' :
-                                            !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
-                                                !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
-                                                    !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
-                                    </div>
-                                    <div className="action-wrapper">
-                                        <button className="icon-button" onClick={() => setActionItem(task.id)}>
-                                            <LiaEllipsisVSolid />
-                                        </button>
-
-                                        {actionItem === task.id && (
-                                            <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
-                                                <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                <button className="icon-button" onClick={() => handleDelete(task.id)}><MdDelete /></button>
-                                            </div>
-                                        )}
-                                    </div>
-                                    {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
+                        <div className="padding-container">
+                            <section className="results-section">
+                                {/* <div className=""> */}
+                                <div className="results-header" style={{ marginLeft: "16px" }}>
+                                    <h3>Tasks</h3>
                                 </div>
 
-                            ))}
+                                <div className="results-list">
+                                    {currTasks && Object.values(currTasks).map(task => (
+                                        <div key={task.id} className="result-item">
+                                            <div className="calender-search-results">
+                                                <div className="calender-check"
+                                                    onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                                >
+                                                    {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
+                                                </div>
+                                                <span className={task.isComplete ? 'completed-task' :
+                                                    !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
+                                                        !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
+                                                            !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                                            </div>
+                                            <div className="action-wrapper">
+                                                <button className="icon-button" onClick={() => setActionItem(task.id)}>
+                                                    <LiaEllipsisVSolid />
+                                                </button>
+
+                                                {actionItem === task.id && (
+                                                    <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
+                                                        <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
+                                                        <button className="icon-button" onClick={() => handleDelete(task.id)}><MdDelete /></button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
+                                        </div>
+
+                                    ))}
+                                </div>
+                                {/* </div> */}
+                            </section>
                         </div>
-                        {/* </div> */}
-                    </section>
+                    </div>
+                    {unassigned &&
+                        <div className="unassigned-tasks">
+                                                        <section className="results-section">
+                                {/* <div className=""> */}
+                                <div className="results-header" style={{ marginLeft: "16px" }}>
+                                    <h3>Unassigned Tasks</h3>
+                                </div>
+                                                            <div className="results-list">
+                                    {currTasks && Object.values(currTasks).map(task => (
+                                        <div key={task.id} className="result-item">
+                                            <div className="calender-search-results">
+                                                <div className="calender-check"
+                                                    onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                                >
+                                                    {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
+                                                </div>
+                                                <span className={task.isComplete ? 'completed-task' :
+                                                    !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
+                                                        !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
+                                                            !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                                            </div>
+                                            <div className="action-wrapper">
+                                                <button className="icon-button" onClick={() => setActionItem(task.id)}>
+                                                    <LiaEllipsisVSolid />
+                                                </button>
+
+                                                {actionItem === task.id && (
+                                                    <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
+                                                        <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
+                                                        <button className="icon-button" onClick={() => handleDelete(task.id)}><MdDelete /></button>
+                                                    </div>
+                                                )}
+                                            </div>
+                                            {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
+                                        </div>
+
+                                    ))}
+                                </div>
+                                </section>
+                        </div>
+                    }
                 </div>
             </div>
         </div>

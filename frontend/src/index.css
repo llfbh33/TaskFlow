@@ -35,6 +35,8 @@ body {
     max-width: 1000px;
     background-color: #1a1d24;
     display: flex;
+    flex: 1;
+    min-height: 0;
     flex-direction: column;
     background: linear-gradient(100deg,
             #6a885c 10%,
@@ -45,10 +47,18 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.679);
 }
 
-.padding-container {
+.padding-container-header {
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
+}
+
+.padding-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 20px 40px;
+    min-height: 0;
 }
 
 
@@ -272,4 +282,32 @@ h4 {
 
 .no-errors {
     color: var(--primary-color)
+}
+
+
+/* Calendar Styling */
+
+.unassigned-task-opening {
+    display: flex;
+    align-items: flex-start;
+    flex: 1;
+    /* min-height: 0; */
+    align-items: stretch;
+    /* flex-direction: row; */
+}
+
+.assigned-tasks {
+    flex: 1;
+    min-width: 0;
+}
+
+.unassigned-tasks {
+  width: 400px;
+  flex-shrink: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-y: auto;
+  border: 1px solid rgba(210, 209, 209, 0.187);
 }

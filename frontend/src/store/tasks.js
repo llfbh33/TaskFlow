@@ -68,7 +68,8 @@ export const CompleteTask = (task, complete) => async dispatch => {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-            isComplete: complete
+            isComplete: complete,
+            date: task.date
         })
     })
 

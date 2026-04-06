@@ -67,7 +67,7 @@ router.put('/complete/:taskId', userOwnsElement, async (req, res, next) => {
 
     foundTask.set({
         isComplete: true,
-        updatedAt: new Date().now
+        updatedAt: new Date().now,
     });
 
     await foundTask.validate();
@@ -103,7 +103,6 @@ router.put('/:taskId', userOwnsElement, async (req, res, next) => {
 // ==========>>> Delete a Task <<<<++++++++
 router.delete('/:taskId/delete', async (req, res, next) => {
     const { taskId } = req.params;
-    console.log('========>', taskId)
     const foundTask = await Task.findByPk(parseInt(taskId));
 
     await foundTask.destroy();

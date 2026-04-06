@@ -26,7 +26,9 @@ const UsersCalendar = () => {
     const [datedTasks, setDatedTasks] = useState('');
     const [currDate, setCurrDate] = useState(new Date());
     const [currTasks, setCurrTasks] = useState('');
-    const [datelessTasks, setDatelessTasks] = useState('');
+    const [unassignedTasks, setUnassignedTasks] = useState('');
+    const [completedTasks, setCompletedTasks] = useState('');
+    const [incompleteTasks, setIncompleteTasks] = useState('');
     const { setModalContent } = useModal();
     const dateInputRef = useRef(null);
     const [actionItem, setActionItem] = useState(null);
@@ -38,7 +40,7 @@ const UsersCalendar = () => {
         let dates = Object.values(usersTasks).filter(task => task.date);
         let unassigned = Object.values(usersTasks).filter(task => !task.date)
         setDatedTasks(dates);
-        setDatelessTasks(unassigned);
+        setUnassignedTasks(unassigned);
     }, [usersTasks])
 
     // Takes all tasks with dates and filters those to find all tasks associated with the current date
@@ -47,6 +49,14 @@ const UsersCalendar = () => {
         setCurrTasks(tasks);
         setLoaded(true)
     }, [datedTasks, currDate])
+
+    useEffect(() => {
+        let complete = Object.values(unassignedTasks).filter(task => task.isComplete);
+        let notComplete = Object.values(unassignedTasks).filter(task => !task.isComplete);
+
+        setCompletedTasks(complete);
+        setIncompleteTasks(notComplete);
+    }, [unassignedTasks])
 
 
 
@@ -103,8 +113,14 @@ const UsersCalendar = () => {
         await dispatch(deleteTasks(idx));
     }
 
-    const completeTask = async (task, str) => {
-        await dispatch(CompleteTask(task, str));
+    const completeTask = async (task, str, ua) => {
+        let updateTask = {...task};
+        if (ua) {
+            let newDate = new Date();
+            updateTask.date = newDate;
+        };
+        
+        await dispatch(CompleteTask(updateTask, str));
     }
 
     if (!loaded) {
@@ -213,19 +229,18 @@ const UsersCalendar = () => {
                     </div>
                     <div className={`unassigned-wrapper ${unassigned ? 'open' : 'closed'}`}>
                         <div className="unassigned-tasks">
-                            <section className="results-section">
+                            <section className="results-section" style={{ color: "rgb(214, 214, 214)", letterSpacing: "0.05rem" }}>
                                 {/* <div className=""> */}
                                 <div className="results-header" style={{ marginLeft: "16px" }}>
                                     <h3>Unassigned Tasks</h3>
                                 </div>
                                 <div className="results-list">
-                                    {datelessTasks && Object.values(datelessTasks).map(task => (
+                                    {incompleteTasks && Object.values(incompleteTasks).map(task => (
 
                                         <div key={task.id} className="result-item">
-                                            {console.log(task)}
                                             <div className="calender-search-results">
                                                 <div className="calender-check"
-                                                    onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                                    onClick={() => task.isComplete ? completeTask(task, 'false', 'true') : completeTask(task, 'true', 'true')}
                                                 >
                                                     {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
                                                 </div>

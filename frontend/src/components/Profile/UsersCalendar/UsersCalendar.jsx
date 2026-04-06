@@ -26,10 +26,29 @@ const UsersCalendar = () => {
     const [datedTasks, setDatedTasks] = useState('');
     const [currDate, setCurrDate] = useState(new Date());
     const [currTasks, setCurrTasks] = useState('');
+    const [datelessTasks, setDatelessTasks] = useState('');
     const { setModalContent } = useModal();
     const dateInputRef = useRef(null);
     const [actionItem, setActionItem] = useState(null);
     const [unassigned, setUnassigned] = useState(false);
+
+
+    // filters through the tasks a user has and only stores the ones which are set to a specific date to be completed
+    useEffect(() => {
+        let dates = Object.values(usersTasks).filter(task => task.date);
+        let unassigned = Object.values(usersTasks).filter(task => !task.date)
+        setDatedTasks(dates);
+        setDatelessTasks(unassigned);
+    }, [usersTasks])
+
+    // Takes all tasks with dates and filters those to find all tasks associated with the current date
+    useEffect(() => {
+        let tasks = Object.values(datedTasks).filter(task => compressDate(task.date) === compressDate(currDate));
+        setCurrTasks(tasks);
+        setLoaded(true)
+    }, [datedTasks, currDate])
+
+
 
     const addATask = () => {
         const modalComponent = <CreateTask date={currDate} />
@@ -54,19 +73,6 @@ const UsersCalendar = () => {
         const receDate = new Date(date);
         return parseInt(`${receDate.getFullYear()}${receDate.getMonth() + 1}${receDate.getDate()}`)
     }
-
-    // filters through the tasks a user has and only stores the ones which are set to a specific date to be completed
-    useEffect(() => {
-        let dates = Object.values(usersTasks).filter(task => task.date)
-        setDatedTasks(dates);
-    }, [usersTasks])
-
-    // Takes all tasks with dates and filters those to find all tasks associated with the current date
-    useEffect(() => {
-        let tasks = Object.values(datedTasks).filter(task => compressDate(task.date) === compressDate(currDate));
-        setCurrTasks(tasks);
-        setLoaded(true)
-    }, [datedTasks, currDate])
 
     // handles date display for the current previous and post dates
     const formatDate = (date, str) => {
@@ -144,12 +150,6 @@ const UsersCalendar = () => {
                     <div className="assigned-tasks">
                         <div className="padding-container">
                             <div className="cal-dates-flex">
-                                {/* <div
-                            onClick={() => handleDateChange('prev')}
-                            className="add-pointer-cursor highlight-underline date-transition"
-                        >
-                            {formatDate(currDate, 'prev')}
-                        </div> */}
                                 <button
                                     className="icon-button"
                                     onClick={() => handleDateChange('prev')}
@@ -157,12 +157,6 @@ const UsersCalendar = () => {
                                     <HiBackward style={{ fontSize: '2rem' }} />
                                 </button>
                                 <div className="displayed-title">{formatDate(currDate)}</div>
-                                {/* <div
-                            onClick={() => handleDateChange('post')}
-                            className="add-pointer-cursor highlight-underline date-transition"
-                        >
-                            {formatDate(currDate, 'post')}
-                        </div> */}
                                 <button
                                     className="icon-button"
                                     onClick={() => handleDateChange('post')}
@@ -217,16 +211,18 @@ const UsersCalendar = () => {
                             </section>
                         </div>
                     </div>
-                    {unassigned &&
+                    <div className={`unassigned-wrapper ${unassigned ? 'open' : 'closed'}`}>
                         <div className="unassigned-tasks">
-                                                        <section className="results-section">
+                            <section className="results-section">
                                 {/* <div className=""> */}
                                 <div className="results-header" style={{ marginLeft: "16px" }}>
                                     <h3>Unassigned Tasks</h3>
                                 </div>
-                                                            <div className="results-list">
-                                    {currTasks && Object.values(currTasks).map(task => (
+                                <div className="results-list">
+                                    {datelessTasks && Object.values(datelessTasks).map(task => (
+
                                         <div key={task.id} className="result-item">
+                                            {console.log(task)}
                                             <div className="calender-search-results">
                                                 <div className="calender-check"
                                                     onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
@@ -250,14 +246,12 @@ const UsersCalendar = () => {
                                                     </div>
                                                 )}
                                             </div>
-                                            {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
                                         </div>
-
                                     ))}
                                 </div>
-                                </section>
+                            </section>
                         </div>
-                    }
+                    </div>
                 </div>
             </div>
         </div>

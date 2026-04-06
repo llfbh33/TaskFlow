@@ -105,8 +105,8 @@ function Navigation({ isLoaded }) {
                         <circle r="450" cx="-100" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
                         <foreignObject x="40" y="30" width="170" height="620">
                             <div className='hamburger-dropdown'>
-                                <button onClick={() => handleNavigate('search')} className='hamburger-btns'>Search</button>
                                 <button onClick={() => handleNavigate('calendar')} className='hamburger-btns'>Calendar</button>
+                                <button onClick={() => handleNavigate('search')} className='hamburger-btns'>Search</button>
                                 <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button>
                                 <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button>
                                 <button onClick={() => handleNavigate('reflections')} className='hamburger-btns'>Reflections</button>

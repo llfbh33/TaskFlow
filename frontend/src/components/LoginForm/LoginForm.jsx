@@ -3,9 +3,11 @@ import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
 import '../Navigation/Navigation.css'
 import loadState from '../../utils/loadData';
+import { useNavigate } from 'react-router-dom';
 
 function LoginForm({dropDown, setDropDown, setHiddenMenu}) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const [credential, setCredential] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState({});
@@ -39,6 +41,7 @@ function LoginForm({dropDown, setDropDown, setHiddenMenu}) {
             loadState(dispatch);
             setDropDown(true);
             setHiddenMenu(true);
+            navigate('/calendar')
         })
     }
 

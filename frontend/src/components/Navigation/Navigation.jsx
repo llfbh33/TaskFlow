@@ -58,8 +58,8 @@ function Navigation({ isLoaded }) {
         </div>
     ) : (
         <div className='login-signup-btn-container'>
-            <button className='login-signup-btns' onClick={() => setDropDown('login')}>Log In</button>
-            <button className='login-signup-btns' onClick={() => setDropDown('signup')}>Sign Up</button>
+            <button className='landing-btn-three' onClick={() => setDropDown('signup')}>Sign Up</button>
+            <button className='landing-btn-two' onClick={() => setDropDown('login')}>Log In</button>
         </div>
     );
 
@@ -76,7 +76,7 @@ function Navigation({ isLoaded }) {
                 <div hidden={!user}>
                     <GiHamburgerMenu onClick={() => !hiddenMenu ? setHiddenMenu(true) : setHiddenMenu(false)} />
                 </div>
-                <h1 className='nav-header'>{user ? `Hello ${user.name}` : 'Search'}</h1>
+                <h1 className='nav-header'>{user ? `Hello ${user.name}` : 'Tracking App'}</h1>
             </div>
             <div style={{
                 zIndex: '100',

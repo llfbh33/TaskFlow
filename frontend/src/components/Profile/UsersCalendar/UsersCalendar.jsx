@@ -9,7 +9,7 @@ import { FaCircleNotch } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 
 
-const UsersCalender = () => {
+const UsersCalendar = () => {
     const usersTasks = useSelector(state => state.tasks);
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
@@ -147,4 +147,4 @@ const UsersCalender = () => {
     )
 }
 
-export default UsersCalender
+export default UsersCalendar

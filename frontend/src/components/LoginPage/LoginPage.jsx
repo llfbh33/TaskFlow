@@ -7,15 +7,14 @@ export default function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
+    
     const demoLogin = () => {
         dispatch(sessionActions.login({ credential: 'starter-aubrie', password: "password" }))
             .then(() => {
                 loadState(dispatch);
-                setDropDown(true);
-                setHiddenMenu(true);
                 navigate('/calendar')
             })
-    }
+    };
 
 
     return (

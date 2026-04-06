@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import UsersTasks from "./UsersTasks/UsersTasks";
 import UsersQuestions from "./UsersQuestions/UsersQuestions";
 import UsersReflections from "./UsersReflections/UsersReflections";
-import UsersCalender from "./UsersCalender/UsersCalender";
+import UsersCalender from "./UsersCalendar/UsersCalendar";
 import './Profile.css'
 import SiteExplination from "./SiteExplination/SiteExplination";
 

@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import { Modal, ModalProvider } from './context/Modal';
-import UsersCalender from './components/Profile/UsersCalender/UsersCalender';
+import UsersCalendar from './components/Profile/UsersCalendar/UsersCalendar';
 import UsersSearch from './components/Profile/UsersSearch/UsersSearch';
 import UsersTasks from './components/Profile/UsersTasks/UsersTasks';
 import UsersQuestions from './components/Profile/UsersQuestions/UsersQuestions';
@@ -28,8 +28,8 @@ const router = createBrowserRouter([
         element: <UsersSearch />
       },
       {
-        path: "/calender",
-        element: <UsersCalender />
+        path: "/calendar",
+        element: <UsersCalendar />
       },
       {
         path: "/tasks",

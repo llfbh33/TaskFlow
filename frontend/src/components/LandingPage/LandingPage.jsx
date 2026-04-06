@@ -22,7 +22,8 @@ export default function LandingPage() {
                         className="landing-btn-one"
                         onClick={() => navigate('/signup')}
                     >
-                        Get Started
+                        <span>Get Started</span>
+                        
                     </button>
 
                     <button 

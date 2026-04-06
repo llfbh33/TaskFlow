@@ -51,7 +51,7 @@ function Navigation({ isLoaded }) {
         <div className='login-signup-btn-container'>
             {/* <button className='login-signup-btns' onClick={() => alert('Feature Coming Soon')}>Profile</button> */}
             <button
-                className='login-signup-btns'
+                className='landing-btn-two'
                 onClick={logout}>
                 Log Out
             </button>
@@ -106,7 +106,7 @@ function Navigation({ isLoaded }) {
                         <foreignObject x="40" y="30" width="170" height="620">
                             <div className='hamburger-dropdown'>
                                 <button onClick={() => handleNavigate('search')} className='hamburger-btns'>Search</button>
-                                <button onClick={() => handleNavigate('calender')} className='hamburger-btns'>Calender</button>
+                                <button onClick={() => handleNavigate('calendar')} className='hamburger-btns'>Calendar</button>
                                 <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button>
                                 <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button>
                                 <button onClick={() => handleNavigate('reflections')} className='hamburger-btns'>Reflections</button>

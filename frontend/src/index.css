@@ -55,6 +55,7 @@ body {
 /* Search Bar Styling */
 .search-title {
     margin: 0px;
+    letter-spacing: 0.1rem;
     margin-top: 20px;
 }
 

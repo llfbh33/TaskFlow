@@ -51,7 +51,7 @@
     gap: 40px;
     height: 60px;
     width: 300px;
-    justify-content: space-around;
+    justify-content: flex-end;
     align-items: center;
     z-index: 1000;
     /* background-color: rgb(171, 232, 171); */

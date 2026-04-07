@@ -1,7 +1,51 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import * as sessionActions from '../../store/session';
+import { useState } from "react";
+import loadState from "../../utils/loadData";
 
 export default function SignUpPage() {
-    let navigate = useNavigate();
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
+    const [name, setName] = useState('')
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [errors, setErrors] = useState({});
+
+    console.log(errors)
+
+    const handleSignUp = async (e) => {
+        e.preventDefault();
+
+        if (password === confirmPassword) {
+            try {
+                await dispatch(sessionActions.signup({
+                    email,
+                    username,
+                    name,
+                    password
+                }));
+                await loadState(dispatch);
+
+                setEmail('');
+                setUsername('');
+                setName('');
+                setPassword('');
+                setConfirmPassword('');
+                setErrors({});
+                navigate('/calendar');
+            } catch (res) {
+                const data = await res.json();
+                if (data.errors) setErrors(data.errors)
+            };
+        } else {
+            return setErrors({
+                confirmPassword: "Confirm Password field must be the same as the Password field"
+            });
+        }
+    }
 
     return (
         <div
@@ -99,9 +143,12 @@ export default function SignUpPage() {
                             >
                                 Name
                             </label>
+
                             <input
                                 type="text"
                                 placeholder="Your name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
                                 style={{
                                     flex: 1,
                                     padding: "15px 18px",
@@ -113,6 +160,57 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
+
+                            {/* Error space (always reserved) */}
+                            <div style={{ minHeight: "12px" }}>
+                                {errors.name && (
+                                    <span style={{
+                                        color: "#ff6b6b",
+                                        fontSize: "0.8rem",
+                                        marginLeft: "10px"
+                                    }}>
+                                        {errors.name}
+                                    </span>
+                                )}
+                            </div>
+                        </div>
+
+                        <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+                            <label
+                                style={{
+                                    fontSize: "0.95rem",
+                                    color: "rgba(255,255,255,0.82)",
+                                }}
+                            >
+                                Username
+                            </label>
+                            <input
+                                type="username"
+                                placeholder="Your username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                style={{
+                                    flex: 1,
+                                    padding: "15px 18px",
+                                    borderRadius: "16px",
+                                    border: "1px solid rgba(255,255,255,0.14)",
+                                    background: "rgba(255,255,255,0.05)",
+                                    color: "white",
+                                    fontSize: "1rem",
+                                    outline: "none",
+                                }}
+                            />
+                            <div style={{ minHeight: "12px" }}>
+                                {errors.username && (
+                                    <span style={{
+                                        color: "#ff6b6b",
+                                        fontSize: "0.8rem",
+                                        marginLeft: "10px",
+                                    }}>
+                                        {errors.username}
+                                    </span>
+                                )}
+                            </div>
                         </div>
 
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -127,6 +225,8 @@ export default function SignUpPage() {
                             <input
                                 type="email"
                                 placeholder="you@example.com"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
                                 style={{
                                     flex: 1,
                                     padding: "15px 18px",
@@ -138,6 +238,17 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
+                            <div style={{ minHeight: "12px" }}>
+                                {errors.email && (
+                                    <span style={{
+                                        color: "#ff6b6b",
+                                        fontSize: "0.8rem",
+                                        marginLeft: "10px",
+                                    }}>
+                                        {errors.email}
+                                    </span>
+                                )}
+                            </div>
                         </div>
 
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -152,6 +263,8 @@ export default function SignUpPage() {
                             <input
                                 type="password"
                                 placeholder="Create a password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 style={{
                                     flex: 1,
                                     padding: "15px 18px",
@@ -163,6 +276,17 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
+                            <div style={{ minHeight: "12px" }}>
+                                {errors.password || errors.confirmPassword && (
+                                    <span style={{
+                                        color: "#ff6b6b",
+                                        fontSize: "0.8rem",
+                                        marginLeft: "10px",
+                                    }}>
+                                        {errors.password || errors.confirmPassword}
+                                    </span>
+                                )}
+                            </div>
                         </div>
 
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -177,6 +301,8 @@ export default function SignUpPage() {
                             <input
                                 type="password"
                                 placeholder="Confirm your password"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
                                 style={{
                                     flex: 1,
                                     padding: "15px 18px",
@@ -188,10 +314,22 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
+                            <div style={{ minHeight: "12px" }}>
+                                {errors.confirmPassword && (
+                                    <span style={{
+                                        color: "#ff6b6b",
+                                        fontSize: "0.8rem",
+                                        marginLeft: "10px",
+                                    }}>
+                                        {errors.confirmPassword}
+                                    </span>
+                                )}
+                            </div>
                         </div>
 
                         <button
                             type="submit"
+                            onClick={handleSignUp}
                             style={{
                                 marginTop: "8px",
                                 padding: "15px 22px",
@@ -209,7 +347,7 @@ export default function SignUpPage() {
                             Create Account
                         </button>
 
-                        <div
+                        {/* <div
                             style={{
                                 display: "flex",
                                 alignItems: "center",
@@ -255,7 +393,7 @@ export default function SignUpPage() {
                             }}
                         >
                             Continue with Google
-                        </button>
+                        </button> */}
 
                         <p
                             style={{

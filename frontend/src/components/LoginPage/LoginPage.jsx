@@ -37,6 +37,7 @@ export default function LoginPage() {
 
             setCredential('');
             setPassword('');
+            setErrors({});
             navigate('/calendar');
         } catch (res) {
             const data = await res.json();
@@ -143,7 +144,7 @@ export default function LoginPage() {
                             </label>
                             <input
                                 type="text"
-                                placeholder="Star-648"
+                                placeholder="Your username"
                                 value={credential}
                                 onChange={(e) => setCredential(e.target.value)}
                                 style={{

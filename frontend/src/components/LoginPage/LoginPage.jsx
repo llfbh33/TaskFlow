@@ -1,4 +1,5 @@
-import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { redirect, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import loadState from "../../utils/loadData";
 import * as sessionActions from '../../store/session';
@@ -6,15 +7,42 @@ import * as sessionActions from '../../store/session';
 export default function LoginPage() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [errors, setErrors] = useState({});
+    const [credential, setCredential] = useState('');
+    const [password, setPassword] = useState('');
+    console.log(errors)
 
-    
-    const demoLogin = () => {
-        dispatch(sessionActions.login({ credential: 'starter-aubrie', password: "password" }))
-            .then(() => {
-                loadState(dispatch);
-                navigate('/calendar')
-            })
+    // Login Load State for Demo User
+    const demoLogin = async () => {
+        await dispatch(sessionActions.login({ 
+            credential: 'starter-aubrie', 
+            password: "password" 
+        }));
+   
+        await loadState(dispatch);
+        navigate('/calendar')
     };
+
+    // Login Load State for Verified User with Validation
+    const handleLogin = async (e) => {
+        e.preventDefault();
+        setErrors({});
+        
+        try {
+            await dispatch(sessionActions.login({ 
+                credential, 
+                password 
+            }));
+            await loadState(dispatch);
+
+            setCredential('');
+            setPassword('');
+            navigate('/calendar');
+        } catch (res) {
+            const data = await res.json();
+            if (data.errors) setErrors(data.errors);
+        }   
+    }
 
 
     return (
@@ -101,7 +129,7 @@ export default function LoginPage() {
                             flexDirection: "column",
                             gap: "18px",
                             width: "100%",
-                            maxWidth: "460px",
+                            // maxWidth: "460px",
                         }}
                     >
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
@@ -111,13 +139,15 @@ export default function LoginPage() {
                                     color: "rgba(255,255,255,0.82)",
                                 }}
                             >
-                                Email
+                                Username
                             </label>
                             <input
-                                type="email"
-                                placeholder="you@example.com"
+                                type="text"
+                                placeholder="Star-648"
+                                value={credential}
+                                onChange={(e) => setCredential(e.target.value)}
                                 style={{
-                                    width: "100%",
+                                    flex: 1,
                                     padding: "15px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
@@ -141,8 +171,10 @@ export default function LoginPage() {
                             <input
                                 type="password"
                                 placeholder="Enter your password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
                                 style={{
-                                    width: "100%",
+                                    flex: 1,
                                     padding: "15px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
@@ -153,9 +185,22 @@ export default function LoginPage() {
                                 }}
                             />
                         </div>
+                        
+                            <div style={{
+                                color: errors.credential ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                textAlign: "center",
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                Incorrect username or password
+                            </div>
+                        
 
                         <button
                             type="submit"
+                            onClick={handleLogin}
                             style={{
                                 marginTop: "8px",
                                 padding: "15px 22px",
@@ -212,7 +257,7 @@ export default function LoginPage() {
                                 gap: "12px",
                             }}
                         >
-                            <button
+                            {/* <button
                                 type="button"
                                 style={{
                                     padding: "15px 20px",
@@ -227,7 +272,7 @@ export default function LoginPage() {
                                 }}
                             >
                                 Continue with Google
-                            </button>
+                            </button> */}
 
                             <button
                                 type="button"

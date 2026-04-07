@@ -103,7 +103,7 @@ export default function SignUpPage() {
                                 type="text"
                                 placeholder="Your name"
                                 style={{
-                                    width: "100%",
+                                    flex: 1,
                                     padding: "15px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
@@ -128,7 +128,7 @@ export default function SignUpPage() {
                                 type="email"
                                 placeholder="you@example.com"
                                 style={{
-                                    width: "100%",
+                                    flex: 1,
                                     padding: "15px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
@@ -153,7 +153,7 @@ export default function SignUpPage() {
                                 type="password"
                                 placeholder="Create a password"
                                 style={{
-                                    width: "100%",
+                                    flex: 1,
                                     padding: "15px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
@@ -178,7 +178,7 @@ export default function SignUpPage() {
                                 type="password"
                                 placeholder="Confirm your password"
                                 style={{
-                                    width: "100%",
+                                    flex: 1,
                                     padding: "15px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",

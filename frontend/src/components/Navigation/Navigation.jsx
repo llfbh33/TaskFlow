@@ -107,10 +107,10 @@ function Navigation({ isLoaded }) {
                             <div className='hamburger-dropdown'>
                                 <button onClick={() => handleNavigate('calendar')} className='hamburger-btns'>Calendar</button>
                                 <button onClick={() => handleNavigate('search')} className='hamburger-btns'>Search</button>
-                                <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button>
-                                <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button>
+                                {/* <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button> */}
+                                {/* <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button> */}
                                 <button onClick={() => handleNavigate('reflections')} className='hamburger-btns'>Reflections</button>
-                                <button onClick={() => handleNavigate('information')} className='hamburger-btns'>Information</button>
+                                {/* <button onClick={() => handleNavigate('information')} className='hamburger-btns'>Information</button> */}
                             </div>
                         </foreignObject>
                     </svg>

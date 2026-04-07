@@ -49,9 +49,11 @@ const UsersSearch = () => {
 
     // Action Functions
     const handleSearch = async (label) => {
-        console.log(label)
+        // console.log(label)
         setLoading('loading');
-        setResults(filterResources(label ? label : search))
+        // this is for the chart, not needed atm, does not work properly
+        // setResults(filterResources(label ? label : search))
+        setResults(filterResources(search))
         setLoading(false);
         setResultType('Search Results')
     };

@@ -19,11 +19,10 @@ export default function LandingPage() {
 
                 <div className="landing-btn-container">
                     <button 
-                        className="landing-btn-one"
+                        className="form-button"
                         onClick={() => navigate('/signup')}
                     >
-                        <span>Get Started</span>
-                        
+                        Get Started 
                     </button>
 
                     <button 

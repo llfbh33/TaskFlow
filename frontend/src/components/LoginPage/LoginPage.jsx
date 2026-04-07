@@ -202,19 +202,7 @@ export default function LoginPage() {
                         <button
                             type="submit"
                             onClick={handleLogin}
-                            style={{
-                                marginTop: "8px",
-                                padding: "15px 22px",
-                                borderRadius: "999px",
-                                border: "none",
-                                cursor: "pointer",
-                                fontSize: "1rem",
-                                fontWeight: 600,
-                                color: "#0d1017",
-                                background:
-                                    "linear-gradient(90deg, #7c8cff 0%, #5eead4 100%)",
-                                boxShadow: "0 12px 30px rgba(124,140,255,0.25)",
-                            }}
+                            className="form-button"
                         >
                             Log In
                         </button>
@@ -277,16 +265,7 @@ export default function LoginPage() {
 
                             <button
                                 type="button"
-                                style={{
-                                    padding: "15px 20px",
-                                    borderRadius: "999px",
-                                    border: "1px solid rgba(124,140,255,0.25)",
-                                    background: "rgba(124,140,255,0.10)",
-                                    color: "white",
-                                    fontSize: "1rem",
-                                    fontWeight: 600,
-                                    cursor: "pointer",
-                                }}
+                                className="demo"
                                 onClick={() => demoLogin()}
                             >
                                 Explore Demo
@@ -302,11 +281,7 @@ export default function LoginPage() {
                         >
                             Don&apos;t have an account?{" "}
                             <span
-                                style={{
-                                    color: "#aab6ff",
-                                    cursor: "pointer",
-                                    fontWeight: 600,
-                                }}
+                                className="swap-page"
                                 onClick={() => navigate('/signup')}
                             >
                                 Sign up

@@ -51,55 +51,49 @@
     margin-top: 8px;
 }
 
-.landing-btn-one,
+.form-button,
 .landing-btn-two,
 .landing-btn-three {
-    padding: 14px 28px;
+    padding: 15px 20px;
     border-radius: 999px;
     border: none;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
+    transform: translateY(0);
+    box-shadow: 0 8px 16px rgba(40, 40, 40, 0.3);
+    transition: all 0.2s ease;
 }
 
-.landing-btn-one {
-    background: linear-gradient(90deg, #7c8cff 0%, #5eead4 100%);
+.form-button {
+    background: linear-gradient(70deg, #7c8cff 0%, #5eead4 100%);
     color: #0f1117;
-    box-shadow: 0 10px 30px rgba(92, 137, 255, 0.25);
 }
 
-.landing-btn-one {
-    position: relative;
-    overflow: hidden;
-    transition: color 1 ease;
+.form-button:hover {
+    transform: translateY(-2px);
+    background: linear-gradient(120deg, #5eead4 0%, #7c8cff 100%);
 }
 
-.landing-btn-one::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(135deg, #6366f1, #34d399);
-    /* or whatever color */
-    transform: scale(0);
-    transform-origin: left;
-    transition: transform 1s ease;
-    border-radius: inherit;
-    z-index: 0;
-}
-
-.landing-btn-one:hover::before {
-    transform: scale(2);
-}
-
-.landing-btn-one span {
-    position: relative;
-    z-index: 1;
-}
 
 .landing-btn-two {
     background: rgba(255, 255, 255, 0.05);
     color: white;
     backdrop-filter: blur(8px);
+}
+
+.landing-btn-two:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.08);
+}
+
+.landing-btn-three {
+    background: rgba(255, 255, 255, 0.716);
+}
+
+.landing-btn-three:hover {
+  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.824);
 }
 
 .preview-container {

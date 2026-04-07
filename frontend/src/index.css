@@ -166,7 +166,7 @@ body {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    border-bottom: 1px solid rgba(255,255,255,0.03);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
 .result-link {
@@ -206,13 +206,13 @@ body {
     background: rgba(26, 29, 36, 0.446);
     backdrop-filter: blur(6px);
 
-    border: 1px solid rgba(255,255,255,0.08);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     border-radius: 8px;
 
     padding: 6px;
     min-width: 60px;
 
-    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
 
     display: flex;
     flex-direction: row;
@@ -223,6 +223,37 @@ body {
     z-index: 10;
 }
 
+
+/* Shared on small swap button */
+.swap-page {
+    color: #8696fb;
+    cursor: pointer;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.swap-page:hover {
+    color: #aab6ff;
+}
+
+.demo {
+    padding: 15px 20px;
+    border-radius: 999px;
+    border: 1px solid rgba(124, 140, 255, 0.25);
+    background: rgba(124, 140, 255, 0.10);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transform: translateY(0);
+    box-shadow: 0 8px 16px rgba(40, 40, 40, 0.3);
+    transition: all 0.2s ease;
+}
+
+.demo:hover {
+      transform: translateY(-2px);
+  background: rgba(93, 113, 184, 0.245);
+}
 
 /*-----------*/
 
@@ -302,34 +333,34 @@ h4 {
 }
 
 .unassigned-wrapper {
-  width: 400px;
-  flex-shrink: 0;
-  min-height: 0;
-  overflow: hidden;
-  transition: width 0.3s ease;
+    width: 400px;
+    flex-shrink: 0;
+    min-height: 0;
+    overflow: hidden;
+    transition: width 0.3s ease;
 }
 
 .unassigned-wrapper.closed {
-  width: 0;
+    width: 0;
 }
 
 .unassigned-tasks {
-  width: 400px;
-  height: 100%;
-  min-height: 0;
+    width: 400px;
+    height: 100%;
+    min-height: 0;
 
-  display: flex;
-  flex-direction: column;
-  overflow-y: auto;
-  border-left: 1px solid rgba(210, 209, 209, 0.187);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    border-left: 1px solid rgba(210, 209, 209, 0.187);
 
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  transform: translateX(0);
-  opacity: 1;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    transform: translateX(0);
+    opacity: 1;
 }
 
 .unassigned-wrapper.closed .unassigned-tasks {
-  transform: translateX(100%);
-  opacity: 0;
-  pointer-events: none;
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
 }

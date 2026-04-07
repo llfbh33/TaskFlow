@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useState } from "react";
 import loadState from "../../utils/loadData";
+import "./signupPage.css";
 
 export default function SignUpPage() {
     const navigate = useNavigate();
@@ -13,8 +14,8 @@ export default function SignUpPage() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({});
+    const [disabled, setDisabled] = useState(false);
 
-    console.log(errors)
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -41,10 +42,11 @@ export default function SignUpPage() {
                 if (data.errors) setErrors(data.errors)
             };
         } else {
-            return setErrors({
-                confirmPassword: "Confirm Password field must be the same as the Password field"
-            });
-        }
+            let editErrors = {...errors};
+            editErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
+
+            return setErrors(editErrors);
+        };
     }
 
     return (
@@ -277,7 +279,7 @@ export default function SignUpPage() {
                                 }}
                             />
                             <div style={{ minHeight: "12px" }}>
-                                {errors.password || errors.confirmPassword && (
+                                {(errors.password || errors.confirmPassword) && (
                                     <span style={{
                                         color: "#ff6b6b",
                                         fontSize: "0.8rem",
@@ -330,19 +332,16 @@ export default function SignUpPage() {
                         <button
                             type="submit"
                             onClick={handleSignUp}
-                            style={{
-                                marginTop: "8px",
-                                padding: "15px 22px",
-                                borderRadius: "999px",
-                                border: "none",
-                                cursor: "pointer",
-                                fontSize: "1rem",
-                                fontWeight: 600,
-                                color: "#0d1017",
-                                background:
-                                    "linear-gradient(90deg, #7c8cff 0%, #5eead4 100%)",
-                                boxShadow: "0 12px 30px rgba(124,140,255,0.25)",
-                            }}
+                            className="form-button"
+                            // className={
+                            //     !name 
+                            //     || !email
+                            //     || !username
+                            //     || !password
+                            //     || confirmPassword !== password
+                            //     ? "signup-form-button-disabled"
+                            //     : "signup-form-button"
+                            // }
                         >
                             Create Account
                         </button>
@@ -404,11 +403,7 @@ export default function SignUpPage() {
                         >
                             Already have an account?{" "}
                             <span
-                                style={{
-                                    color: "#aab6ff",
-                                    cursor: "pointer",
-                                    fontWeight: 600,
-                                }}
+                                className="swap-page"
                                 onClick={() => navigate('/login')}
                             >
                                 Log in

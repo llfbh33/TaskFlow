@@ -8,6 +8,7 @@ import DOMPurify from 'dompurify';
 import { compressDate, formatDate } from "../../../utils/DateFormating";
 import { format, addDays, subDays } from 'date-fns';
 import { GoTrash } from "react-icons/go";
+import DeleteTask from "../../Modals/TasksModals/DeleteTask";
 
 const UsersTasks = () => {
     const allTasks = useSelector(state => state.tasks);
@@ -48,14 +49,20 @@ const UsersTasks = () => {
         // await setLoading(false)
     // }
 
-    const handleDeleteTask = async (idx) => {
-        await dispatch(deleteTasks(idx));
+    const deleteATask = (task) => {
+        const modalComponent = <DeleteTask />
+        setModalContent=(modalComponent);
     }
+    // const handleDeleteTask = async (idx) => {
+    //     await dispatch(deleteTasks(idx));
+    // }
 
     const addATask = () => {
         const modalComponent = <CreateTask />
         setModalContent(modalComponent);
     }
+
+
 
     const checkYellowTime = (date) => {
         let taskDate = new Date(date);
@@ -82,7 +89,7 @@ const UsersTasks = () => {
                             <input onClick={() => task.isComplete ? handleCompleteTask(task, 'false') : handleCompleteTask(task, 'true')} type='checkbox'></input>
                             <span className={checkYellowTime(task.createdAt) ? 'uncompleted-task' : '' }>{task.task}{task.createdAt}</span>
                         </div>
-                        <button className='delete-button-calender' onClick={() => handleDeleteTask(task.id)}><div><GoTrash /></div></button>
+                        <button className='delete-button-calender' onClick={() => deleteATask(task)}><div><GoTrash /></div></button>
                     </div>
                 )) : <Loading />}
             </div>

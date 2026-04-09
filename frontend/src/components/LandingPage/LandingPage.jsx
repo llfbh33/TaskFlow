@@ -1,8 +1,15 @@
 import './LandingPage.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+
 
 export default function LandingPage() {
+    const user = useSelector((state) => state.session.user);
     let navigate = useNavigate();
+
+    if (user) {
+        return <Navigate to="/calendar" replace />
+    };
 
 
     return (

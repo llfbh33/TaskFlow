@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from 'react-redux';
+import { useNavigate, Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useState } from "react";
 import loadState from "../../utils/loadData";
 import "./signupPage.css";
 
 export default function SignUpPage() {
+    const user = useSelector((state) => state.session.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [email, setEmail] = useState('');
@@ -42,12 +43,17 @@ export default function SignUpPage() {
                 if (data.errors) setErrors(data.errors)
             };
         } else {
-            let editErrors = {...errors};
+            let editErrors = { ...errors };
             editErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
 
             return setErrors(editErrors);
         };
     }
+
+
+    if (user) {
+        return <Navigate to="/calendar" replace />
+    };
 
     return (
         <div
@@ -333,15 +339,15 @@ export default function SignUpPage() {
                             type="submit"
                             onClick={handleSignUp}
                             className="form-button"
-                            // className={
-                            //     !name 
-                            //     || !email
-                            //     || !username
-                            //     || !password
-                            //     || confirmPassword !== password
-                            //     ? "signup-form-button-disabled"
-                            //     : "signup-form-button"
-                            // }
+                        // className={
+                        //     !name 
+                        //     || !email
+                        //     || !username
+                        //     || !password
+                        //     || confirmPassword !== password
+                        //     ? "signup-form-button-disabled"
+                        //     : "signup-form-button"
+                        // }
                         >
                             Create Account
                         </button>

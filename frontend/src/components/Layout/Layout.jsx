@@ -33,7 +33,7 @@ const Layout = () => {
 
           <Navigation isLoaded={isLoaded} />
           <Footer />
-          {isLoaded && <Outlet user={user}/>}
+          {isLoaded && <Outlet />}
           {/* <Footer /> */}
 
       </div>

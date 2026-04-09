@@ -10,52 +10,29 @@ import SiteExplination from './components/Profile/SiteExplination/SiteExplinatio
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import SignUpPage from './components/SignUpPage/SignUpPage';
+import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
-    element: (
-        <>
-            <Layout />
-        </>
-      ),
+    element: <Layout />,
     children: [
+      { path: '/', element: <LandingPage /> },
+      { path: "/login", element: <LoginPage /> },
+      { path: "/signup", element: <SignUpPage /> },
+
       {
-        path: '/',
-        element: <LandingPage />
-      },
-      {
-        path: '/search',
-        element: <UsersSearch />
-      },
-      {
-        path: "/calendar",
-        element: <UsersCalendar />
-      },
-      {
-        path: "/tasks",
-        element: <UsersTasks />
-      },
-      {
-        path: "/questions",
-        element: <UsersQuestions />
-      },
-      {
-        path: "/reflections",
-        element: <UsersReflections />
-      },
-      {
-        path: "/information",
-        element: <SiteExplination />
-      },
-      {
-        path: "/login",
-        element:  <LoginPage />
-      },
-      {
-        path: "/signup",
-        element: <SignUpPage />
+        element: <ProtectedRoute />,
+        children: [
+          { path: "/calendar", element: <UsersCalendar /> },
+          { path: '/search', element: <UsersSearch /> },
+          { path: "/reflections", element: <UsersReflections /> },
+          // { path: "/tasks", element: <UsersTasks /> },
+          // { path: "/questions", element: <UsersQuestions /> },
+          // { path: "/information", element: <SiteExplination /> },
+        ]
       }
     ]
+
   }
 ]);
 
@@ -64,12 +41,12 @@ const router = createBrowserRouter([
 
 
 // the App commponent provides the router Provider to the site as well as
-  // the modal provider
+// the modal provider
 function App() {
   return (
     <ModalProvider>
-        <RouterProvider router={router} />
-        <Modal />
+      <RouterProvider router={router} />
+      <Modal />
     </ModalProvider>
   );
 }

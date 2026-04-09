@@ -1,16 +1,18 @@
 import { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import loadState from "../../utils/loadData";
 import * as sessionActions from '../../store/session';
 
 export default function LoginPage() {
+    const user = useSelector((state) => state.session.user);
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [errors, setErrors] = useState({});
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
-    console.log(errors)
+    
 
     // Login Load State for Demo User
     const demoLogin = async () => {
@@ -43,7 +45,11 @@ export default function LoginPage() {
             const data = await res.json();
             if (data.errors) setErrors(data.errors);
         }   
-    }
+    };
+
+    if (user) {
+        return <Navigate to="/calendar" replace />
+    };
 
 
     return (

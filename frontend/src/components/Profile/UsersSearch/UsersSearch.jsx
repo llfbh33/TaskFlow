@@ -165,9 +165,11 @@ const UsersSearch = () => {
                                                         </button>
 
                                                         {actionItem === resource.id && (
-                                                            <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
-                                                                <button className="icon-button" onClick={() => handleEdit(resource.id)}><MdEdit /></button>
-                                                                <button className="icon-button" onClick={() => handleDelete(resource.id)}><MdDelete /></button>
+                                                            <div className="action-container" onMouseLeave={() => setActionItem(null)}>
+                                                                <div className="action-menu">
+                                                                    <button className="icon-button" onClick={() => handleEdit(resource.id)}><MdEdit /></button>
+                                                                    <button className="icon-button" onClick={() => handleDelete(resource.id)}><MdDelete /></button>
+                                                                </div>
                                                             </div>
                                                         )}
                                                     </div>

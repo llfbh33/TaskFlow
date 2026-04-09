@@ -29,7 +29,6 @@ const Layout = () => {
       .catch((error) => console.log(error))   // catches any errors
     }, [])
 
-    // if (isLoaded) return <LoadingPage />
 
     return (
       <div id='main-layout-container'>

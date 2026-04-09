@@ -54,7 +54,7 @@
 .form-button,
 .landing-btn-two,
 .landing-btn-three {
-    padding: 15px 20px;
+    padding: 12px 20px;
     border-radius: 999px;
     border: none;
     font-size: 1rem;
@@ -73,6 +73,17 @@
 .form-button:hover {
     transform: translateY(-2px);
     background: linear-gradient(120deg, #5eead4 0%, #7c8cff 100%);
+}
+
+.form-button-disabled {
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    box-shadow: 0 8px 16px rgba(40, 40, 40, 0.3);
+    background: linear-gradient(70deg, #7c8bff93 0%, #5eead594 100%);
+    color: #0f1117a1;
 }
 
 

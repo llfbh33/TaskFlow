@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -12,15 +12,26 @@ export default function LoginPage() {
     const [errors, setErrors] = useState({});
     const [credential, setCredential] = useState('');
     const [password, setPassword] = useState('');
-    
+    const [disabled, setDisabled] = useState(true);
+
+
+
+    useEffect(() => {
+        if (credential && password) {
+            setDisabled(false);
+        } else {
+            setDisabled(true);
+        }
+
+    }, [credential, password])
 
     // Login Load State for Demo User
     const demoLogin = async () => {
-        await dispatch(sessionActions.login({ 
-            credential: 'starter-aubrie', 
-            password: "password" 
+        await dispatch(sessionActions.login({
+            credential: 'starter-aubrie',
+            password: "password"
         }));
-   
+
         await loadState(dispatch);
         navigate('/calendar')
     };
@@ -28,12 +39,15 @@ export default function LoginPage() {
     // Login Load State for Verified User with Validation
     const handleLogin = async (e) => {
         e.preventDefault();
+
+        if (disabled) return;
+
         setErrors({});
-        
+
         try {
-            await dispatch(sessionActions.login({ 
-                credential, 
-                password 
+            await dispatch(sessionActions.login({
+                credential,
+                password
             }));
             await loadState(dispatch);
 
@@ -44,7 +58,7 @@ export default function LoginPage() {
         } catch (res) {
             const data = await res.json();
             if (data.errors) setErrors(data.errors);
-        }   
+        }
     };
 
     if (user) {
@@ -60,10 +74,7 @@ export default function LoginPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                paddingTop: "70px",
-                paddingBottom: "30px",
-                paddingRight: "20px",
-                paddingLeft: "20px",
+                // paddingTop: "20px",
                 background:
                     "radial-gradient(circle at top left, rgba(124,140,255,0.16), transparent 30%), radial-gradient(circle at bottom right, rgba(94,234,212,0.10), transparent 28%), linear-gradient(180deg, #0d1017 0%, #151925 100%)",
                 color: "white",
@@ -72,8 +83,8 @@ export default function LoginPage() {
             <div
                 style={{
                     width: "100%",
-                    maxWidth: "600px", // 👈 changed
-                    minHeight: "680px",
+                    maxWidth: "600px", 
+                    minHeight: "640px",
                     borderRadius: "32px",
                     overflow: "hidden",
                     border: "1px solid rgba(255,255,255,0.12)",
@@ -84,7 +95,7 @@ export default function LoginPage() {
             >
                 <div
                     style={{
-                        padding: "64px 56px",
+                        padding: "50px 70px",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
@@ -92,7 +103,7 @@ export default function LoginPage() {
                             "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%)",
                     }}
                 >
-                    <div style={{ marginBottom: "40px" }}>
+                    <div style={{ marginBottom: "30px" }}>
                         <p
                             style={{
                                 margin: "0 0 14px 0",
@@ -108,7 +119,7 @@ export default function LoginPage() {
                         <h1
                             style={{
                                 margin: "0 0 14px 0",
-                                fontSize: "clamp(2.1rem, 4vw, 3.4rem)",
+                                fontSize: "clamp(2.1rem, 3.3vw, 3rem)",
                                 lineHeight: 1.1,
                                 fontWeight: 700,
                             }}
@@ -134,7 +145,7 @@ export default function LoginPage() {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            gap: "18px",
+                            gap: "14px",
                             width: "100%",
                             // maxWidth: "460px",
                         }}
@@ -155,7 +166,7 @@ export default function LoginPage() {
                                 onChange={(e) => setCredential(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -182,7 +193,7 @@ export default function LoginPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -191,24 +202,24 @@ export default function LoginPage() {
                                     outline: "none",
                                 }}
                             />
-                        </div>
-                        
                             <div style={{
                                 color: errors.credential ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
                                 flex: 1,
-                                textAlign: "center",
                                 fontSize: "0.8rem",
                                 letterSpacing: "0.07rem",
                                 margin: 0,
                             }}>
                                 Incorrect username or password
                             </div>
-                        
+                        </div>
+
+
+
 
                         <button
                             type="submit"
                             onClick={handleLogin}
-                            className="form-button"
+                            className={disabled ? "form-button-disabled" : "form-button"}
                         >
                             Log In
                         </button>

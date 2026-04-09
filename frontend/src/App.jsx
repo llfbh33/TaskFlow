@@ -11,6 +11,7 @@ import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import SignUpPage from './components/SignUpPage/SignUpPage';
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute';
+import NotFoundPage from './components/Loading/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -30,7 +31,9 @@ const router = createBrowserRouter([
           // { path: "/questions", element: <UsersQuestions /> },
           // { path: "/information", element: <SiteExplination /> },
         ]
-      }
+      },
+
+      { path: '*', element: <NotFoundPage /> }
     ]
 
   }

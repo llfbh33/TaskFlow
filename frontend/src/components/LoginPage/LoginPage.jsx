@@ -15,14 +15,13 @@ export default function LoginPage() {
     const [disabled, setDisabled] = useState(true);
 
 
-
+    // Updates if the Submit Button is Disabled or Not
     useEffect(() => {
-        if (credential && password) {
+        if (credential.length >= 4 && password.length >= 4) {
             setDisabled(false);
-        } else {
+        } else if (!disabled) {
             setDisabled(true);
-        }
-
+        };
     }, [credential, password])
 
     // Login Load State for Demo User

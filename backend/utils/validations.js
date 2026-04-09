@@ -1,10 +1,13 @@
 
 const { validationResult } = require('express-validator');
+const { User } = require('../db/models');
+const { Op } = require('sequelize');
 
 // middleware for formatting errors from express-validator middleware
 // (to customize, see express-validator's documentation)
 const handleValidationErrors = (req, _res, next) => {
   const validationErrors = validationResult(req);
+  console.log('IN VALIDATION HANDLER')
 
   if (!validationErrors.isEmpty()) {
     const errors = {};
@@ -16,11 +19,12 @@ const handleValidationErrors = (req, _res, next) => {
     err.errors = errors;
     err.status = 400;
     err.title = "Bad request.";
-    next(err);
+    return next(err);
   }
-  next();
+  return next();
 };
 
+
 module.exports = {
-    handleValidationErrors
+  handleValidationErrors,
 };

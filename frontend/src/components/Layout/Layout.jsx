@@ -11,6 +11,7 @@ import loadState, { loadInitialData } from "../../utils/loadData";
 import "./Layout.css";
 import Loading from "../Loading/Loading";
 import Profile from "../Profile";
+import LoadingPage from "../Loading/LoadingPage";
 
 
 const Layout = () => {
@@ -28,12 +29,14 @@ const Layout = () => {
       .catch((error) => console.log(error))   // catches any errors
     }, [])
 
+    // if (isLoaded) return <LoadingPage />
+
     return (
       <div id='main-layout-container'>
 
           <Navigation isLoaded={isLoaded} />
           <Footer />
-          {isLoaded && <Outlet />}
+          {isLoaded ? <Outlet /> : <LoadingPage />}
           {/* <Footer /> */}
       </div>
     );

@@ -49,3 +49,39 @@
 .svg-container.hide {
     height: 0; /* Collapse the SVG smoothly */
 }
+
+
+
+
+
+.footer {
+  height: 40px;
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 24px;
+
+  background: rgba(17, 21, 28, 0.8);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.7);
+}
+
+.footer-links {
+  display: flex;
+  gap: 26px;
+  align-items: center;
+}
+
+.footer-links a {
+  color: white;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.footer-links a:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}

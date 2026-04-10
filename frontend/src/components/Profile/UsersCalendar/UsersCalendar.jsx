@@ -73,10 +73,10 @@ const UsersCalendar = () => {
         setModalContent(modalComponent)
     };
 
-    const deleteTask = async(e, id) => {
+    const deleteTask = async (e, id) => {
         await dispatch(deleteTasks(id));
         closeModal();
-    } ;
+    };
 
 
     // Format the date as 'YYYY-MM-DD', changes the value of the calender up top and no errors in console
@@ -129,12 +129,12 @@ const UsersCalendar = () => {
     // }
 
     const completeTask = async (task, str, ua) => {
-        let updateTask = {...task};
+        let updateTask = { ...task };
         if (ua) {
             let newDate = new Date();
             updateTask.date = newDate;
         };
-        
+
         await dispatch(CompleteTask(updateTask, str));
     }
 
@@ -150,7 +150,7 @@ const UsersCalendar = () => {
                         <h2 style={{
                             margin: "0px",
                             letterSpacing: "0.1rem",
-                            
+
                         }}>Calendar</h2>
 
                         <div className="search-actions">
@@ -228,9 +228,11 @@ const UsersCalendar = () => {
                                                 </button>
 
                                                 {actionItem === task.id && (
-                                                    <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
-                                                        <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                        <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
+                                                    <div className="action-container" onMouseLeave={() => setActionItem(null)}>
+                                                        <div className="action-menu">
+                                                            <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
+                                                            <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
+                                                        </div>
                                                     </div>
                                                 )}
                                             </div>
@@ -271,11 +273,14 @@ const UsersCalendar = () => {
                                                 </button>
 
                                                 {actionItem === task.id && (
-                                                    <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
-                                                        <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                        <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
+                                                    <div className="action-container" onMouseLeave={() => setActionItem(null)}>
+                                                        <div className="action-menu">
+                                                            <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
+                                                            <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
+                                                        </div>
                                                     </div>
                                                 )}
+
                                             </div>
                                         </div>
                                     ))}

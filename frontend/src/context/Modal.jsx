@@ -59,9 +59,7 @@ export function Modal() {
         // boxShadow: "0 25px 60px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.25)",
         boxShadow: "0 0 40px rgba(255,255,255,0.08), 0 0 80px rgba(84,196,112,0.08)",
         backdropFilter: "blur(14px)",
-        color: "white",
-        // display: 'flex',
-        
+        color: "white",        
       }}>
         <div
           style={{

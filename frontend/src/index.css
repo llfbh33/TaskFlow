@@ -207,6 +207,7 @@ body {
     width: 130px;
     display: flex;
     align-items: center;
+    /* border: 2px solid orange; */
 }
 
 .action-menu {
@@ -229,7 +230,7 @@ body {
     align-items: center;
     gap: 4px;
 
-    z-index: 10;
+    z-index: 100;
 }
 
 

@@ -15,7 +15,6 @@ const DeleteTask = ({ id, description }) => {
 
 
     const handleDelete = async () => {
-        console.log('we are here?')
         await dispatch(deleteTasks(id));
         closeModal();
     };

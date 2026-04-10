@@ -18,6 +18,7 @@ import { LiaEllipsisVSolid } from "react-icons/lia";
 import { FaListUl } from "react-icons/fa";
 import DeleteTask from "../../Modals/TasksModals/DeleteTask";
 import DeleteModal from "../../Modals/DeleteModal";
+import ListActions from "../ReusableComponents/ListActions";
 
 
 
@@ -119,7 +120,7 @@ const UsersCalendar = () => {
     }
 
     const handleEdit = async (idx) => {
-        console.log("coming soon");
+        alert("need to set up the thunks and routes");
     }
 
 
@@ -222,20 +223,7 @@ const UsersCalendar = () => {
                                                         !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
                                                             !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                                             </div>
-                                            <div className="action-wrapper">
-                                                <button className="icon-button" onClick={() => setActionItem(task.id)}>
-                                                    <LiaEllipsisVSolid />
-                                                </button>
-
-                                                {actionItem === task.id && (
-                                                    <div className="action-container" onMouseLeave={() => setActionItem(null)}>
-                                                        <div className="action-menu">
-                                                            <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                            <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
-                                                        </div>
-                                                    </div>
-                                                )}
-                                            </div>
+                                            <ListActions id={task.id} name={task.task} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                             {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
                                         </div>
 
@@ -267,21 +255,7 @@ const UsersCalendar = () => {
                                                         !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
                                                             !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                                             </div>
-                                            <div className="action-wrapper">
-                                                <button className="icon-button" onClick={() => setActionItem(task.id)}>
-                                                    <LiaEllipsisVSolid />
-                                                </button>
-
-                                                {actionItem === task.id && (
-                                                    <div className="action-container" onMouseLeave={() => setActionItem(null)}>
-                                                        <div className="action-menu">
-                                                            <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                            <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
-                                                        </div>
-                                                    </div>
-                                                )}
-
-                                            </div>
+                                            <ListActions id={task.id} name={task.task} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                         </div>
                                     ))}
                                 </div>

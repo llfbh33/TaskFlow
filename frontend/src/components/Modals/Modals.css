@@ -165,3 +165,46 @@
         0 12px 22px rgba(0, 0, 0, 0.45),
         0 0 12px rgba(200, 80, 80, 0.25);
 }
+
+
+.task-unassigned-button {
+    background: transparent;
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.82);
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transform: translateY(0);
+        transition: all 0.2s ease;
+}
+
+.task-unassigned-btn {
+    background: linear-gradient(
+        135deg,
+        rgba(74, 160, 98, 0.35),
+        rgba(28, 46, 32, 0.6)
+    );
+    border: 1px solid rgba(255,255,255,0.14);
+    color: rgba(255,255,255,0.82);
+    border-radius: 999px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transform: translateY(0);
+        transition: all 0.2s ease;
+}
+
+.task-unassigned-button:hover,
+.task-unassigned-btn:hover {
+    transform: translateY(-2px);
+
+    background: linear-gradient(
+        135deg,
+        rgba(84, 196, 112, 0.55),
+        rgba(28, 46, 32, 0.7)
+    );
+
+    box-shadow:
+        0 12px 22px rgba(0, 0, 0, 0.45),
+        0 0 12px rgba(84, 196, 112, 0.25);
+}
+

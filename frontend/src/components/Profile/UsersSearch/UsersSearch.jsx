@@ -12,6 +12,7 @@ import { LiaEllipsisVSolid } from "react-icons/lia";
 import EditResourceWrapper from "../../Modals/ResourceModals/EditResourceWrapper";
 import AddResourceWrapper from "../../Modals/ResourceModals/AddResourceWrapper";
 import DeleteModal from "../../Modals/DeleteModal";
+import ListActions from "../ReusableComponents/ListActions";
 
 
 const UsersSearch = () => {
@@ -166,20 +167,7 @@ const UsersSearch = () => {
                                                 </a>
 
                                                 {resource?.userId === user?.id && (
-                                                    <div className="action-wrapper">
-                                                        <button className="icon-button" onClick={() => setActionItem(resource.id)}>
-                                                            <LiaEllipsisVSolid />
-                                                        </button>
-
-                                                        {actionItem === resource.id && (
-                                                            <div className="action-container" onMouseLeave={() => setActionItem(null)}>
-                                                                <div className="action-menu">
-                                                                    <button className="icon-button" onClick={() => handleEdit(resource.id)}><MdEdit /></button>
-                                                                    <button className="icon-button" onClick={() => handleDelete(resource.id, resource.name)}><MdDelete /></button>
-                                                                </div>
-                                                            </div>
-                                                        )}
-                                                    </div>
+                                                    <ListActions id={resource.id} name={resource.name} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                                 )}
                                             </div>
                                         ))

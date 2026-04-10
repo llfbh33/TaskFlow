@@ -30,9 +30,7 @@ const AddResourceWrapper = () => {
     };
 
     return (
-        <>
-            <ResourceModal title={"Add a Resource"} name={name} setName={setName} url={url} setUrl={setUrl} keyOptions={keyOptions} setKeyOptions={setKeyOptions} handleSubmit={handleSubmit} />
-        </>
+        <ResourceModal title={"Add a Resource"} name={name} setName={setName} url={url} setUrl={setUrl} keyOptions={keyOptions} setKeyOptions={setKeyOptions} handleSubmit={handleSubmit} />
     )
 }
 

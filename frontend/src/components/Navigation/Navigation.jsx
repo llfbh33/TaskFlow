@@ -24,7 +24,7 @@ function Navigation({ isLoaded }) {
     useEffect(() => {
         if (!hiddenMenu) {
             const handleClickOutside = (event) => {
-                if (!event.target.closest('#menu-dropdown-svg')) {
+                if (!event.target.closest('#navigation-bar-open')) {
                     setHiddenMenu(true);
                 }
             };
@@ -69,40 +69,44 @@ function Navigation({ isLoaded }) {
 
     // return sessionLinks if the layout has loaded
     return (
-        <div id={hiddenMenu ? 'navigation-bar' : 'navigation-bar-open'}>  {/* navigation-bar */}
+        <div className={`navigation-bar ${hiddenMenu ? "" : "open"}`}>
+            <div className="main-hamburger-menu">
+                <div className="hamburger-menu">
+                    <div className="nav-left">
+                        <div hidden={!user}>
+                            <GiHamburgerMenu
+                                className='icon-button'
+                                onClick={() => setHiddenMenu((prev) => !prev)}
+                            />
+                        </div>
 
-        <div className='main-hamburger-menu' >
-            <div className='hamburger-menu'>
-                <div style={{ display: "flex", alignItems: "center", gap: "20px"}}>
-                <div hidden={!user}>
-                    <GiHamburgerMenu onClick={() => !hiddenMenu ? setHiddenMenu(true) : setHiddenMenu(false)} />
-                </div>
-
-                {user
-                    ? <h1 className='nav-header'>{`Hello ${user.name}`}</h1>
-                    :
-                    <div style={{ cursor: "pointer" }} onClick={() => navigate('/')}>
-                        <h1 className='nav-header'>Tracking App</h1>
+                        {user ? (
+                            <h1 className="nav-header">{`Hello ${user.name}`}</h1>
+                        ) : (
+                            <div style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
+                                <h1 className="nav-header">Tracking App</h1>
+                            </div>
+                        )}
                     </div>
-                }
+
+                    <div className="nav-right">
+                        {isLoaded && sessionLinks}
+                    </div>
                 </div>
-            
-            <div style={{
-                zIndex: '100',
-            }}>
-                {isLoaded && sessionLinks}
-            </div>
-            </div>
-            
-            {hiddenMenu === false && (
-                <div className="nav-expand-menu">
-                    <button className="nav-button" onClick={() => handleNavigate("calendar")}>Calendar</button>
-                    <button className="nav-button" onClick={() => handleNavigate("search")}>Search</button>
-                    <button className="nav-button" onClick={() => handleNavigate("reflections")}>Reflections</button>
-                    {/* <button className="nav-button" onClick={() => handleNavigate("tasks")}>Tasks</button> */}
-                    {/* <button className="nav-button" onClick={() => handleNavigate("questions")}>Questions</button> */}
+
+                <div className={`nav-expand-wrap ${hiddenMenu ? "" : "open"}`}>
+                    <div className="nav-expand-menu">
+                        <button className="nav-button" onClick={() => navigate("/calendar")}>
+                            Calendar
+                        </button>
+                        <button className="nav-button" onClick={() => navigate("/search")}>
+                            Search
+                        </button>
+                        <button className="nav-button" onClick={() => navigate("/reflections")}>
+                            Reflections
+                        </button>
+                    </div>
                 </div>
-            )}
             </div>
         </div>
     );

@@ -1,12 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useModal } from "../../../context/Modal";
-import LandingPage from "../../LandingPage";
 import Loading from "../../Loading/Loading";
-import AddResource from "../../Modals/ResourceModals/AddResource";
-import EditResource from "../../Modals/ResourceModals/EditResource";
-import BarChart from "../../SearchChart/BarChart";
-import PanelContainer from "../ReusableComponents/PanelConteiner";
 import { MdOutlineRefresh } from "react-icons/md";
 import { BsReverseListColumnsReverse } from "react-icons/bs";
 import { PiUserList } from "react-icons/pi";
@@ -14,6 +9,8 @@ import { IoMdAdd } from "react-icons/io";
 import { MdDelete } from "react-icons/md";
 import { MdEdit } from "react-icons/md";
 import { LiaEllipsisVSolid } from "react-icons/lia";
+import EditResourceWrapper from "../../Modals/ResourceModals/EditResourceWrapper";
+import AddResourceWrapper from "../../Modals/ResourceModals/AddResourceWrapper";
 
 
 const UsersSearch = () => {
@@ -80,12 +77,12 @@ const UsersSearch = () => {
     }
 
     const handleAddResource = () => {
-        const modalComponent = <AddResource />
+        const modalComponent = <AddResourceWrapper />
         setModalContent(modalComponent)
     }
 
     const handleEdit = (idx) => {
-        const modalComponent = <EditResource resource={resources[idx]} />
+        const modalComponent = <EditResourceWrapper resource={resources[idx]}  />
         setModalContent(modalComponent)
     }
 

@@ -22,7 +22,7 @@ const AskQuestionModal = () => {
         if (!question) {
             setErrors({question: 'Please include a question'})
             return;
-        };
+        }
 
         const newQuestion = {
             userId: user.id,

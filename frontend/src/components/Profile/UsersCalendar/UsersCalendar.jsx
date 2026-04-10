@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
-import Loading from "../../Loading/Loading";
+import LoadingPage from "../../Loading/LoadingPage"
 import { format, addDays, subDays, add } from 'date-fns';
 import { CompleteTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
@@ -131,17 +131,18 @@ const UsersCalendar = () => {
     }
 
     if (!loaded) {
-        return <Loading />
+        return <LoadingPage />
     }
 
     return (
-        <div className="main-container">
+        <div className="main-container" >
             <div className="child-container">
-                <div className="padding-container-header">
-                    <div className="search-section">
+                <div className="padding-container-header" >
+                    <div className="search-section" >
                         <h2 style={{
                             margin: "0px",
                             letterSpacing: "0.1rem",
+                            
                         }}>Calendar</h2>
 
                         <div className="search-actions">

@@ -7,6 +7,7 @@ import { deleteJournal, getJournals } from "../../../store/journals";
 import { format } from 'date-fns';
 import SelectedReflection from "./SelectedReflection";
 import { useModal } from "../../../context/Modal";
+import LoadingPage from "../../Loading/LoadingPage";
 
 
 
@@ -68,7 +69,7 @@ const UsersReflections = () => {
         return;
     }
 
-    if (!loaded) return;
+    if (!loaded) return <LoadingPage />;
 
     return (
         <div className="main-container">

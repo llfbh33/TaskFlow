@@ -17,7 +17,7 @@ export default function LoginPage() {
 
     // Updates if the Submit Button is Disabled or Not
     useEffect(() => {
-        if (credential.length >= 4 && password.length >= 4) {
+        if (credential && password) {
             setDisabled(false);
         } else if (!disabled) {
             setDisabled(true);
@@ -73,7 +73,6 @@ export default function LoginPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                // paddingTop: "20px",
                 background:
                     "radial-gradient(circle at top left, rgba(124,140,255,0.16), transparent 30%), radial-gradient(circle at bottom right, rgba(94,234,212,0.10), transparent 28%), linear-gradient(180deg, #0d1017 0%, #151925 100%)",
                 color: "white",
@@ -83,12 +82,12 @@ export default function LoginPage() {
                 style={{
                     width: "100%",
                     maxWidth: "600px", 
-                    minHeight: "640px",
+                    minHeight: "650px",
                     borderRadius: "32px",
                     overflow: "hidden",
                     border: "1px solid rgba(255,255,255,0.12)",
                     background: "rgba(255,255,255,0.04)",
-                    boxShadow: "0 25px 80px rgba(0,0,0,0.35)",
+                    boxShadow: "0 25px 80px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.03)",
                     backdropFilter: "blur(14px)",
                 }}
             >
@@ -174,6 +173,15 @@ export default function LoginPage() {
                                     outline: "none",
                                 }}
                             />
+                            <div style={{
+                                color: "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                Incorrect username or password
+                            </div>
                         </div>
 
                         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

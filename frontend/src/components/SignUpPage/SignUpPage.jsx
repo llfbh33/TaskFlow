@@ -1,7 +1,7 @@
 import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import loadState from "../../utils/loadData";
 import "./signupPage.css";
 
@@ -15,11 +15,51 @@ export default function SignUpPage() {
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [errors, setErrors] = useState({});
-    const [disabled, setDisabled] = useState(false);
+    // const [disabled, setDisabled] = useState(false);
+    const validations = {
+        email: "Please provide a valid email.",
+        username: "Please provide a username with at least 4 characters.",
+        password: "Password must be 6 characters or more."
+    };
+    const disabled = !email || !username || !name || !password || !confirmPassword;
+
+    // useEffect(() => {
+    //     if ((!email || !username || !name || !password || !confirmPassword) && !disabled) {
+    //         setDisabled(true);
+    //     };
+
+    // }, [email, username, name, password, confirmPassword]);
+
+
+    const checkErrors = () => {
+        const newErrors = {};
+
+        if (!email.includes('@') || !/\S+@\S+\.\S+/.test(email)) {
+            newErrors.email = validations.email
+        };
+
+        if (username.length < 4) {
+            
+            newErrors.username = validations.username;
+        };
+
+        if (password.length < 6) {
+            newErrors.password = validations.password
+        };
+        return newErrors;
+    };
 
 
     const handleSignUp = async (e) => {
         e.preventDefault();
+
+        if (disabled) return;
+        const foundErrors = checkErrors();
+        if (Object.keys(foundErrors).length) {
+            console.log(foundErrors)
+            setErrors(foundErrors)
+            return;
+        };
 
         if (password === confirmPassword) {
             try {
@@ -63,10 +103,8 @@ export default function SignUpPage() {
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
-                paddingTop: "85px",
+                paddingTop: "87px",
                 paddingBottom: "45px",
-                paddingRight: "20px",
-                paddingLeft: "20px",
                 background:
                     "radial-gradient(circle at top left, rgba(124,140,255,0.16), transparent 30%), radial-gradient(circle at bottom right, rgba(94,234,212,0.10), transparent 28%), linear-gradient(180deg, #0d1017 0%, #151925 100%)",
                 color: "white",
@@ -76,19 +114,18 @@ export default function SignUpPage() {
                 style={{
                     width: "100%",
                     maxWidth: "600px",
-                    minHeight: "720px",
+                    minHeight: "650px",
                     borderRadius: "32px",
                     overflow: "hidden",
                     border: "1px solid rgba(255,255,255,0.12)",
                     background: "rgba(255,255,255,0.04)",
-                    boxShadow:
-                        "0 25px 80px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.03)",
+                    boxShadow: "0 25px 80px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.03)",
                     backdropFilter: "blur(14px)",
                 }}
             >
                 <div
                     style={{
-                        padding: "64px 56px",
+                        padding: "50px 70px",
                         display: "flex",
                         flexDirection: "column",
                         justifyContent: "center",
@@ -96,7 +133,7 @@ export default function SignUpPage() {
                             "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%)",
                     }}
                 >
-                    <div style={{ marginBottom: "40px" }}>
+                    <div style={{ marginBottom: "30px" }}>
                         <p
                             style={{
                                 margin: "0 0 14px 0",
@@ -112,7 +149,7 @@ export default function SignUpPage() {
                         <h1
                             style={{
                                 margin: "0 0 14px 0",
-                                fontSize: "clamp(2.1rem, 4vw, 3.2rem)",
+                                fontSize: "clamp(2.1rem, 3.3vw, 3rem)",
                                 lineHeight: 1.1,
                                 fontWeight: 700,
                             }}
@@ -123,7 +160,7 @@ export default function SignUpPage() {
                         <p
                             style={{
                                 margin: 0,
-                                maxWidth: "460px",
+                                maxWidth: "520px",
                                 fontSize: "1rem",
                                 lineHeight: 1.7,
                                 color: "rgba(255,255,255,0.72)",
@@ -138,7 +175,7 @@ export default function SignUpPage() {
                         style={{
                             display: "flex",
                             flexDirection: "column",
-                            gap: "18px",
+                            gap: "14px",
                             width: "100%",
                         }}
                     >
@@ -159,7 +196,7 @@ export default function SignUpPage() {
                                 onChange={(e) => setName(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -170,16 +207,14 @@ export default function SignUpPage() {
                             />
 
                             {/* Error space (always reserved) */}
-                            <div style={{ minHeight: "12px" }}>
-                                {errors.name && (
-                                    <span style={{
-                                        color: "#ff6b6b",
-                                        fontSize: "0.8rem",
-                                        marginLeft: "10px"
-                                    }}>
-                                        {errors.name}
-                                    </span>
-                                )}
+                            <div style={{
+                                color: errors.name ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                {errors.name ? errors.name : "hi"}
                             </div>
                         </div>
 
@@ -199,7 +234,7 @@ export default function SignUpPage() {
                                 onChange={(e) => setUsername(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -208,16 +243,14 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
-                            <div style={{ minHeight: "12px" }}>
-                                {errors.username && (
-                                    <span style={{
-                                        color: "#ff6b6b",
-                                        fontSize: "0.8rem",
-                                        marginLeft: "10px",
-                                    }}>
-                                        {errors.username}
-                                    </span>
-                                )}
+                            <div style={{
+                                color: errors.username ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                {errors.username ? errors.username : "hi"}
                             </div>
                         </div>
 
@@ -237,7 +270,7 @@ export default function SignUpPage() {
                                 onChange={(e) => setEmail(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -246,16 +279,14 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
-                            <div style={{ minHeight: "12px" }}>
-                                {errors.email && (
-                                    <span style={{
-                                        color: "#ff6b6b",
-                                        fontSize: "0.8rem",
-                                        marginLeft: "10px",
-                                    }}>
-                                        {errors.email}
-                                    </span>
-                                )}
+                            <div style={{
+                                color: errors.email ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                {errors.email ? errors.email : "hi"}
                             </div>
                         </div>
 
@@ -275,7 +306,7 @@ export default function SignUpPage() {
                                 onChange={(e) => setPassword(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -284,16 +315,14 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
-                            <div style={{ minHeight: "12px" }}>
-                                {(errors.password || errors.confirmPassword) && (
-                                    <span style={{
-                                        color: "#ff6b6b",
-                                        fontSize: "0.8rem",
-                                        marginLeft: "10px",
-                                    }}>
-                                        {errors.password || errors.confirmPassword}
-                                    </span>
-                                )}
+                            <div style={{
+                                color: errors.password ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                {errors.password ? errors.password : "hi"}
                             </div>
                         </div>
 
@@ -313,7 +342,7 @@ export default function SignUpPage() {
                                 onChange={(e) => setConfirmPassword(e.target.value)}
                                 style={{
                                     flex: 1,
-                                    padding: "15px 18px",
+                                    padding: "12px 18px",
                                     borderRadius: "16px",
                                     border: "1px solid rgba(255,255,255,0.14)",
                                     background: "rgba(255,255,255,0.05)",
@@ -322,23 +351,21 @@ export default function SignUpPage() {
                                     outline: "none",
                                 }}
                             />
-                            <div style={{ minHeight: "12px" }}>
-                                {errors.confirmPassword && (
-                                    <span style={{
-                                        color: "#ff6b6b",
-                                        fontSize: "0.8rem",
-                                        marginLeft: "10px",
-                                    }}>
-                                        {errors.confirmPassword}
-                                    </span>
-                                )}
+                            <div style={{
+                                color: errors.confirmPassword ? "rgb(255, 0, 0)" : "rgba(255, 255, 255, 0)",
+                                flex: 1,
+                                fontSize: "0.8rem",
+                                letterSpacing: "0.07rem",
+                                margin: 0,
+                            }}>
+                                {errors.confirmPassword ? errors.confirmPassword : "hi"}
                             </div>
                         </div>
 
                         <button
                             type="submit"
                             onClick={handleSignUp}
-                            className="form-button"
+                            className={disabled ? "form-button-disabled" : "form-button"}
                         // className={
                         //     !name 
                         //     || !email

@@ -17,6 +17,7 @@ import { MdEdit } from "react-icons/md";
 import { LiaEllipsisVSolid } from "react-icons/lia";
 import { FaListUl } from "react-icons/fa";
 import DeleteTask from "../../Modals/TasksModals/DeleteTask";
+import DeleteModal from "../../Modals/DeleteModal";
 
 
 
@@ -30,7 +31,7 @@ const UsersCalendar = () => {
     const [unassignedTasks, setUnassignedTasks] = useState('');
     const [completedTasks, setCompletedTasks] = useState('');
     const [incompleteTasks, setIncompleteTasks] = useState('');
-    const { setModalContent } = useModal();
+    const { setModalContent, closeModal } = useModal();
     const dateInputRef = useRef(null);
     const [actionItem, setActionItem] = useState(null);
     const [unassigned, setUnassigned] = useState(false);
@@ -66,10 +67,17 @@ const UsersCalendar = () => {
         setModalContent(modalComponent)
     }
 
-    const deleteATask = async (id, description) => {
-        const modalComponent = <DeleteTask id={id} description={description} />
+    // Delete Tasks Functions
+    const handleDelete = (id, description) => {
+        const modalComponent = <DeleteModal subject={'task'} name={description} action={deleteTask} id={id} />
         setModalContent(modalComponent)
-    }
+    };
+
+    const deleteTask = async(e, id) => {
+        await dispatch(deleteTasks(id));
+        closeModal();
+    } ;
+
 
     // Format the date as 'YYYY-MM-DD', changes the value of the calender up top and no errors in console
     const formatDateForInput = (date) => {
@@ -222,7 +230,7 @@ const UsersCalendar = () => {
                                                 {actionItem === task.id && (
                                                     <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
                                                         <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                        <button className="icon-button" onClick={() => deleteATask(task.id, task.task)}><MdDelete /></button>
+                                                        <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
                                                     </div>
                                                 )}
                                             </div>
@@ -265,7 +273,7 @@ const UsersCalendar = () => {
                                                 {actionItem === task.id && (
                                                     <div className="action-menu" onMouseLeave={() => setActionItem(null)}>
                                                         <button className="icon-button" onClick={() => handleEdit(task.id)}><MdEdit /></button>
-                                                        <button className="icon-button" onClick={() => deleteATask(task.id, task.task)}><MdDelete /></button>
+                                                        <button className="icon-button" onClick={() => handleDelete(task.id, task.task)}><MdDelete /></button>
                                                     </div>
                                                 )}
                                             </div>

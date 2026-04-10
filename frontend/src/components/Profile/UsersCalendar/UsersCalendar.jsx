@@ -4,7 +4,7 @@ import LoadingPage from "../../Loading/LoadingPage"
 import { format, addDays, subDays, add } from 'date-fns';
 import { CompleteTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
-import CreateTask from "../../Modals/TasksModals/CreateTask";
+import CreateTaskWrapper from "../../Modals/TasksModals/CreateTaskWrapper";
 import { FaCircleNotch } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
@@ -12,13 +12,10 @@ import { FaCalendarAlt } from "react-icons/fa";
 import { IoIosReturnLeft } from "react-icons/io";
 import { IoPlayForward } from "react-icons/io5";
 import { HiBackward } from "react-icons/hi2";
-import { MdDelete } from "react-icons/md";
-import { MdEdit } from "react-icons/md";
-import { LiaEllipsisVSolid } from "react-icons/lia";
 import { FaListUl } from "react-icons/fa";
-import DeleteTask from "../../Modals/TasksModals/DeleteTask";
 import DeleteModal from "../../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
+import EditTaskWrapper from "../../Modals/TasksModals/EditTaskWrapper";
 
 
 
@@ -64,7 +61,13 @@ const UsersCalendar = () => {
 
 
     const addATask = () => {
-        const modalComponent = <CreateTask date={currDate} />
+        const modalComponent = <CreateTaskWrapper date={currDate} />
+        setModalContent(modalComponent)
+    }
+
+    const handleEdit = async (id) => {
+        const task = Object.values(usersTasks).find(one => one.id === id);
+        const modalComponent = <EditTaskWrapper editTask={task} />
         setModalContent(modalComponent)
     }
 
@@ -119,9 +122,7 @@ const UsersCalendar = () => {
         setCurrDate(today)
     }
 
-    const handleEdit = async (idx) => {
-        alert("need to set up the thunks and routes");
-    }
+
 
 
     // const handleDelete = async (idx) => {

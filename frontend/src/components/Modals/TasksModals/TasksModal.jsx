@@ -1,7 +1,7 @@
 
 
 
-const TasksModal = ({ title, task, setTask, date, setDate, handleSubmit }) => {
+const TasksModal = ({ title, buttonTitle, task, setTask, date, setDate, handleSubmit }) => {
 
     return (
         <>
@@ -59,7 +59,7 @@ const TasksModal = ({ title, task, setTask, date, setDate, handleSubmit }) => {
                         onClick={handleSubmit}
                         className='modal-submit'
                     >
-                        Create Task
+                        {buttonTitle}
                     </button>
                 </div>
             </div>

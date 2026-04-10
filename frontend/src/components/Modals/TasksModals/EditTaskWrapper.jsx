@@ -1,0 +1,71 @@
+import { useEffect, useState } from "react";
+import { useModal } from "../../../context/Modal";
+import { useDispatch, useSelector } from "react-redux";
+import { createTask } from "../../../store/tasks";
+import { format, addDays, subDays } from 'date-fns';
+import '../Modals.css';
+import TasksModal from "./TasksModal";
+
+
+const EditTaskWrapper = ({ editTask }) => {
+    const user = useSelector(state => state.session.user);
+    const [currDate, setDate] = useState();
+    const [task, setTask] = useState(editTask.task);
+    const { closeModal } = useModal();
+    const dispatch = useDispatch();
+
+
+    // Format the date as 'YYYY-MM-DD', changes the value of the calender up top and no errors in console
+    const formatDateForInput = (date) => {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+        const day = String(date.getDate()).padStart(2, '0');
+        return `${year}-${month}-${day}`;
+    };
+
+    useEffect(() => {
+        if (editTask.date !== null) {
+            let today = editTask.date ? new Date(editTask.date) : new Date();
+            today = formatDateForInput(today)
+            setDate(today)
+        } else {
+            setDate("")
+        }
+    }, [])
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+
+        if (currDate) {
+            // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
+            let newDate = new Date(currDate);
+            newDate = addDays(newDate, 1)
+
+            const newTask = {
+                userId: user.id,
+                task: task,
+                date: newDate
+            }
+
+            await dispatch(createTask(newTask));
+
+        } else {
+
+            const newTask = {
+                userId: user.id,
+                task: task,
+            }
+
+            await dispatch(createTask(newTask));
+        };
+
+        closeModal();
+    };
+
+
+    return (
+        <TasksModal title={'Edit Task'}  buttonTitle={'Submit'} task={task} setTask={setTask} date={currDate} setDate={setDate} handleSubmit={handleSubmit} />
+    )
+}
+
+export default EditTaskWrapper;

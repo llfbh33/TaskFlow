@@ -83,13 +83,14 @@ const UsersSearch = () => {
         setModalContent(modalComponent);
     }
 
-    const handleEdit = (idx) => {
-        const modalComponent = <EditResourceWrapper resource={resources[idx]}  />
+    const handleEdit = (id) => {
+        const resource = resources.find(one => one.id === id)
+        const modalComponent = <EditResourceWrapper resource={resource}  />
         setModalContent(modalComponent);
     }
 
-    const handleDelete = (idx, name) => {
-        const modalComponent = <DeleteModal subject={'resource'} name={name} action={deleteResource} id={idx} />
+    const handleDelete = (id, name) => {
+        const modalComponent = <DeleteModal subject={'resource'} name={name} action={deleteResource} id={id} />
         setModalContent(modalComponent);
     }
 

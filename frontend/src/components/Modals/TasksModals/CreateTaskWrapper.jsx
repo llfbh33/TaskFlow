@@ -8,7 +8,7 @@ import { IoMdClose } from "react-icons/io";
 import TasksModal from "./TasksModal";
 
 
-const CreateTask = ({ date }) => {
+const CreateTaskWrapper = ({ date }) => {
     const user = useSelector(state => state.session.user);
     const [currDate, setDate] = useState();
     const [task, setTask] = useState('');
@@ -180,8 +180,8 @@ const CreateTask = ({ date }) => {
     // )
 
     return (
-        <TasksModal title={'Create a Task'} task={task} setTask={setTask} date={currDate} setDate={setDate} handleSubmit={handleSubmit} />
+        <TasksModal title={'Create a Task'} buttonTitle={'Create Task'} task={task} setTask={setTask} date={currDate} setDate={setDate} handleSubmit={handleSubmit} />
     )
 }
 
-export default CreateTask;
+export default CreateTaskWrapper;

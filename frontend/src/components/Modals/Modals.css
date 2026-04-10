@@ -178,6 +178,20 @@
         transition: all 0.2s ease;
 }
 
+.task-unassigned-button:hover {
+    transform: translateY(-2px);
+
+    background: linear-gradient(
+        135deg,
+        rgba(84, 196, 112, 0.55),
+        rgba(28, 46, 32, 0.7)
+    );
+
+    box-shadow:
+        0 12px 22px rgba(0, 0, 0, 0.45),
+        0 0 12px rgba(84, 196, 112, 0.25);
+}
+
 .task-unassigned-btn {
     background: linear-gradient(
         135deg,
@@ -193,18 +207,6 @@
         transition: all 0.2s ease;
 }
 
-.task-unassigned-button:hover,
-.task-unassigned-btn:hover {
-    transform: translateY(-2px);
-
-    background: linear-gradient(
-        135deg,
-        rgba(84, 196, 112, 0.55),
-        rgba(28, 46, 32, 0.7)
-    );
-
-    box-shadow:
-        0 12px 22px rgba(0, 0, 0, 0.45),
-        0 0 12px rgba(84, 196, 112, 0.25);
+.task-unassigned-btn {
+    cursor: auto;
 }
-

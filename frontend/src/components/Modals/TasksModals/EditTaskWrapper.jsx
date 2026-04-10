@@ -36,28 +36,30 @@ const EditTaskWrapper = ({ editTask }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (currDate) {
-            // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
-            let newDate = new Date(currDate);
-            newDate = addDays(newDate, 1)
 
-            const newTask = {
-                userId: user.id,
-                task: task,
-                date: newDate
-            }
+        alert('Need to create a thunk and router to edit a task')
+        // if (currDate) {
+        //     // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
+        //     let newDate = new Date(currDate);
+        //     newDate = addDays(newDate, 1)
 
-            await dispatch(createTask(newTask));
+        //     const newTask = {
+        //         userId: user.id,
+        //         task: task,
+        //         date: newDate
+        //     }
 
-        } else {
+        //     await dispatch(createTask(newTask));
 
-            const newTask = {
-                userId: user.id,
-                task: task,
-            }
+        // } else {
 
-            await dispatch(createTask(newTask));
-        };
+        //     const newTask = {
+        //         userId: user.id,
+        //         task: task,
+        //     }
+
+        //     await dispatch(createTask(newTask));
+        // };
 
         closeModal();
     };

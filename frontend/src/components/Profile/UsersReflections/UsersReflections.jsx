@@ -8,6 +8,7 @@ import { format } from 'date-fns';
 import SelectedReflection from "./SelectedReflection";
 import { useModal } from "../../../context/Modal";
 import LoadingPage from "../../Loading/LoadingPage";
+import DeleteModal from "../../Modals/DeleteModal";
 
 
 
@@ -18,7 +19,7 @@ const UsersReflections = () => {
     const [filteredReflectList, setFilteredReflectList] = useState('');
     const [selectedReflection, setSelectedReflection] = useState('')
     const dispatch = useDispatch();
-    const { setModalContent } = useModal();
+    const { setModalContent, closeModal } = useModal();
 
     useEffect(() => {
         const array = Object.values(reflectList)
@@ -64,10 +65,19 @@ const UsersReflections = () => {
         setFilteredReflectList(filteredList);
     }
 
-    const handleDeleteReflection = async (id) => {
+    const handleDelete = (id, date) => {
+        const modalComponent = <DeleteModal subject={'reflection'} name={formatDate(date)} action={deleteReflection} id={id} />
+        setModalContent(modalComponent)
+    };
+
+    const deleteReflection = async (e, id) => {
+        e.preventDefault()
+
         await dispatch(deleteJournal(id));
         return;
     }
+
+
 
     if (!loaded) return <LoadingPage />;
 
@@ -177,7 +187,7 @@ const UsersReflections = () => {
                                     <h3 className="reflections-date-title" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</h3>
                                     {selectedReflection === reflection ? <SelectedReflection reflection={reflection} /> : ''}
                                     <div>
-                                        <button onClick={() => handleDeleteReflection(reflection.id)} className="delete-reflection">Delete Reflection</button>
+                                        <button onClick={() => handleDelete(reflection.id, reflection.date)} className="delete-reflection">Delete Reflection</button>
                                     </div>
                                 </div>
                             ))}

@@ -51,7 +51,7 @@ export function Modal() {
       <div style={{
         width: "100%",
         maxWidth: "600px",
-        minHeight: "550px",
+        minHeight: "300px",
         borderRadius: "32px",
         overflow: "hidden",
         border: "2px solid rgba(237, 231, 231, 0.5)",
@@ -60,6 +60,8 @@ export function Modal() {
         boxShadow: "0 0 40px rgba(255,255,255,0.08), 0 0 80px rgba(84,196,112,0.08)",
         backdropFilter: "blur(14px)",
         color: "white",
+        // display: 'flex',
+        
       }}>
         <div
           style={{

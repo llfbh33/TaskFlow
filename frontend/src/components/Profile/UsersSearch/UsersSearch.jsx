@@ -11,6 +11,7 @@ import { MdEdit } from "react-icons/md";
 import { LiaEllipsisVSolid } from "react-icons/lia";
 import EditResourceWrapper from "../../Modals/ResourceModals/EditResourceWrapper";
 import AddResourceWrapper from "../../Modals/ResourceModals/AddResourceWrapper";
+import DeleteModal from "../../Modals/DeleteModal";
 
 
 const UsersSearch = () => {
@@ -20,7 +21,7 @@ const UsersSearch = () => {
     const [results, setResults] = useState([]);
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState('initial');
-    const { setModalContent } = useModal();
+    const { setModalContent, closeModal } = useModal();
     const dispatch = useDispatch();
     const resourceList = Object.values(resources);
     const recent = resourceList.slice(-10).reverse();
@@ -78,16 +79,25 @@ const UsersSearch = () => {
 
     const handleAddResource = () => {
         const modalComponent = <AddResourceWrapper />
-        setModalContent(modalComponent)
+        setModalContent(modalComponent);
     }
 
     const handleEdit = (idx) => {
         const modalComponent = <EditResourceWrapper resource={resources[idx]}  />
-        setModalContent(modalComponent)
+        setModalContent(modalComponent);
     }
 
-    const handleDelete = (idx) => {
-        console.log('Not Yes Available');
+    const handleDelete = (idx, name) => {
+        const modalComponent = <DeleteModal subject={'resource'} name={name} action={deleteResource} id={idx} />
+        setModalContent(modalComponent);
+    }
+
+    const deleteResource = async (e, id) => {
+        e.preventDefault();
+
+        alert(`resource #${id} will delete after thunk and route are made`)
+        closeModal();
+        return;
     }
 
 
@@ -165,7 +175,7 @@ const UsersSearch = () => {
                                                             <div className="action-container" onMouseLeave={() => setActionItem(null)}>
                                                                 <div className="action-menu">
                                                                     <button className="icon-button" onClick={() => handleEdit(resource.id)}><MdEdit /></button>
-                                                                    <button className="icon-button" onClick={() => handleDelete(resource.id)}><MdDelete /></button>
+                                                                    <button className="icon-button" onClick={() => handleDelete(resource.id, resource.name)}><MdDelete /></button>
                                                                 </div>
                                                             </div>
                                                         )}

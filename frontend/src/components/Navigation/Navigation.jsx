@@ -49,7 +49,6 @@ function Navigation({ isLoaded }) {
     // if there is a user show profile button, else, login and signup
     const sessionLinks = user ? (
         <div className='logout-btn-container'>
-            {/* <button className='login-signup-btns' onClick={() => alert('Feature Coming Soon')}>Profile</button> */}
             <button
                 className='landing-btn-two'
                 onClick={logout}>
@@ -70,29 +69,51 @@ function Navigation({ isLoaded }) {
 
     // return sessionLinks if the layout has loaded
     return (
-        <div id='navigation-bar'>  {/* navigation-bar */}
+        <div id={hiddenMenu ? 'navigation-bar' : 'navigation-bar-open'}>  {/* navigation-bar */}
 
+        <div className='main-hamburger-menu' >
             <div className='hamburger-menu'>
+                <div style={{ display: "flex", alignItems: "center", gap: "20px"}}>
                 <div hidden={!user}>
                     <GiHamburgerMenu onClick={() => !hiddenMenu ? setHiddenMenu(true) : setHiddenMenu(false)} />
                 </div>
 
-                {user 
+                {user
                     ? <h1 className='nav-header'>{`Hello ${user.name}`}</h1>
                     :
                     <div style={{ cursor: "pointer" }} onClick={() => navigate('/')}>
                         <h1 className='nav-header'>Tracking App</h1>
                     </div>
                 }
-
-
-            </div>
+                </div>
+            
             <div style={{
                 zIndex: '100',
             }}>
                 {isLoaded && sessionLinks}
             </div>
-            <div>
+            </div>
+            
+            {hiddenMenu === false && (
+                <div className="nav-expand-menu">
+                    <button className="nav-button" onClick={() => handleNavigate("calendar")}>Calendar</button>
+                    <button className="nav-button" onClick={() => handleNavigate("search")}>Search</button>
+                    <button className="nav-button" onClick={() => handleNavigate("reflections")}>Reflections</button>
+                    {/* <button className="nav-button" onClick={() => handleNavigate("tasks")}>Tasks</button> */}
+                    {/* <button className="nav-button" onClick={() => handleNavigate("questions")}>Questions</button> */}
+                </div>
+            )}
+            </div>
+        </div>
+    );
+}
+
+export default Navigation;
+
+
+
+/*
+<div>
                 <div className={`svg-container-nav1 ${dropDown !== 'login' ? 'hide' : 'show'}`}>
                     <svg id={'login-dropdown-svg'} height="450" width="500" xmlns="http://www.w3.org/2000/svg">
                         <circle r="440" cx="450" cy="0" fill="rgb(171, 232, 171)" stroke="rgb(11, 77, 11)" strokeWidth="2" />
@@ -116,17 +137,14 @@ function Navigation({ isLoaded }) {
                             <div className='hamburger-dropdown'>
                                 <button onClick={() => handleNavigate('calendar')} className='hamburger-btns'>Calendar</button>
                                 <button onClick={() => handleNavigate('search')} className='hamburger-btns'>Search</button>
-                                {/* <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button> */}
-                                {/* <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button> */}
+                                {/* <button onClick={() => handleNavigate('tasks')} className='hamburger-btns'>Unassigned Tasks</button> 
+                                {/* <button onClick={() => handleNavigate('questions')} className='hamburger-btns'>Questions</button> 
                                 <button onClick={() => handleNavigate('reflections')} className='hamburger-btns'>Reflections</button>
-                                {/* <button onClick={() => handleNavigate('information')} className='hamburger-btns'>Information</button> */}
+                                {/* <button onClick={() => handleNavigate('information')} className='hamburger-btns'>Information</button> 
                             </div>
                         </foreignObject>
                     </svg>
                 </div>
             </div>
-        </div>
-    );
-}
 
-export default Navigation;
+            */

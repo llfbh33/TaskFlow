@@ -176,6 +176,7 @@ body {
 
 .result-link:hover {
     color: #cbe989;
+    cursor: pointer;
     text-shadow: 0 0 6px rgba(122, 175, 139, 0.6);
 }
 

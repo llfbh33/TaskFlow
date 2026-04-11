@@ -9,6 +9,7 @@ import SelectedReflection from "./SelectedReflection";
 import { useModal } from "../../../context/Modal";
 import LoadingPage from "../../Loading/LoadingPage";
 import DeleteModal from "../../Modals/DeleteModal";
+import ListActions from "../ReusableComponents/ListActions";
 
 
 
@@ -20,6 +21,7 @@ const UsersReflections = () => {
     const [selectedReflection, setSelectedReflection] = useState('')
     const dispatch = useDispatch();
     const { setModalContent, closeModal } = useModal();
+    const [actionItem, setActionItem] = useState(null);
 
     useEffect(() => {
         const array = Object.values(reflectList)
@@ -63,6 +65,10 @@ const UsersReflections = () => {
 
         filteredList.sort((a, b) => new Date(b.date) - new Date(a.date));
         setFilteredReflectList(filteredList);
+    }
+
+    const handleEdit = (id) => {
+        console.log('handling edit');
     }
 
     const handleDelete = (id, date) => {
@@ -181,14 +187,20 @@ const UsersReflections = () => {
                             {/* <button onClick={() => handleSetReflectionFilter(14)}>last 14 days</button> */}
                             {/* <button onClick={() => handleSetReflectionFilter(30)}>last 30 days</button> */}
                         </div>
-                        <div className="container-reflection-cards">
+                        <div className="results-list">
                             {filteredReflectList && filteredReflectList.map((reflection, idx) => (
-                                <div key={idx} className={selectedReflection === reflection ? 'open-reflection-card' : "closed-reflection-card"}>
-                                    <h3 className="reflections-date-title" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</h3>
-                                    {selectedReflection === reflection ? <SelectedReflection reflection={reflection} /> : ''}
-                                    <div>
-                                        <button onClick={() => handleDelete(reflection.id, reflection.date)} className="delete-reflection">Delete Reflection</button>
+                                <div style={{display: "flex", flexDirection: "column"}}>
+                                    <div key={reflection.id} className="result-item">
+                                        <p className="result-link" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</p>
+                                        <ListActions id={reflection.id} name={reflection.date} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                     </div>
+                                    <div
+  className={`selected-reflection-wrapper ${
+    selectedReflection === reflection ? "open" : ""
+  }`}
+>
+  <SelectedReflection reflection={reflection} />
+</div>
                                 </div>
                             ))}
                         </div>

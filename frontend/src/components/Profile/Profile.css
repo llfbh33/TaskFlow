@@ -157,11 +157,12 @@
 }
 
 .closed-reflection-card {
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin: 10px 0px;
-    width: 80%;
+    /* width: 80%; */
     transition: ease-in 0.3s;
 }
 
@@ -169,7 +170,7 @@
     width: 80%;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     background-color: rgb(224, 224, 224);
     margin: 18px 0px
 }
@@ -179,7 +180,31 @@
 }
 
 .open-reflection-container {
-    width: 80%
+    flex: 1;
+    padding: 4px 60px;
+    background: rgba(187, 227, 208, 0.172);
+    border: 1px solid rgba(255, 255, 255, 0.386);
+    border-radius: 12px;;
+
+}
+
+.selected-reflection-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+
+  transform: translateY(-10px);
+
+  transition:
+    max-height 0.5s ease,
+    opacity 0.25s ease,
+    transform 0.5s ease;
+}
+
+.selected-reflection-wrapper.open {
+  max-height: 1200px; /* large enough for content */
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .reflections-questions-card {

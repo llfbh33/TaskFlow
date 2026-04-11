@@ -68,7 +68,9 @@ const UsersReflections = () => {
     }
 
     const handleEdit = (id) => {
-        console.log('handling edit');
+        const reflection = Object.values(reflectList).find(one => one.id === id);
+        const modalComponent = <EditReflectionWrapper reflection={reflection} />
+        setModalContent(modalComponent); 
     }
 
     const handleDelete = (id, date) => {

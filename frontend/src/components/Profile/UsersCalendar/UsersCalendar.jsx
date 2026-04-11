@@ -147,120 +147,117 @@ const UsersCalendar = () => {
     return (
         <div className="main-container" >
             <div className="child-container">
-                <div className="padding-container-header" >
-                    <div className="search-section" >
-                        <h2 style={{
-                            margin: "0px",
-                            letterSpacing: "0.1rem",
-
-                        }}>Calendar</h2>
-
-                        <div className="search-actions">
-                            <div className="actions-alignment">
-                                <input
-                                    ref={dateInputRef}
-                                    type="date"
-                                    value={formatDateForInput(currDate)}
-                                    onChange={(e) => setCurrDate(new Date(addDays(e.target.value, 1)))}
-                                    style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
-                                />
-                                <button
-                                    className="icon-button"
-                                    onClick={() => dateInputRef.current?.showPicker()}
-                                >
-                                    <FaCalendarAlt />
-                                </button>
-                                <button className="icon-button" onClick={() => setCurrDate(new Date())}><IoIosReturnLeft /></button>
-                                <button className="icon-button" onClick={addATask}><IoMdAdd /></button>
-                                <button className="icon-button" onClick={() => setUnassigned(!unassigned)}><FaListUl /></button>
+                <div className="child-container-two">
+                    <div className="padding-container-header" >
+                        <div className="search-section" >
+                            <h2 className="search-title" style={{margin: "0px"}}>Calendar</h2>
+                            <div className="search-actions">
+                                <div className="actions-alignment">
+                                    <input
+                                        ref={dateInputRef}
+                                        type="date"
+                                        value={formatDateForInput(currDate)}
+                                        onChange={(e) => setCurrDate(new Date(addDays(e.target.value, 1)))}
+                                        style={{ position: "absolute", opacity: 0, pointerEvents: "none" }}
+                                    />
+                                    <button
+                                        className="icon-button"
+                                        onClick={() => dateInputRef.current?.showPicker()}
+                                    >
+                                        <FaCalendarAlt />
+                                    </button>
+                                    <button className="icon-button" onClick={() => setCurrDate(new Date())}><IoIosReturnLeft /></button>
+                                    <button className="icon-button" onClick={addATask}><IoMdAdd /></button>
+                                    <button className="icon-button" onClick={() => setUnassigned(!unassigned)}><FaListUl /></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div style={{
-                    borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
-                }}></div>
-                <div className="unassigned-task-opening">
-                    <div className="assigned-tasks">
-                        <div className="padding-container">
-                            <div className="cal-dates-flex">
-                                <button
-                                    className="icon-button"
-                                    onClick={() => handleDateChange('prev')}
-                                >
-                                    <HiBackward style={{ fontSize: '2rem' }} />
-                                </button>
-                                <div className="displayed-title">{formatDate(currDate)}</div>
-                                <button
-                                    className="icon-button"
-                                    onClick={() => handleDateChange('post')}
-                                >
-                                    <IoPlayForward style={{ fontSize: '2rem' }} />
-                                </button>
+                    <div style={{
+                        borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
+                    }}></div>
+                    <div className="unassigned-task-opening">
+                        <div className="assigned-tasks">
+                            <div className="padding-container">
+                                <div className="cal-dates-flex">
+                                    <button
+                                        className="icon-button"
+                                        onClick={() => handleDateChange('prev')}
+                                    >
+                                        <HiBackward style={{ fontSize: '2rem' }} />
+                                    </button>
+                                    <div className="displayed-title">{formatDate(currDate)}</div>
+                                    <button
+                                        className="icon-button"
+                                        onClick={() => handleDateChange('post')}
+                                    >
+                                        <IoPlayForward style={{ fontSize: '2rem' }} />
+                                    </button>
+                                </div>
+                            </div>
+                            <div style={{
+                                borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
+                            }}></div>
+
+                            <div className="padding-container">
+                                <section className="results-section">
+                                    {/* <div className=""> */}
+                                    <div className="results-header" style={{ marginLeft: "16px" }}>
+                                        <h3>Tasks</h3>
+                                    </div>
+
+                                    <div className="results-list">
+                                        {currTasks && Object.values(currTasks).map(task => (
+                                            <div key={task.id} className="result-item">
+                                                <div className="calender-search-results">
+                                                    <div className="calender-check"
+                                                        onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                                    >
+                                                        {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
+                                                    </div>
+                                                    <span className={task.isComplete ? 'completed-task' :
+                                                        !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
+                                                            !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
+                                                                !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                                                </div>
+                                                <ListActions id={task.id} name={task.task} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
+                                                {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
+                                            </div>
+
+                                        ))}
+                                    </div>
+                                    {/* </div> */}
+                                </section>
                             </div>
                         </div>
-                        <div style={{
-                            borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
-                        }}></div>
+                        <div className={`unassigned-wrapper ${unassigned ? 'open' : 'closed'}`}>
+                            <div className="unassigned-tasks">
+                                <section className="results-section" style={{ color: "rgb(214, 214, 214)", letterSpacing: "0.05rem" }}>
+                                    {/* <div className=""> */}
+                                    <div className="results-header" style={{ marginLeft: "16px" }}>
+                                        <h3>Unassigned Tasks</h3>
+                                    </div>
+                                    <div className="results-list">
+                                        {incompleteTasks && Object.values(incompleteTasks).map(task => (
 
-                        <div className="padding-container">
-                            <section className="results-section">
-                                {/* <div className=""> */}
-                                <div className="results-header" style={{ marginLeft: "16px" }}>
-                                    <h3>Tasks</h3>
-                                </div>
-
-                                <div className="results-list">
-                                    {currTasks && Object.values(currTasks).map(task => (
-                                        <div key={task.id} className="result-item">
-                                            <div className="calender-search-results">
-                                                <div className="calender-check"
-                                                    onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
-                                                >
-                                                    {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
+                                            <div key={task.id} className="result-item">
+                                                <div className="calender-search-results">
+                                                    <div className="calender-check"
+                                                        onClick={() => task.isComplete ? completeTask(task, 'false', 'true') : completeTask(task, 'true', 'true')}
+                                                    >
+                                                        {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
+                                                    </div>
+                                                    <span className={task.isComplete ? 'completed-task' :
+                                                        !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
+                                                            !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
+                                                                !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
                                                 </div>
-                                                <span className={task.isComplete ? 'completed-task' :
-                                                    !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
-                                                        !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
-                                                            !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
+                                                <ListActions id={task.id} name={task.task} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                             </div>
-                                            <ListActions id={task.id} name={task.task} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
-                                            {/* <button className='standard-button' onClick={() => handleDeleteTask(task.id)}>Delete</button> */}
-                                        </div>
-
-                                    ))}
-                                </div>
-                                {/* </div> */}
-                            </section>
-                        </div>
-                    </div>
-                    <div className={`unassigned-wrapper ${unassigned ? 'open' : 'closed'}`}>
-                        <div className="unassigned-tasks">
-                            <section className="results-section" style={{ color: "rgb(214, 214, 214)", letterSpacing: "0.05rem" }}>
-                                {/* <div className=""> */}
-                                <div className="results-header" style={{ marginLeft: "16px" }}>
-                                    <h3>Unassigned Tasks</h3>
-                                </div>
-                                <div className="results-list">
-                                    {incompleteTasks && Object.values(incompleteTasks).map(task => (
-
-                                        <div key={task.id} className="result-item">
-                                            <div className="calender-search-results">
-                                                <div className="calender-check"
-                                                    onClick={() => task.isComplete ? completeTask(task, 'false', 'true') : completeTask(task, 'true', 'true')}
-                                                >
-                                                    {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
-                                                </div>
-                                                <span className={task.isComplete ? 'completed-task' :
-                                                    !task.isComplete && dateAsTime(new Date()) < dateAsTime(task.date) ? 'future-uncompleted-task' :
-                                                        !task.isComplete && dateAsTime(new Date()) === dateAsTime(task.date) ? 'uncompleted-task' :
-                                                            !task.isComplete && dateAsTime(new Date()) > dateAsTime(task.date) ? 'old-uncompleted-task' : ''} >{task.task}</span>
-                                            </div>
-                                            <ListActions id={task.id} name={task.task} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
-                                        </div>
-                                    ))}
-                                </div>
-                            </section>
+                                        ))}
+                                    </div>
+                                </section>
+                            </div>
                         </div>
                     </div>
                 </div>

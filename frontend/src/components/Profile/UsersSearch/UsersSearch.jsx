@@ -106,6 +106,7 @@ const UsersSearch = () => {
     return (
         <div className="main-container">
             <div className="child-container">
+                <div className="child-container-two">
                 <div className="padding-container-header">
                     <h2 className="search-title">Search Resources</h2>
                     <div className="search-section" >
@@ -182,6 +183,7 @@ const UsersSearch = () => {
                         )}
                     </section>
                 </div>
+            </div>
             </div>
         </div>
     )

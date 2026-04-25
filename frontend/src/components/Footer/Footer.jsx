@@ -1,10 +1,8 @@
-import { useState } from "react";
 import { FaGithub, FaLinkedin, FaRegFile } from "react-icons/fa";
 import { FaRegFolderOpen } from "react-icons/fa6";
 import "./Footer.css";
 
 const Footer = () => {
-    const [closed, setClosed] = useState(true);
 
     // return (
     //     <div id="footer-container">

@@ -286,9 +286,11 @@
 }
 
 .cal-dates-flex {
-    display: flex;
+    /* display: flex;
+    flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: center; */
+    border: 2px solid purple;
 }
 
 .cal-tasks-flex {

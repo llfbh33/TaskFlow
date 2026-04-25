@@ -9,7 +9,7 @@ export default function LandingPage() {
 
     if (user) {
         return <Navigate to="/calendar" replace />
-    };
+    }
 
 
     return (

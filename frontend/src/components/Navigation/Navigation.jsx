@@ -7,8 +7,6 @@ import * as sessionActions from '../../store/session';
 // Styling
 import './Navigation.css';
 import { useState, useEffect } from 'react';
-import LoginForm from '../LoginForm/LoginForm';
-import SignupForm from '../SignupForm';
 
 
 function Navigation({ isLoaded }) {

@@ -74,13 +74,11 @@ body {
 }
 
 
+
+/*----------------------------------------------- */
+
+
 /* Search Bar Styling */
-.search-title {
-    margin: 0px;
-    letter-spacing: 0.1rem;
-    margin-top: 20px;
-    font-size: 1.8rem;
-}
 
 .search-section {
     height: 80px;
@@ -89,6 +87,25 @@ body {
     align-items: center;
     justify-content: flex-start;
     gap: 20px;
+}
+
+.search-title {
+    margin: 0px;
+    letter-spacing: 0.1rem;
+    margin-top: 20px;
+    font-size: 1.8rem;
+}
+
+.search-actions {
+    display: flex;
+    gap: 10px;
+    margin-left: auto;
+}
+
+.actions-alignment {
+    display: flex;
+    gap: 10px;
+    margin: 0px 20px;
 }
 
 .search-input {
@@ -156,40 +173,31 @@ body {
     align-items: center;
 }
 
-.search-actions {
-    display: flex;
-    gap: 10px;
-    margin-left: auto;
-}
-
-.actions-alignment {
-    display: flex;
-    gap: 10px;
-    margin: 0px 20px;
-}
-
 
 
 /* Search Results Styling */
-.results-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
 
 .results-section {
-    line-height: 2rem;
+    /* line-height: 2rem; */
+    /* Spaces out the results of listed items */
 }
 
 .results-header {
     font-size: 1.2rem;
     margin-bottom: 30px;
+    /* Header for lists */
+}
+
+.results-list {
+    display: flex;
+    flex-direction: column;
 }
 
 .result-item {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    height: 40px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
@@ -198,6 +206,8 @@ body {
     color: #bbbebb;
     font-weight: 500;
     font-size: 1.1rem;
+    display: flex;
+    gap: 10px
 }
 
 .result-link:hover {
@@ -353,20 +363,36 @@ h4 {
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* Calendar Styling */
 
 .unassigned-task-opening {
+    /* keeps unassigned tasks to the right */
     display: flex;
     align-items: flex-start;
     flex: 1;
     min-height: 0;
     align-items: stretch;
-    /* flex-direction: row; */
 }
 
 .assigned-tasks {
     flex: 1;
     min-width: 0;
+    /* adjusts assigned tasks to take up all space it can */
 }
 
 .unassigned-wrapper {

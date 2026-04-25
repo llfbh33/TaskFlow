@@ -34,6 +34,7 @@ const UsersCalendar = () => {
     const [actionItem, setActionItem] = useState(null);
     const [unassigned, setUnassigned] = useState(false);
 
+    console.log('%c Unassigned Tasks', 'font-size: 20px;')
 
     // filters through the tasks a user has and only stores the ones which are set to a specific date to be completed
     useEffect(() => {
@@ -150,7 +151,7 @@ const UsersCalendar = () => {
                 <div className="child-container-two">
                     <div className="padding-container-header" >
                         <div className="search-section" >
-                            <h2 className="search-title" style={{margin: "0px"}}>Calendar</h2>
+                            <h2 className="search-title" style={{ margin: "0px" }}>Calendar</h2>
                             <div className="search-actions">
                                 <div className="actions-alignment">
                                     <input
@@ -179,7 +180,11 @@ const UsersCalendar = () => {
                     <div className="unassigned-task-opening">
                         <div className="assigned-tasks">
                             <div className="padding-container">
-                                <div className="cal-dates-flex">
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                }}>
                                     <button
                                         className="icon-button"
                                         onClick={() => handleDateChange('prev')}
@@ -200,7 +205,7 @@ const UsersCalendar = () => {
                             }}></div>
 
                             <div className="padding-container">
-                                <section className="results-section">
+                                <section>
                                     {/* <div className=""> */}
                                     <div className="results-header" style={{ marginLeft: "16px" }}>
                                         <h3>Tasks</h3>
@@ -209,7 +214,7 @@ const UsersCalendar = () => {
                                     <div className="results-list">
                                         {currTasks && Object.values(currTasks).map(task => (
                                             <div key={task.id} className="result-item">
-                                                <div className="calender-search-results">
+                                                <div className="result-link">
                                                     <div className="calender-check"
                                                         onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
                                                     >

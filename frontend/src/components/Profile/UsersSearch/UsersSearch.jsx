@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import { useModal } from "../../../context/Modal";
 import Loading from "../../Loading/Loading";
 import { MdOutlineRefresh } from "react-icons/md";
 import { BsReverseListColumnsReverse } from "react-icons/bs";
 import { PiUserList } from "react-icons/pi";
 import { IoMdAdd } from "react-icons/io";
-import { MdDelete } from "react-icons/md";
-import { MdEdit } from "react-icons/md";
-import { LiaEllipsisVSolid } from "react-icons/lia";
 import EditResourceWrapper from "../../Modals/ResourceModals/EditResourceWrapper";
 import AddResourceWrapper from "../../Modals/ResourceModals/AddResourceWrapper";
 import DeleteModal from "../../Modals/DeleteModal";
@@ -23,7 +20,6 @@ const UsersSearch = () => {
     const [search, setSearch] = useState('')
     const [loading, setLoading] = useState('initial');
     const { setModalContent, closeModal } = useModal();
-    const dispatch = useDispatch();
     const resourceList = Object.values(resources);
     const recent = resourceList.slice(-10).reverse();
     const [resultType, setResultType] = useState('Most Recently Added');
@@ -47,7 +43,7 @@ const UsersSearch = () => {
     };
 
     // Action Functions
-    const handleSearch = async (label) => {
+    const handleSearch = async () => {
         // console.log(label)
         setLoading('loading');
         // this is for the chart, not needed atm, does not work properly
@@ -85,7 +81,7 @@ const UsersSearch = () => {
 
     const handleEdit = (id) => {
         const resource = resources.find(one => one.id === id)
-        const modalComponent = <EditResourceWrapper resource={resource}  />
+        const modalComponent = <EditResourceWrapper resource={resource} />
         setModalContent(modalComponent);
     }
 
@@ -107,83 +103,83 @@ const UsersSearch = () => {
         <div className="main-container">
             <div className="child-container">
                 <div className="child-container-two">
-                <div className="padding-container-header">
-                    <h2 className="search-title">Search Resources</h2>
-                    <div className="search-section" >
-                        <div className="search-input">
-                            <input
-                                type='text'
-                                value={search}
-                                onChange={(e) => setSearch(e.target.value)} >
-                            </input>
+                    <div className="padding-container-header">
+                        <h2 className="search-title">Search Resources</h2>
+                        <div className="search-section" >
+                            <div className="search-input">
+                                <input
+                                    type='text'
+                                    value={search}
+                                    onChange={(e) => setSearch(e.target.value)} >
+                                </input>
 
-                        </div>
-                        <button className="search-submit" onClick={handleSearch} disabled={!search} >Submit</button>
-                        <div className="search-actions">
-                            <div className="actions-alignment">
-                                <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
-                                <button className="icon-button" onClick={allResources}><BsReverseListColumnsReverse /></button>
-                                <button className="icon-button" onClick={userResources}><PiUserList /></button>
-                                <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
+                            </div>
+                            <button className="search-submit" onClick={handleSearch} disabled={!search} >Submit</button>
+                            <div className="search-actions">
+                                <div className="actions-alignment">
+                                    <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
+                                    <button className="icon-button" onClick={allResources}><BsReverseListColumnsReverse /></button>
+                                    <button className="icon-button" onClick={userResources}><PiUserList /></button>
+                                    <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div style={{
-                    borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
-                }}></div>
+                    <div style={{
+                        borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
+                    }}></div>
 
 
-                {/* <div className="child-container flex-stretch"> */}
-                <div className="padding-container flex-stretch">
-                    <section className="results-section">
-                        {loading === "loading" ? (
-                            <div className="results-loading">
-                                <Loading resources={resources} />
-                            </div>
-                        ) : (
-                            <>
-                                <div className="results-header">
-                                    {loading !== "loading" &&
-                                        <h3>{resultType}</h3>
-                                    }
+                    {/* <div className="child-container flex-stretch"> */}
+                    <div className="padding-container flex-stretch">
+                        <section className="results-section">
+                            {loading === "loading" ? (
+                                <div className="results-loading">
+                                    <Loading resources={resources} />
                                 </div>
+                            ) : (
+                                <>
+                                    <div className="results-header">
+                                        {loading !== "loading" &&
+                                            <h3>{resultType}</h3>
+                                        }
+                                    </div>
 
-                                <div className="results-list">
-                                    {(loading === "initial" ? recent : results).length ? (
-                                        (loading === "initial" ? recent : results).map((resource) => (
-                                            <div key={resource.id} className="result-item">
-                                                {/* <img
+                                    <div className="results-list">
+                                        {(loading === "initial" ? recent : results).length ? (
+                                            (loading === "initial" ? recent : results).map((resource) => (
+                                                <div key={resource.id} className="result-item">
+                                                    {/* <img
                                                     src={resource.data?.image}
                                                     className="link-image"
                                                     alt=""
                                                 /> */}
 
-                                                <a
-                                                    href={resource.url}
-                                                    target="_blank"
-                                                    rel="noreferrer"
-                                                    className="result-link"
-                                                >
-                                                    {resource?.data ? resource.data.title : resource.name}
-                                                </a>
+                                                    <a
+                                                        href={resource.url}
+                                                        target="_blank"
+                                                        rel="noreferrer"
+                                                        className="result-link"
+                                                    >
+                                                        {resource?.data ? resource.data.title : resource.name}
+                                                    </a>
 
-                                                {resource?.userId === user?.id && (
-                                                    <ListActions id={resource.id} name={resource.name} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
-                                                )}
+                                                    {resource?.userId === user?.id && (
+                                                        <ListActions id={resource.id} name={resource.name} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
+                                                    )}
+                                                </div>
+                                            ))
+                                        ) : (
+                                            <div className="results-empty">
+                                                No resource found associated with the provided information
                                             </div>
-                                        ))
-                                    ) : (
-                                        <div className="results-empty">
-                                            No resource found associated with the provided information
-                                        </div>
-                                    )}
-                                </div>
-                            </>
-                        )}
-                    </section>
+                                        )}
+                                    </div>
+                                </>
+                            )}
+                        </section>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
     )

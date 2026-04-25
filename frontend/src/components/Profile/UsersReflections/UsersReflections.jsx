@@ -1,15 +1,15 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import OpenModalMenuItem from "../../../context/OpenModalMenuItem/OpenModalMenuItem";
 import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
 import { useDispatch } from "react-redux";
-import { deleteJournal, getJournals } from "../../../store/journals";
+import { deleteJournal } from "../../../store/journals";
 import { format } from 'date-fns';
 import SelectedReflection from "./SelectedReflection";
 import { useModal } from "../../../context/Modal";
 import LoadingPage from "../../Loading/LoadingPage";
 import DeleteModal from "../../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
+import EditReflectionWrapper from "../../Modals/ReflectionModals/EditReflectionWrapper"
 
 
 
@@ -82,6 +82,7 @@ const UsersReflections = () => {
         e.preventDefault()
 
         await dispatch(deleteJournal(id));
+        closeModal();
         return;
     }
 
@@ -191,9 +192,9 @@ const UsersReflections = () => {
                                 {/* <button onClick={() => handleSetReflectionFilter(30)}>last 30 days</button> */}
                             </div>
                             <div className="results-list">
-                                {filteredReflectList && filteredReflectList.map((reflection, idx) => (
-                                    <div style={{ display: "flex", flexDirection: "column" }}>
-                                        <div key={reflection.id} className="result-item">
+                                {filteredReflectList && filteredReflectList.map((reflection) => (
+                                    <div key={reflection.id} style={{ display: "flex", flexDirection: "column" }}>
+                                        <div className="result-item">
                                             <p className="result-link" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</p>
                                             <ListActions id={reflection.id} name={reflection.date} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                         </div>

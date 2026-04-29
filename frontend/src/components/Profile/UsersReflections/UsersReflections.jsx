@@ -70,7 +70,7 @@ const UsersReflections = () => {
     const handleEdit = (id) => {
         const reflection = Object.values(reflectList).find(one => one.id === id);
         const modalComponent = <EditReflectionWrapper reflection={reflection} />
-        setModalContent(modalComponent); 
+        setModalContent(modalComponent);
     }
 
     const handleDelete = (id, date) => {
@@ -115,82 +115,95 @@ const UsersReflections = () => {
                                 Add a Reflection
                             </button>
                         </div>
+                        <div className="padding-container" style={{
+                            boxShadow:
+                                "0 8px 12px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.08)"
+                        }}>
+                            <section>
+                                <h3 >Filter Reflections by date:</h3>
+                                <div style={{
+                                    display: "flex",
+                                    justifyContent: "space-around",
+                                    padding: "20px"
+                                }}>
+                                    <button
+                                        type="submit"
+                                        onClick={() => handleSetReflectionFilter('all')}
+                                        style={{
+                                            padding: "10px 10px",
+                                            width: "160px",
+                                            borderRadius: "999px",
+                                            border: "1px solid rgba(255,255,255,0.14)",
+                                            background: "rgba(255,255,255,0.06)",
+                                            color: "white",
+                                            fontSize: "1rem",
+                                            fontWeight: 600,
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        All Reflections
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        onClick={() => handleSetReflectionFilter(7)}
+                                        style={{
+                                            padding: "10px 10px",
+                                            width: "160px",
+                                            borderRadius: "999px",
+                                            border: "1px solid rgba(255,255,255,0.14)",
+                                            background: "rgba(255,255,255,0.06)",
+                                            color: "white",
+                                            fontSize: "1rem",
+                                            fontWeight: 600,
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        last 7 days
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        onClick={() => handleSetReflectionFilter(14)}
+                                        style={{
+                                            padding: "10px 10px",
+                                            width: "160px",
+                                            borderRadius: "999px",
+                                            border: "1px solid rgba(255,255,255,0.14)",
+                                            background: "rgba(255,255,255,0.06)",
+                                            color: "white",
+                                            fontSize: "1rem",
+                                            fontWeight: 600,
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        last 14 days
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        onClick={() => handleSetReflectionFilter(30)}
+                                        style={{
+                                            padding: "10px 10px",
+                                            width: "160px",
+                                            borderRadius: "999px",
+                                            border: "1px solid rgba(255,255,255,0.14)",
+                                            background: "rgba(255,255,255,0.06)",
+                                            color: "white",
+                                            fontSize: "1rem",
+                                            fontWeight: 600,
+                                            cursor: "pointer",
+                                        }}
+                                    >
+                                        last 30 days
+                                    </button>
+                                    {/* <button onClick={() => handleSetReflectionFilter('all')}>All Reflections</button> */}
+                                    {/* <button onClick={() => handleSetReflectionFilter(7)}>last 7 days</button> */}
+                                    {/* <button onClick={() => handleSetReflectionFilter(14)}>last 14 days</button> */}
+                                    {/* <button onClick={() => handleSetReflectionFilter(30)}>last 30 days</button> */}
+
+                                </div>
+                            </section>
+                        </div>
+
                         <div className="padding-container">
-                            <h4 className="center-reflection-filter-buttons">Filter Reflections by date:</h4>
-                            <div className="center-reflection-filter-buttons">
-                                <button
-                                    type="submit"
-                                    onClick={() => handleSetReflectionFilter('all')}
-                                    style={{
-                                        padding: "10px 10px",
-                                        width: "160px",
-                                        borderRadius: "999px",
-                                        border: "1px solid rgba(255,255,255,0.14)",
-                                        background: "rgba(255,255,255,0.06)",
-                                        color: "white",
-                                        fontSize: "1rem",
-                                        fontWeight: 600,
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    All Reflections
-                                </button>
-                                <button
-                                    type="submit"
-                                    onClick={() => handleSetReflectionFilter(7)}
-                                    style={{
-                                        padding: "10px 10px",
-                                        width: "160px",
-                                        borderRadius: "999px",
-                                        border: "1px solid rgba(255,255,255,0.14)",
-                                        background: "rgba(255,255,255,0.06)",
-                                        color: "white",
-                                        fontSize: "1rem",
-                                        fontWeight: 600,
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    last 7 days
-                                </button>
-                                <button
-                                    type="submit"
-                                    onClick={() => handleSetReflectionFilter(14)}
-                                    style={{
-                                        padding: "10px 10px",
-                                        width: "160px",
-                                        borderRadius: "999px",
-                                        border: "1px solid rgba(255,255,255,0.14)",
-                                        background: "rgba(255,255,255,0.06)",
-                                        color: "white",
-                                        fontSize: "1rem",
-                                        fontWeight: 600,
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    last 14 days
-                                </button>
-                                <button
-                                    type="submit"
-                                    onClick={() => handleSetReflectionFilter(30)}
-                                    style={{
-                                        padding: "10px 10px",
-                                        width: "160px",
-                                        borderRadius: "999px",
-                                        border: "1px solid rgba(255,255,255,0.14)",
-                                        background: "rgba(255,255,255,0.06)",
-                                        color: "white",
-                                        fontSize: "1rem",
-                                        fontWeight: 600,
-                                        cursor: "pointer",
-                                    }}
-                                >
-                                    last 30 days
-                                </button>
-                                {/* <button onClick={() => handleSetReflectionFilter('all')}>All Reflections</button> */}
-                                {/* <button onClick={() => handleSetReflectionFilter(7)}>last 7 days</button> */}
-                                {/* <button onClick={() => handleSetReflectionFilter(14)}>last 14 days</button> */}
-                                {/* <button onClick={() => handleSetReflectionFilter(30)}>last 30 days</button> */}
-                            </div>
                             <div className="results-list">
                                 {filteredReflectList && filteredReflectList.map((reflection) => (
                                     <div key={reflection.id} style={{ display: "flex", flexDirection: "column" }}>
@@ -209,6 +222,7 @@ const UsersReflections = () => {
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>

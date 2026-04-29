@@ -41,6 +41,35 @@ router.post('/new', async (req, res, next) => {
 });
 
 
+// ==========>>> Update a Journal Entry by Pk <<<==============
+router.put('/:journalId', async (req, res, next) => {
+    const { journalId } = req.params;
+    const { projects, today, challenges, overcome, accomplish, goals } = req.body;
+
+    const foundJournal = await Journal.findByPk(parseInt(journalId));
+
+    if (!foundJournal) {
+        const err = new Error('The journal entry you are trying to update does not exist');
+        err.status = 404;
+        return next(err)
+    }
+
+    foundJournal.set({
+        today: today ?? foundJournal.today,
+        projects: projects ?? foundJournal.projects,
+        challenges: challenges ?? foundJournal.challenges,
+        overcome: overcome ?? foundJournal.overcome,
+        accomplish: accomplish ?? foundJournal.accomplish,
+        goals: goals ?? foundJournal.goals,
+    });
+
+    await foundJournal.validate();
+    await foundJournal.save();
+
+    res.json(foundJournal);
+});
+
+
 // ===========>>> Delete a Journal Entry by Pk <<<=============
 router.delete('/:journalId', async (req, res, next) => {
     const { journalId } = req.params;
@@ -48,7 +77,7 @@ router.delete('/:journalId', async (req, res, next) => {
     const foundJournal = await Journal.findByPk(parseInt(journalId));
 
     if (!foundJournal) {
-        const err = newError('The journal entry you are trying to delete does not exist');
+        const err = new Error('The journal entry you are trying to delete does not exist');
         err.status = 404;
         return next(err)
     }

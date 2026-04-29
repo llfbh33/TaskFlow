@@ -42,7 +42,8 @@ export const getJournals = () => async dispatch => {
         const errors = await response.json();
         return errors;
     }
-}
+};
+
 
 export const createJournal = (entry) => async dispatch => {
     const response = await csrfFetch("/api/journals/new", {
@@ -62,6 +63,32 @@ export const createJournal = (entry) => async dispatch => {
     if (response.ok) {
         const data = await response.json();
         dispatch(create(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+};
+
+
+export const updateJournal = (journalId, entry) => async dispatch => {
+    const response = await csrfFetch(`/api/journals/${journalId}`, {
+        method: "PUT", // or PATCH depending on backend
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            userId: entry.userId,
+            projects: entry.projects,
+            today: entry.today,
+            challenges: entry.challenges,
+            overcome: entry.overcome,
+            accomplish: entry.accomplish,
+            goals: entry.goals
+        }),
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(update(data)); 
         return data;
     } else {
         const errors = await response.json();
@@ -99,7 +126,12 @@ const journalsReducer = (state = initialState, action) => {
         case CREATE: {
             const newState = {...state};
             newState[action.data.id] = action.data;
-            return newState
+            return newState;
+        }
+        case UPDATE: {
+            const newState = {...state};
+            newState[action.data.id] = action.data;
+            return newState;
         }
         case DESTROY: {
             const newState = {...state};

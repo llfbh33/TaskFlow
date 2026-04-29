@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch } from 'react-redux';
-import { createJournal } from "../../../store/journals";
+import { updateJournal } from "../../../store/journals";
 import { useModal } from "../../../context/Modal";
 import ReflectionModal from "./ReflectionsModal";
 
@@ -16,7 +16,7 @@ const baseReflection = {
 
 
 
-const EditResourceWrapper = ({editReflection}) => {
+const EditResourceWrapper = ({reflectionId, editReflection}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [reflection, setReflection] = useState({
@@ -54,7 +54,7 @@ const EditResourceWrapper = ({editReflection}) => {
                 goals: reflection.goals,
             };
 
-            await dispatch(createJournal(newReflection));
+            await dispatch(updateJournal(reflectionId, newReflection));
             setReflection(baseReflection);
             closeModal();
 

@@ -70,7 +70,7 @@ const UsersReflections = () => {
 
     const handleEdit = (id) => {
         const reflection = Object.values(reflectList).find(one => one.id === id);
-        const modalComponent = <EditReflectionWrapper editReflection={reflection} />
+        const modalComponent = <EditReflectionWrapper reflectionId={id} editReflection={reflection} />
         setModalContent(modalComponent);
     }
 

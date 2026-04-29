@@ -428,3 +428,48 @@ h4 {
     opacity: 0;
     pointer-events: none;
 }
+
+
+
+.selected-reflection-wrapper {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+
+  transform: translateY(-10px);
+
+  transition:
+    max-height 0.5s ease,
+    opacity 0.25s ease,
+    transform 0.5s ease;
+}
+
+.selected-reflection-wrapper.open {
+  max-height: 1200px; /* large enough for content */
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.open-reflection-container {
+    display: flex;
+    flex-direction: column;
+    margin: 30px 10px;
+    padding: 4px 60px;
+    background: rgba(187, 227, 208, 0.075);
+    border: 1px solid rgba(255, 255, 255, 0.386);
+    border-radius: 12px;
+    gap: 24px;
+}
+
+.reflections-questions-card {
+    display: flex;
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 
+    background: rgba(187, 227, 208, 0.172);
+    border: 1px solid rgba(255, 255, 255, 0.386); */

@@ -43,11 +43,11 @@ const UsersReflections = () => {
 
 
 
-    const handleReflectionClick = (reflection) => {
-        if (selectedReflection === reflection) {
+    const handleReflectionClick = (reflectionId) => {
+        if (selectedReflection === Number(reflectionId)) {
             setSelectedReflection('');
         } else {
-            setSelectedReflection(reflection)
+            setSelectedReflection(Number(reflectionId))
         }
     };
 
@@ -208,11 +208,11 @@ const UsersReflections = () => {
                                 {filteredReflectList && filteredReflectList.map((reflection) => (
                                     <div key={reflection.id} style={{ display: "flex", flexDirection: "column" }}>
                                         <div className="result-item">
-                                            <p className="result-link" onClick={() => handleReflectionClick(reflection)}>{formatDate(reflection.date)}</p>
+                                            <p className="result-link" style={{width: "100%"}} onClick={() => handleReflectionClick(reflection.id)}>{formatDate(reflection.date)}</p>
                                             <ListActions id={reflection.id} name={reflection.date} actionItem={actionItem} setActionItem={setActionItem} handleEdit={handleEdit} handleDelete={handleDelete} />
                                         </div>
                                         <div
-                                            className={`selected-reflection-wrapper ${selectedReflection === reflection ? "open" : ""
+                                            className={`selected-reflection-wrapper ${selectedReflection === reflection.id ? "open" : ""
                                                 }`}
                                         >
                                             <SelectedReflection reflection={reflection} />

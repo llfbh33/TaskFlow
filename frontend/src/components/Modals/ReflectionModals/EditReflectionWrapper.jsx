@@ -19,7 +19,20 @@ const baseReflection = {
 const EditResourceWrapper = ({editReflection}) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
-    const [reflection, setReflection] = useState(editReflection)
+    const [reflection, setReflection] = useState({
+        today: editReflection.today,
+        challenges: editReflection.challenges,
+        overcome: editReflection.overcome,
+        accomplish: editReflection.accomplish,
+        goals: editReflection.goals,
+        inputFields: editReflection.projects
+            .split(',')
+            .map((field, index) => ({
+                id: index + 1,
+               value: field,
+            })
+        )
+    });
 
 
 

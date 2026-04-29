@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
+// import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
 import { useDispatch } from "react-redux";
 import { deleteJournal } from "../../../store/journals";
 import { format } from 'date-fns';
@@ -10,6 +10,7 @@ import LoadingPage from "../../Loading/LoadingPage";
 import DeleteModal from "../../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
 import EditReflectionWrapper from "../../Modals/ReflectionModals/EditReflectionWrapper"
+import CreateReflectionWrapper from "../../Modals/ReflectionModals/CreateReflectionWrapper";
 
 
 
@@ -34,12 +35,12 @@ const UsersReflections = () => {
     const formatDate = (data) => {
         const newDate = new Date(data);
         return format(newDate, 'EEEE MMMM d yyyy');
-    }
+    };
 
     const openReflectionModal = async () => {
-        const modalComponent = <CreateReflectionModal />
+        const modalComponent = <CreateReflectionWrapper />
         setModalContent(modalComponent)
-    }
+    };
 
 
 
@@ -49,7 +50,7 @@ const UsersReflections = () => {
         } else {
             setSelectedReflection(reflection)
         }
-    }
+    };
 
     const handleSetReflectionFilter = (condition) => {
         const now = new Date();
@@ -65,11 +66,11 @@ const UsersReflections = () => {
 
         filteredList.sort((a, b) => new Date(b.date) - new Date(a.date));
         setFilteredReflectList(filteredList);
-    }
+    };
 
     const handleEdit = (id) => {
         const reflection = Object.values(reflectList).find(one => one.id === id);
-        const modalComponent = <EditReflectionWrapper reflection={reflection} />
+        const modalComponent = <EditReflectionWrapper editReflection={reflection} />
         setModalContent(modalComponent);
     }
 

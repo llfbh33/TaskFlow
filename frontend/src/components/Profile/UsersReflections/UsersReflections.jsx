@@ -1,6 +1,5 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
-// import CreateReflectionModal from "../../Modals/ReflectionModals/CreateReflectionModal";
 import { useDispatch } from "react-redux";
 import { deleteJournal } from "../../../store/journals";
 import { format } from 'date-fns';

@@ -52,8 +52,10 @@ export function Modal() {
         width: "100%",
         maxWidth: "600px",
         minHeight: "300px",
+        maxHeight: "80vh",
         borderRadius: "32px",
         overflow: "hidden",
+        // overflowY: "auto",
         border: "2px solid rgba(237, 231, 231, 0.5)",
         background: "rgba(37, 37, 37, 0.7)",
         // boxShadow: "0 25px 60px rgba(0, 0, 0, 0.3), inset 0 0 40px rgba(255, 255, 255, 0.25)",
@@ -64,9 +66,12 @@ export function Modal() {
         <div
           style={{
             padding: "50px 70px",
+            overflowY: "auto",
+            maxHeight: "80vh",
             display: "flex",
             flexDirection: "column",
-            justifyContent: "center",
+            justifyContent: "flex-start",
+            boxSizing: "border-box",
             background:
               "linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 100%)",
           }}

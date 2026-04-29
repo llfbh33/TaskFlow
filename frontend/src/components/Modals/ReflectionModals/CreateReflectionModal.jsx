@@ -4,6 +4,8 @@ import { createJournal } from "../../../store/journals";
 import { useModal } from "../../../context/Modal";
 
 
+/* =======>>>>>>> FILE NO LONGER USED <<<<<===== */
+
 
 const CreateReflectionModal = () => {
     const [inputFields, setInputFields] = useState([{id: 1, value: ''}]);

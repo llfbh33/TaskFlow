@@ -85,11 +85,12 @@ router.put('/:taskId', userOwnsElement, async (req, res, next) => {
 
     const foundTask = await Task.findByPk(taskId);
     const { task, isComplete, date } = req.body;
+    console.log('date', date)
 
     foundTask.set({
         task: task || foundTask.task,
         isComplete: isComplete || foundTask.isComplete,
-        date: date || foundTask.date,
+        date: date !== undefined ? date : foundTask.date,
         updatedAt: new Date().now
     });
 

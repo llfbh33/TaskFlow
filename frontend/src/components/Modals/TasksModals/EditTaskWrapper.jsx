@@ -9,7 +9,7 @@ import TasksModal from "./TasksModal";
 
 const EditTaskWrapper = ({ editTask }) => {
     const user = useSelector(state => state.session.user);
-    const [currDate, setDate] = useState();
+    const [currDate, setDate] = useState(null);
     const [task, setTask] = useState(editTask.task);
     const { closeModal } = useModal();
     const dispatch = useDispatch();
@@ -42,6 +42,7 @@ const EditTaskWrapper = ({ editTask }) => {
                 id: editTask.id,
                 userId: user.id,
                 task: task,
+                date: null,
             };
 
             // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue

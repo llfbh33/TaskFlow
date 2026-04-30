@@ -1,0 +1,52 @@
+.login-main-container {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+        radial-gradient(circle at top left, rgba(124, 140, 255, 0.16), transparent 30%), radial-gradient(circle at bottom right, rgba(94, 234, 212, 0.10), transparent 28%), linear-gradient(180deg, #0d1017 0%, #151925 100%);
+    color: white;
+}
+
+.login-sub-main-container {
+    width: 100%;
+    max-width: 600px;
+    min-height: 650px;
+    border-radius: 32px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.35), inset 0 0 40px rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(14px);
+        display: flex;
+    flex-direction: column;
+}
+
+.login-formating-container {
+    padding: 50px 70px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.015) 100%);
+}
+
+
+
+@media(max-width: 600px) {
+    .login-main-container {
+        padding-top: 60px;
+        min-height: calc(100vh - 62px);
+    }
+
+    .login-sub-main-container {
+        min-height: calc(100vh - 62px);
+        border-radius: 0;
+    }
+
+    .login-formating-container {
+        flex: 1;
+        justify-content: flex-start;
+    }
+}

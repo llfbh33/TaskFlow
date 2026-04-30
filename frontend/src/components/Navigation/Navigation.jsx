@@ -46,7 +46,7 @@ function Navigation({ isLoaded }) {
 
     // if there is a user show profile button, else, login and signup
     const sessionLinks = user ? (
-        <div className='login-signup-btn-container'>
+        <div className='logout-btn-container'>
             <button
                 className='landing-btn-two header-button'
                 onClick={logout}>

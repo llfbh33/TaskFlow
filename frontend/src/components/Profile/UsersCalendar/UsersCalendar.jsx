@@ -16,6 +16,7 @@ import { FaListUl } from "react-icons/fa";
 import DeleteModal from "../../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
 import EditTaskWrapper from "../../Modals/TasksModals/EditTaskWrapper";
+import "./UsersCalendar.css"
 
 
 
@@ -151,9 +152,9 @@ const UsersCalendar = () => {
             <div className="child-container">
                 <div className="child-container-two">
                     <div className="padding-container-header" >
-                        <div className="search-section" >
-                            <h2 className="search-title" style={{ margin: "0px" }}>Calendar</h2>
-                            <div className="search-actions">
+                        <div className="calendar-section" >
+                            <h2 className="calendar-title" style={{ margin: "0px" }}>Calendar</h2>
+                            <div className="calendar-actions">
                                 <div className="actions-alignment">
                                     <input
                                         ref={dateInputRef}
@@ -178,7 +179,7 @@ const UsersCalendar = () => {
                     <div style={{
                         borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
                     }}></div>
-<div className={`unassigned-task-opening ${unassigned ? "unassigned-open" : ""}`}>
+                    <div className={`unassigned-task-opening ${unassigned ? "unassigned-open" : ""}`}>
                         <div className="assigned-tasks">
                             <div className="padding-container">
                                 <div style={{

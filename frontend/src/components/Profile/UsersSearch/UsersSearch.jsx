@@ -108,15 +108,17 @@ const UsersSearch = () => {
                     <div className="padding-container-header">
                         <h2 className="search-title">Search Resources</h2>
                         <div className="search-section" >
-                            <div className="search-input">
-                                <input
-                                    type='text'
-                                    value={search}
-                                    onChange={(e) => setSearch(e.target.value)} >
-                                </input>
+                            <div style={{display: "flex", gap: "20px", width: "100%"}}>
+                                <div className="search-input">
+                                    <input
+                                        type='text'
+                                        value={search}
+                                        onChange={(e) => setSearch(e.target.value)} >
+                                    </input>
 
+                                </div>
+                                <button className={!search ? 'search-disabled' : 'landing-btn-two non-header-button'} onClick={handleSearch} disabled={!search} >Submit</button>
                             </div>
-                            <button className={!search ? 'search-disabled' : 'landing-btn-two non-header-button'} onClick={handleSearch} disabled={!search} >Submit</button>
                             <div className="search-actions">
                                 <div className="actions-alignment">
                                     <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
@@ -181,7 +183,7 @@ const UsersSearch = () => {
                             )}
                         </section>
                     </div>
-                    
+
                 </div>
             </div>
         </div>

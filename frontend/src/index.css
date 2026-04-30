@@ -197,7 +197,8 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 40px;
+    min-height: 40px;
+    padding: 6px;
     border-bottom: 1px solid rgba(255, 255, 255, 0.03);
 }
 
@@ -481,7 +482,6 @@ h4 {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    width: 36px
 }
 
 .calender-check:hover {
@@ -499,4 +499,36 @@ h4 {
     transform: translateY(0);
     box-shadow: 0 8px 16px rgba(40, 40, 40, 0.3);
     transition: all 0.2s ease;
+}
+
+
+.task-label {
+    text-decoration: none;
+    color: #bbbebb;
+    font-weight: 500;
+    font-size: 1.2rem;
+    display: flex;
+    gap: 10px
+}
+
+.future-uncompleted-task,
+.completed-task,
+.uncompleted-task,
+.old-uncompleted-task {
+    display: flex;
+    align-items: center;
+}
+
+.completed-task {
+    text-decoration: line-through;
+}
+
+.uncompleted-task {
+    border-left: 3px solid #facc15;
+    padding-left: 8px;
+}
+
+.old-uncompleted-task {
+    border-left: 3px solid #fa1515;
+    padding-left: 8px;
 }

@@ -215,7 +215,7 @@ const UsersCalendar = () => {
                                     <div className="results-list">
                                         {currTasks && Object.values(currTasks).map(task => (
                                             <div key={task.id} className="result-item">
-                                                <div className="result-link">
+                                                <div className="task-label">
                                                     <div className="calender-check"
                                                         onClick={() => task.isComplete ? finishTask(task, 'false') : finishTask(task, 'true')}
                                                     >
@@ -248,7 +248,7 @@ const UsersCalendar = () => {
                                         {incompleteTasks && Object.values(incompleteTasks).map(task => (
 
                                             <div key={task.id} className="result-item">
-                                                <div className="result-link">
+                                                <div className="task-label">
                                                     <div className="calender-check"
                                                         onClick={() => task.isComplete ? finishTask(task, 'false', 'true') : finishTask(task, 'true', 'true')}
                                                     >

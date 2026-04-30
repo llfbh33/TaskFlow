@@ -235,6 +235,7 @@ const UsersCalendar = () => {
                                 </section>
                             </div>
                         </div>
+                        {/* Listed output of unassigned tasks */}
                         <div className={`unassigned-wrapper ${unassigned ? 'open' : 'closed'}`}>
                             <div className="unassigned-tasks">
                                 <section className="results-section" style={{ color: "rgb(214, 214, 214)", letterSpacing: "0.05rem" }}>
@@ -246,7 +247,7 @@ const UsersCalendar = () => {
                                         {incompleteTasks && Object.values(incompleteTasks).map(task => (
 
                                             <div key={task.id} className="result-item">
-                                                <div className="calender-search-results">
+                                                <div className="result-link">
                                                     <div className="calender-check"
                                                         onClick={() => task.isComplete ? completeTask(task, 'false', 'true') : completeTask(task, 'true', 'true')}
                                                     >

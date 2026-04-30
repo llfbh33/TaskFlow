@@ -473,3 +473,17 @@ h4 {
 /* 
     background: rgba(187, 227, 208, 0.172);
     border: 1px solid rgba(255, 255, 255, 0.386); */
+
+
+
+.calender-check {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 36px
+}
+
+.calender-check:hover {
+    color: green;
+}

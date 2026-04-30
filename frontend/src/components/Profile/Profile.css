@@ -172,25 +172,8 @@
     width: 100%;
 }
 
-.open-reflection-container {
-    flex: 1;
-    padding: 4px 160px;
-    background: rgba(187, 227, 208, 0.172);
-    border: 1px solid rgba(255, 255, 255, 0.386);
-    border-radius: 12px;;
-
-}
 
 
-.reflections-questions-card {
-    display: flex;
-    width: 100%;
-    flex-wrap: wrap;
-    word-wrap: break-word;
-    cursor: pointer;
-    margin: 30px 0px;
-    flex-direction: column;
-}
 
 .closed-reflection-card:hover {
     background-color: rgb(224, 224, 224);

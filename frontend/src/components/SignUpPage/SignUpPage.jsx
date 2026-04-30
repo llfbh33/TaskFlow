@@ -96,43 +96,9 @@ export default function SignUpPage() {
     };
 
     return (
-        <div
-            style={{
-                minHeight: "100vh",
-                width: "100%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                paddingTop: "87px",
-                paddingBottom: "45px",
-                background:
-                    "radial-gradient(circle at top left, rgba(124,140,255,0.16), transparent 30%), radial-gradient(circle at bottom right, rgba(94,234,212,0.10), transparent 28%), linear-gradient(180deg, #0d1017 0%, #151925 100%)",
-                color: "white",
-            }}
-        >
-            <div
-                style={{
-                    width: "100%",
-                    maxWidth: "600px",
-                    minHeight: "650px",
-                    borderRadius: "32px",
-                    overflow: "hidden",
-                    border: "1px solid rgba(255,255,255,0.12)",
-                    background: "rgba(255,255,255,0.04)",
-                    boxShadow: "0 25px 80px rgba(0,0,0,0.35), inset 0 0 40px rgba(255,255,255,0.03)",
-                    backdropFilter: "blur(14px)",
-                }}
-            >
-                <div
-                    style={{
-                        padding: "50px 70px",
-                        display: "flex",
-                        flexDirection: "column",
-                        justifyContent: "center",
-                        background:
-                            "linear-gradient(180deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.015) 100%)",
-                    }}
-                >
+        <div className="signup-main-container">
+            <div className="signup-sub-main-container">
+                <div className="signup-formating-container">
                     <div style={{ marginBottom: "30px" }}>
                         <p
                             style={{

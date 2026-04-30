@@ -150,7 +150,7 @@ const UsersSearch = () => {
                                     <div className="results-list">
                                         {(loading === "initial" ? recent : results).length ? (
                                             (loading === "initial" ? recent : results).map((resource) => (
-                                                <div key={resource.id} className="result-item on-hover">
+                                                <div key={resource.id} className="result-item">
                                                     {/* <img
                                                     src={resource.data?.image}
                                                     className="link-image"

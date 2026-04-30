@@ -287,28 +287,7 @@
     gap: 4px;
 }
 
-.future-uncompleted-task,
-.completed-task,
-.uncompleted-task,
-.old-uncompleted-task {
-    display: flex;
-    align-items: center;
-    font-size: 14px;
-}
 
-.completed-task {
-    text-decoration: line-through;
-}
-
-.uncompleted-task {
-    border-left: 3px solid #facc15;
-    padding-left: 8px;
-}
-
-.old-uncompleted-task {
-    border-left: 3px solid #fa1515;
-    padding-left: 8px;
-}
 
 
 

@@ -1,7 +1,7 @@
 import { MdDelete } from "react-icons/md";
 
 
-const ResourceModal = ({ title, resource, setResource, errors, setErrors, handleSubmit }) => {
+const ResourceModal = ({ title, resource, setResource, errors, handleSubmit }) => {
 
     const handleValueChange = (value, prop) => {
         if (prop === 'keyOptions') {
@@ -37,12 +37,22 @@ const ResourceModal = ({ title, resource, setResource, errors, setErrors, handle
                 gap: "14px",
             }}>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                    <label
-                        style={{
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}>
+                        <label
+                            style={{
+                                fontSize: "0.95rem",
+                                color: "rgba(255,255,255,0.82)",
+                            }}
+                        >Resource Description</label>
+                        <label style={{
                             fontSize: "0.95rem",
-                            color: "rgba(255,255,255,0.82)",
-                        }}
-                    >Resource Description</label>
+                            color: "rgba(242, 147, 147, 0.68)",
+                        }}>{errors.name ? errors.name : ""}</label>
+                    </div>
                     <input
                         type='text'
                         value={resource.name}
@@ -60,12 +70,22 @@ const ResourceModal = ({ title, resource, setResource, errors, setErrors, handle
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                    <label
-                        style={{
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}>
+                        <label
+                            style={{
+                                fontSize: "0.95rem",
+                                color: "rgba(255,255,255,0.82)",
+                            }}
+                        >Resource URL</label>
+                        <label style={{
                             fontSize: "0.95rem",
-                            color: "rgba(255,255,255,0.82)",
-                        }}
-                    >Resource URL</label>
+                            color: "rgba(242, 147, 147, 0.68)",
+                        }}>{errors.url ? errors.url : ""}</label>
+                    </div>
                     <input
                         type='url'
                         value={resource.url}
@@ -83,12 +103,22 @@ const ResourceModal = ({ title, resource, setResource, errors, setErrors, handle
                     />
                 </div>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-                    <label
-                        style={{
+                    <div style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                    }}>
+                        <label
+                            style={{
+                                fontSize: "0.95rem",
+                                color: "rgba(255,255,255,0.82)",
+                            }}
+                        >Keywords for Resource:</label>
+                        <label style={{
                             fontSize: "0.95rem",
-                            color: "rgba(255,255,255,0.82)",
-                        }}
-                    >Keywords for Resource:</label>
+                            color: "rgba(242, 147, 147, 0.68)",
+                        }}>{errors.keyWords ? errors.keyWords : ""}</label>
+                    </div>
                     <ul style={{
                         marginTop: "14px",
                         marginBottom: "18px",

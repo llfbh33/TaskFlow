@@ -178,7 +178,7 @@ const UsersCalendar = () => {
                     <div style={{
                         borderBottom: '1px solid rgba(210, 209, 209, 0.187)',
                     }}></div>
-                    <div className="unassigned-task-opening">
+<div className={`unassigned-task-opening ${unassigned ? "unassigned-open" : ""}`}>
                         <div className="assigned-tasks">
                             <div className="padding-container">
                                 <div style={{

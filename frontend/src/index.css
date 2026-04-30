@@ -1,4 +1,6 @@
 /* Color Variables */
+
+
 :root {
     --primary-color: rgb(171, 232, 171);
     --secondary-color: green;
@@ -6,6 +8,17 @@
     --border-color: rgb(11, 77, 11);
     --header-height: 60px;
     --footer-height: 40px;
+}
+
+/* Global saftey rules */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: hidden;
 }
 
 /* TODO: Add sitewide styles */
@@ -59,7 +72,7 @@ body {
 .padding-container-header {
     display: flex;
     flex-direction: column;
-    padding: 20px 40px;
+    padding: 10px 40px;
     box-shadow: 
   0 8px 12px rgba(0, 0, 0, 0.15),
   0 1px 2px rgba(0, 0, 0, 0.08);
@@ -71,6 +84,20 @@ body {
     flex-direction: column;
     padding: 20px 40px;
     min-height: 0;
+}
+
+@media(max-width: 450px) {
+    .padding-container-header {
+        padding: 0px 0px
+    }
+
+    .search-title {
+        padding-left: 20px
+    }
+
+    .padding-container {
+        padding: 14px 12px;
+    }
 }
 
 
@@ -230,6 +257,12 @@ body {
     opacity: 1;
 }
 
+@media(max-width: 800px) {
+    .result-item button {
+        opacity: 1;
+    }
+}
+
 .action-wrapper {
     position: relative;
     display: flex;
@@ -239,20 +272,20 @@ body {
 
 .action-container {
     position: absolute;
-    top: -10px;
+    top: -18px;
     right: 0;
     background: rgba(26, 29, 36, 0);
     height: 60px;
-    width: 130px;
+    width: 120px;
     display: flex;
     align-items: center;
     /* border: 2px solid orange; */
 }
 
 .action-menu {
-    height: 20px;
+    height: 40px;
 
-    background: rgba(26, 29, 36, 0.446);
+    background: rgba(26, 29, 36, 0.831);
     backdrop-filter: blur(6px);
 
     border: 1px solid rgba(255, 255, 255, 0.08);
@@ -332,6 +365,12 @@ body {
 .displayed-title {
     font-size: 22px;
     font-weight: 600;
+}
+
+@media(max-width: 600px) {
+    .displayed-title {
+        font-size: 1.1rem;
+    }
 }
 
 h3,
@@ -431,6 +470,41 @@ h4 {
     pointer-events: none;
 }
 
+@media (max-width: 800px) {
+  .unassigned-task-opening {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .assigned-tasks {
+    flex: 0 0 100%;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .unassigned-task-opening.unassigned-open .assigned-tasks {
+    transform: translateX(-100%);
+  }
+
+  .unassigned-wrapper {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.3s ease;
+    will-change: transform;
+  }
+
+  .unassigned-wrapper.closed {
+    width: 100%;
+    transform: translateX(100%);
+  }
+
+  .unassigned-wrapper.open {
+    transform: translateX(0);
+  }
+}
 
 
 .selected-reflection-wrapper {
@@ -534,3 +608,5 @@ h4 {
     border-left: 3px solid #fa1515;
     padding-left: 8px;
 }
+
+

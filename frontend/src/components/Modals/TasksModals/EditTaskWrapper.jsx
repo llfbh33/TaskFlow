@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
-import { createTask } from "../../../store/tasks";
+import { updateTask } from "../../../store/tasks";
 import { format, addDays, subDays } from 'date-fns';
 import '../Modals.css';
 import TasksModal from "./TasksModal";
@@ -14,7 +14,6 @@ const EditTaskWrapper = ({ editTask }) => {
     const { closeModal } = useModal();
     const dispatch = useDispatch();
 
-
     // Format the date as 'YYYY-MM-DD', changes the value of the calender up top and no errors in console
     const formatDateForInput = (date) => {
         const year = date.getFullYear();
@@ -22,6 +21,7 @@ const EditTaskWrapper = ({ editTask }) => {
         const day = String(date.getDate()).padStart(2, '0');
         return `${year}-${month}-${day}`;
     };
+
 
     useEffect(() => {
         if (editTask.date !== null) {
@@ -33,40 +33,35 @@ const EditTaskWrapper = ({ editTask }) => {
         }
     }, [])
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        try {
+            const newTask = {
+                id: editTask.id,
+                userId: user.id,
+                task: task,
+            };
 
-        alert('Need to create a thunk and router to edit a task')
-        // if (currDate) {
-        //     // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
-        //     let newDate = new Date(currDate);
-        //     newDate = addDays(newDate, 1)
+            // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
+            if (currDate) {
+                let newDate = new Date(currDate);
+                newDate = addDays(newDate, 1);
 
-        //     const newTask = {
-        //         userId: user.id,
-        //         task: task,
-        //         date: newDate
-        //     }
+                newTask.date = newDate;
+            }
 
-        //     await dispatch(createTask(newTask));
-
-        // } else {
-
-        //     const newTask = {
-        //         userId: user.id,
-        //         task: task,
-        //     }
-
-        //     await dispatch(createTask(newTask));
-        // };
-
-        closeModal();
+            await dispatch(updateTask(newTask));
+            closeModal();
+        } catch (error) {
+            console.error("Faild to edit task", error);
+        }
     };
 
 
     return (
-        <TasksModal title={'Edit Task'}  buttonTitle={'Submit'} task={task} setTask={setTask} date={currDate} setDate={setDate} handleSubmit={handleSubmit} />
+        <TasksModal title={'Edit Task'} buttonTitle={'Submit'} task={task} setTask={setTask} date={currDate} setDate={setDate} handleSubmit={handleSubmit} />
     )
 }
 

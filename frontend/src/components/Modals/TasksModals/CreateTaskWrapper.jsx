@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../../store/tasks";
-import { format, addDays, subDays } from 'date-fns';
+import { addDays, subDays } from 'date-fns';
 import '../Modals.css';
 import { IoMdClose } from "react-icons/io";
 import TasksModal from "./TasksModal";
@@ -24,40 +24,37 @@ const CreateTaskWrapper = ({ date }) => {
         return `${year}-${month}-${day}`;
     };
 
+
     useEffect(() => {
         let today = date ? new Date(date) : new Date();
         today = formatDateForInput(today)
         setDate(today)
     }, [])
 
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (currDate) {
+        try {
+            const newTask = {
+                userId: user.id,
+                task: task,
+            };
+
             // Having difficulty with the dates being added a day behind, adding a day to the given date fixes that issue
-            let newDate = new Date(currDate);
-            newDate = addDays(newDate, 1)
+            if (currDate) {
+                let newDate = new Date(currDate);
+                newDate = addDays(newDate, 1);
 
-            const newTask = {
-                userId: user.id,
-                task: task,
-                date: newDate
+                newTask.date = newDate;
             }
 
             await dispatch(createTask(newTask));
-
-        } else {
-
-            const newTask = {
-                userId: user.id,
-                task: task,
-            }
-
-            await dispatch(createTask(newTask));
-        };
-
-        closeModal();
-    }
+            closeModal();
+        } catch (error) {
+            console.error("Faild to edit task", error);
+        }
+    };
 
     // return (
     //     <div

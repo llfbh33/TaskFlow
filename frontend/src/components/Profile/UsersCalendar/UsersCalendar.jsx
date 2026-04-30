@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import LoadingPage from "../../Loading/LoadingPage"
 import { format, addDays, subDays, add } from 'date-fns';
-import { CompleteTask, deleteTasks } from "../../../store/tasks";
+import { completeTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
 import CreateTaskWrapper from "../../Modals/TasksModals/CreateTaskWrapper";
 import { FaCircleNotch } from "react-icons/fa";
@@ -34,7 +34,7 @@ const UsersCalendar = () => {
     const [actionItem, setActionItem] = useState(null);
     const [unassigned, setUnassigned] = useState(false);
 
-    console.log('%c Unassigned Tasks', 'font-size: 20px;')
+    // console.log('%c Unassigned Tasks', 'font-size: 20px;')
 
     // filters through the tasks a user has and only stores the ones which are set to a specific date to be completed
     useEffect(() => {
@@ -131,14 +131,14 @@ const UsersCalendar = () => {
     //     await dispatch(deleteTasks(idx));
     // }
 
-    const completeTask = async (task, str, ua) => {
+    const finishTask = async (task, str, ua) => {
         let updateTask = { ...task };
         if (ua) {
             let newDate = new Date();
             updateTask.date = newDate;
         };
 
-        await dispatch(CompleteTask(updateTask, str));
+        await dispatch(completeTask(updateTask, str));
     }
 
     if (!loaded) {
@@ -216,7 +216,7 @@ const UsersCalendar = () => {
                                             <div key={task.id} className="result-item">
                                                 <div className="result-link">
                                                     <div className="calender-check"
-                                                        onClick={() => task.isComplete ? completeTask(task, 'false') : completeTask(task, 'true')}
+                                                        onClick={() => task.isComplete ? finishTask(task, 'false') : finishTask(task, 'true')}
                                                     >
                                                         {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
                                                     </div>
@@ -249,7 +249,7 @@ const UsersCalendar = () => {
                                             <div key={task.id} className="result-item">
                                                 <div className="result-link">
                                                     <div className="calender-check"
-                                                        onClick={() => task.isComplete ? completeTask(task, 'false', 'true') : completeTask(task, 'true', 'true')}
+                                                        onClick={() => task.isComplete ? finishTask(task, 'false', 'true') : finishTask(task, 'true', 'true')}
                                                     >
                                                         {task.isComplete ? <FaCheck /> : <FaCircleNotch />}
                                                     </div>

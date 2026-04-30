@@ -388,17 +388,7 @@
 /* .search-submit-clear-btns button:hover {
     background-color: rgb(224, 224, 224);
 } */
-.calender-check {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    width: 36px
-}
 
-.calender-check:hover {
-    color: green;
-}
 
 /* unassigned tasks */
 

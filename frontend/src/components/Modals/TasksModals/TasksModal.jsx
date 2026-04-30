@@ -25,7 +25,7 @@ const TasksModal = ({ title, buttonTitle, task, setTask, date, setDate, handleSu
                         flex: 1,
                         justifyContent: "space-between"
                     }}>
-                        <input type="date" value={date} style={{ cursor: "pointer", width: "50%" }} onChange={(e) => setDate(e.target.value)} />
+                        <input type="date" value={date ?? ""} style={{ cursor: "pointer", width: "50%" }} onChange={(e) => setDate(e.target.value)} />
                         <button 
                             className={date === "" ? "task-unassigned-btn" : "task-unassigned-button"}
                             onClick={() => setDate("")}>{date === "" ? "No date assigned" : "Leave unassigned"}</button>

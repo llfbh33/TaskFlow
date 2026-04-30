@@ -1,7 +1,7 @@
 // import { useEffect, useState, useRef } from "react";
 // import { useSelector, useDispatch } from "react-redux"
 // import Loading from "../../Loading/Loading";
-// import { CompleteTask, deleteTasks } from "../../../store/tasks";
+// import { completeTask, deleteTasks } from "../../../store/tasks";
 // import { useModal } from "../../../context/Modal";
 // import CreateTask from "../../Modals/TasksModals/CreateTask";
 // import DOMPurify from 'dompurify';

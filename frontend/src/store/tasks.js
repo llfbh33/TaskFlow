@@ -31,6 +31,7 @@ export const clearTasks = () => ({
 });
 
 
+
 export const getTasks = () => async dispatch => {
     const response = await csrfFetch("/api/tasks");
 
@@ -40,6 +41,7 @@ export const getTasks = () => async dispatch => {
         return list
     }
 }
+
 
 export const createTask = (task) => async dispatch => {
     const response = await csrfFetch(`/api/tasks/new`, {
@@ -63,7 +65,29 @@ export const createTask = (task) => async dispatch => {
     }
 };
 
-export const CompleteTask = (task, complete) => async dispatch => {
+
+export const updateTask = (task) => async dispatch => {
+    const response = await csrfFetch(`/api/tasks/${task.id}`, {
+        method: 'PUT',
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+            date: task.date,
+            task: task.task,
+        })
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(update(data));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
+
+export const completeTask = (task, complete) => async dispatch => {
     const response = await csrfFetch(`/api/tasks/${task.id}`, {
         method: 'PUT',
         headers: { "Content-Type": "application/json" },

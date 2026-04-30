@@ -18,17 +18,41 @@ const baseErrors = {
 
 
 const EditResourceWrapper = ({ editResource }) => {
-    console.log('resource', editResource)
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const { closeModal } = useModal();
     const [resource, setResource] = useState({ ...editResource, keyOptions: editResource.keyWords.split(',') });
-    // const [errors, setErrors] = useState(baseErrors);
+    const [errors, setErrors] = useState(baseErrors);
 
+
+    const validateResource = () => {
+        const validationErrors = {};
+
+        if (resource.name.trim().length < 2 || resource.name.trim().length > 100) {
+            validationErrors.name = "Name must be between 2 and 100 characters.";
+        }
+
+        if (resource.url.trim().length < 2 || resource.url.trim().length > 600) {
+            validationErrors.url = "URL must be between 2 and 600 characters.";
+        }
+
+        if (!resource.keyOptions.length) {
+            validationErrors.keyWords = "Please add at least one keyword.";
+        }
+
+        return validationErrors;
+    };
 
     // Action Functions
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+        const validationErrors = validateResource();
+
+        if (Object.keys(validationErrors).length) {
+            setErrors(validationErrors);
+            return;
+        }
 
         try {
             const newResource = {
@@ -50,7 +74,7 @@ const EditResourceWrapper = ({ editResource }) => {
 
     return (
         <>
-            <ResourceModal title={"Edit a Resource"} resource={resource} setResource={setResource} handleSubmit={handleSubmit} />
+            <ResourceModal title={"Edit a Resource"} resource={resource} setResource={setResource} errors={errors} handleSubmit={handleSubmit} />
         </>
     )
 }

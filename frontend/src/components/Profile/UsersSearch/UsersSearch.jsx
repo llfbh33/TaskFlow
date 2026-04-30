@@ -83,7 +83,7 @@ const UsersSearch = () => {
 
     const handleEdit = (id) => {
         const resource = resources[id];
-        const modalComponent = <EditResourceWrapper resource={resource} />
+        const modalComponent = <EditResourceWrapper editResource={resource} />
         setModalContent(modalComponent);
     }
 

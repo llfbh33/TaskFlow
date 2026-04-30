@@ -1,22 +1,31 @@
 import { MdDelete } from "react-icons/md";
 
 
-const ResourceModal = ({ title, name, setName, url, setUrl, keyOptions, setKeyOptions, handleSubmit }) => {
+const ResourceModal = ({ title, resource, setResource, errors, setErrors, handleSubmit }) => {
 
-
-    const handleOption = (value) => {
-        if (value === '') return;
-        let options = [...keyOptions]
-        if (!options.includes(value)) {
-            options.push(value);
-            setKeyOptions(options);
+    const handleValueChange = (value, prop) => {
+        if (prop === 'keyOptions') {
+            if (value === '') return;
+            let options = [...resource.keyOptions];
+            if (!options.includes(value)) {
+                options.push(value);
+                value = options;
+            }
         }
+        setResource(prev => ({
+            ...prev,
+            [prop]: value
+        }));
     };
 
+
     const deleteKey = (idx) => {
-        let keywords = [...keyOptions];
+        let keywords = [...resource.keyOptions];
         keywords.splice(idx, 1)
-        setKeyOptions(keywords)
+        setResource(prev => ({
+            ...prev,
+            keyOptions: keywords,
+        }))
     };
 
     return (
@@ -36,8 +45,8 @@ const ResourceModal = ({ title, name, setName, url, setUrl, keyOptions, setKeyOp
                     >Resource Description</label>
                     <input
                         type='text'
-                        value={name}
-                        onChange={(e) => setName(e.target.value)}
+                        value={resource.name}
+                        onChange={(e) => handleValueChange(e.target.value, 'name')}
                         style={{
                             flex: 1,
                             padding: "12px 18px",
@@ -59,8 +68,8 @@ const ResourceModal = ({ title, name, setName, url, setUrl, keyOptions, setKeyOp
                     >Resource URL</label>
                     <input
                         type='url'
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
+                        value={resource.url}
+                        onChange={(e) => handleValueChange(e.target.value, 'url')}
                         style={{
                             flex: 1,
                             padding: "12px 18px",
@@ -87,7 +96,7 @@ const ResourceModal = ({ title, name, setName, url, setUrl, keyOptions, setKeyOp
                         flexDirection: "column",
                         gap: "8px"
                     }}>
-                        {keyOptions.map((option, idx) => (
+                        {resource.keyOptions.map((option, idx) => (
                             <div style={{ display: "flex", justifyContent: "space-between" }} key={idx}>
                                 <li key={idx}>{option}</li> <button onClick={() => deleteKey(idx)} className="icon-button"><MdDelete /></button>
                             </div>
@@ -95,7 +104,7 @@ const ResourceModal = ({ title, name, setName, url, setUrl, keyOptions, setKeyOp
                     </ul>
                     <select
                         id="dropdown"
-                        onChange={(e) => handleOption(e.target.value)}
+                        onChange={(e) => handleValueChange(e.target.value, 'keyOptions')}
                         className="custom-select"
                     >
                         <option value="">--Relevant Keywords--</option>

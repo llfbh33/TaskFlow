@@ -1,36 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { addResource } from "../../../store/resources";
 import ResourceModal from "./ResourceModal";
 
+const baseResource = {
+    name: '',
+    url: '',
+    keyOptions: []
+};
+
+const baseErrors = {
+    name: 0,
+    url: 0,
+    keywords: 0,
+}
+
+
 const AddResourceWrapper = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
-    const [name, setName] = useState('');
-    const [url, setUrl] = useState('');
     const { closeModal } = useModal();
-    const [keyOptions, setKeyOptions] = useState([]);
+    const [resource, setResource] = useState(baseResource);
+    const [errors, setErrors] = useState(baseErrors);
 
 
     // Action Functions
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const newResource = {
-            userId: user.id,
-            name: name,
-            url: url,
-            keyWords: keyOptions.join(',')
-        };
+        try {
+            const newResource = {
+                userId: user.id,
+                name: resource.name,
+                url: resource.url,
+                keyWords: resource.keyOptions.join(',')
+            };
 
-        await dispatch(addResource(newResource));
+            await dispatch(addResource(newResource));
+            closeModal();
 
-        closeModal();
+        } catch (error) {
+            console.error("Resouce was not created", error)
+        }
     };
 
     return (
-        <ResourceModal title={"Add a Resource"} name={name} setName={setName} url={url} setUrl={setUrl} keyOptions={keyOptions} setKeyOptions={setKeyOptions} handleSubmit={handleSubmit} />
+        <ResourceModal title={"Add a Resource"} resource={resource} setResource={setResource} errors={errors} setErrors={setErrors} handleSubmit={handleSubmit} />
     )
 }
 

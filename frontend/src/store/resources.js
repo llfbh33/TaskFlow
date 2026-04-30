@@ -37,6 +37,7 @@ export const getResources = () => async dispatch => {
 };
 
 export const addResource = (resource) => async dispatch => {
+    console.log(resource)
     const response = await csrfFetch(`/api/resources/new`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },

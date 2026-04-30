@@ -208,6 +208,7 @@ body {
     font-weight: 500;
     font-size: 1.1rem;
     display: flex;
+    flex: 1;
     gap: 10px
 }
 
@@ -508,6 +509,7 @@ h4 {
     font-weight: 500;
     font-size: 1.2rem;
     display: flex;
+    flex: 1;
     gap: 10px
 }
 

@@ -116,7 +116,7 @@ const UsersSearch = () => {
                                 </input>
 
                             </div>
-                            <button className={!search ? 'search-disabled' : 'landing-btn-two'} onClick={handleSearch} disabled={!search} >Submit</button>
+                            <button className={!search ? 'search-disabled' : 'landing-btn-two non-header-button'} onClick={handleSearch} disabled={!search} >Submit</button>
                             <div className="search-actions">
                                 <div className="actions-alignment">
                                     <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>

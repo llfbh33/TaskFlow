@@ -365,7 +365,7 @@ export default function SignUpPage() {
                         <button
                             type="submit"
                             onClick={handleSignUp}
-                            className={disabled ? "form-button-disabled" : "form-button"}
+                            className={disabled ? "form-button-disabled non-header-button" : "form-button non-header-button"}
                         // className={
                         //     !name 
                         //     || !email

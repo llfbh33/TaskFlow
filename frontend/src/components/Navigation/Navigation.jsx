@@ -46,17 +46,17 @@ function Navigation({ isLoaded }) {
 
     // if there is a user show profile button, else, login and signup
     const sessionLinks = user ? (
-        <div className='logout-btn-container'>
+        <div className='login-signup-btn-container'>
             <button
-                className='landing-btn-two'
+                className='landing-btn-two header-button'
                 onClick={logout}>
                 Log Out
             </button>
         </div>
     ) : (
         <div className='login-signup-btn-container'>
-            <button className='landing-btn-three' onClick={() => navigate('/signup')}>Sign Up</button>
-            <button className='landing-btn-two' onClick={() => navigate('/login')}>Log In</button>
+            <button className='landing-btn-three header-button' onClick={() => navigate('/signup')}>Sign Up</button>
+            <button className='landing-btn-two header-button' onClick={() => navigate('/login')}>Log In</button>
         </div>
     );
 
@@ -79,7 +79,7 @@ function Navigation({ isLoaded }) {
                         </div>
 
                         {user ? (
-                            <h1 className="nav-header">{`Hello ${user.name}`}</h1>
+                            <h1 className="nav-header">{user.name}</h1>
                         ) : (
                             <div style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
                                 <h1 className="nav-header">Tracking App</h1>

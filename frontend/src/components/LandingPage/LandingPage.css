@@ -52,10 +52,13 @@
     margin-top: 8px;
 }
 
+.header-button {
+    padding: 6px 16px;
+}
+
 .form-button,
 .landing-btn-two,
 .landing-btn-three {
-    padding: 12px 20px;
     border-radius: 999px;
     border: none;
     font-size: 1rem;
@@ -64,6 +67,10 @@
     transform: translateY(0);
     box-shadow: 0 8px 16px rgba(40, 40, 40, 0.3);
     transition: all 0.2s ease;
+}
+
+.non-header-button {
+    padding: 12px 20px;
 }
 
 .form-button {

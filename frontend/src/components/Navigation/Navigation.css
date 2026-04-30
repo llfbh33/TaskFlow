@@ -51,9 +51,15 @@
   margin: 0;
   letter-spacing: 0.06em;
   font-weight: 700;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   color: rgba(255, 255, 255, 0.95);
   text-shadow: 0 1px 10px rgba(0, 0, 0, 0.2);
+}
+
+@media(max-width: 800px) {
+    .nav-header {
+        font-size: 1.2rem;
+    }     
 }
 
 .nav-expand-wrap {

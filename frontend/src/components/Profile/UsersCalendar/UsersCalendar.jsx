@@ -79,6 +79,7 @@ const UsersCalendar = () => {
     };
 
     const deleteTask = async (e, id) => {
+        e.preventDefault();
         await dispatch(deleteTasks(id));
         closeModal();
     };

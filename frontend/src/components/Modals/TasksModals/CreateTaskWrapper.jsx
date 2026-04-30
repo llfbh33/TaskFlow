@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { createTask } from "../../../store/tasks";
-import { addDays, subDays } from 'date-fns';
+import { addDays } from 'date-fns';
 import '../Modals.css';
-import { IoMdClose } from "react-icons/io";
 import TasksModal from "./TasksModal";
 
 

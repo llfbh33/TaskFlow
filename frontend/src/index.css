@@ -487,3 +487,16 @@ h4 {
 .calender-check:hover {
     color: green;
 }
+
+
+.no-search {
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transform: translateY(0);
+    box-shadow: 0 8px 16px rgba(40, 40, 40, 0.3);
+    transition: all 0.2s ease;
+}

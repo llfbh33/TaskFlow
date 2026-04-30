@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { useModal } from "../../../context/Modal";
 import Loading from "../../Loading/Loading";
 import { MdOutlineRefresh } from "react-icons/md";
@@ -10,10 +10,12 @@ import EditResourceWrapper from "../../Modals/ResourceModals/EditResourceWrapper
 import AddResourceWrapper from "../../Modals/ResourceModals/AddResourceWrapper";
 import DeleteModal from "../../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
+import { deleteResource } from "../../../store/resources";
 
 
 const UsersSearch = () => {
     const user = useSelector(state => state.session.user);
+    const dispatch = useDispatch();
     const resources = useSelector(state => state.resources);
     const [myResources, setMyResources] = useState([]);
     const [results, setResults] = useState([]);
@@ -80,20 +82,20 @@ const UsersSearch = () => {
     }
 
     const handleEdit = (id) => {
-        const resource = resources.find(one => one.id === id)
+        const resource = resources[id];
         const modalComponent = <EditResourceWrapper resource={resource} />
         setModalContent(modalComponent);
     }
 
     const handleDelete = (id, name) => {
-        const modalComponent = <DeleteModal subject={'resource'} name={name} action={deleteResource} id={id} />
+        const modalComponent = <DeleteModal subject={'resource'} name={name} action={deleteRes} id={id} />
         setModalContent(modalComponent);
     }
 
-    const deleteResource = async (e, id) => {
+    const deleteRes = async (e, id) => {
         e.preventDefault();
 
-        alert(`resource #${id} will delete after thunk and route are made`)
+        await dispatch(deleteResource(id));
         closeModal();
         return;
     }
@@ -114,7 +116,7 @@ const UsersSearch = () => {
                                 </input>
 
                             </div>
-                            <button className="search-submit" onClick={handleSearch} disabled={!search} >Submit</button>
+                            <button className={!search ? 'search-disabled' : 'landing-btn-two'} onClick={handleSearch} disabled={!search} >Submit</button>
                             <div className="search-actions">
                                 <div className="actions-alignment">
                                     <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>

@@ -3,7 +3,7 @@ import { csrfFetch } from './csrf.js';
 const LOAD = 'resousrce/LOAD';
 const CREATE = 'resource/CREATE';
 const UPDATE = 'resource/EDIT'
-const DELETE = 'resource/DELETE';
+const DESTROY = 'resource/DESTROY';
 
 const load = (list) => ({
     type: LOAD,
@@ -21,7 +21,7 @@ const update = (data) => ({
 })
 
 const destroy = (resourceId) => ({
-    type: DELETE,
+    type: DESTROY,
     resourceId
 });
 
@@ -82,6 +82,22 @@ export const updateResource = (resource) => async dispatch => {
 };
 
 
+export const deleteResource = (resourceId) => async dispatch => {
+    const response = await csrfFetch(`/api/resources/${resourceId}`, {
+        method: "DELETE",
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(destroy(resourceId));
+        return data;
+    } else {
+        const errors = await response.json();
+        return errors;
+    }
+}
+
+
 const resourcesReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD: {
@@ -100,6 +116,11 @@ const resourcesReducer = (state = {}, action) => {
             const newState = {...state};
             newState[action.data.id] = action.data;
             return newState
+        }
+        case DESTROY: {
+            const newState = {...state};
+            delete newState[action.resourceId];
+            return newState;
         }
         default:
             return state;

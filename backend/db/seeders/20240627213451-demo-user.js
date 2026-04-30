@@ -25,7 +25,7 @@ const seedUsers = [
     name: "Demo-User",
     username: "demo-user",
     email: 'demo@gmail.com',
-    status: 'collaborator',
+    status: 'user',
     isEmployed: false,
     hashedPassword: bcrypt.hashSync('password1')
   },
@@ -33,9 +33,17 @@ const seedUsers = [
     name: "Demo-User2",
     username: "demo-user2",
     email: 'demo2@gmail.com',
-    status: 'user',
+    status: 'collaborator',
     isEmployed: false,
     hashedPassword: bcrypt.hashSync('password2')
+  },
+  {
+    name: "Demo-User3",
+    username: "demo-user3",
+    email: 'demo3@gmail.com',
+    status: 'user',
+    isEmployed: false,
+    hashedPassword: bcrypt.hashSync('password3')
   },
 ]
 

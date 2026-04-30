@@ -36,25 +36,25 @@ const seedResources = [
     keyWords: 'Frameworks,System Design'
   },
   {
-    userId: 1,
+    userId: 3,
     name: 'Google Analytics Tutorial for React projects',
     url: 'https://javascript.plainenglish.io/how-to-setup-and-add-google-analytics-to-your-react-app-fd361f47ac7b',
     keyWords: 'Frameworks,System Design'
   },
   {
-    userId: 1,
+    userId: 3,
     name: 'Google Analytics Tutorial',
     url: 'https://developers.google.com/analytics/devguides/collection/ga4',
     keyWords: 'Frameworks,System Design'
   },
   {
-    userId: 1,
+    userId: 4,
     name: 'Google Analytics React documentation',
     url: 'https://github.com/react-ga/react-ga',
     keyWords: 'Frameworks'
   },
   {
-    userId: 1,
+    userId: 4,
     name: 'Google Analytics documentation',
     url: 'https://firebase.google.com/docs/analytics/get-started?platform=web',
     keyWords: 'Frameworks,System Design'
@@ -66,7 +66,7 @@ const seedResources = [
     keyWords: 'Frameworks,System Design'
   },
   {
-    userId: 1,
+    userId: 3,
     name: 'About Github READMEs and repository settings',
     url: 'https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-readmes',
     keyWords: 'Version Control,Career Strategy'
@@ -79,25 +79,25 @@ const seedResources = [
   },
   //
   {
-    userId: 1,
+    userId: 2,
     name: 'Difference Between RESTful APIs and Streaming APIs',
     url: 'https://dsstream.com/streaming-api-vs-rest-api-which-one-is-better-for-your-application/#:~:text=Streaming%20APIs%20are%20totally%20the,up%2Dto%2Ddate%20information',
     keyWords: 'System Design'
   },
   {
-    userId: 1,
+    userId: 2,
     name: 'Docs on creating express error handling middleware',
     url: 'https://expressjs.com/en/guide/using-middleware.html#middleware.error-handling',
     keyWords: 'Frameworks,Debugging'
   },
   {
-    userId: 1,
+    userId: 4,
     name: 'Sequelize Documentation',
     url: 'https://sequelize.org/docs/v6/core-concepts/validations-and-constraints/',
     keyWords: 'Frameworks,System Design'
   },
   {
-    userId: 1,
+    userId: 3,
     name: 'Stylesheet of many font awesome icons',
     url: 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.css',
     keyWords: 'Frameworks'
@@ -109,16 +109,34 @@ const seedResources = [
     keyWords: 'Frameworks,System Design'
   },
   {
-    userId: 1,
+    userId: 4,
     name: 'Thunk Logic, Documentation',
     url: 'https://redux.js.org/usage/writing-logic-thunks',
     keyWords: 'Frameworks,System Design,Debugging'
   },
   {
-    userId: 1,
+    userId: 2,
     name: 'SQLAlchemy Documentaion',
     url: 'https://docs.sqlalchemy.org/en/13/core/metadata.html#sqlalchemy.schema.Column',
     keyWords: 'Frameworks,System Design'
+  },
+  {
+    userId: 2,
+    name: 'Amazing Portfolio Examples',
+    url: 'https://byagentai.com/blog/software-engineer-portfolio-examples',
+    keyWords: 'Career Strategy'
+  },
+  {
+    userId: 3,
+    name: 'Resume Advice',
+    url: 'https://huntr.co/blog/resume-dos-and-donts',
+    keyWords: 'Career Strategy'
+  },
+  {
+    userId: 4,
+    name: 'Web UX Design for High Converting Websites',
+    url: 'https://frontendmasters.com/courses/ux-design-principles/',
+    keyWords: 'System Design'
   },
 ]
 

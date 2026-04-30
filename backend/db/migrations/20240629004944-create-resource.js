@@ -30,7 +30,6 @@ module.exports = {
       url: {
         type: Sequelize.STRING(600),
         allowNull: false,
-        unique: true,
       },
       keyWords: {
         type: Sequelize.STRING(200),

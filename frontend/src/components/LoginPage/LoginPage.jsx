@@ -27,8 +27,8 @@ export default function LoginPage() {
     // Login Load State for Demo User
     const demoLogin = async () => {
         await dispatch(sessionActions.login({
-            credential: 'starter-aubrie',
-            password: "password"
+            credential: "demo-user",
+            password: "password1"
         }));
 
         await loadState(dispatch);

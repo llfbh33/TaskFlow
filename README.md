@@ -30,10 +30,31 @@ TaskFlow is a full-stack productivity application designed to help users manage 
 - Adaptive UI patterns (modals, lists, navigation)
 - Optimized for both desktop and smaller screens
 
+
 ## Key Implementation Details
+- Reusable modal system for create/edit flows
+- Redux state structured for efficient updates
+- Backend validation paired with frontend validation
+- Conditional UI behavior based on screen size
+- Dynamic layout handling
+
 
 ## Challenges & Solutions
+- Responsive Layouts: Stablized UI using global css rules and container-based design
+- Database Constraints: Adjusted Database rules and validations to better match real user behavior
+- UI Transitions: Managed layout shifts between desktop and mobile views
 
-## Feature Improvements
+
+## Future Improvements
+- Improved URL validation and formatting
+- Mutiple calendar layout options (week view, month view)
+- Drag and Drop task scheduling
+- UI/UX refinements and theme customization
+- Ability to favorite resouces and access easily
+- Link favorite resources directly to tasks  
+- Add time support to tasks (e.g., complete by HH:MM) 
+- Customizable reflection prompts per user 
+- Add calendar date range filtering for reflections 
+
 
 ## Contact

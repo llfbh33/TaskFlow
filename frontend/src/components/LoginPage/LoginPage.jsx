@@ -22,7 +22,7 @@ export default function LoginPage() {
             setDisabled(false);
         } else if (!disabled) {
             setDisabled(true);
-        };
+        }
     }, [credential, password])
 
     // Login Load State for Demo User
@@ -63,7 +63,7 @@ export default function LoginPage() {
 
     if (user) {
         return <Navigate to="/calendar" replace />
-    };
+    }
 
 
     return (

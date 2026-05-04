@@ -38,7 +38,7 @@ const AnswerQuestionsModal = ({question}) => {
             setKeywords(updateKeywords);
         }
 
-    }, [])
+    }, [question.keyWords])
 
 
     const handleQuestionAddKeyword = () => {
@@ -111,7 +111,7 @@ const AnswerQuestionsModal = ({question}) => {
         if (Object.values(errors).length) {
             setShowErrors(true);
             return;
-        };
+        }
 
         // does not work for keywords
         let newKeywords = [];

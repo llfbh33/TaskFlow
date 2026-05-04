@@ -1,7 +1,7 @@
 import { useNavigate, Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import loadState from "../../utils/loadData";
 import "./signupPage.css";
 
@@ -36,16 +36,16 @@ export default function SignUpPage() {
 
         if (!email.includes('@') || !/\S+@\S+\.\S+/.test(email)) {
             newErrors.email = validations.email
-        };
+        }
 
         if (username.length < 4) {
             
             newErrors.username = validations.username;
-        };
+        }
 
         if (password.length < 6) {
             newErrors.password = validations.password
-        };
+        }
         return newErrors;
     };
 
@@ -59,7 +59,7 @@ export default function SignUpPage() {
             console.log(foundErrors)
             setErrors(foundErrors)
             return;
-        };
+        }
 
         if (password === confirmPassword) {
             try {
@@ -81,19 +81,19 @@ export default function SignUpPage() {
             } catch (res) {
                 const data = await res.json();
                 if (data.errors) setErrors(data.errors)
-            };
+            }
         } else {
             let editErrors = { ...errors };
             editErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
 
             return setErrors(editErrors);
-        };
+        }
     }
 
 
     if (user) {
         return <Navigate to="/calendar" replace />
-    };
+    }
 
     return (
         <div className="signup-main-container">

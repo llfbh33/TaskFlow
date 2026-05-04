@@ -7,6 +7,14 @@ TaskFlow is a full-stack productivity application designed to help users manage 
 ## Live Link
 
 ## Technologies Used
+![React-icon svg](https://github.com/llfbh33/Capstone-Project/assets/145170944/97103a00-5148-4209-924f-69f0e9899bcf)
+![redux-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/68b638dc-0472-4ab7-bf1e-32716bd8981a)
+![css-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/267e446d-8aad-4dc3-b858-7c25f34205f8)
+![html-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/532c4d1c-758e-4217-babb-39b459dcc073)
+![postgres-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/9a37dfbd-82ad-41a4-9925-f80d2ea07651)
+![render-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/9141c5c5-9743-4210-a6bc-8c6f2a2492c7)
+- Next.js
+- Express
 
 ## Featrues
 ### Task Management

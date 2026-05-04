@@ -4,11 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateResource } from "../../../store/resources";
 import ResourceModal from "./ResourceModal";
 
-const baseResource = {
-    name: '',
-    url: '',
-    keyOptions: []
-};
+// const baseResource = {
+//     name: '',
+//     url: '',
+//     keyOptions: []
+// };
 
 const baseErrors = {
     name: 0,

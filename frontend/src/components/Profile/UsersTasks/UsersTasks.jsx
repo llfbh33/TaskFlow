@@ -11,7 +11,7 @@
 // import DeleteTask from "../../Modals/TasksModals/DeleteTask";
 
 const UsersTasks = () => {
-    const allTasks = useSelector(state => state.tasks);
+    // const allTasks = useSelector(state => state.tasks);
     // const [unassignedTasks, setUnassignedTasks] = useState('');
     // const [completedTasks, setCompletedTasks] = useState('');
     // const [incompleteTasks, setIncompleteTasks] = useState('');
@@ -119,83 +119,83 @@ const UsersTasks = () => {
 
 
 
-const TestTextEditor = () => {
+// const TestTextEditor = () => {
 
-    const [content, setContent] = useState('');
-    const [isLargeText, setIsLargeText] = useState(false);
-    const editorRef = useRef(null);
+//     const [content, setContent] = useState('');
+//     const [isLargeText, setIsLargeText] = useState(false);
+//     const editorRef = useRef(null);
 
-    const handleChange = () => {
-        if (editorRef.current) {
-            const htmlContent = editorRef.current.innerHTML;
-            const sanitizedContent = DOMPurify.sanitize(htmlContent);
-            setContent(sanitizedContent);
-          }
-    };
+//     const handleChange = () => {
+//         if (editorRef.current) {
+//             const htmlContent = editorRef.current.innerHTML;
+//             const sanitizedContent = DOMPurify.sanitize(htmlContent);
+//             setContent(sanitizedContent);
+//           }
+//     };
 
-    const handleLargeTextToggle = () => {
-        setIsLargeText(prev => !prev);
-    };
+//     const handleLargeTextToggle = () => {
+//         setIsLargeText(prev => !prev);
+//     };
 
-    const applyLargeText = () => {
-        const selection = window.getSelection();
-        if (!selection.rangeCount) return;
+//     const applyLargeText = () => {
+//         const selection = window.getSelection();
+//         if (!selection.rangeCount) return;
 
-        const range = selection.getRangeAt(0);
-        const span = document.createElement('span');
-        span.style.fontSize = '24px'; // Apply large font size
-        range.surroundContents(span);
+//         const range = selection.getRangeAt(0);
+//         const span = document.createElement('span');
+//         span.style.fontSize = '24px'; // Apply large font size
+//         range.surroundContents(span);
 
-        // Move the caret to the end of the selection
-        range.collapse(false);
-        selection.removeAllRanges();
-        selection.addRange(range);
-    };
+//         // Move the caret to the end of the selection
+//         range.collapse(false);
+//         selection.removeAllRanges();
+//         selection.addRange(range);
+//     };
 
-    const handleKeyDown = (e) => {
-        if (isLargeText) {
-            // Allow backspace, delete, arrow keys to function normally
-            const allowedKeys = [
-                'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
-                'Control', 'Meta', 'Alt', 'Shift'
-            ];
-            if (!allowedKeys.includes(e.key)) {
-                e.preventDefault();
-                applyLargeText();
-                document.execCommand('insertText', false, e.key);
-            }
-        }
-    };
+//     const handleKeyDown = (e) => {
+//         if (isLargeText) {
+//             // Allow backspace, delete, arrow keys to function normally
+//             const allowedKeys = [
+//                 'Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown',
+//                 'Control', 'Meta', 'Alt', 'Shift'
+//             ];
+//             if (!allowedKeys.includes(e.key)) {
+//                 e.preventDefault();
+//                 applyLargeText();
+//                 document.execCommand('insertText', false, e.key);
+//             }
+//         }
+//     };
 
-    return (
-        <div style={{margin: "20px"}}>
-            <button onClick={handleLargeTextToggle}>
-                {isLargeText ? 'Disable Large Text' : 'Enable Large Text'}
-            </button>
-            <div
-                contentEditable
-                ref={editorRef}
-                style={{
-                    border: '1px solid black',
-                    padding: '10px',
-                    minWidth: '400px',
-                    minHeight: '200px',
-                }}
-                onInput={handleChange}
-                onKeyDown={handleKeyDown}
-            ></div>
-            <div
-                dangerouslySetInnerHTML={{ __html: content }}
-                style={{
-                    border: '1px solid black',
-                    padding: '10px',
-                    minHeight: '200px',
-                    marginTop: '20px'
-                }}
-            ></div>
-        </div>
-    )
-}
+//     return (
+//         <div style={{margin: "20px"}}>
+//             <button onClick={handleLargeTextToggle}>
+//                 {isLargeText ? 'Disable Large Text' : 'Enable Large Text'}
+//             </button>
+//             <div
+//                 contentEditable
+//                 ref={editorRef}
+//                 style={{
+//                     border: '1px solid black',
+//                     padding: '10px',
+//                     minWidth: '400px',
+//                     minHeight: '200px',
+//                 }}
+//                 onInput={handleChange}
+//                 onKeyDown={handleKeyDown}
+//             ></div>
+//             <div
+//                 dangerouslySetInnerHTML={{ __html: content }}
+//                 style={{
+//                     border: '1px solid black',
+//                     padding: '10px',
+//                     minHeight: '200px',
+//                     marginTop: '20px'
+//                 }}
+//             ></div>
+//         </div>
+//     )
+// }
 
 
 

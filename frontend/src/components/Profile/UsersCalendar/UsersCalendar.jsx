@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
 import LoadingPage from "../../Loading/LoadingPage"
-import { format, addDays, subDays, add } from 'date-fns';
+import { format, addDays, subDays } from 'date-fns';
 import { completeTask, deleteTasks } from "../../../store/tasks";
 import { useModal } from "../../../context/Modal";
 import CreateTaskWrapper from "../../Modals/TasksModals/CreateTaskWrapper";
@@ -138,7 +138,7 @@ const UsersCalendar = () => {
         if (ua) {
             let newDate = new Date();
             updateTask.date = newDate;
-        };
+        }
 
         await dispatch(completeTask(updateTask, str));
     }

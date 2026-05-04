@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { updateTask } from "../../../store/tasks";
-import { format, addDays, subDays } from 'date-fns';
+import { addDays } from 'date-fns';
 import '../Modals.css';
 import TasksModal from "./TasksModal";
 

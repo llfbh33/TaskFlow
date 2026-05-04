@@ -4,7 +4,7 @@ import AnswerQuestionsModal from "../../Modals/QuestionsModals/AnswerQuestionMod
 import AskQuestionModal from "../../Modals/QuestionsModals/AskQuestionModal";
 import { useEffect, useState } from "react";
 
-import { compressDate, formatDate } from "../../../utils/DateFormating";
+import { formatDate } from "../../../utils/DateFormating";
 import DeleteQuestion from "../../Modals/QuestionsModals/DeleteQuestion";
 
 

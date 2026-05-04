@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useModal } from "../../../context/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { addResource } from "../../../store/resources";

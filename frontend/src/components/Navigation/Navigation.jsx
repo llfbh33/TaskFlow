@@ -11,7 +11,7 @@ import { useState, useEffect } from 'react';
 
 function Navigation({ isLoaded }) {
     const user = useSelector(state => state.session.user);
-    const [dropDown, setDropDown] = useState(true);
+    // const [dropDown, setDropDown] = useState(true);
     const [hiddenMenu, setHiddenMenu] = useState(true);
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -60,10 +60,10 @@ function Navigation({ isLoaded }) {
         </div>
     );
 
-    const handleNavigate = (where) => {
-        navigate(`/${where}`)
-        setHiddenMenu(true);
-    }
+    // const handleNavigate = (where) => {
+    //     navigate(`/${where}`)
+    //     setHiddenMenu(true);
+    // }
 
     // return sessionLinks if the layout has loaded
     return (

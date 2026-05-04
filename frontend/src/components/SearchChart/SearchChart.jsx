@@ -108,12 +108,12 @@ const SearchChart = ({handleSearch}) => {
             .attr("font-size", '24px')
             .attr('fill', '#333')
             .attr("cursor", "pointer")  // Makes the text appear clickable
-            .on("mouseover", function(event, d) {
+            .on("mouseover", function() {
                 d3.select(this)           // 'this' refers to the current element being hovered over
                   .attr("fill", "blue")   // Change the text color on hover
                   .attr("font-size", "30px");  // Increase font size on hover
             })
-            .on("mouseout", function(event, d) {
+            .on("mouseout", function() {
                 d3.select(this)
                   .attr("fill", "#333")   // Reset to the original color when the hover ends
                   .attr("font-size", "24px");  // Reset font size when hover ends

@@ -57,7 +57,7 @@ export const createTask = (task) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        dispatch(update(data));
+        dispatch(create(data));
         return data;
     } else {
         const errors = await response.json();
@@ -129,6 +129,11 @@ const tasksReducer = (state = initialState, action) => {
                allTasks[task.id] = task;
             });
             return {...state, ...allTasks};
+        }
+        case CREATE: {
+            const newState = {...state};
+            newState[action.data.id] = action.data;
+            return newState
         }
         case UPDATE: {
             const newState = {...state};

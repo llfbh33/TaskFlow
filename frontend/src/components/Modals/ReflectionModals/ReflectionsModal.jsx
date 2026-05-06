@@ -32,7 +32,7 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
     return (
         <form onSubmit={handleSubmit}>
             <h1>{title}</h1>
-            <p>Fill out as much of the information below as you can.  The more information you provide the easier it will be to remember what you have done and what problems arrose along the way.</p>
+            <p>Fill out as much information as you can. Reflections are designed to help track progress, remember completed work, and note any challenges or solutions along the way.</p>
             <div style={{ display: "flex", flexDirection: "column", gap: "30px" }}>
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     <label

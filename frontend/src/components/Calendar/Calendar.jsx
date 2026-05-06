@@ -16,11 +16,11 @@ import { FaListUl } from "react-icons/fa";
 import DeleteModal from "../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
 import EditTaskWrapper from "../Modals/TasksModals/EditTaskWrapper";
-import "./UsersCalendar.css"
+import "./Calendar.css"
 
 
 
-const UsersCalendar = () => {
+const Calendar = () => {
     const usersTasks = useSelector(state => state.tasks);
     const dispatch = useDispatch();
     const [loaded, setLoaded] = useState(false);
@@ -274,4 +274,4 @@ const UsersCalendar = () => {
     )
 }
 
-export default UsersCalendar
+export default Calendar

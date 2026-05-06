@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import { Modal, ModalProvider } from './context/Modal';
-import UsersCalendar from './components/UsersCalendar/UsersCalendar';
-import UsersSearch from './components/UsersSearch/UsersSearch';
-import UsersReflections from './components/UsersReflections/UsersReflections';
+import Calendar from './components/Calendar/Calendar';
+import Search from './components/Search/Search';
+import Reflections from './components/Reflections/Reflections';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import SignUpPage from './components/SignUpPage/SignUpPage';
@@ -21,9 +21,9 @@ const router = createBrowserRouter([
       {
         element: <ProtectedRoute />,
         children: [
-          { path: "/calendar", element: <UsersCalendar /> },
-          { path: '/search', element: <UsersSearch /> },
-          { path: "/reflections", element: <UsersReflections /> },
+          { path: "/calendar", element: <Calendar /> },
+          { path: '/search', element: <Search /> },
+          { path: "/reflections", element: <Reflections /> },
           // { path: "/questions", element: <UsersQuestions /> },
           // { path: "/information", element: <SiteExplination /> },
         ]

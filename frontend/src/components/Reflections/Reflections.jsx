@@ -15,7 +15,7 @@ import CreateReflectionWrapper from "../Modals/ReflectionModals/CreateReflection
 
 
 
-const UsersReflections = () => {
+const Reflections = () => {
     const reflectList = useSelector(state => state.journals);
     const [loaded, setLoaded] = useState(false);
     const [filteredReflectList, setFilteredReflectList] = useState('');
@@ -145,4 +145,4 @@ const UsersReflections = () => {
     )
 }
 
-export default UsersReflections;
+export default Reflections;

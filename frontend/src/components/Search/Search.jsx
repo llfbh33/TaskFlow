@@ -13,7 +13,7 @@ import ListActions from "../ReusableComponents/ListActions";
 import { deleteResource } from "../../store/resources";
 
 
-const UsersSearch = () => {
+const Search = () => {
     const user = useSelector(state => state.session.user);
     const dispatch = useDispatch();
     const resources = useSelector(state => state.resources);
@@ -191,4 +191,4 @@ const UsersSearch = () => {
 }
 
 
-export default UsersSearch
+export default Search

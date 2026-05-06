@@ -36,7 +36,7 @@ const Footer = () => {
                         <FaRegFile />
                     </a>
 
-                    <a href="https://aubries-portfolio.onrender.com/" target="_blank" rel="noreferrer">
+                    <a href="https://aubries-portfolio.vercel.app/" target="_blank" rel="noreferrer">
                         <FaRegFolderOpen />
                     </a>
                 </div>

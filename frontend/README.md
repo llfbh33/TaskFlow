@@ -36,7 +36,7 @@ Added date formatter:
 backend - npm start
 frontend - npm run dev
 
-# to-do
+# TaskFlow
 
 ## An application with the intention of providing a to-do list for the softwear engineer job seeker to keep on track and focused on improving their skills
 

@@ -82,7 +82,7 @@ function Navigation({ isLoaded }) {
                             <h1 className="nav-header">{user.name}</h1>
                         ) : (
                             <div style={{ cursor: "pointer" }} onClick={() => navigate("/")}>
-                                <h1 className="nav-header">Tracking App</h1>
+                                <h1 className="nav-header">TaskFlow</h1>
                             </div>
                         )}
                     </div>

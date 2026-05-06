@@ -37,7 +37,7 @@ const AddResourceWrapper = () => {
         }
 
         if (!resource.keyOptions.length) {
-            validationErrors.keyWords = "Please add at least one keyword.";
+            validationErrors.keyWords = "Add at least one keyword.";
         }
 
         return validationErrors;

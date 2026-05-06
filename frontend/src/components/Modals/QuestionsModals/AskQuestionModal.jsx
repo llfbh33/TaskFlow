@@ -20,7 +20,7 @@ const AskQuestionModal = () => {
         e.preventDefault();
 
         if (!question) {
-            setErrors({question: 'Please include a question'})
+            setErrors({question: 'Include a question'})
             return;
         }
 

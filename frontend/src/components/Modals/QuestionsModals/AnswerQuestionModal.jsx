@@ -19,7 +19,7 @@ const AnswerQuestionsModal = ({question}) => {
 
     useEffect(() => {
         const validations = {};
-        if (answer.length <= 0) validations.answer = 'Please provide an answer to your question';
+        if (answer.length <= 0) validations.answer = 'Provide an answer to your question';
 
         setErrors(validations);
 
@@ -191,7 +191,7 @@ const AnswerQuestionsModal = ({question}) => {
                                     ></input>
                             </div>
                             <div>
-                                <label>Please provide a descriptive name:</label>
+                                <label>Provide a descriptive name:</label>
                                 <input
                                     type='text'
                                     value={resource.name}

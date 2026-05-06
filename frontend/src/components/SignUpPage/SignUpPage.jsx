@@ -17,8 +17,8 @@ export default function SignUpPage() {
     const [errors, setErrors] = useState({});
     // const [disabled, setDisabled] = useState(false);
     const validations = {
-        email: "Please provide a valid email.",
-        username: "Please provide a username with at least 4 characters.",
+        email: "Provide a valid email.",
+        username: "Provide a username with at least 4 characters.",
         password: "Password must be 6 characters or more."
     };
     const disabled = !email || !username || !name || !password || !confirmPassword;

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useModal } from "../../../context/Modal";
-import Loading from "../../Loading/Loading";
+import { useModal } from "../../context/Modal";
+import Loading from "../Loading/Loading";
 import { MdOutlineRefresh } from "react-icons/md";
 import { BsReverseListColumnsReverse } from "react-icons/bs";
 import { PiUserList } from "react-icons/pi";
 import { IoMdAdd } from "react-icons/io";
-import EditResourceWrapper from "../../Modals/ResourceModals/EditResourceWrapper";
-import AddResourceWrapper from "../../Modals/ResourceModals/AddResourceWrapper";
-import DeleteModal from "../../Modals/DeleteModal";
+import EditResourceWrapper from "../Modals/ResourceModals/EditResourceWrapper";
+import AddResourceWrapper from "../Modals/ResourceModals/AddResourceWrapper";
+import DeleteModal from "../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
-import { deleteResource } from "../../../store/resources";
+import { deleteResource } from "../../store/resources";
 
 
 const UsersSearch = () => {

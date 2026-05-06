@@ -1,11 +1,11 @@
 import { useSelector } from "react-redux"
-import { useModal } from "../../../context/Modal";
-import AnswerQuestionsModal from "../../Modals/QuestionsModals/AnswerQuestionModal";
-import AskQuestionModal from "../../Modals/QuestionsModals/AskQuestionModal";
+import { useModal } from "../../context/Modal";
+import AnswerQuestionsModal from "../Modals/QuestionsModals/AnswerQuestionModal";
+import AskQuestionModal from "../Modals/QuestionsModals/AskQuestionModal";
 import { useEffect, useState } from "react";
 
-import { formatDate } from "../../../utils/DateFormating";
-import DeleteQuestion from "../../Modals/QuestionsModals/DeleteQuestion";
+import { formatDate } from "../../utils/DateFormating";
+import DeleteQuestion from "../Modals/QuestionsModals/DeleteQuestion";
 
 
 

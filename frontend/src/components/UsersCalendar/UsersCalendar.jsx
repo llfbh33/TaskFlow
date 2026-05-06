@@ -1,10 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { useSelector, useDispatch } from "react-redux"
-import LoadingPage from "../../Loading/LoadingPage"
+import LoadingPage from "../Loading/LoadingPage"
 import { format, addDays, subDays } from 'date-fns';
-import { completeTask, deleteTasks } from "../../../store/tasks";
-import { useModal } from "../../../context/Modal";
-import CreateTaskWrapper from "../../Modals/TasksModals/CreateTaskWrapper";
+import { completeTask, deleteTasks } from "../../store/tasks";
+import { useModal } from "../../context/Modal";
+import CreateTaskWrapper from "../Modals/TasksModals/CreateTaskWrapper";
 import { FaCircleNotch } from "react-icons/fa";
 import { FaCheck } from "react-icons/fa";
 import { IoMdAdd } from "react-icons/io";
@@ -13,9 +13,9 @@ import { IoIosReturnLeft } from "react-icons/io";
 import { IoPlayForward } from "react-icons/io5";
 import { HiBackward } from "react-icons/hi2";
 import { FaListUl } from "react-icons/fa";
-import DeleteModal from "../../Modals/DeleteModal";
+import DeleteModal from "../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
-import EditTaskWrapper from "../../Modals/TasksModals/EditTaskWrapper";
+import EditTaskWrapper from "../Modals/TasksModals/EditTaskWrapper";
 import "./UsersCalendar.css"
 
 

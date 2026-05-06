@@ -1,9 +1,9 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Layout from './components/Layout';
 import { Modal, ModalProvider } from './context/Modal';
-import UsersCalendar from './components/Profile/UsersCalendar/UsersCalendar';
-import UsersSearch from './components/Profile/UsersSearch/UsersSearch';
-import UsersReflections from './components/Profile/UsersReflections/UsersReflections';
+import UsersCalendar from './components/UsersCalendar/UsersCalendar';
+import UsersSearch from './components/UsersSearch/UsersSearch';
+import UsersReflections from './components/UsersReflections/UsersReflections';
 import LandingPage from './components/LandingPage';
 import LoginPage from './components/LoginPage/LoginPage';
 import SignUpPage from './components/SignUpPage/SignUpPage';
@@ -24,7 +24,6 @@ const router = createBrowserRouter([
           { path: "/calendar", element: <UsersCalendar /> },
           { path: '/search', element: <UsersSearch /> },
           { path: "/reflections", element: <UsersReflections /> },
-          // { path: "/tasks", element: <UsersTasks /> },
           // { path: "/questions", element: <UsersQuestions /> },
           // { path: "/information", element: <SiteExplination /> },
         ]

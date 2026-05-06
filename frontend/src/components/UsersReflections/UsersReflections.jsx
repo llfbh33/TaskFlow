@@ -1,16 +1,16 @@
 import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { deleteJournal } from "../../../store/journals";
+import { deleteJournal } from "../../store/journals";
 import { format } from 'date-fns';
 import { IoMdAdd } from "react-icons/io";
 import SelectedReflection from "./SelectedReflection";
-import { useModal } from "../../../context/Modal";
-import LoadingPage from "../../Loading/LoadingPage";
-import DeleteModal from "../../Modals/DeleteModal";
+import { useModal } from "../../context/Modal";
+import LoadingPage from "../Loading/LoadingPage";
+import DeleteModal from "../Modals/DeleteModal";
 import ListActions from "../ReusableComponents/ListActions";
-import EditReflectionWrapper from "../../Modals/ReflectionModals/EditReflectionWrapper"
-import CreateReflectionWrapper from "../../Modals/ReflectionModals/CreateReflectionWrapper";
+import EditReflectionWrapper from "../Modals/ReflectionModals/EditReflectionWrapper"
+import CreateReflectionWrapper from "../Modals/ReflectionModals/CreateReflectionWrapper";
 
 
 

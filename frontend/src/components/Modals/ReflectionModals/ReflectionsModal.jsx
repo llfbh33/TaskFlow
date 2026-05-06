@@ -40,7 +40,7 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
                             fontSize: "0.95rem",
                             color: "rgba(255,255,255,0.82)",
                         }}
-                    >List out the projects or activities you worked on today.</label>
+                    >List the projects, tasks, or activities you worked on today.</label>
                     {reflection.inputFields.map((field) => (
                         <div key={field.id}>
                             <input
@@ -93,7 +93,7 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
                             fontSize: "0.95rem",
                             color: "rgba(255,255,255,0.82)",
                         }}
-                    >Was there any work you are proud of or enjoyed?</label>
+                    >What work are you most proud of or satisfied with today?</label>
                     <textarea
                         type='text'
                         value={reflection.accomplish}
@@ -117,7 +117,7 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
                             fontSize: "0.95rem",
                             color: "rgba(255,255,255,0.82)",
                         }}
-                    >Did you face any challenges?</label>
+                    >Did you face any challenges today and what were they?</label>
                     <textarea
                         type='text'
                         value={reflection.challenges}
@@ -141,7 +141,7 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
                             fontSize: "0.95rem",
                             color: "rgba(255,255,255,0.82)",
                         }}
-                    >What did or will you do to work through these challenges?</label>
+                    >What steps did or will you take to work through these challenges?</label>
                     <textarea
                         type='text'
                         value={reflection.overcome}
@@ -165,7 +165,7 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
                             fontSize: "0.95rem",
                             color: "rgba(255,255,255,0.82)",
                         }}
-                    >What goals do you have for tomorrow and moving forward?</label>
+                    >What goals or priorities do you have for tomorrow and the days ahead?</label>
                     <textarea
                         type='text'
                         value={reflection.goals}
@@ -181,7 +181,6 @@ const ReflectionModal = ({ title, buttonTitle, reflection, setReflection, handle
                             padding: "16px",
                         }}
                     />
-                    {/* <p></p> */}
                 </div>
                 <div>
                     <button type='submit' className='modal-submit'>{buttonTitle}</button>

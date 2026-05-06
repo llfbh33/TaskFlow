@@ -1,4 +1,3 @@
-const SelectedReflection = ({ reflection }) => {
     const sections = [
         {
             label: "Projects, tasks, or activities you worked on today.",
@@ -24,8 +23,10 @@ const SelectedReflection = ({ reflection }) => {
             label: "What goals or priorities do you have for tomorrow and the days ahead?",
             property: "goals"
         }
-    ]
-    console.log(reflection)
+    ];
+
+
+const SelectedReflection = ({ reflection }) => {
 
     if (!reflection) return
 
@@ -37,7 +38,10 @@ const SelectedReflection = ({ reflection }) => {
                 if (!information) return "";
 
                 return (
-                <div className={`reflections-questions-card ${section.property === "projects" ? "reflection-projects" : ""}`}>
+                <div 
+                    className={`reflections-questions-card ${section.property === "projects" ? "reflection-projects" : ""}`}
+                    key={index}    
+                >
                     <label style={{
                         fontSize: "1.4rem",
                         color: "rgba(255,255,255,0.82)",

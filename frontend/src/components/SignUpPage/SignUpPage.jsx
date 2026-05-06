@@ -17,6 +17,7 @@ export default function SignUpPage() {
     const [errors, setErrors] = useState({});
     // const [disabled, setDisabled] = useState(false);
     const validations = {
+        name: "Provide a name with at least 4 characters",
         email: "Provide a valid email.",
         username: "Provide a username with at least 4 characters.",
         password: "Password must be 6 characters or more."
@@ -39,12 +40,19 @@ export default function SignUpPage() {
         }
 
         if (username.length < 4) {
-            
             newErrors.username = validations.username;
         }
 
+        if (name.length < 4) {
+            newErrors.name = validations.name;
+        }
+
         if (password.length < 6) {
-            newErrors.password = validations.password
+            newErrors.password = validations.password   
+        }
+
+        if (confirmPassword !== password) {
+            newErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
         }
         return newErrors;
     };
@@ -61,7 +69,7 @@ export default function SignUpPage() {
             return;
         }
 
-        if (password === confirmPassword) {
+        // if (password === confirmPassword) {
             try {
                 await dispatch(sessionActions.signup({
                     email,
@@ -82,12 +90,12 @@ export default function SignUpPage() {
                 const data = await res.json();
                 if (data.errors) setErrors(data.errors)
             }
-        } else {
-            let editErrors = { ...errors };
-            editErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
+        // } else {
+        //     let editErrors = { ...errors };
+        //     editErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
 
-            return setErrors(editErrors);
-        }
+        //     return setErrors(editErrors);
+        // }
     }
 
 

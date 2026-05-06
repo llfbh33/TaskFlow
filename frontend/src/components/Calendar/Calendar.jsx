@@ -171,7 +171,7 @@ const Calendar = () => {
                                     </button>
                                     <button className="icon-button" onClick={() => setCurrDate(new Date())}><IoIosReturnLeft /></button>
                                     <button className="icon-button" onClick={addATask}><IoMdAdd /></button>
-                                    <button className="icon-button" onClick={() => setUnassigned(!unassigned)}><FaListUl /></button>
+                                    <button className={`icon-button ${unassigned ? "active" : ""}`} onClick={() => setUnassigned(!unassigned)}><FaListUl /></button>
                                 </div>
                             </div>
                         </div>

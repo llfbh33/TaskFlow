@@ -201,7 +201,7 @@ body {
 
 /* Search Icon Button Styling */
 .icon-button {
-    color: rgba(210, 209, 209, 0.826);
+    color: rgba(160, 159, 159, 0.826);
     background-color: rgba(90, 219, 131, 0);
     border: none;
     font-size: 1.2rem;
@@ -209,6 +209,16 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.icon-button:hover {
+    color: rgba(228, 228, 228, 0.826);
+    transform: translateY(-3px);
+}
+
+.icon-button.active {
+    color: rgba(248, 142, 4, 0.826);
 }
 
 

@@ -126,8 +126,8 @@ const Search = () => {
                             <div className="search-actions">
                                 <div className="actions-alignment">
                                     <button className="icon-button" onClick={handleAddResource}><IoMdAdd /></button>
-                                    <button className="icon-button" onClick={allResources}><BsReverseListColumnsReverse /></button>
-                                    <button className="icon-button" onClick={userResources}><PiUserList /></button>
+                                    <button className={`icon-button ${resultType === "All Resources" ? "active" : ""}`} onClick={allResources}><BsReverseListColumnsReverse /></button>
+                                    <button className={`icon-button ${resultType === "My Resources" ? "active" : ""}`} onClick={userResources}><PiUserList /></button>
                                     <button className="icon-button" onClick={clearSearch}><MdOutlineRefresh /></button>
                                 </div>
                             </div>

@@ -138,10 +138,130 @@ const seedResources = [
     url: 'https://frontendmasters.com/courses/ux-design-principles/',
     keyWords: 'System Design'
   },
+  {
+    userId: 2,
+    name: 'JavaScript Info - Modern JavaScript Tutorial',
+    url: 'https://javascript.info/',
+    keyWords: 'Coding Languages,Debugging'
+  },
+  {
+    userId: 3,
+    name: 'React Official Documentation',
+    url: 'https://react.dev/',
+    keyWords: 'Frameworks,System Design'
+  },
+  {
+    userId: 4,
+    name: 'Git Branching Interactive Tutorial',
+    url: 'https://learngitbranching.js.org/',
+    keyWords: 'Version Control,Debugging'
+  },
+  {
+    userId: 1,
+    name: 'Big O Cheat Sheet',
+    url: 'https://www.bigocheatsheet.com/',
+    keyWords: 'Algorithms,Coding Languages'
+  },
+  {
+    userId: 2,
+    name: 'Frontend Interview Handbook',
+    url: 'https://frontendinterviewhandbook.com/',
+    keyWords: 'Career Strategy,Algorithms'
+  },
+  {
+    userId: 3,
+    name: 'Node.js Official Documentation',
+    url: 'https://nodejs.org/en/docs',
+    keyWords: 'Frameworks,System Design'
+  },
+  {
+    userId: 4,
+    name: 'CSS Tricks Complete Flexbox Guide',
+    url: 'https://css-tricks.com/snippets/css/a-guide-to-flexbox/',
+    keyWords: 'Frameworks,Debugging'
+  },
+  {
+    userId: 1,
+    name: 'LeetCode Practice Problems',
+    url: 'https://leetcode.com/problemset/',
+    keyWords: 'Algorithms,Coding Languages'
+  },
+  {
+    userId: 2,
+    name: 'Atlassian Git Tutorials',
+    url: 'https://www.atlassian.com/git/tutorials',
+    keyWords: 'Version Control,Soft Skills'
+  },
+  {
+    userId: 3,
+    name: 'Roadmap.sh Backend Developer Roadmap',
+    url: 'https://roadmap.sh/backend',
+    keyWords: 'Career Strategy,System Design'
+  },
+  {
+    userId: 4,
+    name: 'TypeScript Documentation',
+    url: 'https://www.typescriptlang.org/docs/',
+    keyWords: 'Coding Languages,Frameworks'
+  },
+  {
+    userId: 1,
+    name: 'Docker Getting Started Guide',
+    url: 'https://docs.docker.com/get-started/',
+    keyWords: 'System Design,Frameworks'
+  },
+  {
+    userId: 2,
+    name: 'freeCodeCamp JavaScript Algorithms and Data Structures',
+    url: 'https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures/',
+    keyWords: 'Algorithms,Coding Languages'
+  },
+  {
+    userId: 3,
+    name: 'How to Debug JavaScript in Chrome DevTools',
+    url: 'https://developer.chrome.com/docs/devtools/javascript/',
+    keyWords: 'Debugging,Coding Languages'
+  },
+  {
+    userId: 4,
+    name: 'Behavioral Interview Questions Guide',
+    url: 'https://www.themuse.com/advice/behavioral-interview-questions-answers-examples',
+    keyWords: 'Soft Skills,Career Strategy'
+  },
+  {
+    userId: 1,
+    name: 'REST API Design Best Practices',
+    url: 'https://swagger.io/resources/articles/best-practices-in-api-design/',
+    keyWords: 'System Design,Frameworks'
+  },
+  {
+    userId: 2,
+    name: 'MDN Guide on Async JavaScript',
+    url: 'https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Asynchronous',
+    keyWords: 'Coding Languages,Debugging'
+  },
+  {
+    userId: 3,
+    name: 'GitHub Actions Documentation',
+    url: 'https://docs.github.com/en/actions',
+    keyWords: 'Version Control,System Design'
+  },
+  {
+    userId: 4,
+    name: 'How to Write Better Commit Messages',
+    url: 'https://cbea.ms/git-commit/',
+    keyWords: 'Version Control,Soft Skills'
+  },
+  {
+    userId: 1,
+    name: 'System Design Primer',
+    url: 'https://github.com/donnemartin/system-design-primer',
+    keyWords: 'System Design,Career Strategy'
+  },
 ]
 
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
 
     options.tableName = 'Resources';
     options.validate = true;
@@ -149,7 +269,7 @@ module.exports = {
     await Resource.bulkCreate(seedResources, options);
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
 
     options.tableName = 'Resources';
     return queryInterface.bulkDelete(options, seedResources, {});

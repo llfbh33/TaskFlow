@@ -86,6 +86,8 @@ const Reflections = () => {
             <p>{`When you are looking for a job, or even just browsing around, your practicing your skills and
                 working hard on your projects as well as all your other responsibilities.  But how easy is it
                 to remember what you worked on last week, last month, that little win you had so long ago that
+
+                
                 really made you feel like "I know what I'm doing!". It is hard! Your a hard working
                 professional indidual who has so much to do all the time, how can you place all the
                 insignificant details, not matter how large they are.`}

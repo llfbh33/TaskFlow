@@ -48,7 +48,7 @@ export default function SignUpPage() {
         }
 
         if (password.length < 6) {
-            newErrors.password = validations.password   
+            newErrors.password = validations.password
         }
 
         if (confirmPassword !== password) {
@@ -69,33 +69,26 @@ export default function SignUpPage() {
             return;
         }
 
-        // if (password === confirmPassword) {
-            try {
-                await dispatch(sessionActions.signup({
-                    email,
-                    username,
-                    name,
-                    password
-                }));
-                await loadState(dispatch);
+        try {
+            await dispatch(sessionActions.signup({
+                email,
+                username,
+                name,
+                password
+            }));
+            await loadState(dispatch);
 
-                setEmail('');
-                setUsername('');
-                setName('');
-                setPassword('');
-                setConfirmPassword('');
-                setErrors({});
-                navigate('/calendar');
-            } catch (res) {
-                const data = await res.json();
-                if (data.errors) setErrors(data.errors)
-            }
-        // } else {
-        //     let editErrors = { ...errors };
-        //     editErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
-
-        //     return setErrors(editErrors);
-        // }
+            setEmail('');
+            setUsername('');
+            setName('');
+            setPassword('');
+            setConfirmPassword('');
+            setErrors({});
+            navigate('/calendar');
+        } catch (res) {
+            const data = await res.json();
+            if (data.errors) setErrors(data.errors)
+        }
     }
 
 

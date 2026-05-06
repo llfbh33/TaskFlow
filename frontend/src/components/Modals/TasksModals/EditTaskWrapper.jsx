@@ -8,7 +8,6 @@ import TasksModal from "./TasksModal";
 
 
 const EditTaskWrapper = ({ editTask }) => {
-    console.log('editTask', editTask)
     const user = useSelector(state => state.session.user);
     const [currDate, setDate] = useState(null);
     const [task, setTask] = useState(editTask.task);

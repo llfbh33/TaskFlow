@@ -27,6 +27,7 @@ const Search = () => {
     const [resultType, setResultType] = useState('Most Recently Added');
     const [actionItem, setActionItem] = useState(null);
 
+
     // useEffects
     useEffect(() => {
         if (user) {
@@ -72,7 +73,10 @@ const Search = () => {
     };
 
     const userResources = () => {
-        setResults(myResources)
+        setLoading('loading');
+        setSearch('');
+        setResults([...myResources]);
+        setLoading(false);
         setResultType('My Resources');
     }
 

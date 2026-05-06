@@ -56,10 +56,15 @@ const AddResourceWrapper = () => {
         }
 
         try {
+            let updateUrl = resource.url;
+            if (!updateUrl.startsWith('https://')) {
+                updateUrl = `https://${resource.url}`
+            }
+
             const newResource = {
                 userId: user.id,
                 name: resource.name,
-                url: resource.url,
+                url: updateUrl,
                 keyWords: resource.keyOptions.join(',')
             };
 

@@ -8,6 +8,7 @@ import TasksModal from "./TasksModal";
 
 
 const EditTaskWrapper = ({ editTask }) => {
+    console.log('editTask', editTask)
     const user = useSelector(state => state.session.user);
     const [currDate, setDate] = useState(null);
     const [task, setTask] = useState(editTask.task);
@@ -51,6 +52,8 @@ const EditTaskWrapper = ({ editTask }) => {
                 newDate = addDays(newDate, 1);
 
                 newTask.date = newDate;
+            } else {
+                newTask.isComplete = false;  // If there is no completion date then the task has not been accomplished yet
             }
 
             await dispatch(updateTask(newTask));

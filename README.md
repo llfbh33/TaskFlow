@@ -48,21 +48,68 @@ TaskFlow is a full-stack productivity application designed to help users manage 
 
 
 ## Challenges & Solutions
-- Responsive Layouts: Stablized UI using global css rules and container-based design
-- Database Constraints: Adjusted Database rules and validations to better match real user behavior
+- Responsive Layouts: Stabilized UI using global CSS rules and container-based design
+- Database Constraints: Adjusted database rules and validations to better match real user behavior
 - UI Transitions: Managed layout shifts between desktop and mobile views
+- Reusable Modals: Standardized create, edit, and delete flows with shared modal patterns
+- State Management: Organized Redux state and thunks to keep task, resource, and reflection data predictable
+- Form Handling: Improved controlled inputs and validation to reduce user errors
+- Demo Data: Created realistic seed data to make the demo account feel complete and usable
+- Calendar Workflow: Connected scheduled and unassigned tasks to support more flexible planning
 
 
-## Future Improvements
-- Improved URL validation and formatting
-- Mutiple calendar layout options (week view, month view)
-- Drag and Drop task scheduling
+## Future Implementations
+
+### Overall
 - UI/UX refinements and theme customization
-- Ability to favorite resouces and access easily
-- Link favorite resources directly to tasks  
-- Add time support to tasks (e.g., complete by HH:MM) 
-- Customizable reflection prompts per user 
-- Add calendar date range filtering for reflections 
+- Profile view for editing personal information
+- Basic guide walkthrough for first-time users (always enabled for the demo user)
 
+### Calendar
+- Basic starter tasks for first-time users to encourage interaction
+- Task categories, tags, and priority levels
+- Drag and drop task scheduling
+- Week and month calendar layouts
+- Recurring tasks and reminders
+- Time support for tasks (e.g., complete by HH:MM)
+
+### Search
+- Ability to favorite resources for quick access
+- Link favorite resources directly to tasks
+- Link resources used to journal entries
+
+### Comments and Ratings
+- Community comments on shared resources
+- Resource rating system
+- Feedback on which resources users found most helpful
+
+### Reflections
+- Customizable reflection prompts per user
+- Calendar date range filtering for reflections
+
+### Suggestions
+- Community suggestions page for feature requests and usability feedback
+
+### Productivity Enhancements
+- Smart carry-over system for overdue tasks
+- Prompt users to reschedule or move incomplete tasks to unassigned
+- Reflection prompts generated from completed tasks and daily activity
+- Convert reflection notes directly into tasks
+
+### Activity and Analytics
+- Activity feed showing completed tasks, added resources, and reflections
+- Weekly review summaries for completed work and project focus
+- Basic productivity analytics and visualization dashboards
+- Track most-used resources and recently accessed materials
+
+### Smart Suggestions
+- Lightweight recommendation system based on user activity
+- Suggestions for overdue reflections, inactive projects, or unused resources
+- Personalized prompts encouraging consistency and engagement
+
+### Export and Sharing
+- Export weekly summaries, reflections, and completed tasks
+- Markdown or PDF export support for interview preparation and progress tracking
 
 ## Contact
+- [LinkedIn](https://www.linkedin.com/in/aubrie-woodbine-b91781314/)

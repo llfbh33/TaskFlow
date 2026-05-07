@@ -41,7 +41,7 @@ export default function LandingPage() {
                 </div>
 
                 <div className="preview-container">
-                    App preview coming soon
+                    <img alt="TaskFlow Preview Image of Calendar Layout" src="/AppPreview.png" />
                 </div>
             </div>
         </section>

@@ -1,3 +1,4 @@
+
 # TaskFlow
 
 ## Project Overview
@@ -13,10 +14,10 @@ TaskFlow is a full-stack productivity application designed to help users manage 
 ![html-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/532c4d1c-758e-4217-babb-39b459dcc073)
 ![postgres-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/9a37dfbd-82ad-41a4-9925-f80d2ea07651)
 ![render-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/9141c5c5-9743-4210-a6bc-8c6f2a2492c7)
-<img src="./public/Next-js-tag-mini.png" alt="next-icon" width="40" />
-- Express
+![next.js-icon](https://github.com/user-attachments/assets/8a78445a-864e-4687-81cc-8f110e46b80a)
+![express-icon](https://github.com/user-attachments/assets/6bcd6974-0aa6-4df4-b2c7-189cf76c90cd)
 
-## Featrues
+
 ### Task Management
 - Create, edit, and delete tasks
 - Assign tasks to specific dates or leave unassigned

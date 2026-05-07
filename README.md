@@ -13,7 +13,7 @@ TaskFlow is a full-stack productivity application designed to help users manage 
 ![html-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/532c4d1c-758e-4217-babb-39b459dcc073)
 ![postgres-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/9a37dfbd-82ad-41a4-9925-f80d2ea07651)
 ![render-icon](https://github.com/llfbh33/Capstone-Project/assets/145170944/9141c5c5-9743-4210-a6bc-8c6f2a2492c7)
-- Next.js
+<img src="./public/Next-js-tag-mini.png" alt="next-icon" width="40" />
 - Express
 
 ## Featrues

@@ -17,7 +17,7 @@ const app = express();  // initialize the express application to app
 app.use(morgan('dev'));  // connect morgan middleware for loggin information about requests and responses, initialize with database?
 app.use(cookieParser());  // add cookieParser middleware to app for parsing cookies
 app.use(express.json());    // add express.json middleware for parsing JSON bodies of requests with Content-Type of 'application/json'
-
+app.set("trust proxy", 1);     // Trust Railway proxy for HTTPS
 
 // Security middleware
 if (!isProduction) {

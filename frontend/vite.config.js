@@ -12,12 +12,15 @@ export default defineConfig(({ mode }) => ({
     })
   ],
   build: { chunkSizeWarningLimit: 1000, },
-  server: mode === "development" ? {
-    open: true,
+  server: mode === "development" ? {   // can not open a browser in railway in production
+    open: true,  // says to open a browser
     proxy: {
       "/api": "https://127.0.0.1:8000",  // needs to be 5000 on laptop
     },
-  } : undefined
+  } : undefined,
+  preview: {
+    allowedHosts: ["frontend-production-583c.up.railway.app"]
+  },
 }));
 
 

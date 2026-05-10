@@ -41,7 +41,7 @@ app.use(
             secure: isProduction,
             sameSite: isProduction ? "none" : "lax",
             // http only, can not be read by JavaScript, added to any server response
-            httpOnly: true
+            httpOnly: false,
         }
     })
 )

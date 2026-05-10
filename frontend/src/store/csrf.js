@@ -3,6 +3,7 @@
 import Cookies from 'js-cookie';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '';
+let csrfToken;
 
 export async function csrfFetch(url, options = {}) {
   const fullUrl = `${API_BASE_URL}${url}`;
@@ -17,7 +18,7 @@ export async function csrfFetch(url, options = {}) {
   if (options.method.toUpperCase() !== 'GET') {
     options.headers['Content-Type'] =
       options.headers['Content-Type'] || 'application/json';
-    options.headers['X-CSRF-Token'] = Cookies.get('XSRF-TOKEN');
+    options.headers["X-CSRF-Token"] = csrfToken;
   }
   // call the default window's fetch with the url and the options passed in
   const res = await window.fetch(fullUrl, {...options, credentials: "include"});
@@ -33,5 +34,8 @@ export async function csrfFetch(url, options = {}) {
 
 
 export function restoreCSRF() {
-    return csrfFetch("/api/csrf/restore");
-  }
+  const res = await csrfFetch("/api/csrf/restore");
+  const data = await res.json();
+  csrfToken = data["XSRF-Token"];
+  return csrfToken;
+}

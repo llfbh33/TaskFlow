@@ -1,4 +1,5 @@
 let csrfToken;
+const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 
 export async function restoreCSRF() {
   const res = await window.fetch(`${API_BASE_URL}/api/csrf/restore`, {

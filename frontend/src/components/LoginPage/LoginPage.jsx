@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import loadState from "../../utils/loadData";
 import * as sessionActions from '../../store/session';
 import "./LoginPage.css"
+import { restoreCSRF } from "../../store/csrf";
 
 export default function LoginPage() {
     const user = useSelector((state) => state.session.user);
@@ -27,13 +28,15 @@ export default function LoginPage() {
 
     // Login Load State for Demo User
     const demoLogin = async () => {
+        await restoreCSRF();
+
         await dispatch(sessionActions.login({
             credential: "demo-user",
             password: "password1"
         }));
 
         await loadState(dispatch);
-        navigate('/calendar')
+        navigate('/calendar');
     };
 
     // Login Load State for Verified User with Validation

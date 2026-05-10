@@ -32,19 +32,19 @@ module.exports = {
         type: Sequelize.STRING,
       },
       today: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       challenges: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       overcome: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       accomplish: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       goals: {
-        type: Sequelize.STRING
+        type: Sequelize.TEXT
       },
       createdAt: {
         allowNull: false,

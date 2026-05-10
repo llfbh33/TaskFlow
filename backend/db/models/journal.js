@@ -32,31 +32,31 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     today: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 800],
       }
     },
     challenges: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 800],
       }
     },
     overcome: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 800],
       }
     },
     accomplish: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 800],
       }
     },
     goals : {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       validate: {
         len: [0, 800],
       }

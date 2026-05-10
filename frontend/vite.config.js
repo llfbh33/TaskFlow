@@ -17,7 +17,10 @@ export default defineConfig(({ mode }) => ({
     proxy: {
       '/api': 'http://localhost:8000',  // needs to be 5000 on laptop
     },
-  } : undefined
+  } : undefined,
+  preview: {
+    allowedHosts: ["frontend-production-583c.up.railway.app"]
+  }
 }));
 
 

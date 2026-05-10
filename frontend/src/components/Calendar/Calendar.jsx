@@ -28,8 +28,8 @@ const Calendar = () => {
     const [currDate, setCurrDate] = useState(new Date());
     const [currTasks, setCurrTasks] = useState('');
     const [unassignedTasks, setUnassignedTasks] = useState('');
-    const [completedTasks, setCompletedTasks] = useState('');
-    const [incompleteTasks, setIncompleteTasks] = useState('');
+    // const [completedTasks, setCompletedTasks] = useState('');
+    // const [incompleteTasks, setIncompleteTasks] = useState('');
     const { setModalContent, closeModal } = useModal();
     const dateInputRef = useRef(null);
     const [actionItem, setActionItem] = useState(null);
@@ -52,13 +52,13 @@ const Calendar = () => {
         setLoaded(true)
     }, [datedTasks, currDate])
 
-    useEffect(() => {
-        let complete = Object.values(unassignedTasks).filter(task => task.isComplete);
-        let notComplete = Object.values(unassignedTasks).filter(task => !task.isComplete);
+    // useEffect(() => {
+    //     let complete = Object.values(unassignedTasks).filter(task => task.isComplete);
+    //     let notComplete = Object.values(unassignedTasks).filter(task => !task.isComplete);
 
-        setCompletedTasks(complete);
-        setIncompleteTasks(notComplete);
-    }, [unassignedTasks])
+    //     setCompletedTasks(complete);
+    //     setIncompleteTasks(notComplete);
+    // }, [unassignedTasks])
 
 
 
@@ -246,7 +246,7 @@ const Calendar = () => {
                                         <h3>Unassigned Tasks</h3>
                                     </div>
                                     <div className="results-list">
-                                        {incompleteTasks && Object.values(incompleteTasks).map(task => (
+                                        {unassignedTasks && Object.values(unassignedTasks).map(task => (
 
                                             <div key={task.id} className="result-item">
                                                 <div className="task-label">

@@ -17,13 +17,14 @@ const app = express();  // initialize the express application to app
 app.use(morgan('dev'));  // connect morgan middleware for loggin information about requests and responses, initialize with database?
 app.use(cookieParser());  // add cookieParser middleware to app for parsing cookies
 app.use(express.json());    // add express.json middleware for parsing JSON bodies of requests with Content-Type of 'application/json'
-app.set("trust proxy", 1);     // Trust Railway proxy for HTTPS
 
-// Security middleware
-if (!isProduction) {
-    // enable cors only in development
-    app.use(cors());
-}
+app.set("trust proxy", 1);    // trust railway proxies on HTTPS
+
+// enable front and backend interaction
+app.use(cors({
+  origin: "https://frontend-production-583c.up.railway.app",
+  credentials: true
+}));
 
 // helmet for better overall security https://www.npmjs.com/package/helmet
 // crossOriginResourcePolicy combined with helmet middleware and a cross-origin policy allows images with URL's to render in deployment

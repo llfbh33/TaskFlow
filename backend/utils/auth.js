@@ -30,6 +30,8 @@ const setTokenCookie = (res, user) => {
       sameSite: isProduction ? "none" : "lax"
     });
 
+    console.log('token', token);
+
     return token;
 };
 

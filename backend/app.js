@@ -39,7 +39,7 @@ app.use(
     csurf({
         cookie: {
             secure: isProduction,
-            sameSite: isProduction && 'Lax',
+            sameSite: isProduction ? "none" : "lax",
             // http only, can not be read by JavaScript, added to any server response
             httpOnly: true
         }

@@ -33,7 +33,7 @@ export async function csrfFetch(url, options = {}) {
 }
 
 
-export function restoreCSRF() {
+export async function restoreCSRF() {
   const res = await csrfFetch("/api/csrf/restore");
   const data = await res.json();
   csrfToken = data["XSRF-Token"];

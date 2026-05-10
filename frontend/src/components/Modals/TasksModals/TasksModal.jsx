@@ -53,6 +53,7 @@ const TasksModal = ({ title, buttonTitle, task, setTask, date, setDate, handleSu
                         }}
                     />
                 </div>
+                {/* <div>{task.length}</div> */}
                 <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
                     <button
                         type="submit"

@@ -1,6 +1,6 @@
 // frontend/src/store/csrf.js
 
-import Cookies from 'js-cookie';
+// import Cookies from 'js-cookie';
 
 const API_BASE_URL = import.meta.env.VITE_API_URL || '';
 let csrfToken;

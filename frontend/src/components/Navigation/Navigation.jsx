@@ -41,6 +41,7 @@ function Navigation({ isLoaded }) {
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout())
+        console.log('logged out')
         navigate('/');
     };
 

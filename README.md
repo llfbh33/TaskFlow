@@ -69,10 +69,12 @@ TaskFlow is a full-stack productivity application designed to help users manage 
 ### Calendar
 - Basic starter tasks for first-time users to encourage interaction
 - Task categories, tags, and priority levels
+- Option to add steps to a task
 - Drag and drop task scheduling
 - Week and month calendar layouts
 - Recurring tasks and reminders
 - Time support for tasks (e.g., complete by HH:MM)
+- Update a task so it has a title and description. The title will be how the task displays, the description provides more information
 
 ### Search
 - Ability to favorite resources for quick access

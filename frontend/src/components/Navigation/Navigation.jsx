@@ -40,8 +40,7 @@ function Navigation({ isLoaded }) {
     // Function to handle logout of user
     const logout = (e) => {
         e.preventDefault();
-        dispatch(sessionActions.logout())
-        console.log('logged out')
+        dispatch(sessionActions.logout());
         navigate('/');
     };
 
